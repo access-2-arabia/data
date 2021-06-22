@@ -13,6 +13,19 @@ class Constants {
         const val TimeStamp = "2020-12-17T12:32:37.9247001+02:00"
         const val GuidID = "74402e7c-2d79-4a38-b2f8-396fb34c5c40"
         const val DeviceID = "windows"
+
+
+
+
+        object BiometricType {
+            val fingerPrint = 0
+            val pattern = 1
+        }
+        object Support {
+            var isBiometricSupported = false
+        }
+
+
     }
 
 }
