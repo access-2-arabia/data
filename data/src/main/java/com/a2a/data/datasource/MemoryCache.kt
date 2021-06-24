@@ -2,7 +2,6 @@ package com.a2a.data.datasource
 
 import com.a2a.data.model.BaseLookup
 import com.a2a.data.model.BaseResponse
-import com.a2a.data.model.CustProfile
 
 interface MemoryCache {
 

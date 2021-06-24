@@ -1,98 +1,77 @@
 package com.a2a.data.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+
 data class CustProfile(
-    @SerializedName("placeOfBirth")
-     var placeOfBirth: String? = "",
-    @SerializedName("AddressCity")
-    var AddressCity: String? = "",
-    @SerializedName("AddressCountry")
-    var AddressCountry: String? = "",
-    @SerializedName("DocValidDate")
-    var DocValidDate: String? = "",
-    @SerializedName("detPrivateNationality")
-    var detPrivateNationality: String? = "",
     @SerializedName("AName")
-    var aName: String = "",
+    var aName: String?, // بلال محمد عقل
     @SerializedName("ANameShort")
-    var aNameShort: String = "",
+    var aNameShort: String?, // بلال عقل
     @SerializedName("Address1")
-    var address1: String = "",
+    var address1: String?, //  Amman
     @SerializedName("Address2")
-    var address2: String = "",
+    var address2: String?, // 16
+    @SerializedName("AddressCity")
+    var addressCity: String?, // Jordan
+    @SerializedName("AddressCountry")
+    var addressCountry: String?,
     @SerializedName("BirthDate")
-    var birthDate: String = "",
-    @SerializedName("DateBirth")
-    var dateBirth: String = "",
+    var birthDate: String?, // 2020-01-26T14:41:10.383
     @SerializedName("Branch")
-    var branch: String = "",
+    var branch: String?, // JO0092000
+    @SerializedName("BuildingNo")
+    var buildingNo: String?, // 12
     @SerializedName("CID")
-    var cID: Int = 0,
+    var cID: Int?, // 3752
     @SerializedName("CustID")
-    var custID: String = "",
+    var custID: String?, // 90855415
     @SerializedName("CustImage")
-    var custImage: String? = "",
+    var custImage: String?,
     @SerializedName("CustMnemonic")
-    var custMnemonic: String = "",
-    @SerializedName("Password")
-    var password: String = ""
-    ,@SerializedName("PasswordOld")
-    var passwordOld: String = "",
+    var custMnemonic: String?, // 90855415
     @SerializedName("CustType")
-    var custType: Int = 0,
+    var custType: Int?, // 0
+    @SerializedName("detPrivateNationality")
+    var detPrivateNationality: String?,
     @SerializedName("DocNo")
-    var docNo: String = "",
-    @SerializedName("MobNo")
-    var mobNo: String = "",
+    var docNo: String?, // 9132048
     @SerializedName("DocNo1")
-    var docNo1: String = "",
+    var docNo1: String?, // 9132048
+    @SerializedName("DocValidDate")
+    var docValidDate: String?, // 2020-01-26T14:41:10.383
     @SerializedName("EMail")
-    var eMail: String = "",
+    var eMail: String?, // BELAL.MOHAMMAD@CAB.JO
     @SerializedName("EName")
-    var eName: String = "",
+    var eName: String?, // BELAL  MOHAMMED  AKEEL
     @SerializedName("ENameShort")
-    var eNameShort: String = "",
-    @SerializedName("ISOCode")
-    var iSOCode: String = "",
+    var eNameShort: String?, // BELAL  AKEEL
     @SerializedName("Gender")
-    var gender: Boolean = true,
+    var gender: String?, // MALE
+    @SerializedName("ISOCode")
+    var iSOCode: String?, // JOR
     @SerializedName("ISOCode2")
-    var iSOCode2: String = "",
+    var iSOCode2: String?,
     @SerializedName("LWPT")
-    var lWPT: Boolean = false,
+    var lWPT: Boolean?, // false
     @SerializedName("LWTD")
-    var lWTD: Boolean = false,
+    var lWTD: Boolean?, // false
     @SerializedName("Lang")
-    var lang: String = "",
+    var lang: String?, // EN
     @SerializedName("MobileNumber")
-    var mobileNumber: String = "",
+    var mobileNumber: String?, // 962772052460
     @SerializedName("MobileNumberMasked")
-    var mobileNumberMasked: String = "",
+    var mobileNumberMasked: String?, // 96277xxxxx460
     @SerializedName("Nationality")
-    var nationality: String = "",
+    var nationality: String?, // JOR
     @SerializedName("NationalityID")
-    var nationalityID: String? = "",
+    var nationalityID: String?, // 9132048
+    @SerializedName("placeOfBirth")
+    var placeOfBirth: String?,
     @SerializedName("RID")
-    var rID: Int = 0,
+    var rID: Int?, // 0
     @SerializedName("RepID")
-    var repID: String? = "",
+    var repID: Any?, // null
     @SerializedName("TermsAndCondition")
-    var termsAndCondition: Int = 0,
-    @SerializedName("LoanNumber")
-    var loanNumber: String ="",
-    @SerializedName("CarOwnerShip")
-    var carOwnerShip: Boolean = false,
-    @SerializedName("Occupation")
-    var occupation: String = "",
-    @SerializedName("MaritalStatus")
-    var maritalStatus: String = "",
-    @SerializedName("CustMnemonicOld")
-    var custMnemonicOld: String = "",
-    @SerializedName("CustMnemonicNew")
-    var custMnemonicNew: String = ""
-
-) : Parcelable
+    var termsAndCondition: Int? // 1
+)

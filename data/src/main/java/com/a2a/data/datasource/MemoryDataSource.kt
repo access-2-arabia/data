@@ -1,6 +1,5 @@
 import com.a2a.data.model.BaseLookup
 import com.a2a.data.model.BaseResponse
-import com.a2a.data.model.CustProfile
 
 class MemoryDataSource {
     private var custProfile: CustProfile? = null
