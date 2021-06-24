@@ -73,7 +73,7 @@ data class CustProfile(
     @SerializedName("RID")
     var rID: Int?, // 0
     @SerializedName("RepID")
-    var repID: Any?, // null
+    var repID: Int?, // null
     @SerializedName("TermsAndCondition")
     var termsAndCondition: Int? // 1
 ):Parcelable

@@ -33,13 +33,13 @@ data class LoginResponseData(
             @SerializedName("Channel")
             var channel: String?,
             @SerializedName("ConnectorID")
-            var connectorID: Any?, // null
+            var connectorID: String?, // null
             @SerializedName("Device")
-            var device: Any?, // null
+            var device: String?, // null
             @SerializedName("DeviceID")
-            var deviceID: Any?, // null
+            var deviceID: String?, // null
             @SerializedName("DeviceToken")
-            var deviceToken: Any?, // null
+            var deviceToken: String?, // null
             @SerializedName("GuidID")
             var guidID: String?, // 00000000-0000-0000-0000-000000000000
             @SerializedName("MethodName")
@@ -51,7 +51,7 @@ data class LoginResponseData(
             @SerializedName("ServiceID")
             var serviceID: Int?, // 0
             @SerializedName("SessionID")
-            var sessionID: Any?, // null
+            var sessionID: String?, // null
             @SerializedName("SrvID")
             var srvID: String?,
             @SerializedName("TimeStamp")
@@ -119,7 +119,7 @@ data class LoginResponseData(
             @SerializedName("CustProfile")
             var custProfile: CustProfile?,
             @SerializedName("CustRequest")
-            var custRequest: List<Any?>?,
+            var custRequest: List<String?>?,
             @SerializedName("DateBirth")
             var dateBirth: String?, // 1979-04-02T00:00:00
             @SerializedName("DateFrom")
@@ -131,7 +131,7 @@ data class LoginResponseData(
             @SerializedName("DefaultPage")
             var defaultPage: String?, // 162
             @SerializedName("DefaultPageMenu")
-            var defaultPageMenu: List<Any?>?,
+            var defaultPageMenu: List<String?>?,
             @SerializedName("DocDesc1")
             var docDesc1: String?, // CARD.ID
             @SerializedName("DocNo")
@@ -183,11 +183,11 @@ data class LoginResponseData(
             @SerializedName("LoginDetails")
             var loginDetails: LoginDetails?,
             @SerializedName("MainMenu")
-            var mainMenu: List<Any?>?,
+            var mainMenu: List<String?>?,
             @SerializedName("MaritalStatus")
             var maritalStatus: String?,
             @SerializedName("Menu")
-            var menu: List<Any?>?,
+            var menu: List<String?>?,
             @SerializedName("MobArea")
             var mobArea: String?,
             @SerializedName("MobCnty")
@@ -213,7 +213,7 @@ data class LoginResponseData(
             @SerializedName("PostZip")
             var postZip: String?, // 11195
             @SerializedName("QuickMenu")
-            var quickMenu: List<Any?>?,
+            var quickMenu: List<String?>?,
             @SerializedName("RegionCode")
             var regionCode: String?, // 02
             @SerializedName("RemainBal")
@@ -323,7 +323,7 @@ data class LoginResponseData(
             @SerializedName("Result")
             var result: Result?,
             @SerializedName("SessionID")
-            var sessionID: Any?, // null
+            var sessionID: String?, // null
             @SerializedName("SrvID")
             var srvID: Int?, // 227
             @SerializedName("TimeStamp")
