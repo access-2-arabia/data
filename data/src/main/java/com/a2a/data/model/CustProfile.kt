@@ -7,73 +7,73 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class CustProfile(
     @SerializedName("AName")
-    var aName: String?, // بلال محمد عقل
+    var aName: String = "",
     @SerializedName("ANameShort")
-    var aNameShort: String?, // بلال عقل
+    var aNameShort: String = "",
     @SerializedName("Address1")
-    var address1: String?, //  Amman
+    var address1: String = "",
     @SerializedName("Address2")
-    var address2: String?, // 16
+    var address2: String = "",
     @SerializedName("AddressCity")
-    var addressCity: String?, // Jordan
+    var addressCity: String = "",
     @SerializedName("AddressCountry")
-    var addressCountry: String?,
+    var addressCountry: String = "",
     @SerializedName("BirthDate")
-    var birthDate: String?, // 2020-01-26T14:41:10.383
+    var birthDate: String = "",
     @SerializedName("Branch")
-    var branch: String?, // JO0092000
+    var branch: String = "",
     @SerializedName("BuildingNo")
-    var buildingNo: String?, // 12
+    var buildingNo: String = "",
     @SerializedName("CID")
-    var cID: Int?, // 3752
+    var cID: Int = 0,
     @SerializedName("CustID")
-    var custID: String?, // 90855415
+    var custID: String = "",
     @SerializedName("CustImage")
-    var custImage: String?,
+    var custImage: String = "",
     @SerializedName("CustMnemonic")
-    var custMnemonic: String?, // 90855415
+    var custMnemonic: String = "",
     @SerializedName("CustType")
-    var custType: Int?, // 0
+    var custType: Int = 0,
     @SerializedName("detPrivateNationality")
-    var detPrivateNationality: String?,
+    var detPrivateNationality: String = "",
     @SerializedName("DocNo")
-    var docNo: String?, // 9132048
+    var docNo: String = "",
     @SerializedName("DocNo1")
-    var docNo1: String?, // 9132048
+    var docNo1: String = "",
     @SerializedName("DocValidDate")
-    var docValidDate: String?, // 2020-01-26T14:41:10.383
+    var docValidDate: String = "",
     @SerializedName("EMail")
-    var eMail: String?, // BELAL.MOHAMMAD@CAB.JO
+    var eMail: String = "",
     @SerializedName("EName")
-    var eName: String?, // BELAL  MOHAMMED  AKEEL
+    var eName: String = "",
     @SerializedName("ENameShort")
-    var eNameShort: String?, // BELAL  AKEEL
+    var eNameShort: String = "",
     @SerializedName("Gender")
-    var gender: String?, // MALE
+    var gender: String = "",
     @SerializedName("ISOCode")
-    var iSOCode: String?, // JOR
+    var iSOCode: String = "",
     @SerializedName("ISOCode2")
-    var iSOCode2: String?,
+    var iSOCode2: String = "",
     @SerializedName("LWPT")
-    var lWPT: Boolean?, // false
+    var lWPT: Boolean = false,
     @SerializedName("LWTD")
-    var lWTD: Boolean?, // false
+    var lWTD: Boolean = false,
     @SerializedName("Lang")
-    var lang: String?, // EN
+    var lang: String = "",
     @SerializedName("MobileNumber")
-    var mobileNumber: String?, // 962772052460
+    var mobileNumber: String = "",
     @SerializedName("MobileNumberMasked")
-    var mobileNumberMasked: String?, // 96277xxxxx460
+    var mobileNumberMasked: String = "",
     @SerializedName("Nationality")
-    var nationality: String?, // JOR
+    var nationality: String = "",
     @SerializedName("NationalityID")
-    var nationalityID: String?, // 9132048
+    var nationalityID: String = "",
     @SerializedName("placeOfBirth")
-    var placeOfBirth: String?,
+    var placeOfBirth: String = "",
     @SerializedName("RID")
-    var rID: Int?, // 0
+    var rID: Int = 0,
     @SerializedName("RepID")
-    var repID: Int?, // null
+    var repID: Int = 0,
     @SerializedName("TermsAndCondition")
-    var termsAndCondition: Int? // 1
+    var termsAndCondition: Int = 0
 ):Parcelable

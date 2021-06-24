@@ -1,10 +1,11 @@
 import com.a2a.data.model.BaseLookup
 import com.a2a.data.model.BaseResponse
+import com.a2a.data.model.CustProfile
 
 class MemoryDataSource {
     private var custProfile: CustProfile? = null
     private var deviceId: String = ""
-     private var request: Any = Any()
+     private var request: String = ""
     private var response: BaseResponse = BaseResponse()
     private var lookUps: BaseLookup? = null
 
