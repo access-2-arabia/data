@@ -1,4 +1,4 @@
-package com.a2a.mbanking.application.data.sharedPreference
+package com.a2a.data.sharedPreference
 
 import android.content.Context
 import android.content.SharedPreferences

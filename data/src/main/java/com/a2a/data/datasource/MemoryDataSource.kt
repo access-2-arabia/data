@@ -5,7 +5,7 @@ import com.a2a.data.model.CustProfile
 class MemoryDataSource {
     private var custProfile: CustProfile? = null
     private var deviceId: String = ""
-     private var request: String = ""
+     private var request: Any = Any()
     private var response: BaseResponse = BaseResponse()
     private var lookUps: BaseLookup? = null
 
