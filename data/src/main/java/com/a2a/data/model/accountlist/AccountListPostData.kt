@@ -3,7 +3,7 @@ import com.google.gson.annotations.SerializedName
 
 
 data class AccountListPostData(
-    @SerializedName("A2ARequest")
+    @SerializedName("a2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
     data class A2ARequest(
