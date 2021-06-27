@@ -21,8 +21,8 @@ class AccountsRepository @Inject constructor(
                 header?.apply {
                     bankCode = Constants.BankCode
                     regionCode = Constants.RegionCode
-                    srvID = "Login"
-                    serviceID = 3287
+                    srvID = "DashBoard"
+                    serviceID = 0
                     methodName = ""
                     userID = Constants.UserID
                     password = Constants.Password
