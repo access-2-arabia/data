@@ -1,18 +1,21 @@
-package com.a2a.data.repository
+package com.a2a.data.repository.accounts
+
+import MemoryCacheImpl
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewTimeStamp
-import com.a2a.data.model.login.LoginPostData
+import com.a2a.data.model.accountlist.AccountListPostData
+import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import java.util.*
 import javax.inject.Inject
 
-class LoginRepositry @Inject constructor(
+class AccountsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> doLogin(Mpassword: String, MCustMnemonic: String): Resource<T>? {
-        val postData = LoginPostData()
+    suspend fun <T> getAccountsList(): Resource<T>? {
+        val postData = AccountListPostData()
         postData.apply {
             a2ARequest?.apply {
                 header?.apply {
@@ -30,15 +33,23 @@ class LoginRepositry @Inject constructor(
                 }
 
                 a2ARequest?.body?.apply {
-                    custProfile.custMnemonic = MCustMnemonic ?: ""
-                    custProfile.pWD = Mpassword ?: ""
+                    custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
+                    custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
+                    custProfile.repID = MemoryCacheImpl.getCustProfile()!!.repID
+                    custProfile.custMnemonic = MemoryCacheImpl.getCustProfile()!!.custMnemonic
+                    custProfile.custType = MemoryCacheImpl.getCustProfile()!!.custType
+                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
                 }
                 a2ARequest?.footer?.apply {
                     signature = ""
                 }
             }
         }
-        return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+
+        }
     }
+
 
 }
