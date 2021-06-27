@@ -25,4 +25,7 @@ interface MemoryCache {
     fun setSessionID(sessionId: String)
     fun getSessionID():String
 
+    fun setIpAddress(ipAddress: String)
+    fun getIpAddress():String
+
 }

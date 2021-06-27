@@ -19,17 +19,17 @@ data class Header(
     @SerializedName("Device")
     var device: String = "Android",
     @SerializedName("DeviceID")
-    var deviceID: String = "0f8378650bed45839fffa9fbcbd72514",
+    var deviceID: String = MemoryCacheImpl.getDeviceId(),
     @SerializedName("DeviceToken")
-    var deviceToken: String = "0f8378650bed45839fffa9fbcbd72514",
+    var deviceToken: String = MemoryCacheImpl.getDeviceId(),
     @SerializedName("RegionCode")
     var regionCode: String = "01",
     @SerializedName("SrvID")
     var srvID: String = "",
     @SerializedName("SessionID")
-    var sessionID: String? = "",
+    var sessionID: String? = MemoryCacheImpl.getSessionID(),
     @SerializedName("IPAddress")
-    var iPAddress: String? = "",
+    var iPAddress: String? = MemoryCacheImpl.getIpAddress(),
     @SerializedName("Result")
     var result: Result? = Result()
 ) : Parcelable

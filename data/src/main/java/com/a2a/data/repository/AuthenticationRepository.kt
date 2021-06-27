@@ -14,7 +14,7 @@ class AuthenticationRepository @Inject constructor(
     suspend fun <T> doLogin(
         password: String,
         customerId: String,
-        isBaimoitric: Boolean
+        isBaimoitric: Boolean,
     ): Resource<T> {
         val postData = LoginPostData()
 
@@ -29,6 +29,7 @@ class AuthenticationRepository @Inject constructor(
             }
             body.custProfile.lWTD = isBaimoitric
             header.srvID = "Login"
+
 
         }
         return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
