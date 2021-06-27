@@ -30,4 +30,6 @@ data class Header(
     var sessionID: String? = "",
     @SerializedName("IPAddress")
     var iPAddress: String? = "",
+    @SerializedName("Result")
+    var result: Result? = Result()
 ) : Parcelable
