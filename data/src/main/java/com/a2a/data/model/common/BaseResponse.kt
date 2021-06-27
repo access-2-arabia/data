@@ -9,10 +9,5 @@ open class BaseResponse (
     data class A2AResponse(
         @SerializedName("Header")
         var header: Header? = Header()
-    ) {
-        data class Header(
-            @SerializedName("Result")
-            var result: Result? = Result()
-        )
-    }
+    )
 }
