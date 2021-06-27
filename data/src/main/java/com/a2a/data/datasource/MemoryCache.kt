@@ -1,8 +1,8 @@
 package com.a2a.data.datasource
 
 import com.a2a.data.model.common.BaseLookup
-import com.a2a.data.model.common.BaseResponse
-import com.a2a.data.model.common.CustProfile
+import com.a2a.network.model.BaseResponse
+import com.a2a.network.model.CustProfile
 
 interface MemoryCache {
 

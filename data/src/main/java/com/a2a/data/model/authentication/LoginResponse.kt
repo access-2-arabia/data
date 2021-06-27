@@ -1,9 +1,9 @@
 package com.a2a.data.model.authentication
 
 
-import com.a2a.data.model.common.CustProfile
 import com.a2a.data.model.common.Footer
 import com.a2a.data.model.common.Header
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(

@@ -1,7 +1,7 @@
 import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.model.common.BaseLookup
-import com.a2a.data.model.common.BaseResponse
-import com.a2a.data.model.common.CustProfile
+import com.a2a.network.model.BaseResponse
+import com.a2a.network.model.CustProfile
 
 object MemoryCacheImpl : MemoryCache {
     val memoryDataSource: MemoryDataSource = MemoryDataSource()

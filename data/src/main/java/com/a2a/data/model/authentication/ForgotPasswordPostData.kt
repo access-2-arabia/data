@@ -1,8 +1,8 @@
 package com.a2a.data.model.authentication
 
 
-import com.a2a.data.model.common.CustProfile
 import com.a2a.data.model.common.Header
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class ForgotPasswordPostData(
@@ -21,6 +21,7 @@ data class ForgotPasswordPostData(
             @SerializedName("CustProfile")
             var custProfile: CustProfile = CustProfile()
         )
+
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
