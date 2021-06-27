@@ -1,7 +1,7 @@
 import com.a2a.data.datasource.MemoryCache
-import com.a2a.data.model.BaseLookup
-import com.a2a.data.model.BaseResponse
-import com.a2a.data.model.CustProfile
+import com.a2a.data.model.common.BaseLookup
+import com.a2a.data.model.common.BaseResponse
+import com.a2a.data.model.common.CustProfile
 
 object MemoryCacheImpl : MemoryCache {
     val memoryDataSource: MemoryDataSource = MemoryDataSource()
@@ -37,7 +37,7 @@ object MemoryCacheImpl : MemoryCache {
     }
 
     override fun getLookUps(): BaseLookup {
-        return memoryDataSource.getListOfLookUps()?:BaseLookup()
+        return memoryDataSource.getListOfLookUps()?: BaseLookup()
     }
 
     override fun setDeviceId(deviceId: String) {

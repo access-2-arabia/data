@@ -1,10 +1,11 @@
-package com.a2a.data.model
+package com.a2a.data.model.authentication
 
 
+import com.a2a.data.model.common.CustProfile
 import com.a2a.data.model.common.Header
 import com.google.gson.annotations.SerializedName
 
-data class LookUpPostData(
+data class ForgotPasswordPostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
@@ -17,15 +18,12 @@ data class LookUpPostData(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("LookUpName")
-            var lookUpName: String? = ""
+            @SerializedName("CustProfile")
+            var custProfile: CustProfile = CustProfile()
         )
-
         data class Footer(
             @SerializedName("Signature")
-            var signature: String? = ""
+            var signature: String = ""
         )
-
-
     }
 }
