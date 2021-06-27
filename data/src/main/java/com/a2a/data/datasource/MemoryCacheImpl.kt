@@ -41,32 +41,4 @@ object MemoryCacheImpl : MemoryCache {
     }
 
 
-    override fun setSessionID(sessionId: String) {
-        memoryDataSource.cacheSessionIdInMemory(sessionId)
-    }
-
-    override fun getSessionID(): String {
-        return memoryDataSource.getSessionID()
-
-    }
-
-    override fun setIpAddress(ipAddress: String) {
-        memoryDataSource.cacheIpAddressInMemory(ipAddress)
-    }
-
-    override fun getIpAddress(): String {
-        return memoryDataSource.getIpAddress()
-    }
-    override fun setDeviceId(deviceId: String) {
-        memoryDataSource.cacheDeviceIdInMemory(deviceId)
-    }
-
-    override fun getDeviceId(): String {
-        return memoryDataSource.getDeviceId()
-    }
-
-
-
-
-
 }
