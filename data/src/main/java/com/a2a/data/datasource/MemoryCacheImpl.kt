@@ -53,6 +53,14 @@ object MemoryCacheImpl : MemoryCache {
 
     }
 
+    override fun setIpAddress(ipAddress: String) {
+        memoryDataSource.cacheSessionIdInMemory(ipAddress)
+    }
+
+    override fun getIpAddress(): String {
+        return memoryDataSource.getIpAddress()
+    }
+
     override fun getDeviceId(): String {
         return memoryDataSource.getDeviceId()
     }

@@ -6,7 +6,8 @@ class MemoryDataSource {
     private var custProfile: CustProfile? = null
     private var deviceId: String = ""
     private var sessionId: String = ""
-     private var request: Any = Any()
+    private var request: Any = Any()
+    private var ipAddress: String = ""
     private var response: BaseResponse = BaseResponse()
     private var lookUps: BaseLookup? = null
 
@@ -17,6 +18,7 @@ class MemoryDataSource {
     fun getListOfLookUps() = lookUps
     fun getOtpRequest() = request
     fun getOtpResponse() = response
+    fun getIpAddress() = ipAddress
     fun cacheInMemory(custProfile: CustProfile?) {
         this.custProfile = custProfile
     }
@@ -25,8 +27,13 @@ class MemoryDataSource {
     fun cacheInMemory(deviceId: String) {
         this.deviceId = deviceId
     }
+
     fun cacheSessionIdInMemory(sessionId: String) {
         this.sessionId = sessionId
+    }
+
+    fun cacheIpAddressInMemory(ipAddress: String) {
+        this.ipAddress = ipAddress
     }
 
     fun cacheRequest(request: Any) {
@@ -40,8 +47,6 @@ class MemoryDataSource {
 
     fun cacheInMemoryLookUps(lookUps: BaseLookup?) {
         this.lookUps = lookUps
-
-
     }
 
 
