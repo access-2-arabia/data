@@ -19,13 +19,15 @@ interface MemoryCache {
     fun setLookUps(response: BaseLookup)
     fun getLookUps(): BaseLookup
 
-    fun setDeviceId(deviceId: String)
-    fun getDeviceId(): String
+
 
     fun setSessionID(sessionId: String)
     fun getSessionID():String
 
     fun setIpAddress(ipAddress: String)
     fun getIpAddress():String
+
+    fun setDeviceId(deviceId: String)
+    fun getDeviceId():String
 
 }

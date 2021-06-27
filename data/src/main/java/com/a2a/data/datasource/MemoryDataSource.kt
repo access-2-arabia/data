@@ -13,9 +13,10 @@ class MemoryDataSource {
 
 
     fun getCustProfile() = custProfile
-    fun getDeviceId() = deviceId
+
     fun getSessionID() = sessionId
     fun getListOfLookUps() = lookUps
+    fun getDeviceId() = deviceId
     fun getOtpRequest() = request
     fun getOtpResponse() = response
     fun getIpAddress() = ipAddress
@@ -24,16 +25,15 @@ class MemoryDataSource {
     }
 
 
-    fun cacheInMemory(deviceId: String) {
-        this.deviceId = deviceId
-    }
-
     fun cacheSessionIdInMemory(sessionId: String) {
         this.sessionId = sessionId
     }
 
     fun cacheIpAddressInMemory(ipAddress: String) {
         this.ipAddress = ipAddress
+    }
+    fun cacheDeviceIdInMemory(deviceId: String) {
+        this.deviceId = deviceId
     }
 
     fun cacheRequest(request: Any) {
