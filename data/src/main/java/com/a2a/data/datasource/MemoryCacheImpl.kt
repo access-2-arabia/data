@@ -37,11 +37,20 @@ object MemoryCacheImpl : MemoryCache {
     }
 
     override fun getLookUps(): BaseLookup {
-        return memoryDataSource.getListOfLookUps()?: BaseLookup()
+        return memoryDataSource.getListOfLookUps() ?: BaseLookup()
     }
 
     override fun setDeviceId(deviceId: String) {
-         memoryDataSource.cacheInMemory(deviceId)
+        memoryDataSource.cacheInMemory(deviceId)
+    }
+
+    override fun setSessionID(sessionId: String) {
+        memoryDataSource.cacheSessionIdInMemory(sessionId)
+    }
+
+    override fun getSessionID(): String {
+        return memoryDataSource.getSessionID()
+
     }
 
     override fun getDeviceId(): String {
