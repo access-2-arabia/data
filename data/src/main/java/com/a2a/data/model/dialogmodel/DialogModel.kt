@@ -7,11 +7,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class DialogModel(
-    var aMessage: String? = "",
-    var eMessage: String? = "",
-    var errorCode: Int? = 0,
+
+    var message: String? = "",
     var image: Int? = 0,
     var approveButton: Boolean? = false,
-    var cancelButton: Boolean? = false
+    var cancelButton: Boolean? = false,
+    var buttonvisability:Boolean?=false
 
 ) : Parcelable
