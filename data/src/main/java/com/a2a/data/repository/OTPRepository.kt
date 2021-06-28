@@ -2,7 +2,6 @@ package com.a2a.data.repository
 
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.authentication.LoginPostData
 import com.a2a.data.model.common.CustomerProfilePostData
 import com.a2a.network.Resource
 import com.google.gson.Gson
@@ -15,16 +14,16 @@ class OTPRepository @Inject constructor(
 ) : BaseRepository() {
 
 
-    suspend fun <T> checkOtp(
-        request: T, utr: String?, pin: String?, isBiomatric: Boolean, isManual: Boolean
-    ): Resource<T> {
+    suspend fun <REQUEST, OLD_REQUEST> checkOtp(
+        request: OLD_REQUEST, utr: String?, pin: String?, isBiometric: Boolean, isManual: Boolean
+    ): Resource<REQUEST> {
         val gson = Gson()
         val jsonRequest = gson.toJson(request)
         val jsonObject: JsonObject = gson.fromJson(jsonRequest, JsonObject::class.java)
         val authJsonObject = JsonObject()
         authJsonObject.addProperty("UTR", utr)
         authJsonObject.addProperty("PIN", pin)
-        authJsonObject.addProperty("LWTD", isBiomatric)
+        authJsonObject.addProperty("LWTD", isBiometric)
         jsonObject.getAsJsonObject("A2ARequest").getAsJsonObject("Body")
             .add("Authenticate", authJsonObject)
         if (isManual) {
@@ -52,31 +51,6 @@ class OTPRepository @Inject constructor(
             )
         }
     }
-
-    suspend fun <T> doLogin(
-        password: String,
-        customerId: String,
-        isBaimoitric: Boolean,
-    ): Resource<T> {
-        val postData = LoginPostData()
-
-        postData.a2ARequest.apply {
-
-            if (!isBaimoitric) {
-                body.custProfile.pWD = password
-                body.custProfile.custMnemonic = customerId
-            } else {
-                body.custProfile.pWD = null
-                body.custProfile.custMnemonic = null
-            }
-            body.custProfile.lWTD = isBaimoitric
-            header.srvID = "Login"
-
-
-        }
-        return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
-    }
-
 
 }
 

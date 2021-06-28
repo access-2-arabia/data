@@ -11,8 +11,6 @@ class LookupsRepository @Inject constructor(
 ) : BaseRepository() {
 
 
-
-
     suspend fun <T> getLookUps(): Resource<T> {
         val postData = LookUpPostData()
         postData.apply {
