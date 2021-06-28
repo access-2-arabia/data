@@ -11,6 +11,7 @@ class SharedPreference (application: Context) {
     private val BIOMATRIC_LOGIN = "BIOMATRIC_LOGIN"
     private val CUSTOMER_ID = "CUSTOMER_ID"
     private val PASSWORD = "PU"
+    private val IS_REMEMBER_ME_ENABLED = "IS_REMEMBER_ME_ENABLED"
     private val sharedPref: SharedPreferences =
         application.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     val encryptDataHelper = EncryptionDecryptionHelper()
@@ -35,8 +36,8 @@ class SharedPreference (application: Context) {
             PASSWORD, encryptDataHelper.encryptData(password, AppCache.token)
         ).apply()
     var isRememberMeEnabled: Boolean
-        get() = sharedPref.getBoolean(PASSWORD, false)
-        set(isRememberMeEnabled) = sharedPref.edit().putBoolean(PASSWORD, isRememberMeEnabled)
+        get() = sharedPref.getBoolean(IS_REMEMBER_ME_ENABLED, false)
+        set(isRememberMeEnabled) = sharedPref.edit().putBoolean(IS_REMEMBER_ME_ENABLED, isRememberMeEnabled)
             .apply()
 
 
