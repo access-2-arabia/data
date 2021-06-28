@@ -1,13 +1,12 @@
 package com.a2a.data.datasource
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.a2a.network.securityHelper.EncryptionDecryptionHelper
 import javax.inject.Inject
 
 
-class SharedPreference @Inject constructor(application: Application) {
+class SharedPreference (application: Context) {
     private val PREFS_NAME = "BEA"
     private val BIOMATRIC_LOGIN = "BIOMATRIC_LOGIN"
     private val CUSTOMER_ID = "CUSTOMER_ID"
