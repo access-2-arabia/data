@@ -1,5 +1,8 @@
 package com.a2a.data.model.lasttransaction
+
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 
 data class LastTransactionResponse(
@@ -78,6 +81,7 @@ data class LastTransactionResponse(
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) {
+            @Parcelize
             data class AccountTransaction(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -145,7 +149,15 @@ data class LastTransactionResponse(
                 var trxRefNo: String = "",
                 @SerializedName("Type")
                 var type: String = ""
-            )
+            ) : Parcelable {
+                fun toStringAmount(): String {
+                    return amount.toString()
+                }
+                fun toStringDebitAmount(): String {
+                    return debitAmount.toString()
+
+                }
+            }
 
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
@@ -153,6 +165,7 @@ data class LastTransactionResponse(
                 @SerializedName("TransCount")
                 var transCount: String = ""
             )
+
         }
 
         data class Footer(
@@ -193,4 +206,5 @@ data class LastTransactionResponse(
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
     )
+
 }
