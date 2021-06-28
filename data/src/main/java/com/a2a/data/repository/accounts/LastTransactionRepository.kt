@@ -15,7 +15,7 @@ class LastTransactionRepository @Inject constructor(
 ) : BaseRepository() {
 
 
-    suspend fun <T> getLastTransactionList(): Resource<T>? {
+    suspend fun <T> getLastTransactionList(accountNumber:String): Resource<T>? {
         val postData = LastTransactionPostData()
         postData.apply {
             a2ARequest?.apply {
@@ -34,7 +34,7 @@ class LastTransactionRepository @Inject constructor(
                 }
 
                 a2ARequest?.body?.apply {
-                    account.accountNumber = ""
+                    account.accountNumber = accountNumber
                     branchCode = MemoryCacheImpl.getCustProfile()!!.branch
                     custID = MemoryCacheImpl.getCustProfile()!!.custID
                     dateFrom = "23/12/2020"
