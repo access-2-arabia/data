@@ -155,15 +155,12 @@ data class LastTransactionResponse(
                 fun toStringAmount(): String {
                     return amount.toString()
                 }
+
                 fun toStringDebitAmount(): String {
                     return debitAmount.toString()
 
                 }
 
-                fun convertDateTimeToDate(): String {
-                    return  datePost.formatToServerDateDefaults()
-
-                }
             }
 
             data class ServiceConfiguration(
