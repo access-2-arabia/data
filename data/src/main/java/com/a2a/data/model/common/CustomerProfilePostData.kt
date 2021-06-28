@@ -1,11 +1,10 @@
-package com.a2a.data.model.authentication
+package com.a2a.data.model.common
 
 
-import com.a2a.data.model.common.Header
 import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
-data class ForgotPasswordPostData(
+data class CustomerProfilePostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
