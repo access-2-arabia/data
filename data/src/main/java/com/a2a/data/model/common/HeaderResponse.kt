@@ -2,9 +2,7 @@ package com.a2a.data.model.common
 
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 
 data class HeaderResponse(
     @SerializedName("GuidID")
