@@ -15,3 +15,9 @@ fun String.formatToServerDateDefaults(): String {
 }
 
 
+fun Date.formatToViewDateStamp(): String {
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return sdf.format(this)
+}
+
+
