@@ -6,6 +6,7 @@ import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.extentions.formatToViewTimeStamp
 import com.a2a.data.model.accountlist.AccountListPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
+import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.data.repository.transfer.TransferType.Companion.betweenMyAccountADesc
 import com.a2a.data.repository.transfer.TransferType.Companion.betweenMyAccountEDesc
@@ -16,6 +17,51 @@ import javax.inject.Inject
 class TransferRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
+
+
+    suspend fun <T> getValidationTransferBetweenMyAccount(
+        accountNumberFromValue: String, accountNumberToValue: String,
+        currFrom: String, currTo: String, amount: String
+    ): Resource<T>? {
+        val postData = ValidationBetweenMyAccountPostData()
+        postData.apply {
+            a2ARequest?.apply {
+                header?.apply {
+                    bankCode = Constants.BankCode
+                    regionCode = Constants.RegionCode
+                    srvID = "IntFund"
+                    serviceID = 0
+                    methodName = ""
+                    userID = Constants.UserID
+                    password = Constants.Password
+                    channel = Constants.Channel
+                    timeStamp = Date().formatToViewTimeStamp()
+
+                    deviceID = Constants.DeviceID
+                }
+
+                a2ARequest?.body?.apply {
+                    stepNumber = "2"
+                    repID = "0"
+                    cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+                    custID = MemoryCacheImpl.getCustProfile()!!.custID
+                    accountNumberFrom = accountNumberFromValue
+                    accountNumberTo = accountNumberToValue
+                    currencyFrom = currFrom
+                    currencyTo = currTo
+                    custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+                }
+                a2ARequest?.footer?.apply {
+                    signature = ""
+                }
+            }
+        }
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+
+        }
+
+    }
 
     suspend fun <T> getTransferBetweenMyAccount(
         accountNumberFrom: String, accountNumberTo: String,
