@@ -21,7 +21,7 @@ class TransferRepository @Inject constructor(
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
         accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amount: String
+        currFrom: String, currTo: String, amountValue: String
     ): Resource<T>? {
         val postData = ValidationBetweenMyAccountPostData()
         postData.apply {
@@ -50,6 +50,8 @@ class TransferRepository @Inject constructor(
                     currencyFrom = currFrom
                     currencyTo = currTo
                     custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+                    amount=amountValue
+                    branchCode=MemoryCacheImpl.getCustProfile()!!.branch
                 }
                 a2ARequest?.footer?.apply {
                     signature = ""
