@@ -1,10 +1,9 @@
 import com.a2a.data.model.BaseLookup
 import com.a2a.data.model.BaseResponse
-import com.a2a.data.model.login.LoginPostData
-
+import com.a2a.data.model.CustProfile
 
 class MemoryDataSource {
-    private var custProfile: LoginPostData.A2ARequest.Body.CustProfile? = null
+    private var custProfile: CustProfile? = null
     private var deviceId: String = ""
      private var request: Any = Any()
     private var response: BaseResponse = BaseResponse()
@@ -16,7 +15,7 @@ class MemoryDataSource {
     fun getListOfLookUps() = lookUps
     fun getOtpRequest() = request
     fun getOtpResponse() = response
-    fun cacheInMemory(custProfile: LoginPostData.A2ARequest.Body.CustProfile?) {
+    fun cacheInMemory(custProfile: CustProfile?) {
         this.custProfile = custProfile
     }
 
