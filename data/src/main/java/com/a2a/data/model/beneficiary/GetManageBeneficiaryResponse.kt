@@ -32,13 +32,13 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: String = "",
+            var connectorID: Any = Any(),
             @SerializedName("Device")
-            var device: String = "",
+            var device: Any = Any(),
             @SerializedName("DeviceID")
-            var deviceID: String = "",
+            var deviceID: Any = Any(),
             @SerializedName("DeviceToken")
-            var deviceToken: String = "",
+            var deviceToken: Any = Any(),
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -50,7 +50,7 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID: Any = Any(),
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
@@ -69,32 +69,64 @@ data class GetManageBeneficiaryResponse(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("BeneficiaryWU")
-            var beneficiaryWU: List<BeneficiaryWU> = listOf(),
+            @SerializedName("Beneficiary")
+            var beneficiary: List<Beneficiary> = listOf(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) {
-            data class BeneficiaryWU(
-                @SerializedName("Country")
-                var country: String = "",
+            data class Beneficiary(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AccNo")
+                var accNo: String = "",
+                @SerializedName("AdminFlag")
+                var adminFlag: Boolean = false,
+                @SerializedName("Attr")
+                var attr: String = "",
+                @SerializedName("Branch")
+                var branch: String = "",
+                @SerializedName("Curr")
+                var curr: String = "",
                 @SerializedName("CustID")
-                var custID: String = "",
-                @SerializedName("Email")
-                var email: String = "",
-                @SerializedName("FName")
-                var fName: String = "",
-                @SerializedName("id")
-                var id: Int = 0,
-                @SerializedName("LName")
-                var lName: String = "",
-                @SerializedName("MName")
-                var mName: String = "",
-                @SerializedName("Nationality")
-                var nationality: String = "",
-                @SerializedName("PhoneNumber")
-                var phoneNumber: String = "",
+                var custID: Int = 0,
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("Enabled")
+                var enabled: Boolean = false,
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Lang")
+                var lang: String = "",
+                @SerializedName("LastTransferAmount")
+                var lastTransferAmount: String = "",
+                @SerializedName("LastTransferDate")
+                var lastTransferDate: String = "",
+                @SerializedName("NickName")
+                var nickName: String = "",
                 @SerializedName("RegionCode")
-                var regionCode: String = ""
+                var regionCode: String = "",
+                @SerializedName("SeqNo")
+                var seqNo: String = "",
+                @SerializedName("Shortcut")
+                var shortcut: String = "",
+                @SerializedName("Status")
+                var status: Int = 0,
+                @SerializedName("TblCust")
+                var tblCust: Any = Any(),
+                @SerializedName("TblCustAccPredefinedChannel")
+                var tblCustAccPredefinedChannel: List<Any> = listOf(),
+                @SerializedName("TblLUBranch")
+                var tblLUBranch: Any = Any(),
+                @SerializedName("TblLUCurrency")
+                var tblLUCurrency: Any = Any(),
+                @SerializedName("TblLogTransfer")
+                var tblLogTransfer: List<Any> = listOf(),
+                @SerializedName("TblRepAccPredefined")
+                var tblRepAccPredefined: List<Any> = listOf(),
+                @SerializedName("Trusted")
+                var trusted: Boolean = false,
+                @SerializedName("Type")
+                var type: String = ""
             )
 
             data class ServiceConfiguration(
@@ -116,7 +148,7 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID: Any = Any(),
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
