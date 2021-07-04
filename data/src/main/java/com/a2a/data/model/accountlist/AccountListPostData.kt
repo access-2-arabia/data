@@ -1,4 +1,7 @@
 package com.a2a.data.model.accountlist
+
+import com.a2a.data.model.login.LoginPostData
+import com.a2a.data.model.login.LoginPostData.A2ARequest.Body.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
@@ -22,18 +25,7 @@ data class AccountListPostData(
             @SerializedName("CustProfile")
             var custProfile: CustProfile = CustProfile()
         ) {
-            data class CustProfile(
-                @SerializedName("CID")
-                var cID: Int = 0,
-                @SerializedName("CustID")
-                var custID: String = "",
-                @SerializedName("CustMnemonic")
-                var custMnemonic: String = "",
-                @SerializedName("CustType")
-                var custType: Int = 0,
-                @SerializedName("RepID")
-                var repID: Int = 0
-            )
+
         }
 
         data class Footer(
@@ -70,6 +62,6 @@ data class AccountListPostData(
             var device: String = "",
 
 
-        )
+            )
     }
 }

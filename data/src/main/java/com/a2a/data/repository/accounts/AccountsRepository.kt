@@ -4,7 +4,9 @@ import MemoryCacheImpl
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewTimeStamp
+import com.a2a.data.model.CustProfile
 import com.a2a.data.model.accountlist.AccountListPostData
+import com.a2a.data.model.login.LoginPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import java.util.*
@@ -14,7 +16,7 @@ class AccountsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> getAccountsList(): Resource<T>? {
+    suspend fun <T> getAccountsList(custProfilevalue: LoginPostData.A2ARequest.Body.CustProfile): Resource<T>? {
         val postData = AccountListPostData()
         postData.apply {
             a2ARequest?.apply {
@@ -35,11 +37,7 @@ class AccountsRepository @Inject constructor(
                 }
 
                 a2ARequest?.body?.apply {
-                    custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
-                    custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    custProfile.repID = MemoryCacheImpl.getCustProfile()!!.repID
-                    custProfile.custMnemonic = MemoryCacheImpl.getCustProfile()!!.custMnemonic
-                    custProfile.custType = MemoryCacheImpl.getCustProfile()!!.custType
+                    custProfile = custProfilevalue
                     branchCode = MemoryCacheImpl.getCustProfile()!!.branch
                 }
                 a2ARequest?.footer?.apply {
