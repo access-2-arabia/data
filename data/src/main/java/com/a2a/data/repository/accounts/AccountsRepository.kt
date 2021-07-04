@@ -29,8 +29,9 @@ class AccountsRepository @Inject constructor(
                     channel = Constants.Channel
                     timeStamp = Date().formatToViewTimeStamp()
                     guidID = Constants.GuidID
-                    deviceID = Constants.DeviceID
+                    deviceID = MemoryCacheImpl.getDeviceId()
                     deviceToken = Constants.TokenId
+                    device="Android"
                 }
 
                 a2ARequest?.body?.apply {

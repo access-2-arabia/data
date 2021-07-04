@@ -65,8 +65,9 @@ data class AccountListPostData(
             @SerializedName("UserID")
             var userID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: String = ""
-
+            var deviceToken: String = "",
+            @SerializedName("Device")
+            var device: String = "",
 
 
         )
