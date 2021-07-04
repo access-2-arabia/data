@@ -1,9 +1,9 @@
-package com.a2a.data.model.transfermodel.betwenmyaccount
+package com.a2a.data.model.transfermodel.withincab
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ValidationBetweenMyAccountResponse(
+data class ValidationWithinCabResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")

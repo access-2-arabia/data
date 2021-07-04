@@ -1,9 +1,8 @@
-package com.a2a.data.model.transfermodel.betwenmyaccount
-
-
+package com.a2a.data.model.beneficiary
 import com.google.gson.annotations.SerializedName
 
-data class ValidationBetweenMyAccountResponse(
+
+data class GetManageBeneficiaryResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -70,21 +69,39 @@ data class ValidationBetweenMyAccountResponse(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("AmtCr")
-            var amtCr: String = "",
-            @SerializedName("AmtDb")
-            var amtDb: String = "",
-            @SerializedName("CalculatedAmount")
-            var calculatedAmount: String = "",
-            @SerializedName("ComissionAmt")
-            var comissionAmt: String = "",
-            @SerializedName("LocalAmtCr")
-            var localAmtCr: String = "",
-            @SerializedName("LocalChargeAmt")
-            var localChargeAmt: Double = 0.0,
-            @SerializedName("TreasuryRate")
-            var treasuryRate: Double = 0.0
-        )
+            @SerializedName("BeneficiaryWU")
+            var beneficiaryWU: List<BeneficiaryWU> = listOf(),
+            @SerializedName("ServiceConfiguration")
+            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
+        ) {
+            data class BeneficiaryWU(
+                @SerializedName("Country")
+                var country: String = "",
+                @SerializedName("CustID")
+                var custID: String = "",
+                @SerializedName("Email")
+                var email: String = "",
+                @SerializedName("FName")
+                var fName: String = "",
+                @SerializedName("id")
+                var id: Int = 0,
+                @SerializedName("LName")
+                var lName: String = "",
+                @SerializedName("MName")
+                var mName: String = "",
+                @SerializedName("Nationality")
+                var nationality: String = "",
+                @SerializedName("PhoneNumber")
+                var phoneNumber: String = "",
+                @SerializedName("RegionCode")
+                var regionCode: String = ""
+            )
+
+            data class ServiceConfiguration(
+                @SerializedName("PWDFlag")
+                var pWDFlag: Int = 0
+            )
+        }
 
         data class Footer(
             @SerializedName("Signature")

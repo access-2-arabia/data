@@ -1,9 +1,8 @@
-package com.a2a.data.model.transfermodel.betwenmyaccount
-
+package com.a2a.data.model.transfermodel.withincab
 import com.google.gson.annotations.SerializedName
 
 
-data class BetweenMyAccountResponse(
+data class WithinCabResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -33,13 +32,13 @@ data class BetweenMyAccountResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: String = "",
+            var connectorID: Any = Any(),
             @SerializedName("Device")
-            var device: String = "",
+            var device: Any = Any(),
             @SerializedName("DeviceID")
-            var deviceID: String = "",
+            var deviceID: Any = Any(),
             @SerializedName("DeviceToken")
-            var deviceToken: String = "",
+            var deviceToken: Any = Any(),
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -51,7 +50,7 @@ data class BetweenMyAccountResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID: Any = Any(),
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
@@ -231,7 +230,7 @@ data class BetweenMyAccountResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID: Any = Any(),
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")

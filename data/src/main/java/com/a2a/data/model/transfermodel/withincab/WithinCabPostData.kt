@@ -1,8 +1,8 @@
-package com.a2a.data.model.transfermodel.betwenmyaccount
+package com.a2a.data.model.transfermodel.withincab
 import com.google.gson.annotations.SerializedName
 
 
-data class BetweenMyAccountPostData(
+data class WithinCabPostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
@@ -19,6 +19,8 @@ data class BetweenMyAccountPostData(
             var aDesc: String = "",
             @SerializedName("Accounts")
             var accounts: Accounts = Accounts(),
+            @SerializedName("BankRef")
+            var bankRef: String = "",
             @SerializedName("BranchCode")
             var branchCode: String = "",
             @SerializedName("Count")
@@ -65,26 +67,14 @@ data class BetweenMyAccountPostData(
             var bankCode: String = "",
             @SerializedName("Channel")
             var channel: String = "",
-            @SerializedName("ConnectorID")
-            var connectorID: String = "",
-            @SerializedName("Device")
-            var device: String = "",
             @SerializedName("DeviceID")
             var deviceID: String = "",
-            @SerializedName("DeviceToken")
-            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
-            @SerializedName("MethodName")
-            var methodName: String = "",
             @SerializedName("Password")
             var password: String = "",
             @SerializedName("RegionCode")
             var regionCode: String = "",
-            @SerializedName("ServiceID")
-            var serviceID: Int = 0,
-            @SerializedName("SessionID")
-            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
