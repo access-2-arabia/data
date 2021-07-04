@@ -4,6 +4,8 @@ package com.a2a.data.model.common
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class BaseLookup(
     @SerializedName("A2ARequest")
@@ -278,9 +280,10 @@ data class BaseLookup(
                 @SerializedName("ID")
                 var iD: Int = 0
             ) : Parcelable {
-//                override fun toString(): String {
-//                    return eDesc.getLocal(aDesc)?:""
-//                }
+                override fun toString(): String {
+                    return if(Locale.getDefault().language == "en") eDesc   else aDesc
+
+                }
             }
 
             data class ContactUs(
@@ -340,9 +343,9 @@ data class BaseLookup(
                 @SerializedName("ISOCode")
                 var iSOCode: String = ""
             ) {
-//                override fun toString(): String {
-//                    return eDesc.getLocal(aDesc)?:""
-//                }
+                override fun toString(): String {
+                    return if(Locale.getDefault().language == "en") eDesc   else aDesc
+                }
             }
 
 
