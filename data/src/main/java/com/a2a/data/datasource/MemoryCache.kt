@@ -2,12 +2,13 @@ package com.a2a.data.datasource
 
 import com.a2a.data.model.BaseLookup
 import com.a2a.data.model.BaseResponse
-import com.a2a.data.model.CustProfile
+import com.a2a.data.model.login.LoginPostData
+
 
 interface MemoryCache {
 
-    fun setCustProfile(custProfile: CustProfile?)
-    fun getCustProfile(): CustProfile?
+    fun setCustProfile(custProfile: LoginPostData.A2ARequest.Body.CustProfile??)
+    fun getCustProfile(): LoginPostData.A2ARequest.Body.CustProfile??
 
 
     fun setOtpRequest(request: Any)
