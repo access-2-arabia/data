@@ -14,6 +14,7 @@ class Constants {
         const val GuidID = "74402e7c-2d79-4a38-b2f8-396fb34c5c40"
         const val DeviceID = "Mobile"
         const val ConnectorID="CB"
+        const val TokenId="0f8378650bed45839fffa9fbcbd72514"
 
 
 

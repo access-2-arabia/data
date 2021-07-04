@@ -30,6 +30,7 @@ class AccountsRepository @Inject constructor(
                     timeStamp = Date().formatToViewTimeStamp()
                     guidID = Constants.GuidID
                     deviceID = Constants.DeviceID
+                    deviceToken = Constants.TokenId
                 }
 
                 a2ARequest?.body?.apply {

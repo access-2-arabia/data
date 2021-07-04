@@ -63,7 +63,12 @@ data class AccountListPostData(
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
-            var userID: String = ""
+            var userID: String = "",
+            @SerializedName("DeviceToken")
+            var deviceToken: String = ""
+
+
+
         )
     }
 }
