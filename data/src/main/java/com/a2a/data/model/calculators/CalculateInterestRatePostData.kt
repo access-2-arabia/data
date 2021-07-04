@@ -1,10 +1,11 @@
-package com.a2a.data.model
+package com.a2a.data.model.calculators
 
 
+import com.a2a.data.model.common.Footer
 import com.a2a.data.model.common.Header
 import com.google.gson.annotations.SerializedName
 
-data class LookUpPostData(
+data class CalculateInterestRatePostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
@@ -17,19 +18,14 @@ data class LookUpPostData(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("LookUpName")
-            var lookUpName: String? = "",
-            @SerializedName("LocX")
-            var locX: Double = 0.0,
-            @SerializedName("LocY")
-            var locY: Double = 0.0
+            @SerializedName("Amount")
+            var amount: String = "",
+            @SerializedName("Curr")
+            var curr: String = "",
+            @SerializedName("Period")
+            var period: String = "",
+            @SerializedName("StepNumber")
+            var stepNumber: String = ""
         )
-
-        data class Footer(
-            @SerializedName("Signature")
-            var signature: String? = ""
-        )
-
-
     }
 }
