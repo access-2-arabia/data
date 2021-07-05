@@ -29,7 +29,7 @@ class LoginRepositry @Inject constructor(
                     deviceID = Constants.DeviceID
                 }
 
-                a2ARequest?.body?.apply {
+                a2ARequest.body.apply {
                     custProfile.custMnemonic = MCustMnemonic ?: ""
                     custProfile.pWD = Mpassword ?: ""
                 }
