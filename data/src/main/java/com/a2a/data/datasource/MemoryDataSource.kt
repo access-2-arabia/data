@@ -1,13 +1,13 @@
-import com.a2a.data.model.BaseLookup
 import com.a2a.data.model.BaseResponse
 import com.a2a.data.model.CustProfile
+import com.a2a.data.model.lookup.LookUpResponse
 
 class MemoryDataSource {
     private var custProfile: CustProfile? = null
     private var deviceId: String = ""
      private var request: Any = Any()
     private var response: BaseResponse = BaseResponse()
-    private var lookUps: BaseLookup? = null
+    private var lookUps: LookUpResponse? = null
 
 
     fun getCustProfile() = custProfile
@@ -33,7 +33,7 @@ class MemoryDataSource {
     }
 
 
-    fun cacheInMemoryLookUps(lookUps: BaseLookup?) {
+    fun cacheInMemoryLookUps(lookUps: LookUpResponse?) {
         this.lookUps = lookUps
 
 

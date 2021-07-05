@@ -1,7 +1,6 @@
 package com.a2a.data.repository
 
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.LookUpPostData
 import com.a2a.network.Resource
 import javax.inject.Inject
 

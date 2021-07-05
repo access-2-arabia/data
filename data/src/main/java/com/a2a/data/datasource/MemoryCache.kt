@@ -1,8 +1,9 @@
 package com.a2a.data.datasource
 
-import com.a2a.data.model.BaseLookup
+
 import com.a2a.data.model.BaseResponse
 import com.a2a.data.model.CustProfile
+import com.a2a.data.model.lookup.LookUpResponse
 
 interface MemoryCache {
 
@@ -16,8 +17,8 @@ interface MemoryCache {
     fun setOtpResponse(response: BaseResponse)
     fun getOtpResponse(): BaseResponse
 
-    fun setLookUps(response: BaseLookup)
-    fun getLookUps(): BaseLookup
+    fun setLookUps(response:  LookUpResponse)
+    fun getLookUps(): LookUpResponse
 
     fun setDeviceId(deviceId: String)
     fun getDeviceId(): String
