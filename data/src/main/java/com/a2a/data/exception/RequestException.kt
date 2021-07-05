@@ -1,7 +1,7 @@
 package com.a2a.data.exception
 
-import com.a2a.data.model.OTPResponse
-import com.a2a.data.model.Result
+import com.a2a.network.model.OTPResponse
+import com.a2a.network.model.Result
 
 
 open class RequestException(error: Throwable) : RuntimeException(error)
