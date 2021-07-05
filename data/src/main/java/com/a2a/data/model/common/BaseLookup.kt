@@ -177,8 +177,11 @@ data class BaseLookup(
                 var regionCode: String = "",
                 @SerializedName("Segmentation")
                 var segmentation: String = "",
-
-                )
+            ) {
+                fun getName(): String {
+                    return if (Locale.getDefault().language == "en") eDesc else aDesc
+                }
+            }
 
             data class CustRequest(
                 @SerializedName("ADesc")
@@ -281,8 +284,7 @@ data class BaseLookup(
                 var iD: Int = 0
             ) : Parcelable {
                 override fun toString(): String {
-                    return if(Locale.getDefault().language == "en") eDesc   else aDesc
-
+                    return if (Locale.getDefault().language == "en") eDesc else aDesc
                 }
             }
 
@@ -344,7 +346,7 @@ data class BaseLookup(
                 var iSOCode: String = ""
             ) {
                 override fun toString(): String {
-                    return if(Locale.getDefault().language == "en") eDesc   else aDesc
+                    return if (Locale.getDefault().language == "en") eDesc else aDesc
                 }
             }
 
