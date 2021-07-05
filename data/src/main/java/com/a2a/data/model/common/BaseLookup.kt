@@ -1,9 +1,11 @@
-package com.a2a.data.model
+package com.a2a.data.model.common
 
 
 import android.os.Parcelable
- import com.google.gson.annotations.SerializedName
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class BaseLookup(
     @SerializedName("A2ARequest")
@@ -133,17 +135,51 @@ data class BaseLookup(
             @SerializedName("CardType")
             var cardType: List<BaseLookUpsModel> = listOf(),
             @SerializedName("Period")
-            var period: List<BaseLookUpsModel> = listOf() ,
+            var period: List<BaseLookUpsModel> = listOf(),
             @SerializedName("ContactTime")
-            var contactTime: List<BaseLookUpsModel> = listOf() ,
+            var contactTime: List<BaseLookUpsModel> = listOf(),
             @SerializedName("LoanType")
             var loanType: List<LoanType> = listOf(),
             @SerializedName("CustRequest")
             var custRequest: List<CustRequest> = listOf(),
             @SerializedName("PendingCustRequest")
-            var pendingCustRequest: List<CustRequest> = listOf()
+            var pendingCustRequest: List<CustRequest> = listOf(),
+            @SerializedName("BankProducts")
+            var bankProducts: List<BankProduct> = listOf()
 
         ) {
+            data class BankProduct(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AName")
+                var aName: String = "",
+                @SerializedName("Category")
+                var category: Int = 0,
+                @SerializedName("Date")
+                var date: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EName")
+                var eName: String = "",
+                @SerializedName("Enabled")
+                var enabled: Boolean = false,
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Img")
+                var img: String = "",
+                @SerializedName("InterestedOption")
+                var interestedOption: Boolean = false,
+                @SerializedName("LoanSimulation")
+                var loanSimulation: Boolean = false,
+                @SerializedName("ProductID")
+                var productID: String = "",
+                @SerializedName("RegionCode")
+                var regionCode: String = "",
+                @SerializedName("Segmentation")
+                var segmentation: String = "",
+
+                )
+
             data class CustRequest(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -162,6 +198,7 @@ data class BaseLookup(
                 @SerializedName("SrvID")
                 var srvID: Int = 0
             )
+
             data class LoanType(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -203,7 +240,6 @@ data class BaseLookup(
             )
 
 
-
             data class Branch(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -230,6 +266,7 @@ data class BaseLookup(
                 @SerializedName("PhoneNo")
                 var phoneNo: String = ""
             )
+
             @Parcelize
             data class BaseLookUpsModel(
                 @SerializedName("ADesc")
@@ -242,10 +279,11 @@ data class BaseLookup(
                 var eValue: String = "",
                 @SerializedName("ID")
                 var iD: Int = 0
-            ):Parcelable{
-//                override fun toString(): String {
-//                    return eDesc.getLocal(aDesc)?:""
-//                }
+            ) : Parcelable {
+                override fun toString(): String {
+                    return if(Locale.getDefault().language == "en") eDesc   else aDesc
+
+                }
             }
 
             data class ContactUs(
@@ -268,7 +306,6 @@ data class BaseLookup(
             )
 
 
-
             data class Currency(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -284,8 +321,7 @@ data class BaseLookup(
                 var iD: Int = 0,
                 @SerializedName("ISOCode")
                 var iSOCode: String = ""
-            )
-            {
+            ) {
                 override fun toString(): String {
                     return iSOCode
                 }
@@ -306,12 +342,11 @@ data class BaseLookup(
                 var iD: Int = 0,
                 @SerializedName("ISOCode")
                 var iSOCode: String = ""
-            ){
-//                override fun toString(): String {
-//                    return eDesc.getLocal(aDesc)?:""
-//                }
+            ) {
+                override fun toString(): String {
+                    return if(Locale.getDefault().language == "en") eDesc   else aDesc
                 }
-
+            }
 
 
             data class MailService(
@@ -330,7 +365,6 @@ data class BaseLookup(
                 @SerializedName("RegionCode")
                 var regionCode: String = ""
             )
-
 
 
             data class PasswordComplexity(
@@ -391,7 +425,6 @@ data class BaseLookup(
             }
 
 
-
             data class SecInstraction(
                 @SerializedName("AValue")
                 var aValue: String = "",
@@ -415,8 +448,6 @@ data class BaseLookup(
                 @SerializedName("EValue")
                 var eValue: String = ""
             )
-
-
 
 
         }

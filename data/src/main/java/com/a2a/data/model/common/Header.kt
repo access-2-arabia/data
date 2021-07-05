@@ -1,8 +1,9 @@
-package com.a2a.data.model
+package com.a2a.data.model.common
 
 
 import android.os.Parcelable
- import com.google.gson.annotations.SerializedName
+import com.a2a.data.datasource.AppCache
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -19,15 +20,17 @@ data class Header(
     @SerializedName("Device")
     var device: String = "Android",
     @SerializedName("DeviceID")
-    var deviceID: String = "0f8378650bed45839fffa9fbcbd72514",
+    var deviceID: String = AppCache.deviceID?:"",
     @SerializedName("DeviceToken")
-    var deviceToken: String = "0f8378650bed45839fffa9fbcbd72514",
+    var deviceToken: String =AppCache.deviceID?:"",
     @SerializedName("RegionCode")
     var regionCode: String = "01",
     @SerializedName("SrvID")
     var srvID: String = "",
     @SerializedName("SessionID")
-    var sessionID: String? = "",
+    var sessionID: String? =AppCache.sessionID?:"",
     @SerializedName("IPAddress")
-    var iPAddress: String? = "",
+    var iPAddress: String? = AppCache.ipAddress?:"",
+    @SerializedName("Result")
+    var result: Result? = Result()
 ) : Parcelable

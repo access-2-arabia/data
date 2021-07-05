@@ -1,10 +1,10 @@
-package com.a2a.data.model
+package com.a2a.data.model.common
 
 
-import com.a2a.data.model.common.Header
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
-data class LookUpPostData(
+data class CustomerProfilePostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
@@ -17,19 +17,13 @@ data class LookUpPostData(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("LookUpName")
-            var lookUpName: String? = "",
-            @SerializedName("LocX")
-            var locX: Double = 0.0,
-            @SerializedName("LocY")
-            var locY: Double = 0.0
+            @SerializedName("CustProfile")
+            var custProfile: CustProfile = CustProfile()
         )
 
         data class Footer(
             @SerializedName("Signature")
-            var signature: String? = ""
+            var signature: String = ""
         )
-
-
     }
 }

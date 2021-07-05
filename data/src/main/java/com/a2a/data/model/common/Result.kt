@@ -1,11 +1,11 @@
-package com.a2a.data.model.login
+package com.a2a.data.model.common
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ErrorMsg(
+data class Result(
     @SerializedName("ADesc")
     var aDesc: String? = "",
     @SerializedName("EDesc")
