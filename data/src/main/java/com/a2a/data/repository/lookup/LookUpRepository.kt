@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class LookUpRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
-) : BaseRepository(){
+) : BaseRepository() {
 
 
     suspend fun <T> getLookUp(
@@ -25,7 +25,7 @@ class LookUpRepository @Inject constructor(
                 header?.apply {
                     bankCode = Constants.BankCode
                     regionCode = Constants.RegionCode
-                    srvID = "IntFund"
+                    srvID = "GetLookUp"
                     serviceID = 0
                     methodName = ""
                     userID = Constants.UserID
@@ -37,9 +37,9 @@ class LookUpRepository @Inject constructor(
                 }
 
                 a2ARequest?.body?.apply {
-                    lookUpName= "RTGSTransferList,RTGSAccTypes,Currency,Banks"
-                    locX ="31.9500"
-                    locY= "35.9333"
+                    lookUpName = LookUpName
+                    locX = "31.9500"
+                    locY = "35.9333"
                 }
                 a2ARequest?.footer?.apply {
                     signature = ""
