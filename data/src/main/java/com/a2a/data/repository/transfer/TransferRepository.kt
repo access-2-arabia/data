@@ -38,7 +38,6 @@ class TransferRepository @Inject constructor(
                     password = Constants.Password
                     channel = Constants.Channel
                     timeStamp = Date().formatToViewTimeStamp()
-
                     deviceID = Constants.DeviceID
                 }
 
