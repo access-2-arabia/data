@@ -3,7 +3,7 @@ package com.a2a.data.model.transfermodel.localbank
 import com.google.gson.annotations.SerializedName
 
 
-data class RTGSResponse(
+data class LocalBankResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")

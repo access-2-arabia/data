@@ -4,9 +4,10 @@ import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.extentions.formatToViewTimeStamp
-import com.a2a.data.model.accountlist.AccountListPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
+import com.a2a.data.model.transfermodel.localbank.LocalBankPostData
+import com.a2a.data.model.transfermodel.localbank.LocalBankValidationPostData
 import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
 import com.a2a.data.model.transfermodel.withincab.WithinCabPostData
 import com.a2a.data.repository.BaseRepository
@@ -204,6 +205,124 @@ class TransferRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
 
         }
+    }
+
+
+    suspend fun <T> getValidationLocalBank(
+        accountNumberFromValue: String, accountNumberToValue: String,
+        currFrom: String, currTo: String, amountValue: String, chargesForType: String,
+        benefAccountIban: String, benefName: String, transReasonCode: String,
+        firstName: String, SecondName: String, ThirdName: String, LastName: String
+
+    ): Resource<T>? {
+        val postData = LocalBankValidationPostData()
+        postData.apply {
+            a2ARequest?.apply {
+                header?.apply {
+                    bankCode = Constants.BankCode
+                    regionCode = Constants.RegionCode
+                    srvID = chargesForType
+                    serviceID = 0
+                    methodName = ""
+                    userID = Constants.UserID
+                    password = Constants.Password
+                    channel = Constants.Channel
+                    timeStamp = Date().formatToViewTimeStamp()
+                    deviceID = Constants.DeviceID
+                }
+
+                a2ARequest?.body?.apply {
+                    stepNumber = "2"
+                    cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+                    custID = MemoryCacheImpl.getCustProfile()!!.custID
+                    accountNumberFrom = accountNumberFromValue
+                    accountNumberTo = accountNumberToValue
+                    currencyCodeFrom = currFrom
+                    custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+                    amount = amountValue
+                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+                    benBank = ""
+                    benAccIBAN = benefAccountIban
+                    benName = benefName
+                    cCurrency = currTo
+                    transRsn = transReasonCode
+                    bFDType = "CORPORATE"
+                    aFName = firstName
+                    aSName = SecondName
+                    aTName = ThirdName
+                    aLName = LastName
+                    narrative1 = "RTGS Validation"
+                    narrative2 = "RTGS Validation"
+                    narrative3 = "RTGS Validation"
+                }
+                a2ARequest?.footer?.apply {
+                    signature = ""
+                }
+            }
+        }
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+
+        }
+
+    }
+
+
+    suspend fun <T> getTransferLocalBank(
+        accountNumberFromValue: String, accountNumberToValue: String,
+        currFrom: String, currTo: String, amountValue: String, chargesForType: String,
+        benefAccountIban: String, benefFullName: String, transReasonCode: String,
+        firstName: String, SecondName: String, ThirdName: String, LastName: String
+
+    ): Resource<T>? {
+        val postData = LocalBankPostData()
+        postData.apply {
+            a2ARequest?.apply {
+                header?.apply {
+                    bankCode = Constants.BankCode
+                    regionCode = Constants.RegionCode
+                    srvID = chargesForType
+                    serviceID = 0
+                    methodName = ""
+                    userID = Constants.UserID
+                    password = Constants.Password
+                    channel = Constants.Channel
+                    timeStamp = Date().formatToViewTimeStamp()
+                    deviceID = Constants.DeviceID
+                }
+
+                a2ARequest?.body?.apply {
+                    stepNumber = "3"
+                    accountNumberFrom = accountNumberFromValue
+                    accountNumberTo = accountNumberToValue
+                    currencyCodeFrom = currFrom
+                    amount = amountValue
+                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+                    benBank = ""
+                    benAccIBAN = benefAccountIban
+                    benName = benefFullName
+                    cCurrency = currTo
+                    transRsn = transReasonCode
+                    bFDType = "CORPORATE"
+                    aFName = firstName
+                    aSName = SecondName
+                    aTName = ThirdName
+                    aLName = LastName
+                    count = 4
+                    period = 7
+                    eDesc = "Transfer Between Account"
+                    aDesc = "تحويل بين حسابات"
+                }
+                a2ARequest?.footer?.apply {
+                    signature = ""
+                }
+            }
+        }
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+
+        }
+
     }
 
 

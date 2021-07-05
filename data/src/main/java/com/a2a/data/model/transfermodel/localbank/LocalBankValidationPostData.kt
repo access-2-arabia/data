@@ -2,7 +2,7 @@ package com.a2a.data.model.transfermodel.localbank
 import com.google.gson.annotations.SerializedName
 
 
-data class ASHPostData(
+data class LocalBankValidationPostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
@@ -15,8 +15,6 @@ data class ASHPostData(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("ADesc")
-            var aDesc: String = "",
             @SerializedName("AFName")
             var aFName: String = "",
             @SerializedName("ALName")
@@ -29,8 +27,6 @@ data class ASHPostData(
             var accountNumberFrom: String = "",
             @SerializedName("AccountNumberTo")
             var accountNumberTo: String = "",
-            @SerializedName("Accounts")
-            var accounts: Accounts = Accounts(),
             @SerializedName("Amount")
             var amount: String = "",
             @SerializedName("BFDType")
@@ -47,43 +43,25 @@ data class ASHPostData(
             var branchCode: String = "",
             @SerializedName("CCurrency")
             var cCurrency: String = "",
-            @SerializedName("ChargesFor")
-            var chargesFor: String = "",
-            @SerializedName("Count")
-            var count: String = "",
+            @SerializedName("CID")
+            var cID: String = "",
             @SerializedName("CurrencyCodeFrom")
             var currencyCodeFrom: String = "",
-            @SerializedName("CustProfile")
-            var custProfile: CustProfile = CustProfile(),
-            @SerializedName("EDesc")
-            var eDesc: String = "",
-            @SerializedName("Period")
-            var period: Int = 0,
-            @SerializedName("StartDate")
-            var startDate: String = "",
+            @SerializedName("CustID")
+            var custID: String = "",
+            @SerializedName("CustType")
+            var custType: String = "",
+            @SerializedName("Narrative1")
+            var narrative1: String = "",
+            @SerializedName("Narrative2")
+            var narrative2: String = "",
+            @SerializedName("Narrative3")
+            var narrative3: String = "",
             @SerializedName("StepNumber")
             var stepNumber: String = "",
             @SerializedName("TransRsn")
             var transRsn: String = ""
-        ) {
-            data class Accounts(
-                @SerializedName("AccountNumberFrom")
-                var accountNumberFrom: String = "",
-                @SerializedName("AccountNumberTo")
-                var accountNumberTo: String = "",
-                @SerializedName("Amount")
-                var amount: String = ""
-            )
-
-            data class CustProfile(
-                @SerializedName("CID")
-                var cID: Int = 0,
-                @SerializedName("CustID")
-                var custID: String = "",
-                @SerializedName("RID")
-                var rID: Int = 0
-            )
-        }
+        )
 
         data class Footer(
             @SerializedName("Signature")
@@ -97,8 +75,6 @@ data class ASHPostData(
             var channel: String = "",
             @SerializedName("DeviceID")
             var deviceID: String = "",
-            @SerializedName("GuidID")
-            var guidID: String = "",
             @SerializedName("MethodName")
             var methodName: String = "",
             @SerializedName("Password")

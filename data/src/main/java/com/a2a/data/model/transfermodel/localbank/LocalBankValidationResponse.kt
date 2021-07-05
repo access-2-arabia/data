@@ -2,7 +2,7 @@ package com.a2a.data.model.transfermodel.localbank
 import com.google.gson.annotations.SerializedName
 
 
-data class ASHValidationResponse(
+data class LocalBankValidationResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")

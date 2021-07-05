@@ -2,7 +2,7 @@ package com.a2a.data.model.transfermodel.localbank
 import com.google.gson.annotations.SerializedName
 
 
-data class RTGSValidationPostData(
+data class LocalBankPostData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest()
 ) {
@@ -15,6 +15,8 @@ data class RTGSValidationPostData(
         var header: Header = Header()
     ) {
         data class Body(
+            @SerializedName("ADesc")
+            var aDesc: String = "",
             @SerializedName("AFName")
             var aFName: String = "",
             @SerializedName("ALName")
@@ -43,20 +45,18 @@ data class RTGSValidationPostData(
             var branchCode: String = "",
             @SerializedName("CCurrency")
             var cCurrency: String = "",
-            @SerializedName("CID")
-            var cID: String = "",
+            @SerializedName("ChargesFor")
+            var chargesFor: String = "",
+            @SerializedName("Count")
+            var count: Int = 0,
             @SerializedName("CurrencyCodeFrom")
             var currencyCodeFrom: String = "",
-            @SerializedName("CustID")
-            var custID: String = "",
-            @SerializedName("CustType")
-            var custType: String = "",
-            @SerializedName("Narrative1")
-            var narrative1: String = "",
-            @SerializedName("Narrative2")
-            var narrative2: String = "",
-            @SerializedName("Narrative3")
-            var narrative3: String = "",
+            @SerializedName("EDesc")
+            var eDesc: String = "",
+            @SerializedName("Period")
+            var period: Int = 0,
+            @SerializedName("StartDate")
+            var startDate: String = "",
             @SerializedName("StepNumber")
             var stepNumber: String = "",
             @SerializedName("TransRsn")
