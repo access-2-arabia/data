@@ -18,7 +18,6 @@ class LookUpRepository @Inject constructor(
     suspend fun <T> getLookUp(
         LookUpName: String,
     ): Resource<T>? {
-
         val body = LookupPostData()
         body.apply {
             lookUpName = LookUpName
@@ -27,9 +26,7 @@ class LookUpRepository @Inject constructor(
         }
         val postData = BaseRequestModel(
             A2ARequest(
-                body,
-                srvID = "RTGSTransferList,RTGSAccTypes,Currency,Banks",
-                serviceIDValue = 0
+                body
             )
         )
 
