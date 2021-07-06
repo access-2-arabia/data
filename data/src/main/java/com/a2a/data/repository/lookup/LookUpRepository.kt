@@ -23,6 +23,7 @@ class LookUpRepository @Inject constructor(
         LookUpName: String,
         Test2 :String,
         Test3 :String,
+        Test4:String
     ): Resource<T>? {
 
         val body = LookupPostData2()
