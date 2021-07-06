@@ -3,6 +3,7 @@ package com.a2a.data.repository
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.calculators.CalculateInterestRatePostData
 import com.a2a.data.model.calculators.ConvertRatePostData
+import com.a2a.data.model.calculators.RatePostData
 import com.a2a.network.Resource
 import javax.inject.Inject
 
@@ -44,7 +45,7 @@ class CalculatorsRepository @Inject constructor(
   suspend fun <T> getRateExchange(
 
     ): Resource<T> {
-        val postData = ConvertRatePostData()
+        val postData = RatePostData()
         postData.apply {
             a2ARequest.header.srvID = "FXRate"
             a2ARequest.header.channel = "M"
