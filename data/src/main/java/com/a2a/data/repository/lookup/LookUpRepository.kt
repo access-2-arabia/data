@@ -2,7 +2,8 @@ package com.a2a.data.repository.lookup
 
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
-import com.a2a.data.model.lookup.LookupPostData2
+import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.lookup.LookupPostData
 
 
 import com.a2a.data.repository.BaseRepository
@@ -16,22 +17,21 @@ class LookUpRepository @Inject constructor(
 
     suspend fun <T> getLookUp(
         LookUpName: String,
-        Test2 :String,
-        Test3 :String,
-        Test4:String,
-        Test5:String,
     ): Resource<T>? {
 
-        val body = LookupPostData2()
+        val body = LookupPostData()
         body.apply {
-                    lookUpName = LookUpName
-                    locX = "31.9500"
-                    locY = "35.9334"
-                }
-        val postData = A2ARequest(body,srvID = "RTGSTransferList,RTGSAccTypes,Currency,Banks",serviceIDValue = 0)
-
-
-
+            lookUpName = LookUpName
+            locX = "31.9500"
+            locY = "35.9334"
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "RTGSTransferList,RTGSAccTypes,Currency,Banks",
+                serviceIDValue = 0
+            )
+        )
 
 //        postData.apply {
 //            a2ARequest?.apply {

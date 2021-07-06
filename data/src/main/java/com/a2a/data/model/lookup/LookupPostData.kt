@@ -3,7 +3,7 @@ package com.a2a.data.model.lookup
 
 import com.google.gson.annotations.SerializedName
 
-data class LookupPostData2(
+data class LookupPostData(
     @SerializedName("LocX")
     var locX: String = "",
     @SerializedName("LocY")
