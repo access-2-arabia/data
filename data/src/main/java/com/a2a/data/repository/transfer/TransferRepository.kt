@@ -29,11 +29,24 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
-
+        amountValue: String, accountsFrom: Accounts, accountsTo: Accounts
     ): Resource<T>? {
         val validationBetweenMyAccount = ValidationBetweenMyAccountPostData()
         validationBetweenMyAccount.apply {
-
+            validationBetweenMyAccount.body.repID =
+                MemoryCacheImpl.getCustProfile()!!.repID.toString()
+            validationBetweenMyAccount.body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+            validationBetweenMyAccount.body.custID =
+                MemoryCacheImpl.getCustProfile()!!.custID.toString()
+            validationBetweenMyAccount.body.accountNumberFrom = accountsFrom.accountNumberFrom
+            validationBetweenMyAccount.body.accountNumberTo = accountsTo.accountNumberTo
+            validationBetweenMyAccount.body.currencyFrom = accountsFrom.currencyFrom
+            validationBetweenMyAccount.body.currencyTo = accountsTo.currencyTo
+            validationBetweenMyAccount.body.custType =
+                MemoryCacheImpl.getCustProfile()!!.custType.toString()
+            validationBetweenMyAccount.body.amount = amountValue
+            validationBetweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            validationBetweenMyAccount.body.stepNumber = "2"
         }
 
         val postData =
@@ -66,7 +79,7 @@ class TransferRepository @Inject constructor(
             betweenMyAccount.body.period = 0
             betweenMyAccount.body.eDesc = betweenMyAccountEDesc
             betweenMyAccount.body.aDesc = betweenMyAccountADesc
-            betweenMyAccount.body.branchCode = "JO0092000"
+            betweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             betweenMyAccount.body.stepNumber = 3
         }
 
@@ -80,7 +93,6 @@ class TransferRepository @Inject constructor(
             )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
     }
 
