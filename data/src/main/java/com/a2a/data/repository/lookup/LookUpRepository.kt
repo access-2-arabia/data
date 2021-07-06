@@ -31,33 +31,6 @@ class LookUpRepository @Inject constructor(
                 serviceIDValue = 0
             )
         )
-
-//        postData.apply {
-//            a2ARequest?.apply {
-//                header?.apply {
-//                    bankCode = Constants.BankCode
-//                    regionCode = Constants.RegionCode
-//                    srvID = "GetLookUp"
-//                    serviceID = 0
-//                    methodName = ""
-//                    userID = Constants.UserID
-//                    password = Constants.Password
-//                    channel = Constants.Channel
-//                    timeStamp = Date().formatToViewTimeStamp()
-//
-//                    deviceID = Constants.DeviceID
-//                }
-//
-//                a2ARequest?.body?.apply {
-//                    lookUpName = LookUpName
-//                    locX = "31.9500"
-//                    locY = "35.9333"
-//                }
-//                a2ARequest?.footer?.apply {
-//                    signature = ""
-//                }
-//            }
-//        }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
 

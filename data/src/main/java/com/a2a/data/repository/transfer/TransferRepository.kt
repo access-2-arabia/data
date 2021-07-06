@@ -1,10 +1,14 @@
 package com.a2a.data.repository.transfer
 
+import android.accounts.Account
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.extentions.formatToViewTimeStamp
+import com.a2a.data.model.common.A2ARequest
+import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.login.LoginPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.localbank.LocalBankModel
@@ -25,91 +29,55 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
-        accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amountValue: String
+
     ): Resource<T>? {
-        val postData = ValidationBetweenMyAccountPostData()
-        postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = "IntFund"
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
-                    deviceID = Constants.DeviceID
-                }
+        val validationBetweenMyAccount = ValidationBetweenMyAccountPostData()
+        validationBetweenMyAccount.apply {
 
-                a2ARequest?.body?.apply {
-                    stepNumber = "2"
-                    repID = "0"
-                    cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-                    custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    accountNumberFrom = accountNumberFromValue
-                    accountNumberTo = accountNumberToValue
-                    currencyFrom = currFrom
-                    currencyTo = currTo
-                    custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
-                    amount = amountValue
-                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-                }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
         }
-        return safeApiCall(postData) {
+
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    validationBetweenMyAccount.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
+
+        return safeApiCall(postData)
+        {
             remoteDataSource.baseRequest(postData)
-
         }
-
     }
 
     suspend fun <T> getTransferBetweenMyAccount(
-        accountNumberFrom: String, accountNumberTo: String,
-        currFrom: String, currTo: String, amountValue: String
+        amountValue: String, accountsFrom: Accounts, accountsTo: Accounts
     ): Resource<T>? {
-        val postData = BetweenMyAccountPostData()
-        postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = "IntFund"
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
-                    guidID = Constants.GuidID
-                    deviceID = Constants.DeviceID
-                }
 
-                a2ARequest?.body?.apply {
-                    stepNumber = 3
-                    custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
-                    custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    accounts.accountNumberFrom = accountNumberFrom
-                    accounts.accountNumberTo = accountNumberTo
-                    accounts.currencyFrom = currFrom
-                    accounts.currencyTo = currTo
-                    accounts.amount = amountValue
-                    startDate = Date().formatToViewDateStamp()
-                    count = "-1"
-                    period = 0
-                    eDesc = betweenMyAccountEDesc
-                    aDesc = betweenMyAccountADesc
-                }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
+        val betweenMyAccount = BetweenMyAccountPostData()
+        betweenMyAccount.apply {
+            betweenMyAccount.body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            betweenMyAccount.body.accounts = accountsFrom
+            betweenMyAccount.body.accounts = accountsTo
+            betweenMyAccount.body.accounts.amount = amountValue
+            betweenMyAccount.body.startDate = Date().formatToViewDateStamp()
+            betweenMyAccount.body.count = "-1"
+            betweenMyAccount.body.period = 0
+            betweenMyAccount.body.eDesc = betweenMyAccountEDesc
+            betweenMyAccount.body.aDesc = betweenMyAccountADesc
+            betweenMyAccount.body.branchCode = "JO0092000"
+            betweenMyAccount.body.stepNumber = 3
         }
+
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    betweenMyAccount.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
 
