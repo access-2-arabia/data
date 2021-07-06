@@ -26,7 +26,9 @@ class LookUpRepository @Inject constructor(
         }
         val postData = BaseRequestModel(
             A2ARequest(
-                body
+                body,
+                srvID = "GetLookUp",
+                serviceIDValue = 0
             )
         )
 
