@@ -21,7 +21,8 @@ class LookUpRepository @Inject constructor(
 
     suspend fun <T> getLookUp(
         LookUpName: String,
-        Test :String
+        Test2 :String,
+        Test3 :String,
     ): Resource<T>? {
 
         val body = LookupPostData2()
