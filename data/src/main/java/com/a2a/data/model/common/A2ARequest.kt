@@ -1,10 +1,9 @@
 package com.a2a.data.model.common
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-@Parcelize
+
 data class A2ARequest<T> constructor(
     @SerializedName("Body")
     var body: T? = null,
@@ -14,4 +13,4 @@ data class A2ARequest<T> constructor(
     var serviceIDValue: Int = 0,
     @SerializedName("Footer")
     var hedar: Header = Header(srvID = srvID, serviceID = serviceIDValue),
-) : Parcelable
+) :Serializable
