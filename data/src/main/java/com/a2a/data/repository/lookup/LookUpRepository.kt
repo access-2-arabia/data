@@ -20,7 +20,8 @@ class LookUpRepository @Inject constructor(
 
 
     suspend fun <T> getLookUp(
-        LookUpName: String
+        LookUpName: String,
+        Test :String
     ): Resource<T>? {
 
         val body = LookupPostData2()
