@@ -50,8 +50,6 @@ data class Header(
     var serviceID: Int = 0,
 
     @SerializedName("SessionID")
-    var sessionID: String? = "",
-
-
-    ):Parcelable
+    var sessionID: String? = ""
+) : Parcelable
 

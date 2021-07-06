@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class A2ARequest<T>(
+data class A2ARequest<T> constructor(
     @SerializedName("Body")
     var body: T? = null,
     @SerializedName("Footer")
