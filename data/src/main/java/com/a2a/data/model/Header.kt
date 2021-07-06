@@ -6,7 +6,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-
 data class Header(
     @SerializedName("Channel")
     var channel: String = "M",

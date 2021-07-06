@@ -1,17 +1,12 @@
 package com.a2a.data.repository.lookup
 
-import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.extentions.formatToViewTimeStamp
 import com.a2a.data.model.common.A2ARequest
-import com.a2a.data.model.common.CABRequest
-import com.a2a.data.model.lookup.LookUpPostData
 import com.a2a.data.model.lookup.LookupPostData2
 
 
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
-import java.util.*
 import javax.inject.Inject
 
 class LookUpRepository @Inject constructor(
