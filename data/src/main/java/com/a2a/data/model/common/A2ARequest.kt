@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-class A2ARequest<T>(
+class A2ARequest<T : Parcelable>(
     @SerializedName("Body")
     var body: T? = null,
     @SerializedName("Footer")
