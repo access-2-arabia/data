@@ -27,7 +27,7 @@ class LookUpRepository @Inject constructor(
         body.apply {
                     lookUpName = LookUpName
                     locX = "31.9500"
-                    locY = "35.9333"
+                    locY = "35.9334"
                 }
         val postData = A2ARequest(body,srvID = "RTGSTransferList,RTGSAccTypes,Currency,Banks",serviceIDValue = 0)
 
