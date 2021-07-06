@@ -1,4 +1,5 @@
 package com.a2a.data.model.transfermodel.localbank
+
 import com.google.gson.annotations.SerializedName
 
 

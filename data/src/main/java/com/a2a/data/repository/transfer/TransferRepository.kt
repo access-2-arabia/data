@@ -1,6 +1,7 @@
 package com.a2a.data.repository.transfer
 
 import com.a2a.data.constants.Constants
+import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.extentions.formatToViewTimeStamp
@@ -245,9 +246,9 @@ class TransferRepository @Inject constructor(
                     transRsn = localBankModel.transReasonCode
                     bFDType = "CORPORATE"
                     aFName = localBankModel.nameModel.firstName
-                    aSName = localBankModel.nameModel.SecondName
-                    aTName = localBankModel.nameModel.ThirdName
-                    aLName = localBankModel.nameModel.LastName
+                    aSName = localBankModel.nameModel.secondName
+                    aTName = localBankModel.nameModel.thirdName
+                    aLName = localBankModel.nameModel.lastName
                     narrative1 = "RTGS Validation"
                     narrative2 = "RTGS Validation"
                     narrative3 = "RTGS Validation"
@@ -299,9 +300,9 @@ class TransferRepository @Inject constructor(
                     transRsn = localBankModel.transReasonCode
                     bFDType = "CORPORATE"
                     aFName = localBankModel.nameModel.firstName
-                    aSName = localBankModel.nameModel.SecondName
-                    aTName = localBankModel.nameModel.ThirdName
-                    aLName = localBankModel.nameModel.LastName
+                    aSName = localBankModel.nameModel.secondName
+                    aTName = localBankModel.nameModel.thirdName
+                    aLName = localBankModel.nameModel.lastName
                     count = 4
                     period = 7
                     eDesc = "Transfer Between Account"

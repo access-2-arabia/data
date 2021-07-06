@@ -3,7 +3,10 @@ package com.a2a.data.repository.lookup
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewTimeStamp
+import com.a2a.data.model.common.A2ARequest
+import com.a2a.data.model.common.CABRequest
 import com.a2a.data.model.lookup.LookUpPostData
+import com.a2a.data.model.lookup.LookupPostData2
 
 
 import com.a2a.data.repository.BaseRepository
@@ -19,33 +22,44 @@ class LookUpRepository @Inject constructor(
     suspend fun <T> getLookUp(
         LookUpName: String
     ): Resource<T>? {
-        val postData = LookUpPostData()
-        postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = "GetLookUp"
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
 
-                    deviceID = Constants.DeviceID
-                }
-
-                a2ARequest?.body?.apply {
+        val body = LookupPostData2()
+        body.apply {
                     lookUpName = LookUpName
                     locX = "31.9500"
                     locY = "35.9333"
                 }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
-        }
+        val postData = A2ARequest(body,srvID = "",serviceID = "")
+
+
+
+
+//        postData.apply {
+//            a2ARequest?.apply {
+//                header?.apply {
+//                    bankCode = Constants.BankCode
+//                    regionCode = Constants.RegionCode
+//                    srvID = "GetLookUp"
+//                    serviceID = 0
+//                    methodName = ""
+//                    userID = Constants.UserID
+//                    password = Constants.Password
+//                    channel = Constants.Channel
+//                    timeStamp = Date().formatToViewTimeStamp()
+//
+//                    deviceID = Constants.DeviceID
+//                }
+//
+//                a2ARequest?.body?.apply {
+//                    lookUpName = LookUpName
+//                    locX = "31.9500"
+//                    locY = "35.9333"
+//                }
+//                a2ARequest?.footer?.apply {
+//                    signature = ""
+//                }
+//            }
+//        }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
 
