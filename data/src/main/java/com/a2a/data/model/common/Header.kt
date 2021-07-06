@@ -47,7 +47,7 @@ data class Header(
     var srvID: String = "",
 
     @SerializedName("ServiceID")
-    var serviceID: String = "",
+    var serviceID: Int = 0,
 
     @SerializedName("SessionID")
     var sessionID: String? = "",

@@ -6,13 +6,13 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-class A2ARequest<T  >(
+class A2ARequest<T>(
     @SerializedName("Body")
     var body: T? = null,
     @SerializedName("Footer")
     var footer: Footer = Footer(),
-    var srvID:String ="",
-    var serviceID:String ="",
+    var srvID: String = "",
+    var serviceIDValue: Int = 0,
     @SerializedName("Footer")
-    var hedar: Header = Header(srvID =srvID ,serviceID = serviceID),
-):Parcelable
+    var hedar: Header = Header(srvID = srvID, serviceID = serviceIDValue),
+) : Parcelable

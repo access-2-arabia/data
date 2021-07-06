@@ -20,7 +20,7 @@ class LoginRepositry @Inject constructor(
             body.custProfile.custMnemonic = MCustMnemonic ?: ""
             body.custProfile.pWD = Mpassword ?: ""
         }
-        val postData = A2ARequest(loginPostData, srvID = "", serviceID = "")
+        val postData = A2ARequest(loginPostData, srvID = "Login", serviceIDValue = 3287)
 
 
 //        val postData = LoginPostData()

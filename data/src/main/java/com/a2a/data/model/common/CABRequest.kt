@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CABRequest(
-    var a2ARequest: A2ARequest<*> = A2ARequest(null,srvID = "",serviceID = "")
+    var a2ARequest: A2ARequest<*> = A2ARequest(null,srvID = "",serviceID = 0)
 
 ) : Parcelable
 
