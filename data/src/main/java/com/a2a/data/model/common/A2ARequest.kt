@@ -11,6 +11,6 @@ data class A2ARequest<T> constructor(
     var footer: Footer = Footer(),
     var srvID: String = "",
     var serviceIDValue: Int = 0,
-    @SerializedName("Footer")
+    @SerializedName("Header")
     var hedar: Header = Header(srvID = srvID, serviceID = serviceIDValue),
 ) :Serializable
