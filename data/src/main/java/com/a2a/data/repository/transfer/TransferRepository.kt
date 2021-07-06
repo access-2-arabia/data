@@ -6,6 +6,7 @@ import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.extentions.formatToViewTimeStamp
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
+import com.a2a.data.model.transfermodel.localbank.LocalBankModel
 import com.a2a.data.model.transfermodel.localbank.LocalBankPostData
 import com.a2a.data.model.transfermodel.localbank.LocalBankValidationPostData
 import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
@@ -209,11 +210,7 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getValidationLocalBank(
-        accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amountValue: String, chargesForType: String,
-        benefAccountIban: String, benefName: String, transReasonCode: String,
-        firstName: String, SecondName: String, ThirdName: String, LastName: String
-
+        localBankModel: LocalBankModel
     ): Resource<T>? {
         val postData = LocalBankValidationPostData()
         postData.apply {
@@ -221,7 +218,7 @@ class TransferRepository @Inject constructor(
                 header?.apply {
                     bankCode = Constants.BankCode
                     regionCode = Constants.RegionCode
-                    srvID = chargesForType
+                    srvID = localBankModel.chargesForType
                     serviceID = 0
                     methodName = ""
                     userID = Constants.UserID
@@ -235,22 +232,22 @@ class TransferRepository @Inject constructor(
                     stepNumber = "2"
                     cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
                     custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    accountNumberFrom = accountNumberFromValue
-                    accountNumberTo = accountNumberToValue
-                    currencyCodeFrom = currFrom
+                    accountNumberFrom = localBankModel.accountNumberFromValue
+                    accountNumberTo = localBankModel.accountNumberToValue
+                    currencyCodeFrom = localBankModel.currFrom
                     custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
-                    amount = amountValue
+                    amount = localBankModel.amountValue
                     branchCode = MemoryCacheImpl.getCustProfile()!!.branch
                     benBank = ""
-                    benAccIBAN = benefAccountIban
-                    benName = benefName
-                    cCurrency = currTo
-                    transRsn = transReasonCode
+                    benAccIBAN = localBankModel.benefAccountIban
+                    benName = localBankModel.nameModel.benefName
+                    cCurrency = localBankModel.currTo
+                    transRsn = localBankModel.transReasonCode
                     bFDType = "CORPORATE"
-                    aFName = firstName
-                    aSName = SecondName
-                    aTName = ThirdName
-                    aLName = LastName
+                    aFName = localBankModel.nameModel.firstName
+                    aSName = localBankModel.nameModel.SecondName
+                    aTName = localBankModel.nameModel.ThirdName
+                    aLName = localBankModel.nameModel.LastName
                     narrative1 = "RTGS Validation"
                     narrative2 = "RTGS Validation"
                     narrative3 = "RTGS Validation"
@@ -269,10 +266,7 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getTransferLocalBank(
-        accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amountValue: String, chargesForType: String,
-        benefAccountIban: String, benefFullName: String, transReasonCode: String,
-        firstName: String, SecondName: String, ThirdName: String, LastName: String
+        localBankModel: LocalBankModel
 
     ): Resource<T>? {
         val postData = LocalBankPostData()
@@ -281,7 +275,7 @@ class TransferRepository @Inject constructor(
                 header?.apply {
                     bankCode = Constants.BankCode
                     regionCode = Constants.RegionCode
-                    srvID = chargesForType
+                    srvID = localBankModel.chargesForType
                     serviceID = 0
                     methodName = ""
                     userID = Constants.UserID
@@ -293,21 +287,21 @@ class TransferRepository @Inject constructor(
 
                 a2ARequest?.body?.apply {
                     stepNumber = "3"
-                    accountNumberFrom = accountNumberFromValue
-                    accountNumberTo = accountNumberToValue
-                    currencyCodeFrom = currFrom
-                    amount = amountValue
+                    accountNumberFrom = localBankModel.accountNumberFromValue
+                    accountNumberTo = localBankModel.accountNumberToValue
+                    currencyCodeFrom = localBankModel.currFrom
+                    amount = localBankModel.amountValue
                     branchCode = MemoryCacheImpl.getCustProfile()!!.branch
                     benBank = ""
-                    benAccIBAN = benefAccountIban
-                    benName = benefFullName
-                    cCurrency = currTo
-                    transRsn = transReasonCode
+                    benAccIBAN = localBankModel.benefAccountIban
+                    benName = localBankModel.nameModel.benefName
+                    cCurrency = localBankModel.currTo
+                    transRsn = localBankModel.transReasonCode
                     bFDType = "CORPORATE"
-                    aFName = firstName
-                    aSName = SecondName
-                    aTName = ThirdName
-                    aLName = LastName
+                    aFName = localBankModel.nameModel.firstName
+                    aSName = localBankModel.nameModel.SecondName
+                    aTName = localBankModel.nameModel.ThirdName
+                    aLName = localBankModel.nameModel.LastName
                     count = 4
                     period = 7
                     eDesc = "Transfer Between Account"
