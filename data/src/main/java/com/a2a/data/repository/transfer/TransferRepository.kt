@@ -40,7 +40,7 @@ class TransferRepository @Inject constructor(
             validationBetweenMyAccount.body.custID =
                 MemoryCacheImpl.getCustProfile()!!.custID.toString()
             validationBetweenMyAccount.body.accountNumberFrom = accountNumberFromValue
-            validationBetweenMyAccount.body.accountNumberTo =accountNumberToValue
+            validationBetweenMyAccount.body.accountNumberTo = accountNumberToValue
             validationBetweenMyAccount.body.currencyFrom = currFrom
             validationBetweenMyAccount.body.currencyTo = currTo
             validationBetweenMyAccount.body.custType =
@@ -75,9 +75,9 @@ class TransferRepository @Inject constructor(
             betweenMyAccount.body.custProfile = MemoryCacheImpl.getCustProfile()!!
             betweenMyAccount.body.accounts.accountNumberFrom = accountNumberFromValue
             betweenMyAccount.body.accounts.accountNumberTo = accountNumberToValue
-            betweenMyAccount.body.accounts.currencyFrom =currFrom
-            betweenMyAccount.body.accounts.currencyTo =currTo
-                betweenMyAccount.body.accounts.amount = amountValue
+            betweenMyAccount.body.accounts.currencyFrom = currFrom
+            betweenMyAccount.body.accounts.currencyTo = currTo
+            betweenMyAccount.body.accounts.amount = amountValue
             betweenMyAccount.body.startDate = Date().formatToViewDateStamp()
             betweenMyAccount.body.count = "-1"
             betweenMyAccount.body.period = 0
@@ -86,7 +86,6 @@ class TransferRepository @Inject constructor(
             betweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             betweenMyAccount.body.stepNumber = 3
         }
-
         val postData =
             BaseRequestModel(
                 A2ARequest(
@@ -100,51 +99,28 @@ class TransferRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> getValidationTransferWithinCab(
         accountNumberFromValue: String, accountNumberToValue: String,
         currFrom: String, currTo: String, amountValue: String
     ): Resource<T>? {
         val postData = ValidationWithinCabPostData()
         postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = "ExtFund"
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
+            body.stepNumber = "2"
+            body.repID = "0"
+            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.accountNumberFrom = accountNumberFromValue
+            body.accountNumberTo = accountNumberToValue
+            body.currencyFrom = currFrom
+            body.currencyTo = currTo
+            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+            body.amount = amountValue
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
 
-                    deviceID = Constants.DeviceID
-                }
-
-                a2ARequest?.body?.apply {
-                    stepNumber = "2"
-                    repID = "0"
-                    cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-                    custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    accountNumberFrom = accountNumberFromValue
-                    accountNumberTo = accountNumberToValue
-                    currencyFrom = currFrom
-                    currencyTo = currTo
-                    custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
-                    amount = amountValue
-                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-                }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
-
     }
 
 
@@ -154,38 +130,20 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val postData = WithinCabPostData()
         postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = "ExtFund"
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
-                    guidID = Constants.GuidID
-                    deviceID = Constants.DeviceID
-                }
+            body.stepNumber = 3
+            body.custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
+            body.custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.accounts.accountNumberFrom = accountNumberFrom
+            body.accounts.accountNumberTo = accountNumberTo
+            body.startDate = Date().formatToViewDateStamp()
+            body.accounts.currencyFrom = currFrom
+            body.accounts.currencyTo = currTo
+            body.accounts.amount = amountValue
+            body.count = "-1"
+            body.period = 0
+            body.eDesc = betweenMyAccountEDesc
+            body.aDesc = betweenMyAccountADesc
 
-                a2ARequest?.body?.apply {
-                    stepNumber = 3
-                    custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
-                    custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    accounts.accountNumberFrom = accountNumberFrom
-                    accounts.accountNumberTo = accountNumberTo
-                    startDate = Date().formatToViewDateStamp()
-                    accounts.currencyFrom = currFrom
-                    accounts.currencyTo = currTo
-                    accounts.amount = amountValue
-                    count = "-1"
-                    period = 0
-                    eDesc = betweenMyAccountEDesc
-                    aDesc = betweenMyAccountADesc
-                }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
@@ -199,48 +157,30 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val postData = LocalBankValidationPostData()
         postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = localBankModel.chargesForType
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
-                    deviceID = Constants.DeviceID
-                }
+            body.stepNumber = "2"
+            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.accountNumberFrom = localBankModel.accountNumberFromValue
+            body.accountNumberTo = localBankModel.accountNumberToValue
+            body.currencyCodeFrom = localBankModel.currFrom
+            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+            body.amount = localBankModel.amountValue
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.benBank = ""
+            body.benAccIBAN = localBankModel.benefAccountIban
+            body.benName = localBankModel.nameModel.benefName
+            body.cCurrency = localBankModel.currTo
+            body.transRsn = localBankModel.transReasonCode
+            body.bFDType = "CORPORATE"
+            body.aFName = localBankModel.nameModel.firstName
+            body.aSName = localBankModel.nameModel.secondName
+            body.aTName = localBankModel.nameModel.thirdName
+            body.aLName = localBankModel.nameModel.lastName
+            body.narrative1 = "RTGS Validation"
+            body.narrative2 = "RTGS Validation"
+            body.narrative3 = "RTGS Validation"
 
-                a2ARequest?.body?.apply {
-                    stepNumber = "2"
-                    cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-                    custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    accountNumberFrom = localBankModel.accountNumberFromValue
-                    accountNumberTo = localBankModel.accountNumberToValue
-                    currencyCodeFrom = localBankModel.currFrom
-                    custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
-                    amount = localBankModel.amountValue
-                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-                    benBank = ""
-                    benAccIBAN = localBankModel.benefAccountIban
-                    benName = localBankModel.nameModel.benefName
-                    cCurrency = localBankModel.currTo
-                    transRsn = localBankModel.transReasonCode
-                    bFDType = "CORPORATE"
-                    aFName = localBankModel.nameModel.firstName
-                    aSName = localBankModel.nameModel.secondName
-                    aTName = localBankModel.nameModel.thirdName
-                    aLName = localBankModel.nameModel.lastName
-                    narrative1 = "RTGS Validation"
-                    narrative2 = "RTGS Validation"
-                    narrative3 = "RTGS Validation"
-                }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
+
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
@@ -249,53 +189,32 @@ class TransferRepository @Inject constructor(
 
     }
 
-
     suspend fun <T> getTransferLocalBank(
         localBankModel: LocalBankModel
 
     ): Resource<T>? {
         val postData = LocalBankPostData()
         postData.apply {
-            a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = localBankModel.chargesForType
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
-                    deviceID = Constants.DeviceID
-                }
-
-                a2ARequest?.body?.apply {
-                    stepNumber = "3"
-                    accountNumberFrom = localBankModel.accountNumberFromValue
-                    accountNumberTo = localBankModel.accountNumberToValue
-                    currencyCodeFrom = localBankModel.currFrom
-                    amount = localBankModel.amountValue
-                    branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-                    benBank = ""
-                    benAccIBAN = localBankModel.benefAccountIban
-                    benName = localBankModel.nameModel.benefName
-                    cCurrency = localBankModel.currTo
-                    transRsn = localBankModel.transReasonCode
-                    bFDType = "CORPORATE"
-                    aFName = localBankModel.nameModel.firstName
-                    aSName = localBankModel.nameModel.secondName
-                    aTName = localBankModel.nameModel.thirdName
-                    aLName = localBankModel.nameModel.lastName
-                    count = 4
-                    period = 7
-                    eDesc = "Transfer Between Account"
-                    aDesc = "تحويل بين حسابات"
-                }
-                a2ARequest?.footer?.apply {
-                    signature = ""
-                }
-            }
+            body.stepNumber = "3"
+            body.accountNumberFrom = localBankModel.accountNumberFromValue
+            body.accountNumberTo = localBankModel.accountNumberToValue
+            body.currencyCodeFrom = localBankModel.currFrom
+            body.amount = localBankModel.amountValue
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.benBank = ""
+            body.benAccIBAN = localBankModel.benefAccountIban
+            body.benName = localBankModel.nameModel.benefName
+            body.cCurrency = localBankModel.currTo
+            body.transRsn = localBankModel.transReasonCode
+            body.bFDType = "CORPORATE"
+            body.aFName = localBankModel.nameModel.firstName
+            body.aSName = localBankModel.nameModel.secondName
+            body.aTName = localBankModel.nameModel.thirdName
+            body.aLName = localBankModel.nameModel.lastName
+            body.count = 4
+            body.period = 7
+            body.eDesc = "Transfer Between Account"
+            body.aDesc = "تحويل بين حسابات"
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)

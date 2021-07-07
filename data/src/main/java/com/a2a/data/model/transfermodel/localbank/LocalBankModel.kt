@@ -11,7 +11,6 @@ data class LocalBankModel(
     var amountValue: String = "",
     var chargesForType: String = "",
     var benefAccountIban: String = "",
-
     var transReasonCode: String = "",
     var nameModel: NameModel = NameModel()
 )

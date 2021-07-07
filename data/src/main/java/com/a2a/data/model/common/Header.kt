@@ -17,7 +17,6 @@ data class Header(
     @SerializedName("UserID")
     var UserID: String = "ibank",
 
-
     @SerializedName("Password")
     var Password: String = "ibank@123",
 
@@ -41,7 +40,6 @@ data class Header(
 
     @SerializedName("ConnectorID")
     var ConnectorID: String = "CB",
-
 
     @SerializedName("SrvID")
     var srvID: String = "",

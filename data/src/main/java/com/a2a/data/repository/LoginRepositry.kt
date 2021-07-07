@@ -23,35 +23,6 @@ class LoginRepositry @Inject constructor(
         }
         val postData =
             BaseRequestModel(A2ARequest(loginPostData.body, srvID = "Login", serviceIDValue = 3287))
-
-
-//        val postData = LoginPostData()
-//        postData.apply {
-//            a2ARequest?.apply {
-//                header?.apply {
-//                    bankCode = Constants.BankCode
-//                    regionCode = Constants.RegionCode
-//                    srvID = "Login"
-//                    serviceID = 3287
-//                    methodName = ""
-//                    userID = Constants.UserID
-//                    password = Constants.Password
-//                    channel = Constants.Channel
-//                    timeStamp = Date().formatToViewTimeStamp()
-//                    guidID = Constants.GuidID
-//                    deviceID = Constants.DeviceID
-//                }
-//
-//                a2ARequest.body.apply {
-//                    custProfile.custMnemonic = MCustMnemonic ?: ""
-//                    custProfile.pWD = Mpassword ?: ""
-//                }
-//                a2ARequest?.footer?.apply {
-//                    signature = ""
-//                }
-//            }
-//        }
         return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
     }
-
 }

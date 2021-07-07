@@ -1,10 +1,8 @@
 package com.a2a.data.model.transfermodel.betwenmyaccount
 
 import com.a2a.data.model.CustProfile
-import com.a2a.data.model.accountlist.AccountListPostData
 import com.a2a.data.repository.transfer.Accounts
 import com.google.gson.annotations.SerializedName
-
 
 data class BetweenMyAccountPostData(
     @SerializedName("Body")
