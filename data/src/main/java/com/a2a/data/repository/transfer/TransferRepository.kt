@@ -5,6 +5,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountModel
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.localbank.LocalBankModel
@@ -25,8 +26,7 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
-        accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amountValue: String
+        betweenMyAccountModel: BetweenMyAccountModel
     ): Resource<T>? {
         val validationBetweenMyAccount = ValidationBetweenMyAccountPostData()
         validationBetweenMyAccount.apply {
@@ -35,13 +35,14 @@ class TransferRepository @Inject constructor(
             validationBetweenMyAccount.body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
             validationBetweenMyAccount.body.custID =
                 MemoryCacheImpl.getCustProfile()!!.custID.toString()
-            validationBetweenMyAccount.body.accountNumberFrom = accountNumberFromValue
-            validationBetweenMyAccount.body.accountNumberTo = accountNumberToValue
-            validationBetweenMyAccount.body.currencyFrom = currFrom
-            validationBetweenMyAccount.body.currencyTo = currTo
+            validationBetweenMyAccount.body.accountNumberFrom =
+                betweenMyAccountModel.fromAccountNumber
+            validationBetweenMyAccount.body.accountNumberTo = betweenMyAccountModel.toAccountNumber
+            validationBetweenMyAccount.body.currencyFrom = betweenMyAccountModel.fromAccountCurrency
+            validationBetweenMyAccount.body.currencyTo = betweenMyAccountModel.toAccountCurrency
             validationBetweenMyAccount.body.custType =
                 MemoryCacheImpl.getCustProfile()!!.custType.toString()
-            validationBetweenMyAccount.body.amount = amountValue
+            validationBetweenMyAccount.body.amount = betweenMyAccountModel.amount
             validationBetweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             validationBetweenMyAccount.body.stepNumber = "2"
         }
@@ -62,18 +63,18 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getTransferBetweenMyAccount(
-        accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amountValue: String
+        betweenMyAccountModel: BetweenMyAccountModel
     ): Resource<T>? {
 
         val betweenMyAccount = BetweenMyAccountPostData()
         betweenMyAccount.apply {
             betweenMyAccount.body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            betweenMyAccount.body.accounts.accountNumberFrom = accountNumberFromValue
-            betweenMyAccount.body.accounts.accountNumberTo = accountNumberToValue
-            betweenMyAccount.body.accounts.currencyFrom = currFrom
-            betweenMyAccount.body.accounts.currencyTo = currTo
-            betweenMyAccount.body.accounts.amount = amountValue
+            betweenMyAccount.body.accounts.accountNumberFrom =
+                betweenMyAccountModel.fromAccountNumber
+            betweenMyAccount.body.accounts.accountNumberTo = betweenMyAccountModel.toAccountNumber
+            betweenMyAccount.body.accounts.currencyFrom = betweenMyAccountModel.fromAccountCurrency
+            betweenMyAccount.body.accounts.currencyTo = betweenMyAccountModel.toAccountCurrency
+            betweenMyAccount.body.accounts.amount = betweenMyAccountModel.amount
             betweenMyAccount.body.startDate = Date().formatToViewDateStamp()
             betweenMyAccount.body.count = "-1"
             betweenMyAccount.body.period = 0
