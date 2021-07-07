@@ -2,7 +2,6 @@ package com.a2a.data.model.transfermodel.localbank
 
 import com.a2a.data.model.name.NameModel
 
-
 data class LocalBankModel(
     var accountNumberFromValue: String = "",
     var accountNumberToValue: String = "",

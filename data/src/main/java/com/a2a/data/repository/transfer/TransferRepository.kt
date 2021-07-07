@@ -1,14 +1,10 @@
 package com.a2a.data.repository.transfer
 
-import android.accounts.Account
-import com.a2a.data.constants.Constants
-import com.a2a.data.datasource.MemoryCache
+import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStamp
-import com.a2a.data.extentions.formatToViewTimeStamp
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
-import com.a2a.data.model.login.LoginPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.localbank.LocalBankModel
