@@ -47,7 +47,6 @@ class TransferRepository @Inject constructor(
             validationBetweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             validationBetweenMyAccount.body.stepNumber = "2"
         }
-
         val postData =
             BaseRequestModel(
                 A2ARequest(
@@ -56,7 +55,6 @@ class TransferRepository @Inject constructor(
                     serviceIDValue = 0
                 )
             )
-
         return safeApiCall(postData)
         {
             remoteDataSource.baseRequest(postData)
