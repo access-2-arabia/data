@@ -13,6 +13,7 @@ import com.a2a.data.model.transfermodel.localbank.LocalBankPostData
 import com.a2a.data.model.transfermodel.localbank.LocalBankValidationPostData
 import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
 import com.a2a.data.model.transfermodel.withincab.WithinCabPostData
+import com.a2a.data.model.transfermodel.withincab.WithinCabTransferModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.data.repository.transfer.TransferType.Companion.betweenMyAccountADesc
 import com.a2a.data.repository.transfer.TransferType.Companion.betweenMyAccountEDesc
@@ -97,8 +98,7 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getValidationTransferWithinCab(
-        accountNumberFromValue: String, accountNumberToValue: String,
-        currFrom: String, currTo: String, amountValue: String
+        withinCabTransferModel: WithinCabTransferModel
     ): Resource<T>? {
         val postData = ValidationWithinCabPostData()
         postData.apply {
@@ -106,14 +106,13 @@ class TransferRepository @Inject constructor(
             body.repID = "0"
             body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
             body.custID = MemoryCacheImpl.getCustProfile()!!.custID
-            body.accountNumberFrom = accountNumberFromValue
-            body.accountNumberTo = accountNumberToValue
-            body.currencyFrom = currFrom
-            body.currencyTo = currTo
+            body.accountNumberFrom = withinCabTransferModel.fromAccountNumber
+            body.accountNumberTo = withinCabTransferModel.toBeneficiaryAccount
+            body.currencyFrom = withinCabTransferModel.fromCurrency
+            body.currencyTo = withinCabTransferModel.toBeneficiaryCurrency
             body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
-            body.amount = amountValue
+            body.amount = withinCabTransferModel.amount
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
@@ -122,29 +121,26 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getTransferWithinCab(
-        accountNumberFrom: String, accountNumberTo: String,
-        currFrom: String, currTo: String, amountValue: String
+        withinCabTransferModel: WithinCabTransferModel
     ): Resource<T>? {
         val postData = WithinCabPostData()
         postData.apply {
             body.stepNumber = 3
             body.custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
             body.custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
-            body.accounts.accountNumberFrom = accountNumberFrom
-            body.accounts.accountNumberTo = accountNumberTo
+            body.accounts.accountNumberFrom = withinCabTransferModel.fromAccountNumber
+            body.accounts.accountNumberTo = withinCabTransferModel.toBeneficiaryAccount
             body.startDate = Date().formatToViewDateStamp()
-            body.accounts.currencyFrom = currFrom
-            body.accounts.currencyTo = currTo
-            body.accounts.amount = amountValue
+            body.accounts.currencyFrom = withinCabTransferModel.fromCurrency
+            body.accounts.currencyTo = withinCabTransferModel.toBeneficiaryCurrency
+            body.accounts.amount = withinCabTransferModel.amount
             body.count = "-1"
             body.period = 0
             body.eDesc = betweenMyAccountEDesc
             body.aDesc = betweenMyAccountADesc
-
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
     }
 
