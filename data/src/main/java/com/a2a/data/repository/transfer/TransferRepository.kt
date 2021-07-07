@@ -29,7 +29,8 @@ class TransferRepository @Inject constructor(
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
-        amountValue: String, accountsFrom: Accounts, accountsTo: Accounts
+        accountNumberFromValue: String, accountNumberToValue: String,
+        currFrom: String, currTo: String, amountValue: String
     ): Resource<T>? {
         val validationBetweenMyAccount = ValidationBetweenMyAccountPostData()
         validationBetweenMyAccount.apply {
@@ -38,10 +39,10 @@ class TransferRepository @Inject constructor(
             validationBetweenMyAccount.body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
             validationBetweenMyAccount.body.custID =
                 MemoryCacheImpl.getCustProfile()!!.custID.toString()
-            validationBetweenMyAccount.body.accountNumberFrom = accountsFrom.accountNumberFrom
-            validationBetweenMyAccount.body.accountNumberTo = accountsTo.accountNumberTo
-            validationBetweenMyAccount.body.currencyFrom = accountsFrom.currencyFrom
-            validationBetweenMyAccount.body.currencyTo = accountsTo.currencyTo
+            validationBetweenMyAccount.body.accountNumberFrom = accountNumberFromValue
+            validationBetweenMyAccount.body.accountNumberTo =accountNumberToValue
+            validationBetweenMyAccount.body.currencyFrom = currFrom
+            validationBetweenMyAccount.body.currencyTo = currTo
             validationBetweenMyAccount.body.custType =
                 MemoryCacheImpl.getCustProfile()!!.custType.toString()
             validationBetweenMyAccount.body.amount = amountValue
@@ -65,15 +66,18 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getTransferBetweenMyAccount(
-        amountValue: String, accountsFrom: Accounts, accountsTo: Accounts
+        accountNumberFromValue: String, accountNumberToValue: String,
+        currFrom: String, currTo: String, amountValue: String
     ): Resource<T>? {
 
         val betweenMyAccount = BetweenMyAccountPostData()
         betweenMyAccount.apply {
             betweenMyAccount.body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            betweenMyAccount.body.accounts = accountsFrom
-            betweenMyAccount.body.accounts = accountsTo
-            betweenMyAccount.body.accounts.amount = amountValue
+            betweenMyAccount.body.accounts.accountNumberFrom = accountNumberFromValue
+            betweenMyAccount.body.accounts.accountNumberTo = accountNumberToValue
+            betweenMyAccount.body.accounts.currencyFrom =currFrom
+            betweenMyAccount.body.accounts.currencyTo =currTo
+                betweenMyAccount.body.accounts.amount = amountValue
             betweenMyAccount.body.startDate = Date().formatToViewDateStamp()
             betweenMyAccount.body.count = "-1"
             betweenMyAccount.body.period = 0
