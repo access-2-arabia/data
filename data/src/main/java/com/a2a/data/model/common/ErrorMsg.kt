@@ -9,5 +9,5 @@ data class ErrorMsg(
     @SerializedName("EDesc")
     var eDesc: String = "",
     @SerializedName("ErrorCode")
-    var errorCode: Int = 10
+    var errorCode: Int = 10000
 )

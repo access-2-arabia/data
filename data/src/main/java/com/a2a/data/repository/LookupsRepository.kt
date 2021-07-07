@@ -3,6 +3,7 @@ package com.a2a.data.repository
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.LookUpPostData
 import com.a2a.data.model.common.A2ARequest
+import com.a2a.data.model.common.BaseRequest
 import com.a2a.network.Resource
 import javax.inject.Inject
 
@@ -23,9 +24,11 @@ class LookupsRepository @Inject constructor(
                         "SecurityTips,ContactTime,CardType,Period,LoanType,CustRequest,PendingCustRequest,BankProducts"
         }
 
-        val request =A2ARequest(
-            postData,
-            srvId = "GetLookUp"
+        val request = BaseRequest(
+            A2ARequest(
+                postData,
+                srvId = "GetLookUp"
+            )
         )
         return safeApiCall(request) {
             remoteDataSource.baseRequest(request)
@@ -40,9 +43,11 @@ class LookupsRepository @Inject constructor(
             locX = lang
             locY = lat
         }
-        val request = A2ARequest(
-            postData,
-            srvId = "GetLookUp"
+        val request = BaseRequest(
+            A2ARequest(
+                postData,
+                srvId = "GetLookUp"
+            )
         )
         return safeApiCall(request) {
             remoteDataSource.baseRequest(request)

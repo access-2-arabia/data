@@ -4,6 +4,7 @@ import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.authentication.LoginPostData
 import com.a2a.data.model.common.A2ARequest
+import com.a2a.data.model.common.BaseRequest
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
 import javax.inject.Inject
@@ -32,8 +33,6 @@ class AuthenticationRepository @Inject constructor(
             }
             body.custProfile.lWTD = isBiometric
             header.srvID = "Login"
-
-
         }
         return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
     }
@@ -51,9 +50,11 @@ class AuthenticationRepository @Inject constructor(
             docNo = docNumber
 
         }
-        val request = A2ARequest(
-            postData,
-            srvId = "ForgotPWD"
+        val request = BaseRequest(
+            A2ARequest(
+                postData,
+                srvId = "ForgotPWD"
+            )
         )
         return safeApiCall(request) {
             remoteDataSource.baseRequest(request)
@@ -66,9 +67,11 @@ class AuthenticationRepository @Inject constructor(
 
         val postData = MemoryCacheImpl.getCustProfile()
         postData?.password = newPassword
-        val request = A2ARequest(
-            postData,
-            srvId = "ChgPwd"
+        val request = BaseRequest(
+            A2ARequest(
+                postData,
+                srvId = "ChgPwd"
+            )
         )
         return safeApiCall(request) {
             remoteDataSource.baseRequest(request)
