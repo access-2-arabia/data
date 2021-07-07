@@ -2,7 +2,7 @@ package com.a2a.data.repository
 
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.common.CustomerProfilePostData
+import com.a2a.data.model.common.A2ARequest
 import com.a2a.network.Resource
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -38,17 +38,12 @@ class OTPRepository @Inject constructor(
         mobileNumber: String
     ): Resource<T> {
 
-        val customerProfilePostData = CustomerProfilePostData()
-        customerProfilePostData.a2ARequest.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.custProfile.mobileNumber = mobileNumber
-            header.srvID = "OTPToken"
-        }
+        val postData = MemoryCacheImpl.getCustProfile()!!
+        postData.mobileNumber = mobileNumber
 
-        return safeApiCall(customerProfilePostData) {
-            remoteDataSource.baseRequest(
-                customerProfilePostData
-            )
+        val request = A2ARequest(postData, srvId = "OTPToken")
+        return safeApiCall(request) {
+            remoteDataSource.baseRequest(request)
         }
     }
 
