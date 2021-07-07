@@ -30,7 +30,5 @@ data class Header(
     @SerializedName("SessionID")
     var sessionID: String? =AppCache.sessionID?:"",
     @SerializedName("IPAddress")
-    var iPAddress: String? = AppCache.ipAddress?:"",
-    @SerializedName("Result")
-    var result: Result? = Result()
+    var iPAddress: String? = AppCache.ipAddress?:""
 ) : Parcelable
