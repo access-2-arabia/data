@@ -28,7 +28,6 @@ class BeneficiaryRepository @Inject constructor(
         return safeApiCall(postData)
         {
             remoteDataSource.baseRequest(postData)
-
         }
     }
 

@@ -1,5 +1,6 @@
 package com.a2a.data.model.login
 
+import com.a2a.data.model.common.Authenticate
 import com.google.gson.annotations.SerializedName
 
 
@@ -9,7 +10,9 @@ data class LoginPostData(
 ) {
     data class Body(
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile()
+        var custProfile: CustProfile = CustProfile(),
+        @SerializedName("Authenticate")
+        var authenticate: Authenticate = Authenticate()
     ) {
         data class CustProfile(
             @SerializedName("CustMnemonic")
