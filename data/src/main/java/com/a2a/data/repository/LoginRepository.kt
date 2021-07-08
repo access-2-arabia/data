@@ -11,7 +11,7 @@ import com.a2a.network.Resource
 import java.util.*
 import javax.inject.Inject
 
-class LoginRepositry @Inject constructor(
+class LoginRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
