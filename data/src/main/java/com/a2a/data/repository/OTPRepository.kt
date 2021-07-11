@@ -5,6 +5,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequest
 import com.a2a.network.Resource
+import com.a2a.network.model.OTPResponse
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import javax.inject.Inject
@@ -37,13 +38,13 @@ class OTPRepository @Inject constructor(
 
     suspend fun <T> requestOTP(
         mobileNumber: String
-    ): Resource<T> {
+    ): Resource<OTPResponse> {
 
         val postData = MemoryCacheImpl.getCustProfile()!!
         postData.mobileNumber = mobileNumber
 
         val request =  BaseRequest(A2ARequest(postData, srvId = "OTPToken"))
-        return safeApiCall(request) {
+        return safeApiCall(request,OTPResponse::class.java) {
             remoteDataSource.baseRequest(request)
         }
     }
