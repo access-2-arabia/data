@@ -7,7 +7,6 @@ data class GetManageBeneficiariesPostData(
     @SerializedName("Body")
     var body: Body = Body(),
 ) {
-
         data class Body(
             @SerializedName("Beneficiary")
             var beneficiary: Beneficiary = Beneficiary(),

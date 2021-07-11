@@ -5,6 +5,8 @@ import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewTimeStamp
 import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
+import com.a2a.data.model.common.A2ARequest
+import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -18,11 +20,15 @@ class BeneficiaryRepository @Inject constructor(
     suspend fun <T> getBeneficiary(
         beneficiaryType: String
     ): Resource<T>? {
-        val postData = GetManageBeneficiariesPostData()
-        postData.apply {
+        val getManageBeneficiaries= GetManageBeneficiariesPostData()
+        getManageBeneficiaries.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.beneficiary.type = beneficiaryType
         }
+
+
+        val postData =
+            BaseRequestModel(A2ARequest(getManageBeneficiaries, srvID = "MngBenf", serviceIDValue = 0))
         return safeApiCall(postData)
         {
             remoteDataSource.baseRequest(postData)
