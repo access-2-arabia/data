@@ -1,6 +1,7 @@
 package com.a2a.data.repository.beneficiary
 
 import com.a2a.data.constants.Constants
+import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewTimeStamp
 import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
@@ -19,10 +20,7 @@ class BeneficiaryRepository @Inject constructor(
     ): Resource<T>? {
         val postData = GetManageBeneficiariesPostData()
         postData.apply {
-            body.custProfile.repID = 0
-            body.custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
-            body.custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
-            body.custProfile.rID = 0
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.beneficiary.type = beneficiaryType
         }
         return safeApiCall(postData)
