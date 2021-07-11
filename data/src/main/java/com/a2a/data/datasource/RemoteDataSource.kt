@@ -1,7 +1,7 @@
 package com.a2a.data.datasource
 
- import com.a2a.network.constants.Constants.Companion.BASE_ENDPOINT
- import retrofit2.http.Body
+import com.a2a.network.constants.Constants.Companion.BASE_ENDPOINT
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 
