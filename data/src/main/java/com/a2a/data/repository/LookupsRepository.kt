@@ -5,6 +5,7 @@ import com.a2a.data.model.LookUpPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequest
 import com.a2a.network.Resource
+import com.a2a.network.model.OTPResponse
 import javax.inject.Inject
 
 

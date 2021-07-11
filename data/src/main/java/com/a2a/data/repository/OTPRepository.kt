@@ -38,7 +38,7 @@ class OTPRepository @Inject constructor(
 
     suspend fun <T> requestOTP(
         mobileNumber: String
-    ): Resource<OTPResponse> {
+    ): OTPResponse {
 
         val postData = MemoryCacheImpl.getCustProfile()!!
         postData.mobileNumber = mobileNumber
