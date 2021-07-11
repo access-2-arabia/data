@@ -28,7 +28,7 @@ class BeneficiaryRepository @Inject constructor(
 
 
         val postData =
-            BaseRequestModel(A2ARequest(getManageBeneficiaries, srvID = "MngBenf", serviceIDValue = 0))
+            BaseRequestModel(A2ARequest(getManageBeneficiaries.body, srvID = "MngBenf", serviceIDValue = 0))
         return safeApiCall(postData)
         {
             remoteDataSource.baseRequest(postData)
