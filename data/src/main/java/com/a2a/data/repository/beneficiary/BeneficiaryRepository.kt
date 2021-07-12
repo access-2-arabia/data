@@ -87,19 +87,19 @@ class BeneficiaryRepository @Inject constructor(
 
 
     suspend fun <T> deleteBeneficiary(
-           deleteBeneficiaryPostData: DeleteBeneficary
+        deleteBeneficiaryPostData: DeleteBeneficary
     ): Resource<T>? {
-        val deleteBeneficiaryPostData = DeleteBeneficiaryPostData()
-        deleteBeneficiaryPostData.apply {
+        val deleteBeneficiary = DeleteBeneficiaryPostData()
+        deleteBeneficiary.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.stepNumber = 4
-            body.beneficiary.iD=deleteBeneficiaryPostData.body.beneficiary.iD
-            body.beneficiary.type=deleteBeneficiaryPostData.body.beneficiary.type
+            body.beneficiary.iD = deleteBeneficiaryPostData.iD
+            body.beneficiary.type = deleteBeneficiaryPostData.type
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    deleteBeneficiaryPostData.body,
+                    deleteBeneficiary.body,
                     srvID = "MngBenf",
                     serviceIDValue = 0
                 )
