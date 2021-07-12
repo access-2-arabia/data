@@ -22,8 +22,10 @@ data class GetAddUpdateBeneficiaryLocalBankResponse(
         @SerializedName("Header")
         var header: Header = Header()
     ) : Parcelable {
+
+        @Parcelize
         class Body(
-        )
+        ):Parcelable
 
         @Parcelize
         data class Footer(
