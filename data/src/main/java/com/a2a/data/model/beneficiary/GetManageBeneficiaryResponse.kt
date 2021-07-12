@@ -1,7 +1,9 @@
 package com.a2a.data.model.beneficiary
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class GetManageBeneficiaryResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -9,7 +11,8 @@ data class GetManageBeneficiaryResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) {
+):Parcelable {
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -17,28 +20,31 @@ data class GetManageBeneficiaryResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) :Parcelable{
+        @Parcelize
         class Body(
-        )
+        ):Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ):Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: Any = Any(),
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: Any = Any(),
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: Any = Any(),
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: Any = Any(),
+            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -50,16 +56,17 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ):Parcelable
     }
 
+    @Parcelize
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -67,13 +74,14 @@ data class GetManageBeneficiaryResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ):Parcelable {
+        @Parcelize
         data class Body(
             @SerializedName("Beneficiary")
             var beneficiary: List<Beneficiary> = listOf(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        ) {
+        ):Parcelable {
             data class Beneficiary(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -112,13 +120,13 @@ data class GetManageBeneficiaryResponse(
                 @SerializedName("Status")
                 var status: Int = 0,
                 @SerializedName("TblCust")
-                var tblCust: Any = Any(),
+                var tblCust: String = "",
                 @SerializedName("TblCustAccPredefinedChannel")
                 var tblCustAccPredefinedChannel: List<Any> = listOf(),
                 @SerializedName("TblLUBranch")
-                var tblLUBranch: Any = Any(),
+                var tblLUBranch: String = "",
                 @SerializedName("TblLUCurrency")
-                var tblLUCurrency: Any = Any(),
+                var tblLUCurrency: String = "",
                 @SerializedName("TblLogTransfer")
                 var tblLogTransfer: List<Any> = listOf(),
                 @SerializedName("TblRepAccPredefined")
@@ -127,19 +135,22 @@ data class GetManageBeneficiaryResponse(
                 var trusted: Boolean = false,
                 @SerializedName("Type")
                 var type: String = ""
-            )
+            ):Parcelable
 
+            @Parcelize
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0
-            )
+            ):Parcelable
         }
-
+        
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
-
+        ):Parcelable
+         
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -148,12 +159,14 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ):Parcelable {
+            
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -161,10 +174,11 @@ data class GetManageBeneficiaryResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ):Parcelable
         }
     }
 
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -172,5 +186,5 @@ data class GetManageBeneficiaryResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ):Parcelable
 }
