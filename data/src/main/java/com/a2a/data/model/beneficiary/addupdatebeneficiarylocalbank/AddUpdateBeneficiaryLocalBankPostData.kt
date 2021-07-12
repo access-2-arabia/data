@@ -1,12 +1,15 @@
 package com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank
+import android.os.Parcelable
 import com.a2a.data.model.CustProfile
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class AddUpdateBeneficiaryLocalBankPostData(
     @SerializedName("Body")
     var body: Body = Body()
-) {
+):Parcelable {
+    @Parcelize
     data class Body(
         @SerializedName("Beneficiary")
         var beneficiary: Beneficiary = Beneficiary(),
@@ -14,7 +17,8 @@ data class AddUpdateBeneficiaryLocalBankPostData(
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("StepNumber")
         var stepNumber: Int = 0
-    ) {
+    ):Parcelable {
+        @Parcelize
         data class Beneficiary(
             @SerializedName("ADesc")
             var aDesc: String = "",
@@ -40,7 +44,7 @@ data class AddUpdateBeneficiaryLocalBankPostData(
             var tName: String = "",
             @SerializedName("Type")
             var type: String = ""
-        )
+        ):Parcelable
 
 
     }
