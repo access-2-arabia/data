@@ -82,8 +82,6 @@ data class GetManageBeneficiariesInOutResponse(
         data class Body(
             @SerializedName("BeneficiaryIn")
             var beneficiaryIn: List<BeneficiaryIn> = listOf(),
-            @SerializedName("BeneficiaryOut")
-            var beneficiaryOut: List<Any> = listOf(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) : Parcelable {
