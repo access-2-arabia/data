@@ -22,10 +22,8 @@ class AccountsRepository @Inject constructor(
         }
         val postData =
             BaseRequestModel(A2ARequest(accountPostData.body, srvID = "DashBoard", serviceIDValue = 0))
-
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
     }
 
