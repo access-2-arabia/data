@@ -1,10 +1,10 @@
-package com.a2a.data.model.beneficiary.addbeneficiarywithincab
+package com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab
 
 import com.a2a.data.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
-data class AddBeneficiaryWithinCabPostData(
+data class AddUpdateBeneficiaryWithinCabPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {

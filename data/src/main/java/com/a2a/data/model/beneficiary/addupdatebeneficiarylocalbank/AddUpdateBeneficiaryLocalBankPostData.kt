@@ -1,9 +1,9 @@
-package com.a2a.data.model.beneficiary.addbeneficiarylocalbank
+package com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank
 import com.a2a.data.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
-data class AddBeneficiaryLocalBankPostData(
+data class AddUpdateBeneficiaryLocalBankPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {

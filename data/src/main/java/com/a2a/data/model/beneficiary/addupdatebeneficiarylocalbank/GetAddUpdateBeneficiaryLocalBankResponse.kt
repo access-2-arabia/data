@@ -1,9 +1,9 @@
-package com.a2a.data.model.beneficiary.addbeneficiarylocalbank
+package com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank
 
 import com.google.gson.annotations.SerializedName
 
 
-data class GetAddBeneficiaryLocalBankResponse(
+data class GetAddUpdateBeneficiaryLocalBankResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
