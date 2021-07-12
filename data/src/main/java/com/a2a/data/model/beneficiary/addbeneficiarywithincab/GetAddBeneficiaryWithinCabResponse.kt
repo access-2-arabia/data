@@ -2,7 +2,7 @@ package com.a2a.data.model.beneficiary.addbeneficiarywithincab
 import com.google.gson.annotations.SerializedName
 
 
-data class GetBeneficiaryWithinCabResponse(
+data class GetAddBeneficiaryWithinCabResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
