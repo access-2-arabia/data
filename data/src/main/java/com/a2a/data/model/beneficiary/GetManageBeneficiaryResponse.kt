@@ -82,6 +82,7 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ):Parcelable {
+            @Parcelize
             data class Beneficiary(
                 @SerializedName("ADesc")
                 var aDesc: String = "",

@@ -155,7 +155,6 @@ data class GetManageBeneficiariesInOutResponse(
             @SerializedName("Signature")
             var signature: String = ""
         ) : Parcelable
-
         @Parcelize
         data class Header(
             @SerializedName("GuidID")
