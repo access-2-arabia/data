@@ -5,12 +5,14 @@ import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
 import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryLocalBankPostData
 import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryLocalBankPostData.Body.Beneficiary
 import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinCabPostData
+import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject
 import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinCabPostData.Body.Beneficiary as BeneficiaryWithinCab
+import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData.Body.Beneficiary as DeleteBeneficary
 
 class BeneficiaryRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
@@ -73,6 +75,31 @@ class BeneficiaryRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     addBeneficiariesWithinCab.body,
+                    srvID = "MngBenf",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> deleteBeneficiary(
+           deleteBeneficiaryPostData: DeleteBeneficary
+    ): Resource<T>? {
+        val deleteBeneficiaryPostData = DeleteBeneficiaryPostData()
+        deleteBeneficiaryPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.stepNumber = 4
+            body.beneficiary.iD=deleteBeneficiaryPostData.body.beneficiary.iD
+            body.beneficiary.type=deleteBeneficiaryPostData.body.beneficiary.type
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    deleteBeneficiaryPostData.body,
                     srvID = "MngBenf",
                     serviceIDValue = 0
                 )
