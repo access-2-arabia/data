@@ -122,16 +122,10 @@ data class GetManageBeneficiaryResponse(
                 var status: Int = 0,
                 @SerializedName("TblCust")
                 var tblCust: String = "",
-                @SerializedName("TblCustAccPredefinedChannel")
-                var tblCustAccPredefinedChannel: List<Any> = listOf(),
                 @SerializedName("TblLUBranch")
                 var tblLUBranch: String = "",
                 @SerializedName("TblLUCurrency")
                 var tblLUCurrency: String = "",
-                @SerializedName("TblLogTransfer")
-                var tblLogTransfer: List<Any> = listOf(),
-                @SerializedName("TblRepAccPredefined")
-                var tblRepAccPredefined: List<Any> = listOf(),
                 @SerializedName("Trusted")
                 var trusted: Boolean = false,
                 @SerializedName("Type")
