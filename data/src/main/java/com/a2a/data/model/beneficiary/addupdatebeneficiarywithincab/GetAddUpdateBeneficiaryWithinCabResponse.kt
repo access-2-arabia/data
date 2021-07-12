@@ -39,13 +39,13 @@ data class GetAddUpdateBeneficiaryWithinCabResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: Any = Any(),
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: Any = Any(),
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: Any = Any(),
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: Any = Any(),
+            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -57,7 +57,7 @@ data class GetAddUpdateBeneficiaryWithinCabResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
@@ -103,7 +103,7 @@ data class GetAddUpdateBeneficiaryWithinCabResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
