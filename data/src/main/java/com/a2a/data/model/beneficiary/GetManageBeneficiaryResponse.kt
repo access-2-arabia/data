@@ -1,4 +1,5 @@
 package com.a2a.data.model.beneficiary
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -11,7 +12,7 @@ data class GetManageBeneficiaryResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-):Parcelable {
+) : Parcelable {
     @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
@@ -20,16 +21,16 @@ data class GetManageBeneficiaryResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) :Parcelable{
+    ) : Parcelable {
         @Parcelize
         class Body(
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Header(
@@ -62,8 +63,11 @@ data class GetManageBeneficiaryResponse(
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
-            var userID: String = ""
-        ):Parcelable
+            var userID: String = "",
+            @SerializedName("ID")
+            var id: String = ""
+
+        ) : Parcelable
     }
 
     @Parcelize
@@ -74,14 +78,14 @@ data class GetManageBeneficiaryResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ):Parcelable {
+    ) : Parcelable {
         @Parcelize
         data class Body(
             @SerializedName("Beneficiary")
             var beneficiary: List<Beneficiary> = listOf(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        ):Parcelable {
+        ) : Parcelable {
             @Parcelize
             data class Beneficiary(
                 @SerializedName("ADesc")
@@ -130,21 +134,21 @@ data class GetManageBeneficiaryResponse(
                 var trusted: Boolean = false,
                 @SerializedName("Type")
                 var type: String = ""
-            ):Parcelable
+            ) : Parcelable
 
             @Parcelize
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0
-            ):Parcelable
+            ) : Parcelable
         }
-        
+
         @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        ):Parcelable
-         
+        ) : Parcelable
+
         @Parcelize
         data class Header(
             @SerializedName("GuidID")
@@ -159,8 +163,8 @@ data class GetManageBeneficiaryResponse(
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ):Parcelable {
-            
+        ) : Parcelable {
+
             @Parcelize
             data class Result(
                 @SerializedName("ADesc")
@@ -169,7 +173,7 @@ data class GetManageBeneficiaryResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            ):Parcelable
+            ) : Parcelable
         }
     }
 
@@ -181,5 +185,5 @@ data class GetManageBeneficiaryResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    ):Parcelable
+    ) : Parcelable
 }
