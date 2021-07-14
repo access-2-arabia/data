@@ -49,7 +49,7 @@ class BeneficiaryRepository @Inject constructor(
         addBeneficiariesLocalBank.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.beneficiary = updateAddBeneficiaryLocalBankPostData
-            body.stepNumber = 2
+            body.stepNumber = stepNumber
         }
         val postData =
             BaseRequestModel(
@@ -73,7 +73,7 @@ class BeneficiaryRepository @Inject constructor(
         addBeneficiariesWithinCab.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.beneficiary = updateAddBeneficiaryWithinBankPostData
-            body.stepNumber = 2
+            body.stepNumber = stepNumber
         }
         val postData =
             BaseRequestModel(
