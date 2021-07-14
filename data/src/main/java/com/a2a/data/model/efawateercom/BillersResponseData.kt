@@ -1,7 +1,9 @@
 package com.a2a.data.model.efawateercom
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class BillersResponseData(
     @SerializedName("A2ARequest")
@@ -101,6 +103,8 @@ data class BillersResponseData(
                 @SerializedName("Type")
                 var type: Int = 0
             ) {
+
+                @Parcelize
                 data class Enum(
                     @SerializedName("ADesc")
                     var aDesc: String = "",
@@ -136,7 +140,8 @@ data class BillersResponseData(
                     var stmtBankCode: String = "",
                     @SerializedName("Website")
                     var website: String = ""
-                ) {
+                ) : Parcelable {
+                    @Parcelize
                     data class BillerSrvType(
                         @SerializedName("ADesc")
                         var aDesc: String = "",
@@ -176,7 +181,8 @@ data class BillersResponseData(
                         var mEnMsg: String = "",
                         @SerializedName("Postpaid")
                         var postpaid: Boolean = false
-                    ) {
+                    ) : Parcelable {
+                        @Parcelize
                         data class Denomination(
                             @SerializedName("ADesc")
                             var aDesc: String = "",
@@ -190,7 +196,7 @@ data class BillersResponseData(
                             var enShortDesc: String = "",
                             @SerializedName("Type")
                             var type: String = ""
-                        )
+                        ) : Parcelable
                     }
                 }
             }
