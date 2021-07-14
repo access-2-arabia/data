@@ -1,4 +1,5 @@
 package com.a2a.data.model.lookup
+
 import com.google.gson.annotations.SerializedName
 
 
@@ -82,7 +83,9 @@ data class LookUpResponse(
             @SerializedName("RTGSAccTypes")
             var rTGSAccTypes: List<RTGSAccType> = listOf(),
             @SerializedName("RTGSTransferList")
-            var rTGSTransferList: List<RTGSTransfer> = listOf()
+            var rTGSTransferList: List<RTGSTransfer> = listOf(),
+            @SerializedName("Country")
+            var CountryList: List<Country> = listOf()
         ) {
             data class Bank(
                 @SerializedName("ADesc")
@@ -137,6 +140,26 @@ data class LookUpResponse(
                 @SerializedName("EValue")
                 var eValue: String = ""
             )
+
+
+            data class Country(
+                @SerializedName("ID")
+                var iD: String = "",
+                @SerializedName("EDesc")
+                var countryEDesc: String = "",
+                @SerializedName("ADesc")
+                var countryADesc: String = "",
+                @SerializedName("EValue")
+                var countryEValue: String = "",
+                @SerializedName("AValue")
+                var countryAValue: String = "",
+                @SerializedName("Telecom")
+                var countryTelecom: String = "",
+                @SerializedName("Code")
+                var countryCode: String = "",
+            )
+
+
         }
 
         data class Footer(
