@@ -2,8 +2,8 @@ package com.a2a.data.repository.beneficiary
 
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
-import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryLocalBankPostData
-import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryLocalBankPostData.Body.Beneficiary
+import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryOtherBankPostData
+import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryOtherBankPostData.Body.Beneficiary
 import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinCabPostData
 import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData
 import com.a2a.data.model.common.A2ARequest
@@ -44,7 +44,7 @@ class BeneficiaryRepository @Inject constructor(
     suspend fun <T> addBeneficiaryLocalBank(
         addBeneficiaryLocalBankPostData: Beneficiary
     ): Resource<T>? {
-        val addBeneficiariesLocalBank = AddUpdateBeneficiaryLocalBankPostData()
+        val addBeneficiariesLocalBank = AddUpdateBeneficiaryOtherBankPostData()
         addBeneficiariesLocalBank.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.stepNumber = 2

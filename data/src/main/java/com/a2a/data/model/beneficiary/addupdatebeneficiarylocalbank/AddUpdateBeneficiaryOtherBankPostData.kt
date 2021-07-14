@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class AddUpdateBeneficiaryLocalBankPostData(
+data class AddUpdateBeneficiaryOtherBankPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ):Parcelable {
@@ -43,7 +43,9 @@ data class AddUpdateBeneficiaryLocalBankPostData(
             @SerializedName("TName")
             var tName: String = "",
             @SerializedName("Type")
-            var type: String = ""
+            var type: String = "",
+            @SerializedName("ID")
+            var id: String = ""
         ):Parcelable
 
 
