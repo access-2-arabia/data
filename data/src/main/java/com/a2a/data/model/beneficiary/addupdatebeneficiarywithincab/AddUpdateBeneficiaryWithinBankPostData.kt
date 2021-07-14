@@ -34,7 +34,9 @@ data class AddUpdateBeneficiaryWithinBankPostData(
             @SerializedName("Trusted")
             var trusted: String = "",
             @SerializedName("Type")
-            var type: String = ""
+            var type: String = "",
+            @SerializedName("ID")
+            var id: String = ""
         ) : Parcelable
     }
 }
