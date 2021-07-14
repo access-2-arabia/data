@@ -141,6 +141,8 @@ data class BillersResponseData(
                     @SerializedName("Website")
                     var website: String = ""
                 ) : Parcelable {
+
+
                     @Parcelize
                     data class BillerSrvType(
                         @SerializedName("ADesc")
