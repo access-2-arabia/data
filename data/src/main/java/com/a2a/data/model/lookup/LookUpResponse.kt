@@ -20,10 +20,6 @@ data class LookUpResponse(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("LocX")
-            var locX: String = "",
-            @SerializedName("LocY")
-            var locY: String = "",
             @SerializedName("LookUpName")
             var lookUpName: String = ""
         )
@@ -76,18 +72,38 @@ data class LookUpResponse(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("Banks")
-            var banks: List<Bank> = listOf(),
+            @SerializedName("AddPredAcc")
+            var addPredAcc: List<AddPredAcc> = listOf(),
+            @SerializedName("Branch")
+            var branch: List<Branch> = listOf(),
+            @SerializedName("Country")
+            var country: List<Country> = listOf(),
             @SerializedName("Currency")
             var currency: List<Currency> = listOf(),
+            @SerializedName("DeactiveReason")
+            var deactiveReason: List<DeactiveReason> = listOf(),
+            @SerializedName("Demo")
+            var demo: List<Demo> = listOf(),
+            @SerializedName("Help")
+            var help: List<Help> = listOf(),
+            @SerializedName("MarketingBanner")
+            var marketingBanner: List<MarketingBanner> = listOf(),
             @SerializedName("RTGSAccTypes")
             var rTGSAccTypes: List<RTGSAccType> = listOf(),
+            @SerializedName("RTGSBankList")
+            var rTGSBankList: List<RTGSBank> = listOf(),
             @SerializedName("RTGSTransferList")
             var rTGSTransferList: List<RTGSTransfer> = listOf(),
-            @SerializedName("Country")
-            var CountryList: List<Country> = listOf()
+            @SerializedName("RtpRejectReason")
+            var rtpRejectReason: List<RtpRejectReason> = listOf(),
+            @SerializedName("StopCCardRs")
+            var stopCCardRs: List<StopCCardR> = listOf(),
+            @SerializedName("StopPCardRs")
+            var stopPCardRs: List<StopPCardR> = listOf(),
+            @SerializedName("TrxTypes")
+            var trxTypes: List<TrxType> = listOf()
         ) {
-            data class Bank(
+            data class AddPredAcc(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
                 @SerializedName("AValue")
@@ -98,6 +114,50 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
+            )
+
+            data class Branch(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("ALocation")
+                var aLocation: String = "",
+                @SerializedName("ATitle")
+                var aTitle: String = "",
+                @SerializedName("BranchCode")
+                var branchCode: String = "",
+                @SerializedName("Distance")
+                var distance: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("ELocation")
+                var eLocation: String = "",
+                @SerializedName("ETitle")
+                var eTitle: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Latitude")
+                var latitude: String = "",
+                @SerializedName("Longitude")
+                var longitude: String = "",
+                @SerializedName("PhoneNo")
+                var phoneNo: String = ""
+            )
+
+            data class Country(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("Code")
+                var code: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Telecom")
+                var telecom: String = ""
             )
 
             data class Currency(
@@ -115,7 +175,76 @@ data class LookUpResponse(
                 var iSOCode: String = ""
             )
 
+            data class DeactiveReason(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
+
+            data class Demo(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("ATitle")
+                var aTitle: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("ETitle")
+                var eTitle: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Img")
+                var img: String = ""
+            )
+
+            data class Help(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AText")
+                var aText: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EText")
+                var eText: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0
+            )
+
+            data class MarketingBanner(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("ATitle")
+                var aTitle: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("ETitle")
+                var eTitle: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Img")
+                var img: String = ""
+            )
+
             data class RTGSAccType(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
+
+            data class RTGSBank(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
                 @SerializedName("AValue")
@@ -141,25 +270,57 @@ data class LookUpResponse(
                 var eValue: String = ""
             )
 
-
-            data class Country(
-                @SerializedName("ID")
-                var iD: String = "",
-                @SerializedName("EDesc")
-                var countryEDesc: String = "",
+            data class RtpRejectReason(
                 @SerializedName("ADesc")
-                var countryADesc: String = "",
-                @SerializedName("EValue")
-                var countryEValue: String = "",
+                var aDesc: String = "",
                 @SerializedName("AValue")
-                var countryAValue: String = "",
-                @SerializedName("Telecom")
-                var countryTelecom: String = "",
-                @SerializedName("Code")
-                var countryCode: String = "",
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
             )
 
+            data class StopCCardR(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
 
+            data class StopPCardR(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
+
+            data class TrxType(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
         }
 
         data class Footer(
@@ -200,4 +361,5 @@ data class LookUpResponse(
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
     )
+}
 }
