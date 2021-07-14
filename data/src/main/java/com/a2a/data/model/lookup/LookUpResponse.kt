@@ -362,4 +362,3 @@ data class LookUpResponse(
         var errorCode: Int = 0
     )
 }
-}
