@@ -3,6 +3,7 @@ package com.a2a.data.repository.efawateercom
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.efawateercom.BillersPostData
 import com.a2a.data.model.efawateercom.CategoriesPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -18,6 +19,26 @@ class OneTimeRepository @Inject constructor(
 
         body.apply {
             requestType = "Category"
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "eFwatercom"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getBillers(sentCode : String): Resource<T> {
+
+        val body = BillersPostData()
+
+        body.apply {
+            requestType = "BillersList"
+            code = sentCode
+            category = "TELC"
         }
         val postData = BaseRequestModel(
             A2ARequest(
