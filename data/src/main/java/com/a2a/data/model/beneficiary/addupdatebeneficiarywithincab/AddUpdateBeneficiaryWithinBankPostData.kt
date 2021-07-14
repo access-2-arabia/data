@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class AddUpdateBeneficiaryWithinCabPostData(
+data class AddUpdateBeneficiaryWithinBankPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) : Parcelable {

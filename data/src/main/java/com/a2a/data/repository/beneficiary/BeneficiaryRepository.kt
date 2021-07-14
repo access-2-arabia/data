@@ -4,14 +4,14 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
 import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryOtherBankPostData
 import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryOtherBankPostData.Body.Beneficiary
-import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinCabPostData
+import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinBankPostData
 import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject
-import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinCabPostData.Body.Beneficiary as BeneficiaryWithinCab
+import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinBankPostData.Body.Beneficiary as BeneficiaryWithinBank
 import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData.Body.Beneficiary as DeleteBeneficary
 
 class BeneficiaryRepository @Inject constructor(
@@ -41,12 +41,14 @@ class BeneficiaryRepository @Inject constructor(
     }
 
 
-    suspend fun <T> addBeneficiaryLocalBank(
-        addBeneficiaryLocalBankPostData: Beneficiary
+    suspend fun <T> updateAddBeneficiaryOtherBank(
+        updateAddBeneficiaryLocalBankPostData: Beneficiary,
+        stepNumber: Int
     ): Resource<T>? {
         val addBeneficiariesLocalBank = AddUpdateBeneficiaryOtherBankPostData()
         addBeneficiariesLocalBank.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.beneficiary = updateAddBeneficiaryLocalBankPostData
             body.stepNumber = 2
         }
         val postData =
@@ -63,12 +65,14 @@ class BeneficiaryRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> addBeneficiaryWithInBank(
-        addBeneficiaryWithinCabPostData: BeneficiaryWithinCab
+    suspend fun <T> updateAddBeneficiaryWithInBank(
+        updateAddBeneficiaryWithinBankPostData: BeneficiaryWithinBank,
+        stepNumber: Int
     ): Resource<T>? {
-        val addBeneficiariesWithinCab = AddUpdateBeneficiaryWithinCabPostData()
+        val addBeneficiariesWithinCab = AddUpdateBeneficiaryWithinBankPostData()
         addBeneficiariesWithinCab.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.beneficiary = updateAddBeneficiaryWithinBankPostData
             body.stepNumber = 2
         }
         val postData =
