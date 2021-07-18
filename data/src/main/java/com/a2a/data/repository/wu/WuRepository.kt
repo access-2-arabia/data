@@ -15,7 +15,6 @@ class WuRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun <T> getCountries(
-        country: CountryPostData
     ): Resource<T>? {
         val countryPostData = CountryPostData()
         countryPostData.apply {
@@ -41,7 +40,7 @@ class WuRepository @Inject constructor(
     }
 
     suspend fun <T> getCurrency(
-        currencyPostData: CurrencyPostData
+        countryIsoCode: String
     ): Resource<T>? {
         val currencyPostData = CurrencyPostData()
         currencyPostData.apply {
@@ -51,7 +50,7 @@ class WuRepository @Inject constructor(
             body.deviceId = "Online"
             body.queryfilter1 = "en"
             body.queryfilter2 = "JO JOD"
-            body.queryfilter3 = "United States"
+            body.queryfilter3 =countryIsoCode
         }
         val postData =
             BaseRequestModel(
