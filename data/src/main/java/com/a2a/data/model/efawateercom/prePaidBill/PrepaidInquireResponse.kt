@@ -23,14 +23,17 @@ data class PrepaidInquireResponse(
         @SerializedName("Header")
         var header: Header = Header()
     ) : Parcelable {
+        @Parcelize
         class Body(
-        )
+        ):Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ):Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
@@ -60,7 +63,7 @@ data class PrepaidInquireResponse(
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ):Parcelable
     }
 
     @Parcelize
@@ -80,17 +83,18 @@ data class PrepaidInquireResponse(
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) : Parcelable {
+            @Parcelize
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0
-            )
+            ):Parcelable
         }
 
         @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ):Parcelable
 
         @Parcelize
         data class Header(
@@ -115,7 +119,7 @@ data class PrepaidInquireResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ):Parcelable
         }
     }
 
@@ -127,5 +131,5 @@ data class PrepaidInquireResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ):Parcelable
 }
