@@ -123,6 +123,7 @@ data class PrepaidInquireResponse(
         }
     }
 
+
     @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
