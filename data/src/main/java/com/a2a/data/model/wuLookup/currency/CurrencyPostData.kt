@@ -1,18 +1,13 @@
 package com.a2a.data.model.wuLookup.currency
 
-import android.os.Parcelable
 import com.a2a.data.model.CustProfile
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
-
 
 data class CurrencyPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {
-
     data class Body(
-        @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("DeviceId")
         var deviceId: String = "",

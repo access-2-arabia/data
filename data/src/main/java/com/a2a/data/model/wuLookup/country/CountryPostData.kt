@@ -1,11 +1,7 @@
 package com.a2a.data.model.wuLookup.country
 
-import android.os.Parcelable
 import com.a2a.data.model.CustProfile
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
-
-
 data class CountryPostData(
     @SerializedName("Body")
     var body: Body = Body()
