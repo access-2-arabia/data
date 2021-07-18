@@ -5,7 +5,9 @@ import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.efawateercom.BillersPostData
 import com.a2a.data.model.efawateercom.CategoriesPostData
+import com.a2a.data.model.efawateercom.postBill.PayPostPaidPostData
 import com.a2a.data.model.efawateercom.postBill.PostBillPostData
+import com.a2a.data.model.efawateercom.prePaidBill.PayPrepaidPostData
 import com.a2a.data.model.efawateercom.prePaidBill.PrepaidInquirePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -135,4 +137,141 @@ class OneTimeRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+
+    suspend fun <T> payPrePaid(
+        billerCode: Int,
+        serviceType: String,
+        billingNo: String,
+        dueAmount: Double,
+        paidAmount: Double,
+        fees: Double,
+        accountSelected: String,
+        denomination: String,
+        validationCode: String,
+        billerEDesc: String
+    ): Resource<T> {
+
+        val body = PayPrepaidPostData()
+        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
+        body.apply {
+
+            bill.requestType = "PrepaidPayment"
+
+            if (currentCustProfile != null) {
+                bill.cID = custProfile.cID
+                bill.custID = custProfile.custID
+                bill.iD = custProfile.docNo
+                bill.name = custProfile.eName
+                bill.phone = custProfile.mobileNumber
+                bill.mobileNo = custProfile.mobileNumber
+                bill.address = custProfile.address1
+                bill.eMail = custProfile.eMail
+
+                custProfile = currentCustProfile
+
+            }
+
+            bill.denomination = denomination
+            bill.validationCode = validationCode
+            bill.billerCode = billerCode.toString()
+            bill.serviceType = serviceType
+            bill.billingNo = billingNo
+            bill.dueAmount = dueAmount
+            bill.dueAmt = dueAmount
+            bill.paidAmount = paidAmount
+            bill.paidAmt = paidAmount
+            bill.fees = fees
+            bill.feesAmount = fees
+            bill.billerEDesc = billerEDesc
+            bill.prePaid = "Y"
+
+            accounts.accountFrom = accountSelected
+            accounts.accountNumberFrom = accountSelected
+            accounts.paidAmount = paidAmount.toString()
+            accounts.paidAmt = paidAmount.toString()
+            accounts.feesAmount = fees.toString()
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "eFwaterPay"
+            )
+        )
+
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> payPrePaid(
+        billerCode: Int,
+        serviceType: String,
+        billingNo: String,
+        dueAmount: Double,
+        paidAmount: Double,
+        fees: Double,
+        accountSelected: String,
+        billerEDesc: String
+    ): Resource<T> {
+
+        val body = PayPostPaidPostData()
+        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
+        body.apply {
+
+            bill.requestType = "BillPayment"
+
+            if (currentCustProfile != null) {
+                bill.cID = custProfile.cID
+                bill.custID = custProfile.custID
+                bill.iD = custProfile.docNo
+                bill.name = custProfile.eName
+                bill.phone = custProfile.mobileNumber
+                bill.mobileNo = custProfile.mobileNumber
+                bill.address = custProfile.address1
+                bill.eMail = custProfile.eMail
+
+                custProfile = currentCustProfile
+
+            }
+
+            bill.repID = 0
+            bill.billerCode = billerCode.toString()
+            bill.serviceType = serviceType
+            bill.billingNo = billingNo
+            bill.incPayments = "Y"
+            bill.dueAmount = dueAmount
+            bill.dueAmt = dueAmount
+            bill.paidAmount = paidAmount
+            bill.paidAmt = paidAmount
+            bill.fees = fees
+            bill.feesAmount = fees
+            bill.billerEDesc = billerEDesc
+
+
+            accounts.accountFrom = accountSelected
+            accounts.accountNumberFrom = accountSelected
+            accounts.paidAmount = paidAmount.toString()
+            accounts.paidAmt = paidAmount.toString()
+            accounts.feesAmount = fees.toString()
+
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "eFwaterPay"
+            )
+        )
+
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+
+    }
+
 }
+
