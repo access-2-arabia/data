@@ -29,18 +29,18 @@ data class PrepaidInquireResponse(
             @SerializedName("Signature")
             var signature: String = ""
         )
-
+         
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: Any = Any(),
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: Any = Any(),
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: Any = Any(),
+            var deviceID: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -52,7 +52,7 @@ data class PrepaidInquireResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
