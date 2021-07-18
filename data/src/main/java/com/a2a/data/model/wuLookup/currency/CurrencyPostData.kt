@@ -8,6 +8,7 @@ data class CurrencyPostData(
     var body: Body = Body()
 ) {
     data class Body(
+        @SerializedName("CustProfile")
         var custProfile: CustProfileModel = CustProfileModel(),
         @SerializedName("DeviceId")
         var deviceId: String = "",
