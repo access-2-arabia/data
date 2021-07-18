@@ -1,5 +1,5 @@
 package com.a2a.data.model.transfermodel.withincab
-import com.a2a.data.model.CustProfile
+import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 import com.a2a.data.repository.transfer.Accounts
 
@@ -19,7 +19,7 @@ data class Body(
     @SerializedName("Count")
     var count: String = "",
     @SerializedName("CustProfile")
-    var custProfile: CustProfile = CustProfile(),
+    var custProfile: CustProfileModel = CustProfileModel(),
     @SerializedName("EDesc")
     var eDesc: String = "",
     @SerializedName("Period")

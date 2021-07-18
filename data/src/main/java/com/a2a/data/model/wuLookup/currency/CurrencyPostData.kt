@@ -1,6 +1,6 @@
 package com.a2a.data.model.wuLookup.currency
 
-import com.a2a.data.model.CustProfile
+import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 
 data class CurrencyPostData(
@@ -8,7 +8,7 @@ data class CurrencyPostData(
     var body: Body = Body()
 ) {
     data class Body(
-        var custProfile: CustProfile = CustProfile(),
+        var custProfile: CustProfileModel = CustProfileModel(),
         @SerializedName("DeviceId")
         var deviceId: String = "",
         @SerializedName("DeviceType")

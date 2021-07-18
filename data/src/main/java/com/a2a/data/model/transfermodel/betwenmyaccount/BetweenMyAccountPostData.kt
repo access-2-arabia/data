@@ -1,6 +1,6 @@
 package com.a2a.data.model.transfermodel.betwenmyaccount
 
-import com.a2a.data.model.CustProfile
+import com.a2a.data.model.CustProfileModel
 import com.a2a.data.repository.transfer.Accounts
 import com.google.gson.annotations.SerializedName
 
@@ -19,7 +19,7 @@ data class BetweenMyAccountPostData(
         @SerializedName("Count")
         var count: String = "",
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile(),
+        var custProfile: CustProfileModel = CustProfileModel(),
         @SerializedName("EDesc")
         var eDesc: String = "",
         @SerializedName("Period")

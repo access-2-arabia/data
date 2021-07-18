@@ -1,7 +1,7 @@
 package com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab
 
 import android.os.Parcelable
-import com.a2a.data.model.CustProfile
+import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -15,7 +15,7 @@ data class AddUpdateBeneficiaryWithinBankPostData(
         @SerializedName("Beneficiary")
         var beneficiary: Beneficiary = Beneficiary(),
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile(),
+        var custProfile: CustProfileModel = CustProfileModel(),
         @SerializedName("StepNumber")
         var stepNumber: Int = 0
     ) : Parcelable {

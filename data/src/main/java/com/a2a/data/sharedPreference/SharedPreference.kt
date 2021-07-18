@@ -11,16 +11,13 @@ class SharedPreference(context: Context) {
     private val PASSWORD_EXPIRED = "PASSWORD_EXPIRED"
     private val LAST_FINANCIAL_TRANSACTIONS = "LAST_FINANCIAL_TRANSACTIONS"
 
-
     private val sharedPref: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-
 
     var isBiomatricLoginEnabled: Boolean
         get() = sharedPref.getBoolean(BIOMATRIC_LOGIN, false)
         set(isBiomatricLoginEnabled) = sharedPref.edit()
             .putBoolean(BIOMATRIC_LOGIN, isBiomatricLoginEnabled).apply()
-
 
     var lastSuccessfulLogin: String
         get() = sharedPref.getString(LAST_SUCCESSFUL_LOGIN, "---").toString()
@@ -36,10 +33,9 @@ class SharedPreference(context: Context) {
         get() = sharedPref.getString(PASSWORD_EXPIRED, "---").toString()
         set(passwordExpired) = sharedPref.edit()
             .putString(PASSWORD_EXPIRED, passwordExpired).apply()
+
     var lastFinancialTransactions: String
         get() = sharedPref.getString(LAST_FINANCIAL_TRANSACTIONS, "---").toString()
         set(lastFinancialTransactions) = sharedPref.edit()
             .putString(LAST_FINANCIAL_TRANSACTIONS, lastFinancialTransactions).apply()
-
-
 }
