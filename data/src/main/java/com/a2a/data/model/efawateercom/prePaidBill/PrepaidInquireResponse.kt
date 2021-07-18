@@ -13,7 +13,8 @@ data class PrepaidInquireResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) : Parcelable{
+) : Parcelable {
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -21,7 +22,7 @@ data class PrepaidInquireResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
         class Body(
         )
 
@@ -29,7 +30,7 @@ data class PrepaidInquireResponse(
             @SerializedName("Signature")
             var signature: String = ""
         )
-         
+
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
@@ -85,11 +86,13 @@ data class PrepaidInquireResponse(
             )
         }
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
         )
 
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -103,7 +106,8 @@ data class PrepaidInquireResponse(
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -115,6 +119,7 @@ data class PrepaidInquireResponse(
         }
     }
 
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",

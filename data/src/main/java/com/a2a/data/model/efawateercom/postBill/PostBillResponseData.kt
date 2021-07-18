@@ -13,7 +13,9 @@ data class PostBillResponseData(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-): Parcelable {
+) : Parcelable {
+
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -21,15 +23,18 @@ data class PostBillResponseData(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         class Body(
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
@@ -59,7 +64,7 @@ data class PostBillResponseData(
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ) : Parcelable
     }
 
     @Parcelize
@@ -70,7 +75,7 @@ data class PostBillResponseData(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ):Parcelable {
+    ) : Parcelable {
 
         @Parcelize
         data class Body(
@@ -80,11 +85,13 @@ data class PostBillResponseData(
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) : Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -98,7 +105,8 @@ data class PostBillResponseData(
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -106,10 +114,11 @@ data class PostBillResponseData(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ) : Parcelable
         }
     }
 
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -117,5 +126,5 @@ data class PostBillResponseData(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ) : Parcelable
 }
