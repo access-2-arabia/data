@@ -1,9 +1,11 @@
 package com.a2a.data.model.efawateercom.postBill
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class PostBillResponseData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -11,7 +13,7 @@ data class PostBillResponseData(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) {
+): Parcelable {
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -60,6 +62,7 @@ data class PostBillResponseData(
         )
     }
 
+    @Parcelize
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -67,13 +70,15 @@ data class PostBillResponseData(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ):Parcelable {
+
+        @Parcelize
         data class Body(
             @SerializedName("Bill")
             var bill: Bill = Bill(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        )
+        ) : Parcelable
 
         data class Footer(
             @SerializedName("Signature")
