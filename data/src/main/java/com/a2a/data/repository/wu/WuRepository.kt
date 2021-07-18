@@ -14,11 +14,11 @@ class WuRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> getCountries(
+    suspend fun <T> getWuCountries(
     ): Resource<T>? {
         val countryPostData = CountryPostData()
         countryPostData.apply {
-            body.lookUpName = "CountriesCurrencies"
+            body.lookUpName = "DestinationCountries"
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.deviceType = "Online"
             body.deviceId = "Online"
@@ -29,7 +29,7 @@ class WuRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     countryPostData.body,
-                    srvID = "DestinationCountries",
+                    srvID = "GetWULookup",
                     serviceIDValue = 0
                 )
             )
@@ -39,7 +39,7 @@ class WuRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> getCurrency(
+    suspend fun <T> getWuCurrency(
         countryIsoCode: String
     ): Resource<T>? {
         val currencyPostData = CurrencyPostData()
@@ -50,7 +50,7 @@ class WuRepository @Inject constructor(
             body.deviceId = "Online"
             body.queryfilter1 = "en"
             body.queryfilter2 = "JO JOD"
-            body.queryfilter3 =countryIsoCode
+            body.queryfilter3 = countryIsoCode
         }
         val postData =
             BaseRequestModel(
