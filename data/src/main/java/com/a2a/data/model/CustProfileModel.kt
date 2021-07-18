@@ -72,6 +72,7 @@ data class CustProfileModel(
     @SerializedName("RepID")
     var repID: Int = 0,
     @SerializedName("TermsAndCondition")
-    var termsAndCondition: Int = 0
-
+    var termsAndCondition: Int = 0,
+    @SerializedName("CustStatus")
+    var custStatus: Boolean = false
 )
