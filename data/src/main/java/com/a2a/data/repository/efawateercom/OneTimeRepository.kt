@@ -206,7 +206,7 @@ class OneTimeRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> payPrePaid(
+    suspend fun <T> payPostPaid(
         billerCode: Int,
         serviceType: String,
         billingNo: String,
