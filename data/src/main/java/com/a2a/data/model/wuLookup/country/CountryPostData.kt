@@ -19,5 +19,6 @@ data class CountryPostData(
         var queryfilter1: String = "",
         @SerializedName("queryfilter2")
         var queryfilter2: String = ""
+
     )
 }
