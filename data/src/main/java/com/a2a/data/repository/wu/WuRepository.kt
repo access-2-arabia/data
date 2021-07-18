@@ -18,7 +18,7 @@ class WuRepository @Inject constructor(
     ): Resource<T>? {
         val countryPostData = CountryPostData()
         countryPostData.apply {
-            body.lookUpName = "CountriesCurrencies"
+            body.lookUpName = "DestinationCountries"
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.deviceType = "Online"
             body.deviceId = "Online"
@@ -29,7 +29,7 @@ class WuRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     countryPostData.body,
-                    srvID = "DestinationCountries",
+                    srvID = "GetWULookup",
                     serviceIDValue = 0
                 )
             )
