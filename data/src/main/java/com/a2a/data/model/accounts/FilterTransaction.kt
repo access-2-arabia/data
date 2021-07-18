@@ -10,5 +10,7 @@ data class FilterTransaction(
     var amountFrom: Double = 0.0,
     var amountTo: Double = 0.0,
     var filteredBy: String = "custom",
-    var isLastEnabled :Boolean = false
+    var isLastNTransactionsEnabled: Boolean = false,
+    var amountCondition: String = "",
+
     )
