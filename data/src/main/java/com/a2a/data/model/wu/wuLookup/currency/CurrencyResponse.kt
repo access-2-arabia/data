@@ -1,10 +1,11 @@
-package com.a2a.data.model.wuLookup.country
+package com.a2a.data.model.wu.wuLookup.currency
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class CountryResponse(
+data class CurrencyResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -34,7 +35,9 @@ data class CountryResponse(
             @SerializedName("queryfilter1")
             var queryfilter1: String = "",
             @SerializedName("queryfilter2")
-            var queryfilter2: String = ""
+            var queryfilter2: String = "",
+            @SerializedName("queryfilter3")
+            var queryfilter3: String = ""
         ) : Parcelable {
             @Parcelize
             data class CustProfile(
@@ -105,11 +108,11 @@ data class CountryResponse(
     ) : Parcelable {
         @Parcelize
         data class Body(
-            @SerializedName("DestinationCountries")
-            var destinationCountries: DestinationCountries = DestinationCountries()
+            @SerializedName("Currencies")
+            var currencies: Currencies = Currencies()
         ) : Parcelable {
             @Parcelize
-            data class DestinationCountries(
+            data class Currencies(
                 @SerializedName("ACCOUNT_NUM")
                 var aCCOUNTNUM: String = "",
                 @SerializedName("AccountNumber")
@@ -120,6 +123,8 @@ data class CountryResponse(
                 var cID: Int = 0,
                 @SerializedName("CdAddress_validation")
                 var cdAddressValidation: Boolean = false,
+                @SerializedName("ConnectorId")
+                var connectorId: String = "",
                 @SerializedName("conversion_fee")
                 var conversionFee: Int = 0,
                 @SerializedName("CustStatus")
@@ -130,6 +135,10 @@ data class CountryResponse(
                 var dATAMORE: String = "",
                 @SerializedName("DATA_NUM_RECS")
                 var dATANUMRECS: Int = 0,
+                @SerializedName("DeviceId")
+                var deviceId: String = "",
+                @SerializedName("DeviceType")
+                var deviceType: String = "",
                 @SerializedName("ErrorADesc")
                 var errorADesc: String = "",
                 @SerializedName("ErrorCode")
@@ -140,12 +149,18 @@ data class CountryResponse(
                 var exchangeFee: Int = 0,
                 @SerializedName("exchange_rate")
                 var exchangeRate: Int = 0,
+                @SerializedName("external_reference_no")
+                var externalReferenceNo: String = "",
+                @SerializedName("ip_address")
+                var ipAddress: String = "",
                 @SerializedName("LogID")
                 var logID: Int = 0,
                 @SerializedName("MobFlag")
                 var mobFlag: Boolean = false,
                 @SerializedName("NAME")
                 var nAME: String = "",
+                @SerializedName("PartnerId")
+                var partnerId: String = "",
                 @SerializedName("pin_verification_time")
                 var pinVerificationTime: String = "",
                 @SerializedName("RECORDSET_TYPE")
@@ -158,35 +173,45 @@ data class CountryResponse(
                 var secondExchangeFee: Int = 0,
                 @SerializedName("StatCode")
                 var statCode: Int = 0,
+                @SerializedName("SysName")
+                var sysName: String = "",
+                @SerializedName("SystemId")
+                var systemId: String = "",
                 @SerializedName("tax_rate")
-                var taxRate: Int = 0
+                var taxRate: Int = 0,
+                @SerializedName("version")
+                var version: String = ""
             ) : Parcelable {
                 @Parcelize
                 data class RECORDSETTYPE(
-                    @SerializedName("GETDESTINATIONCOUNTRIES")
-                    var gETDESTINATIONCOUNTRIES: List<GETDESTINATIONCOUNTRIES> = listOf()
+                    @SerializedName("GETCOUNTRIESCURRENCIES")
+                    var gETCOUNTRIESCURRENCIES: List<GETCOUNTRIESCURRENCIES> = listOf()
                 ) : Parcelable {
                     @Parcelize
-                    data class GETDESTINATIONCOUNTRIES(
+                    data class GETCOUNTRIESCURRENCIES(
                         @SerializedName("COUNTRY_LONG")
                         var cOUNTRYLONG: String = "",
-                        @SerializedName("COUNTRY_SHORT")
-                        var cOUNTRYSHORT: String = "",
+                        @SerializedName("CURRENCY_CD")
+                        var cURRENCYCD: String = "",
+                        @SerializedName("CURRENCY_NAME")
+                        var cURRENCYNAME: String = "",
                         @SerializedName("ISO_COUNTRY_CD")
                         var iSOCOUNTRYCD: String = "",
-                        @SerializedName("SERVICE_FLAGS")
-                        var sERVICEFLAGS: String = "",
-                        @SerializedName("STATE_FLAG")
-                        var sTATEFLAG: String = ""
+                        @SerializedName("ISO_COUNTRY_NUM_CD")
+                        var iSOCOUNTRYNUMCD: String = "",
+                        @SerializedName("ISO_CURRENCY_NUM_CD")
+                        var iSOCURRENCYNUMCD: String = ""
                     ) : Parcelable
                 }
             }
         }
+
         @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
         ) : Parcelable
+
         @Parcelize
         data class Header(
             @SerializedName("GuidID")
@@ -213,6 +238,7 @@ data class CountryResponse(
             ) : Parcelable
         }
     }
+
     @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")

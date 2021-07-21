@@ -1,8 +1,9 @@
-package com.a2a.data.model.wuLookup.country
+package com.a2a.data.model.wu.wuLookup.currency
 
 import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
-data class CountryPostData(
+
+data class CurrencyPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {
@@ -18,8 +19,8 @@ data class CountryPostData(
         @SerializedName("queryfilter1")
         var queryfilter1: String = "",
         @SerializedName("queryfilter2")
-        var queryfilter2: String = ""
-
-
+        var queryfilter2: String = "",
+        @SerializedName("queryfilter3")
+        var queryfilter3: String = ""
     )
 }
