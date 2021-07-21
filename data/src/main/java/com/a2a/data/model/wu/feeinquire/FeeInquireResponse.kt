@@ -275,7 +275,6 @@ data class FeeInquireResponse(
             .plus(a2AResponse.body.serviceOption[0].orgcurrencyIsoCode)
     }
 
-
     fun getChargesFeeInquire(): String {
         return a2AResponse.body.serviceOption[0].charges.plus(" ")
             .plus(a2AResponse.body.serviceOption[0].orgcurrencyIsoCode)
