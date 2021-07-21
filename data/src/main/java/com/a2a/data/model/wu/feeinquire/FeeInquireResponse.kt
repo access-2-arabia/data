@@ -222,6 +222,19 @@ data class FeeInquireResponse(
                 @SerializedName("transaction_type")
                 var transactionType: String = ""
             ) : Parcelable
+
+
+            fun getTotalCharges(): String {
+                var totalCharges =
+                    serviceOption[0].charges.toDouble() + serviceOption[0].prmDiscount.toDouble()
+                return totalCharges.toString().plus(" ")
+                    .plus(serviceOption[0].orgcurrencyIsoCode)
+            }
+
+            fun getChargesFeeInquire(): String {
+                return serviceOption[0].charges.plus(" ")
+                    .plus(serviceOption[0].orgcurrencyIsoCode)
+            }
         }
 
         @Parcelize
@@ -268,15 +281,4 @@ data class FeeInquireResponse(
     ) : Parcelable
 
 
-    fun getTotalCharges(): String {
-        var totalCharges =
-            a2AResponse.body.serviceOption[0].charges.toDouble() + a2AResponse.body.serviceOption[0].prmDiscount.toDouble()
-        return totalCharges.toString().plus(" ")
-            .plus(a2AResponse.body.serviceOption[0].orgcurrencyIsoCode)
-    }
-
-    fun getChargesFeeInquire(): String {
-        return a2AResponse.body.serviceOption[0].charges.plus(" ")
-            .plus(a2AResponse.body.serviceOption[0].orgcurrencyIsoCode)
-    }
 }
