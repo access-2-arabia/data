@@ -266,4 +266,18 @@ data class FeeInquireResponse(
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
     ) : Parcelable
+
+
+    fun getTotalCharges(): String {
+        var totalCharges =
+            a2AResponse.body.serviceOption[0].charges.toDouble() + a2AResponse.body.serviceOption[0].prmDiscount.toDouble()
+        return totalCharges.toString().plus(" ")
+            .plus(a2AResponse.body.serviceOption[0].orgcurrencyIsoCode)
+    }
+
+
+    fun getChargesFeeInquire(): String {
+        return a2AResponse.body.serviceOption[0].charges.plus(" ")
+            .plus(a2AResponse.body.serviceOption[0].orgcurrencyIsoCode)
+    }
 }
