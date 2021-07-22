@@ -1,5 +1,9 @@
 package com.a2a.data.model.accounts
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class FilterTransaction(
     var accountNumber: String = "",
     var dateFrom: String = "",
@@ -9,8 +13,5 @@ data class FilterTransaction(
     var amountType: String = "All",
     var amountFrom: Double = 0.0,
     var amountTo: Double = 0.0,
-    var filteredBy: String = "custom",
-    var isLastNTransactionsEnabled: Boolean = false,
-    var amountCondition: String = "",
-
-    )
+    var filteredBy: String = "custom"
+    ):Parcelable
