@@ -23,8 +23,7 @@ data class BaseLookup(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
-        class Body(
-        )
+        class Body()
 
         data class Footer(
             @SerializedName("Signature")

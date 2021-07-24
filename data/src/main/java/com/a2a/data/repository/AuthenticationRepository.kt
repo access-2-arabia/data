@@ -2,12 +2,12 @@ package com.a2a.data.repository
 
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.LookUpPostData
 import com.a2a.data.model.authentication.ChangePasswordPostData
 import com.a2a.data.model.authentication.LoginPostData
 import com.a2a.data.model.authentication.LogoutPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequest
+import com.a2a.data.utility.SrvID
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
 import javax.inject.Inject
@@ -33,21 +33,7 @@ class AuthenticationRepository @Inject constructor(
                 body.custProfile.custMnemonic = null
             }
             body.custProfile.lWTD = isBiometric
-            header.srvID = "Login"
-        }
-        return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
-    }
-
-    suspend fun <T> getLookUps(): Resource<T> {
-        val postData = LookUpPostData()
-        postData.apply {
-            a2ARequest.body.lookUpName =
-                "passwordComplexity,TermsCondition,ContactUs,DocumentType,Country,RecurringType," +
-                        "Branch,MailServices,eMailCategory,SecInstraction,Currency,IntRatePeriod,ThemeColor,Help," +
-                        "MaritalStatus,TrxDir,TrxStatus,TransfarePurpose,ChequeBookPages,ChequeBookNo,ChequeBookStopReason," +
-                        "DebitCardStopReason,AliasType,Banks,TransferPurpose,RtpRejectReason,ATM,CurrencyIntrest,TRXDir,TRXStatus," +
-                        "SecurityTips,ContactTime,CardType,Period,LoanType,CustRequest,PendingCustRequest"
-            a2ARequest.header.srvID = "GetLookUp"
+            header.srvID = SrvID.LOGIN
         }
         return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
     }
@@ -57,7 +43,7 @@ class AuthenticationRepository @Inject constructor(
         postData.apply {
             custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
         }
-        val request = BaseRequest(A2ARequest(srvId = "Logout", body = postData))
+        val request = BaseRequest(A2ARequest(srvId = SrvID.LOGOUT, body = postData))
         return safeApiCall(request) { remoteDataSource.baseRequest(request) }
     }
 
@@ -68,7 +54,7 @@ class AuthenticationRepository @Inject constructor(
             custProfile.passwordOld = oldPassword
             custProfile.password = newPassword
         }
-        val request = BaseRequest(A2ARequest(srvId = "ChgPwd", body = postData))
+        val request = BaseRequest(A2ARequest(srvId = SrvID.CHANGE_PASSWORD, body = postData))
         return safeApiCall(request) { remoteDataSource.baseRequest(request) }
     }
 }

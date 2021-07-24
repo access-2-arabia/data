@@ -5,6 +5,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.GetAccountDetailsPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequest
+import com.a2a.data.utility.SrvID
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
 import javax.inject.Inject
@@ -15,7 +16,7 @@ class AccountsRepository @Inject constructor(
 ) : BaseRepository() {
 
 
-    suspend fun <T> getAccountDetails(
+    suspend fun <T> updateAccountDetails(
         account: GetAccountDetailsPostData.Accounts,
         language: Int
     ): Resource<T> {
@@ -25,7 +26,7 @@ class AccountsRepository @Inject constructor(
             accounts = account
             lang = language
         }
-        val request = BaseRequest(A2ARequest(srvId = "EdtAccDesc", body = postData))
+        val request = BaseRequest(A2ARequest(srvId = SrvID.UPDATE_ACCOUNT_DETAILS, body = postData))
         return safeApiCall(request) { remoteDataSource.baseRequest(request) }
     }
 }
