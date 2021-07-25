@@ -79,8 +79,6 @@ data class AccountListResponse(
     ) : Parcelable {
         @Parcelize
         data class Body(
-            @SerializedName("AccGroups")
-            var accGroups: List<Any> = listOf(),
             @SerializedName("Accounts")
             var accounts: List<Account> = listOf(),
             @SerializedName("ServiceConfiguration")
