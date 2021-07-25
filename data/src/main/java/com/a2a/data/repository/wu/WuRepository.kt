@@ -13,6 +13,7 @@ import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.model.wu.wuLookup.currency.CurrencyPostData
 import com.a2a.data.model.wu.wuLookup.mexicocity.MexicoCityPostData
 import com.a2a.data.model.wu.wuLookup.mexicostate.MexicoStatePostData
+import com.a2a.data.model.wu.wuLookup.usstate.UsStatePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject
@@ -72,8 +73,7 @@ class WuRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
-
+    
     suspend fun <T> getMexicoState(
 
     ): Resource<T>? {
@@ -114,6 +114,28 @@ class WuRepository @Inject constructor(
                 A2ARequest(
                     mexicoCityPostData.body,
                     srvID = "MexicoCity",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getUsState(): Resource<T>? {
+        val usStatePostData = UsStatePostData()
+        usStatePostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceType = "Online"
+            body.deviceType = "Online"
+            body.queryfilter1 = "en"
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    usStatePostData.body,
+                    srvID = "StateList",
                     serviceIDValue = 0
                 )
             )
