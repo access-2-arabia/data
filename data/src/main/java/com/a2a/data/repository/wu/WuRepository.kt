@@ -196,8 +196,12 @@ class WuRepository @Inject constructor(
             body.dstcurrencyIsoCode = feeInquire.body.dstcurrencyIsoCode
             body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.transactionType = feeInquire.body.transactionType
-            body.myWuNumber = feeInquire.body.myWuNumber
-            body.prmCode = feeInquire.body.prmCode
+            if (!body.prmCode.isNullOrEmpty()) {
+                body.prmCode = feeInquire.body.prmCode
+            }
+            if (!feeInquire.body.myWuNumber.isNullOrEmpty()) {
+                body.myWuNumber = feeInquire.body.myWuNumber
+            }
         }
         val postData =
             BaseRequestModel(
