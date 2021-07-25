@@ -223,7 +223,11 @@ data class BaseLookup(
                 var minAmt: Double = 0.0,
                 @SerializedName("MinTenor")
                 var minTenor: Int = 0
-            )
+            ){
+                override fun toString(): String {
+                    return if (Locale.getDefault().language == "en") eDesc else aDesc
+                }
+            }
 
             data class ATM(
                 @SerializedName("AName")
