@@ -6,12 +6,13 @@ import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class RequestLoanPostData(
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
     @SerializedName("Request")
     var request: Request = Request()
-) {
+) : Parcelable {
     @Parcelize
     data class Request(
         @SerializedName("amount")
