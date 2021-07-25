@@ -1,7 +1,10 @@
 package com.a2a.data.model.accountlist
+
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class AccountListResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -9,7 +12,9 @@ data class AccountListResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) {
+) : Parcelable {
+
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -17,15 +22,18 @@ data class AccountListResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         class Body(
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
@@ -57,9 +65,10 @@ data class AccountListResponse(
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ) : Parcelable
     }
 
+    @Parcelize
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -67,7 +76,8 @@ data class AccountListResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         data class Body(
             @SerializedName("AccGroups")
             var accGroups: List<Any> = listOf(),
@@ -75,7 +85,8 @@ data class AccountListResponse(
             var accounts: List<Account> = listOf(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Account(
                 @SerializedName("AAccountType")
                 var aAccountType: String = "",
@@ -133,19 +144,22 @@ data class AccountListResponse(
                 var startDate: String = "",
                 @SerializedName("Type")
                 var type: String = ""
-            )
+            ) : Parcelable
 
+            @Parcelize
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0
-            )
+            ) : Parcelable
         }
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -159,7 +173,8 @@ data class AccountListResponse(
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -167,10 +182,11 @@ data class AccountListResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ) : Parcelable
         }
     }
 
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -178,5 +194,5 @@ data class AccountListResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ) : Parcelable
 }
