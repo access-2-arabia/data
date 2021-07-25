@@ -5,12 +5,11 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class A2ARequest<T : Parcelable> constructor(
+data class A2AResponse<R : Parcelable>(
     @SerializedName("Body")
-    var body: T? = null,
+    var body: R? = null,
     @SerializedName("Footer")
-    var footer: Footer = Footer(),
-    var srvId: String = "",
+    var footer: Footer? = Footer(),
     @SerializedName("Header")
-    var header: Header = Header(srvID = srvId)
+    var header: Header? = Header()
 ) : Parcelable
