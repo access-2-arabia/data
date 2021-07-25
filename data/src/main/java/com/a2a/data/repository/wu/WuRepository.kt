@@ -73,7 +73,7 @@ class WuRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-    
+
     suspend fun <T> getMexicoState(
 
     ): Resource<T>? {
@@ -83,12 +83,13 @@ class WuRepository @Inject constructor(
             body.deviceType = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
+            body.lookUpName="MexicoState"
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     mexicoStatePostData.body,
-                    srvID = "MexicoState",
+                    srvID = "GetWULookup",
                     serviceIDValue = 0
                 )
             )
@@ -108,12 +109,13 @@ class WuRepository @Inject constructor(
             body.deviceType = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
+            body.lookUpName="MexicoCity"
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     mexicoCityPostData.body,
-                    srvID = "MexicoCity",
+                    srvID = "GetWULookup",
                     serviceIDValue = 0
                 )
             )
@@ -130,12 +132,14 @@ class WuRepository @Inject constructor(
             body.deviceType = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
+            body.queryfilter2="US"
+            body.lookUpName="StateList"
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     usStatePostData.body,
-                    srvID = "StateList",
+                    srvID = "GetWULookup",
                     serviceIDValue = 0
                 )
             )
