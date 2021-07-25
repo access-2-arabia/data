@@ -149,7 +149,6 @@ class WuRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> getFeeInquire(
         feeInquire: FeeInquirePostData,
         account: Account,
