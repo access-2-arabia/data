@@ -1,4 +1,5 @@
 package com.a2a.data.model.wu.wuLookup.mywulookup
+import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 
 
@@ -36,6 +37,8 @@ data class MyWuLookupPostData(
         @SerializedName("StepNumber")
         var stepNumber: Int = 0,
         @SerializedName("wu_card_lookup_context")
-        var wuCardLookupContext: String = ""
+        var wuCardLookupContext: String = "",
+        @SerializedName("CustProfile")
+        var custProfile: CustProfileModel = CustProfileModel(),
     )
 }

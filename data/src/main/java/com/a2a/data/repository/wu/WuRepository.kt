@@ -13,6 +13,7 @@ import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.model.wu.wuLookup.currency.CurrencyPostData
 import com.a2a.data.model.wu.wuLookup.mexicocity.MexicoCityPostData
 import com.a2a.data.model.wu.wuLookup.mexicostate.MexicoStatePostData
+import com.a2a.data.model.wu.wuLookup.mywulookup.MyWuLookupPostData
 import com.a2a.data.model.wu.wuLookup.usstate.UsStatePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -140,6 +141,30 @@ class WuRepository @Inject constructor(
                 A2ARequest(
                     usStatePostData.body,
                     srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getMyWuLookup(myWuNumberValue: String): Resource<T>? {
+        val myWuLookupPostData = MyWuLookupPostData()
+        myWuLookupPostData.apply {
+            body.stepNumber = 2
+            body.myWuNumber = myWuNumberValue
+            body.receiverIndexNumber = "000"
+            body.wuCardLookupContext = ""
+            body.cardLookupSearchType = "S"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    myWuLookupPostData.body,
+                    srvID = "WUSend",
                     serviceIDValue = 0
                 )
             )
