@@ -1,5 +1,6 @@
 package com.a2a.data.model.wu.feeinquire
 
+import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 
 data class FeeInquirePostData(
@@ -42,6 +43,14 @@ data class FeeInquirePostData(
         @SerializedName("RepID")
         var repID: String = "",
         @SerializedName("transaction_type")
-        var transactionType: String = ""
+        var transactionType: String = "",
+        @SerializedName("CustProfile")
+        var custProfile: CustProfileModel = CustProfileModel(),
+        @SerializedName("state")
+        var state: String = "",
+        @SerializedName("stateCode")
+        var stateCode: String = "",
+        @SerializedName("city")
+        var city: String = ""
     )
 }

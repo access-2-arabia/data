@@ -83,7 +83,7 @@ class WuRepository @Inject constructor(
             body.deviceType = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
-            body.lookUpName="MexicoState"
+            body.lookUpName = "MexicoState"
         }
         val postData =
             BaseRequestModel(
@@ -109,7 +109,7 @@ class WuRepository @Inject constructor(
             body.deviceType = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
-            body.lookUpName="MexicoCity"
+            body.lookUpName = "MexicoCity"
         }
         val postData =
             BaseRequestModel(
@@ -132,8 +132,8 @@ class WuRepository @Inject constructor(
             body.deviceType = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
-            body.queryfilter2="US"
-            body.lookUpName="StateList"
+            body.queryfilter2 = "US"
+            body.lookUpName = "StateList"
         }
         val postData =
             BaseRequestModel(
@@ -158,13 +158,11 @@ class WuRepository @Inject constructor(
     ): Resource<T>? {
         val feeInquirePostData = FeeInquirePostData()
         feeInquirePostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.regionCode = "02"
             body.accountNumber = account.accountNumber
             body.custStatus = true.toString()
             body.mobFlag = false
-            body.cID = MemoryCacheImpl.getCustProfile()!!.cID
-            body.repID = MemoryCacheImpl.getCustProfile()!!.repID.toString()
-            body.custType = MemoryCacheImpl.getCustProfile()!!.custType
             body.deviceId = "Online"
             body.deviceType = "Mobile"
             body.orgcountryIsoCode = "JO"
