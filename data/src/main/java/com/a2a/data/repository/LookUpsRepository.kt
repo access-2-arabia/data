@@ -9,15 +9,11 @@ import javax.inject.Inject
 class LookUpsRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) :
     BaseRepository() {
 
-    suspend fun <T> getLookUps(
-        lookUpName: String,
-        locX: Double = 0.0,
-        locY: Double = 0.0
-    ): Resource<T> {
+    suspend fun <T> getLookUps(name: String, locX: Double = 0.0, locY: Double = 0.0): Resource<T> {
         val postData = LookUpPostData()
         postData.apply {
             a2ARequest.body.apply {
-                this.lookUpName = lookUpName
+                this.lookUpName = name
                 this.locX = locX
                 this.locY = locY
             }

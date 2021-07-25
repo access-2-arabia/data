@@ -31,14 +31,4 @@ object MemoryCacheImpl : MemoryCache {
     override fun getOtpResponse(): BaseResponse {
         return memoryDataSource.getOtpResponse()
     }
-
-    override fun setLookUps(lookUpResponse: BaseLookup) {
-        memoryDataSource.cacheInMemoryLookUps(lookUpResponse)
-    }
-
-    override fun getLookUps(): BaseLookup {
-        return memoryDataSource.getListOfLookUps() ?: BaseLookup()
-    }
-
-
 }
