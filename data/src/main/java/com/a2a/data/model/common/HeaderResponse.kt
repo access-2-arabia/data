@@ -1,10 +1,9 @@
 package com.a2a.data.model.common
 
-import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+import com.google.gson.annotations.SerializedName
+
+
 data class HeaderResponse(
     @SerializedName("GuidID")
     var guidID: String = "",
@@ -18,4 +17,4 @@ data class HeaderResponse(
     var srvID: Int = 0,
     @SerializedName("TimeStamp")
     var timeStamp: String = ""
-) : Parcelable
+)

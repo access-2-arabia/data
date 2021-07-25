@@ -1,16 +1,18 @@
 package com.a2a.data.model.common
 
+
 import android.os.Parcelable
 import com.a2a.data.datasource.AppCache
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+
 data class Header(
     @SerializedName("Channel")
     var channel: String = "M",
     @SerializedName("BankCode")
-    var BankCode: String = "ELAB",
+    var BankCode: String = "BOJ",
     @SerializedName("UserID")
     var UserID: String = "mbank",
     @SerializedName("Password")
@@ -18,27 +20,15 @@ data class Header(
     @SerializedName("Device")
     var device: String = "Android",
     @SerializedName("DeviceID")
-    var deviceID: String = AppCache.deviceID ?: "",
+    var deviceID: String = AppCache.deviceID?:"",
     @SerializedName("DeviceToken")
-    var deviceToken: String = AppCache.deviceID ?: "",
+    var deviceToken: String =AppCache.deviceID?:"",
     @SerializedName("RegionCode")
     var regionCode: String = "01",
     @SerializedName("SrvID")
     var srvID: String = "",
     @SerializedName("SessionID")
-    var sessionID: String? = AppCache.sessionID ?: "",
+    var sessionID: String? =AppCache.sessionID?:"",
     @SerializedName("IPAddress")
-    var iPAddress: String? = AppCache.ipAddress ?: "",
-    @SerializedName("Result")
-    var result: Result? = Result(),
-    @SerializedName("ConnectorID")
-    var connectorID: String? = "",
-    @SerializedName("GuidID")
-    var guidID: String? = "",
-    @SerializedName("MethodName")
-    var methodName: String? = "",
-    @SerializedName("ServiceID")
-    var serviceID: Int? = 0,
-    @SerializedName("TimeStamp")
-    var timeStamp: String? = ""
+    var iPAddress: String? = AppCache.ipAddress?:""
 ) : Parcelable

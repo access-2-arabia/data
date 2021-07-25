@@ -1,15 +1,12 @@
 package com.a2a.data.model.common
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class A2AResponse<R : Parcelable>(
+data class A2AResponse<T> constructor(
     @SerializedName("Body")
-    var body: R? = null,
+    var body: T? = null,
     @SerializedName("Footer")
-    var footer: Footer? = Footer(),
+    var footer: Footer = Footer(),
     @SerializedName("Header")
-    var header: Header? = Header()
-) : Parcelable
+    var header: HeaderResponse = HeaderResponse()
+)
