@@ -11,6 +11,8 @@ import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
 import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.model.wu.wuLookup.currency.CurrencyPostData
+import com.a2a.data.model.wu.wuLookup.mexicocity.MexicoCityPostData
+import com.a2a.data.model.wu.wuLookup.mexicostate.MexicoStatePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject
@@ -72,6 +74,56 @@ class WuRepository @Inject constructor(
     }
 
 
+    suspend fun <T> getMexicoState(
+
+    ): Resource<T>? {
+        val mexicoStatePostData = MexicoStatePostData()
+        mexicoStatePostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceType = "Online"
+            body.deviceType = "Online"
+            body.queryfilter1 = "en"
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    mexicoStatePostData.body,
+                    srvID = "MexicoState",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getMexicoCity(
+        stateValue: String
+    ): Resource<T>? {
+        val mexicoCityPostData = MexicoCityPostData()
+        mexicoCityPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.state = stateValue
+            body.deviceType = "Online"
+            body.deviceType = "Online"
+            body.queryfilter1 = "en"
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    mexicoCityPostData.body,
+                    srvID = "MexicoCity",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
     suspend fun <T> getFeeInquire(
         feeInquire: FeeInquirePostData,
         account: Account,
@@ -93,8 +145,8 @@ class WuRepository @Inject constructor(
             body.orgcurrencyIsoCode = "JOD"
             body.principalAmount = principalAmountValue
             body.expectedPayoutAmount = expectedPayoutAmountValue
-            body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.dstcurrencyIsoCode = feeInquire.body.dstcurrencyIsoCode
+            body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.transactionType = feeInquire.body.transactionType
             body.myWuNumber = feeInquire.body.myWuNumber
             body.prmCode = feeInquire.body.prmCode

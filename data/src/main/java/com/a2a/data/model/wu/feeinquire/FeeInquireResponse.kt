@@ -221,6 +221,7 @@ data class FeeInquireResponse(
                 var taxRate: Double = 0.0,
                 @SerializedName("transaction_type")
                 var transactionType: String = ""
+
             ) : Parcelable
 
 
