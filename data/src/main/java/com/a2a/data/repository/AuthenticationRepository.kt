@@ -20,19 +20,12 @@ class AuthenticationRepository @Inject constructor(
 
     suspend fun <T> doLogin(
         password: String,
-        customerId: String,
-        isBiometric: Boolean,
+        customerId: String
     ): Resource<T> {
         val postData = LoginPostData()
         postData.a2ARequest.apply {
-            if (!isBiometric) {
-                body.custProfile.pWD = password
-                body.custProfile.custMnemonic = customerId
-            } else {
-                body.custProfile.pWD = null
-                body.custProfile.custMnemonic = null
-            }
-            body.custProfile.lWTD = isBiometric
+            body.custProfile.pWD = password
+            body.custProfile.custMnemonic = customerId
             header.srvID = SrvID.LOGIN
         }
         return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }

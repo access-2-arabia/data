@@ -24,8 +24,6 @@ data class LoginPostData(
             data class CustProfile(
                 @SerializedName("CustMnemonic")
                 var custMnemonic: String? = null,
-                @SerializedName("LWTD")
-                var lWTD: Boolean = false,
                 @SerializedName("PWD")
                 var pWD: String? = null
             )
