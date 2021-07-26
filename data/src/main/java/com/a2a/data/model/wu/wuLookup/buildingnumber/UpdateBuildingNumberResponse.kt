@@ -1,4 +1,5 @@
 package com.a2a.data.model.wu.wuLookup.buildingnumber
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -62,7 +63,7 @@ data class UpdateBuildingNumberResponse(
         )
     }
 
-    @Parcelize
+
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -70,17 +71,17 @@ data class UpdateBuildingNumberResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ):Parcelable {
+    ) {
         @Parcelize
         data class Body(
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        ):Parcelable {
+        ) : Parcelable {
             @Parcelize
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0
-            ):Parcelable
+            ) : Parcelable
         }
 
         data class Footer(
