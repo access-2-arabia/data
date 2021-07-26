@@ -179,8 +179,8 @@ class WuRepository @Inject constructor(
     suspend fun <T> getFeeInquire(
         feeInquire: FeeInquirePostData,
         account: Account,
-        principalAmountValue: Double,
-        expectedPayoutAmountValue: Double
+        principalAmountValue: String,
+        expectedPayoutAmountValue: String
     ): Resource<T>? {
         val feeInquirePostData = FeeInquirePostData()
         feeInquirePostData.apply {
@@ -193,8 +193,8 @@ class WuRepository @Inject constructor(
             body.deviceType = "Mobile"
             body.orgcountryIsoCode = "JO"
             body.orgcurrencyIsoCode = "JOD"
-            body.principalAmount = principalAmountValue.toString()
-            body.expectedPayoutAmount = expectedPayoutAmountValue.toString()
+            body.principalAmount = principalAmountValue
+            body.expectedPayoutAmount = expectedPayoutAmountValue
             body.dstcurrencyIsoCode = feeInquire.body.dstcurrencyIsoCode
             body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.transactionType = feeInquire.body.transactionType
