@@ -9,11 +9,13 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
+import com.a2a.data.model.wu.wuLookup.buildingnumber.UpdateBuildingNumberPostData
 import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.model.wu.wuLookup.currency.CurrencyPostData
 import com.a2a.data.model.wu.wuLookup.mexicocity.MexicoCityPostData
 import com.a2a.data.model.wu.wuLookup.mexicostate.MexicoStatePostData
 import com.a2a.data.model.wu.wuLookup.mywulookup.MyWuLookupPostData
+import com.a2a.data.model.wu.wuLookup.purposetransaction.PurposeTransactionPostData
 import com.a2a.data.model.wu.wuLookup.usstate.UsStatePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -216,4 +218,51 @@ class WuRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+    suspend fun <T> getBuildingNumber(): Resource<T>? {
+        val updateBuildingNumberPostData = UpdateBuildingNumberPostData()
+        updateBuildingNumberPostData.apply {
+            body.stepNumber = 3
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    updateBuildingNumberPostData.body,
+                    srvID = "WUSend",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getPurposeTransaction(): Resource<T>? {
+        val purposeTransactionPostData = PurposeTransactionPostData()
+        purposeTransactionPostData.apply {
+            body.lookUpName = "PurposeTransactions"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceId = "Online"
+            body.deviceType = "Online"
+            body.queryfilter1 = "en"
+            body.queryfilter2 = "JO JOD"
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    purposeTransactionPostData.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
 }
