@@ -3,6 +3,7 @@ package com.a2a.data.repository.efawateercom
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.efawateercom.AddBillPostData
 import com.a2a.data.model.efawateercom.BillersPostData
 import com.a2a.data.model.efawateercom.CategoriesPostData
 import com.a2a.data.model.efawateercom.postBill.PayPostPaidPostData
@@ -206,6 +207,7 @@ class OneTimeRepository @Inject constructor(
         }
     }
 
+
     suspend fun <T> payPostPaid(
         billerCode: Int,
         serviceType: String,
@@ -264,6 +266,52 @@ class OneTimeRepository @Inject constructor(
             A2ARequest(
                 body,
                 srvID = "eFwaterPay"
+            )
+        )
+
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+
+    }
+
+    suspend fun <T> addNewBill(
+        billerCodeValue: String,
+        billingNoValue: String,
+        serviceTypeValue: String,
+        nickNameValue: String
+    ): Resource<T> {
+
+        val body = AddBillPostData()
+        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
+        body.apply {
+
+            requestType = "AddBill"
+            cID = currentCustProfile!!.cID
+            custID = currentCustProfile.custID
+            rID = 0
+            billerCode = billerCodeValue
+            serviceType = serviceTypeValue
+            billingNo = billingNoValue
+            billNo = billingNoValue
+            idType = "NAT"
+            custInfoFlag = "EN"
+            iD = currentCustProfile.docNo
+            name = currentCustProfile.eName
+            phone = currentCustProfile.mobileNumber
+            mobileNo = currentCustProfile.mobileNumber
+            address = currentCustProfile.address1
+            eMail = currentCustProfile.eMail
+            accStatus = "1"
+            nickName = nickNameValue
+
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "eFwatercom"
             )
         )
 
