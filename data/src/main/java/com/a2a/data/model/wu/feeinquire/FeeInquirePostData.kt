@@ -25,7 +25,7 @@ data class FeeInquirePostData(
         @SerializedName("Dstcurrency_iso_code")
         var dstcurrencyIsoCode: String = "",
         @SerializedName("expected_payout_amount")
-        var expectedPayoutAmount: Double = 0.0,
+        var expectedPayoutAmount: String = "",
         @SerializedName("MobFlag")
         var mobFlag: Boolean = false,
         @SerializedName("MyWu_Number")
@@ -35,7 +35,7 @@ data class FeeInquirePostData(
         @SerializedName("Orgcurrency_iso_code")
         var orgcurrencyIsoCode: String = "",
         @SerializedName("principal_amount")
-        var principalAmount: Double = 0.0,
+        var principalAmount: String = "",
         @SerializedName("PrmCode")
         var prmCode: String = "",
         @SerializedName("RegionCode")

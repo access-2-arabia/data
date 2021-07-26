@@ -193,8 +193,8 @@ class WuRepository @Inject constructor(
             body.deviceType = "Mobile"
             body.orgcountryIsoCode = "JO"
             body.orgcurrencyIsoCode = "JOD"
-            body.principalAmount = principalAmountValue
-            body.expectedPayoutAmount = expectedPayoutAmountValue
+            body.principalAmount = principalAmountValue.toString()
+            body.expectedPayoutAmount = expectedPayoutAmountValue.toString()
             body.dstcurrencyIsoCode = feeInquire.body.dstcurrencyIsoCode
             body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.transactionType = feeInquire.body.transactionType
