@@ -101,8 +101,27 @@ data class LookUpResponse(
             @SerializedName("StopPCardRs")
             var stopPCardRs: List<StopPCardR> = listOf(),
             @SerializedName("TrxTypes")
-            var trxTypes: List<TrxType> = listOf()
+            var trxTypes: List<TrxType> = listOf(),
+            @SerializedName("ATMs")
+            var aTMs: ArrayList<ATM?> = arrayListOf()
         ) {
+            data class ATM(
+                @SerializedName("AName")
+                var aName: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("EName")
+                var eName: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Latitude")
+                var latitude: String = "",
+                @SerializedName("Longitude")
+                var longitude: String = ""
+            )
+
             data class AddPredAcc(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
