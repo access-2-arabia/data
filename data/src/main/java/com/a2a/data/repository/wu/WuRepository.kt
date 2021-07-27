@@ -283,7 +283,6 @@ class WuRepository @Inject constructor(
             if (!queryfilter4Value.isNullOrEmpty()) {
                 body.queryfilter4 = queryfilter4Value
             }
-
         }
         val postData =
             BaseRequestModel(
