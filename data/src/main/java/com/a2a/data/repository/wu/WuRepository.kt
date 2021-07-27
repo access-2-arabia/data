@@ -9,6 +9,7 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
+import com.a2a.data.model.wu.sendmoney.SendMoneyValidationPostData
 import com.a2a.data.model.wu.wuLookup.buildingnumber.UpdateBuildingNumberPostData
 import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.model.wu.wuLookup.currency.CurrencyPostData
@@ -299,4 +300,26 @@ class WuRepository @Inject constructor(
     }
 
 
+    suspend fun <T> sendMoneyValidation(
+        sendMoneyValidationValue: SendMoneyValidationPostData
+    ): Resource<T>? {
+        val sendMoneyValidationPostData = SendMoneyValidationPostData()
+        sendMoneyValidationPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+
+            val postData =
+                BaseRequestModel(
+                    A2ARequest(
+                        sendMoneyValidationPostData.body,
+                        srvID = "WUSend",
+                        serviceIDValue = 0
+                    )
+                )
+            return safeApiCall(postData)
+            {
+                remoteDataSource.baseRequest(postData)
+            }
+        }
+
+    }
 }
