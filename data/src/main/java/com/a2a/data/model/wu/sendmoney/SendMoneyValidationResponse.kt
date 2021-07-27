@@ -186,8 +186,8 @@ data class SendMoneyValidationResponse(
             var partnerId: String = "",
             @SerializedName("payment_digest")
             var paymentDigest: String = "",
-            @SerializedName("PersonalMsg")
-            var personalMsg: List<Any> = listOf(),
+//            @SerializedName("PersonalMsg")
+//            var personalMsg: List<Any> = listOf(),
             @SerializedName("PhoneCountryCode")
             var phoneCountryCode: String = "",
             @SerializedName("PhoneNationalNumber")
