@@ -35,7 +35,6 @@ class LookUpRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
 
         }
-
     }
 
 }

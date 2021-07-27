@@ -12,6 +12,7 @@ import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
 import com.a2a.data.model.wu.wuLookup.buildingnumber.UpdateBuildingNumberPostData
 import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.model.wu.wuLookup.currency.CurrencyPostData
+import com.a2a.data.model.wu.wuLookup.deliveryservices.DeliveryServicesPostData
 import com.a2a.data.model.wu.wuLookup.mexicocity.MexicoCityPostData
 import com.a2a.data.model.wu.wuLookup.mexicostate.MexicoStatePostData
 import com.a2a.data.model.wu.wuLookup.mywulookup.MyWuLookupPostData
@@ -254,6 +255,40 @@ class WuRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     purposeTransactionPostData.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getWuDeliveryServices(
+        queryfilter3Value: String,
+        queryfilter4Value: String
+    ): Resource<T>? {
+        val deliveryServicesPostData = DeliveryServicesPostData()
+        deliveryServicesPostData.apply {
+            body.lookUpName = "DeliveryServices"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceId = "Online"
+            body.deviceType = "Online"
+            body.queryfilter1 = "en"
+            body.queryfilter2 = "JO JOD"
+            if (!queryfilter3Value.isNullOrEmpty()) {
+                body.queryfilter3 = queryfilter3Value
+            }
+            if (!queryfilter4Value.isNullOrEmpty()) {
+                body.queryfilter4 = queryfilter4Value
+            }
+
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    deliveryServicesPostData.body,
                     srvID = "GetWULookup",
                     serviceIDValue = 0
                 )
