@@ -1,11 +1,9 @@
 package com.a2a.data.model.efawateercom.myBills
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-data class MyBillResponse(
+data class BulkPaymentResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -40,6 +38,8 @@ data class MyBillResponse(
             var device: Any = Any(),
             @SerializedName("DeviceID")
             var deviceID: Any = Any(),
+            @SerializedName("DeviceToken")
+            var deviceToken: Any = Any(),
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -69,36 +69,23 @@ data class MyBillResponse(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
-        @Parcelize
         data class Body(
-            @SerializedName("Bill")
-            var bill: List<Bill> = listOf(),
+            @SerializedName("OTP")
+            var oTP: OTP = OTP(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        ) :Parcelable{
-            @Parcelize
-            data class Bill(
-                @SerializedName("BillerADesc")
-                var billerADesc: String = "",
-                @SerializedName("BillerCode")
-                var billerCode: String = "",
-                @SerializedName("BillerEDesc")
-                var billerEDesc: String = "",
-                @SerializedName("BillingNo")
-                var billingNo: String = "",
-                @SerializedName("NickName")
-                var nickName: String? = "",
-                @SerializedName("ServiceType")
-                var serviceType: String = "",
-                var isChecked: Boolean,
-                var isShow: Boolean,
-                ):Parcelable
+        ) {
+            data class OTP(
+                @SerializedName("OTPLength")
+                var oTPLength: Int = 0,
+                @SerializedName("OTPTimer")
+                var oTPTimer: Int = 0
+            )
 
-            @Parcelize
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0
-            ):Parcelable
+            )
         }
 
         data class Footer(
