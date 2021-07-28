@@ -1,7 +1,6 @@
 package com.a2a.data.model.authentication
 
 import android.os.Parcelable
-import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -9,4 +8,14 @@ import kotlinx.parcelize.Parcelize
 data class ForgetPasswordPostData(
     @SerializedName("CustProfile")
     var custProfile: CustProfile? = CustProfile()
-) : Parcelable
+) : Parcelable {
+    @Parcelize
+    data class CustProfile(
+        @SerializedName("CustID")
+        var custID: String? = "",
+        @SerializedName("MobileNumber")
+        var mobileNumber: String? = "",
+        @SerializedName("NationalID")
+        var nationalID: String? = ""
+    ) : Parcelable
+}

@@ -52,11 +52,11 @@ class AuthenticationRepository @Inject constructor(
         return safeApiCall(request) { remoteDataSource.baseRequest(request) }
     }
 
-    suspend fun <T> forgetPassword(id: String, nationalID: String, mobile: String): Resource<T> {
+    suspend fun <T> forgetPassword(id: String, nationalId: String, mobile: String): Resource<T> {
         val postData = ForgetPasswordPostData().apply {
             custProfile?.apply {
                 custID = id
-                nationalityID = nationalID
+                nationalID = nationalId
                 mobileNumber = mobile
             }
         }
