@@ -77,5 +77,20 @@ data class CustProfileModel(
     @SerializedName("TermsAndCondition")
     var termsAndCondition: Int = 0,
     @SerializedName("CustStatus")
-    var custStatus: Boolean = false
-):Parcelable
+    var custStatus: Boolean = false,
+    @SerializedName("DocDesc")
+    var DocDesc: String = "",
+    @SerializedName("EFName")
+    var EFName: String = "",
+    @SerializedName("ELName")
+    var ELName: String = "",
+    @SerializedName("EMName")
+    var EMName: String = "",
+    @SerializedName("AFName")
+    var AFName: String = "",
+    @SerializedName("ALName")
+    var ALName: String = "",
+    @SerializedName("AMName")
+    var AMName: String = ""
+
+) : Parcelable

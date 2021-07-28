@@ -124,7 +124,7 @@ class MyBillsRepository @Inject constructor(
 
     suspend fun <T> bulkPayment(
         selectedBills: Array<BulkInquireResponse.A2AResponse.Body.Bill>,
-        accountSelected: Account,
+        accountNumber: String,
         totalAmount: Double,
         totalFees: Double
     ): Resource<T> {
@@ -139,7 +139,7 @@ class MyBillsRepository @Inject constructor(
             val bill = BulkPaymentPostData.Bill()
 
             bill.apply {
-                accountFrom = accountSelected.accountNumber
+                accountFrom = accountNumber
                 billNo = selectedBills[i].billingNo
                 billingNo = selectedBills[i].billingNo
                 billerCode = selectedBills[i].billerCode.toString()
@@ -176,7 +176,7 @@ class MyBillsRepository @Inject constructor(
             if (currentCustProfile != null)
                 custProfile = currentCustProfile
             bills = listToInquire
-            accounts.accountFrom = accountSelected.accountNumber
+            accounts.accountFrom = accountNumber
             accounts.paidAmount = paidAmount.toString()
             accounts.feesAmount = totalFees.toString()
         }

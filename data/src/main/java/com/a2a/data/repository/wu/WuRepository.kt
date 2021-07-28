@@ -306,6 +306,20 @@ class WuRepository @Inject constructor(
         val sendMoneyValidationPostData = SendMoneyValidationPostData()
         sendMoneyValidationPostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.address = sendMoneyValidationValue.body.address
+            body.bankAccount = sendMoneyValidationValue.body.bankAccount
+            body.destination = sendMoneyValidationValue.body.destination
+            body.origination = sendMoneyValidationValue.body.origination
+            body.receiver = sendMoneyValidationValue.body.receiver
+            body.externalReferenceNo = sendMoneyValidationValue.body.externalReferenceNo
+            body.transactionType = sendMoneyValidationValue.body.transactionType
+            body.transactionReason = sendMoneyValidationValue.body.transactionReason
+            body.myWuNumber = sendMoneyValidationValue.body.myWuNumber
+            body.name = sendMoneyValidationValue.body.name
+            body.code = sendMoneyValidationValue.body.code
+            body.personalMsg = sendMoneyValidationValue.body.personalMsg
+            body.deviceType = sendMoneyValidationValue.body.deviceType
+            body.deviceId = sendMoneyValidationValue.body.deviceId
 
             val postData =
                 BaseRequestModel(
