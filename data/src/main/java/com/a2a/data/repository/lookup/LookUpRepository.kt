@@ -37,4 +37,29 @@ class LookUpRepository @Inject constructor(
         }
     }
 
+    suspend fun <T> getLookUp(
+        LookUpName: String,
+        latitude: String,
+        longitude: String
+
+    ): Resource<T>? {
+        val body = LookupPostData()
+        body.apply {
+            lookUpName = LookUpName
+            locX = latitude
+            locY = longitude
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "GetLookUp",
+                serviceIDValue = 0
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+
+        }
+    }
+
 }
