@@ -86,10 +86,11 @@ data class CustProfileModel(
     var ELName: String = "",
     @SerializedName("EMName")
     var EMName: String = "",
-    @SerializedName("EMName")
+    @SerializedName("AFName")
     var AFName: String = "",
-    @SerializedName("EMName")
+    @SerializedName("ALName")
     var ALName: String = "",
-    @SerializedName("EMName")
+    @SerializedName("AMName")
     var AMName: String = ""
+
 ) : Parcelable
