@@ -62,7 +62,9 @@ data class SendMoneyValidationPostData(
             @SerializedName("AccountType")
             var accountType: String = "",
             @SerializedName("BankName")
-            var bankName: String = ""
+            var bankName: String = "",
+            @SerializedName("BranchCode")
+            var branchCode: String = ""
         )  
 
          
