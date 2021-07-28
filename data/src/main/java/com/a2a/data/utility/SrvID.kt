@@ -8,8 +8,8 @@ object SrvID {
     const val GET_LOOK_UP = "GetLookUp"
     const val CHANNEL_CONFIGURATION = "ChannelConfiguration"
     const val UPDATE_ACCOUNT_DETAILS = "EdtAccDesc"
+    const val FORGET_PASSWORD = "ForgotPWD"
 //    const val UPDATE_ACCOUNT_DETAILS = "Pref"
 //    const val UPDATE_ACCOUNT_DETAILS = "ChgUserID"
 //    const val UPDATE_CUST_MAIL = "MailUtils"
-//    const val FORGET_PASSWORD = "ForgotPWD"
 }
