@@ -142,7 +142,11 @@ data class AccountListResponse(
                 var startDate: String = "",
                 @SerializedName("Type")
                 var type: String = ""
-            ) : Parcelable
+            ) : Parcelable{
+                override fun toString(): String {
+                    return nickName
+                }
+            }
 
             @Parcelize
             data class ServiceConfiguration(

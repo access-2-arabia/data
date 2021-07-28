@@ -15,7 +15,11 @@ class LastTransactionRepository @Inject constructor(
 ) : BaseRepository() {
 
 
-    suspend fun <T> getLastTransactionList(accountNumber:String): Resource<T>? {
+    suspend fun <T> getLastTransactionList(
+        accountNumber: String,
+        toDate: String = "3/06/2021",
+        fromDate: String = "23/12/2020"
+    ): Resource<T>? {
         val postData = LastTransactionPostData()
         postData.apply {
             a2ARequest?.apply {
@@ -30,15 +34,15 @@ class LastTransactionRepository @Inject constructor(
                     channel = Constants.Channel
                     timeStamp = Date().formatToViewTimeStamp()
                     deviceID = Constants.DeviceID
-                    connectorID=Constants.ConnectorID
+                    connectorID = Constants.ConnectorID
                 }
 
                 a2ARequest?.body?.apply {
                     account.accountNumber = accountNumber
                     branchCode = MemoryCacheImpl.getCustProfile()!!.branch
                     custID = MemoryCacheImpl.getCustProfile()!!.custID
-                    dateFrom = "23/12/2020"
-                    dateTo = "3/06/2021"
+                    dateFrom = fromDate
+                    dateTo = toDate
                     indexTo = "10"
                     transType = "A"
                 }
