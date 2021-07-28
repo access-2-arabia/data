@@ -18,4 +18,5 @@ data class OTPPostData(
             var uTR: String = ""
         )
     }
+
 }
