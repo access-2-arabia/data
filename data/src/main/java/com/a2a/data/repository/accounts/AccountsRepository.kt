@@ -4,6 +4,7 @@ import MemoryCacheImpl
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.AccountListPostData
+import com.a2a.data.model.accountlist.EStatementPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
@@ -18,10 +19,35 @@ class AccountsRepository @Inject constructor(
         val accountPostData = AccountListPostData()
         accountPostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.branchCode=Constants.BankCode
+            body.branchCode = Constants.BankCode
         }
         val postData =
-            BaseRequestModel(A2ARequest(accountPostData.body, srvID = "DashBoard", serviceIDValue = 0))
+            BaseRequestModel(
+                A2ARequest(
+                    accountPostData.body,
+                    srvID = "DashBoard",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+    suspend fun <T> requestEStatement(accountNumber: String): Resource<T>? {
+        val accountPostData = EStatementPostData()
+        accountPostData.apply {
+            accounts.custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
+            accounts.accountNumber = accountNumber
+
+
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                accountPostData,
+                srvID = "ReqEStatmt",
+                serviceIDValue = 0
+            )
+        )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
