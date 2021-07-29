@@ -14,7 +14,6 @@ class LastTransactionRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-
     suspend fun <T> getLastTransactionList(
         accountNumber: String,
         toDate: String = "3/06/2021",
