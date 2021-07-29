@@ -53,5 +53,25 @@ class AccountsRepository @Inject constructor(
         }
     }
 
+    suspend fun <T> changeNickname(accountNumber: String ,description:String , ): Resource<T>? {
+        val accountPostData = EStatementPostData()
+        accountPostData.apply {
+            accounts.custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
+            accounts.accountNumber = accountNumber
+
+
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                accountPostData,
+                srvID = "ReqEStatmt",
+                serviceIDValue = 0
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
 
 }
