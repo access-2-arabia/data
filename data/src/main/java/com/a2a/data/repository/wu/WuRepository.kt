@@ -4,6 +4,7 @@ import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.AccountListResponse
 import com.a2a.data.model.accountlist.AccountListResponse.A2AResponse.Body.Account
+import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
@@ -335,5 +336,28 @@ class WuRepository @Inject constructor(
             }
         }
 
+    }
+
+
+    suspend fun <T> getBeneficiary(
+        beneficiaryType: String
+    ): Resource<T>? {
+        val getManageBeneficiaries = GetManageBeneficiariesPostData()
+        getManageBeneficiaries.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.beneficiary.type = beneficiaryType
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    getManageBeneficiaries.body,
+                    srvID = "MngBenf",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
     }
 }
