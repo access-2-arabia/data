@@ -40,7 +40,6 @@ class BeneficiaryRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> updateAddBeneficiaryOtherBank(
         updateAddBeneficiaryLocalBankPostData: Beneficiary,
         stepNumber: Int

@@ -158,11 +158,8 @@ data class LastTransactionResponse(
 
                 fun toStringDebitAmount(): String {
                     return debitAmount.toString()
-
                 }
-
             }
-
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0,
