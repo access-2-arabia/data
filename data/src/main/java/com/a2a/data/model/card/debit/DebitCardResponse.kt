@@ -1,4 +1,4 @@
-package com.a2a.data.model.card.creditcard.debit
+package com.a2a.data.model.card.debit
 import com.google.gson.annotations.SerializedName
 
 
