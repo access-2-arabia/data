@@ -75,7 +75,7 @@ data class SendMoneyValidationResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) :Parcelable{
         @Parcelize
         data class Body(
             @SerializedName("AccountNumber")
