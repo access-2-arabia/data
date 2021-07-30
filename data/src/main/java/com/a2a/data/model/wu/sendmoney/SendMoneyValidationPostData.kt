@@ -5,12 +5,12 @@ import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
- 
+
 data class SendMoneyValidationPostData(
     @SerializedName("Body")
     var body: Body = Body()
-)   {
-     
+) {
+
     data class Body(
         @SerializedName("Address")
         var address: Address = Address(),
@@ -41,9 +41,11 @@ data class SendMoneyValidationPostData(
         @SerializedName("transaction_reason")
         var transactionReason: String = "",
         @SerializedName("transaction_type")
-        var transactionType: String = ""
-    )   {
-         
+        var transactionType: String = "",
+        @SerializedName("StepNumber")
+        var StepNumber: Int = 0
+    ) {
+
         data class Address(
             @SerializedName("addr_line1")
             var addrLine1: String = "",
@@ -53,9 +55,9 @@ data class SendMoneyValidationPostData(
             var countryCodeName: String = "",
             @SerializedName("country_iso_code")
             var countryIsoCode: String = ""
-        )  
+        )
 
-         
+
         data class BankAccount(
             @SerializedName("AccountNumber")
             var accountNumber: String = "",
@@ -65,9 +67,9 @@ data class SendMoneyValidationPostData(
             var bankName: String = "",
             @SerializedName("BranchCode")
             var branchCode: String = ""
-        )  
+        )
 
-         
+
         data class Destination(
             @SerializedName("Dstcountry_iso_code")
             var dstcountryIsoCode: String = "",
@@ -75,17 +77,17 @@ data class SendMoneyValidationPostData(
             var dstcurrencyIsoCode: String = "",
             @SerializedName("expected_payout_amount")
             var expectedPayoutAmount: String = ""
-        )  
+        )
 
-         
+
         data class Origination(
             @SerializedName("gross_amount")
             var grossAmount: String = "",
             @SerializedName("principal_amount")
             var principalAmount: String = ""
-        )  
+        )
 
-         
+
         data class Receiver(
             @SerializedName("answer")
             var answer: String = "",
@@ -108,7 +110,31 @@ data class SendMoneyValidationPostData(
             @SerializedName("RVaddr_line1")
             var rVaddrLine1: String = "",
             @SerializedName("RVcountry_name")
-            var rVcountryName: String = ""
-        )  
+            var rVcountryName: String = "",
+            //send Miney
+            @SerializedName("base_charges")
+            var base_charges: String = "",
+            @SerializedName("charges")
+            var charges: String = "",
+            @SerializedName("country_iso_code")
+            var country_iso_code: String = "",
+            @SerializedName("exchange_rate")
+            var exchange_rate: String = "",
+            @SerializedName("PrmDescription")
+            var PrmDescription: String = "",
+            @SerializedName("PrmDiscount")
+            var PrmDiscount: String = "",
+            @SerializedName("Prmmessage")
+            var Prmmessage: String = "",
+            @SerializedName("PrmName")
+            var PrmName: String = "",
+            @SerializedName("routing_code")
+            var routing_code: String = "",
+            @SerializedName("temp_transaction_id")
+            var temp_transaction_id: String = "",
+            @SerializedName("transaction_digest")
+            var transaction_digest: String = "",
+
+            )
     }
 }

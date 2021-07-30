@@ -1,9 +1,10 @@
 package com.a2a.data.model.wu.sendmoney
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class SendMoneyValidationResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -11,7 +12,8 @@ data class SendMoneyValidationResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) {
+) : Parcelable {
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -19,28 +21,31 @@ data class SendMoneyValidationResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         class Body(
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: String = "" ,
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: String = "" ,
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: String = "" ,
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: String = "" ,
+            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -52,16 +57,17 @@ data class SendMoneyValidationResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: String = "" ,
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ) : Parcelable
     }
 
+    @Parcelize
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -258,7 +264,7 @@ data class SendMoneyValidationResponse(
             var transactionType: String = "",
             @SerializedName("version")
             var version: String = ""
-        ):Parcelable {
+        ) : Parcelable {
             @Parcelize
             data class IDDoc(
                 @SerializedName("country_code")
@@ -275,14 +281,16 @@ data class SendMoneyValidationResponse(
                 var issuePlace: String = "",
                 @SerializedName("type")
                 var type: String = ""
-            ):Parcelable
+            ) : Parcelable
         }
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -291,12 +299,13 @@ data class SendMoneyValidationResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: String = "" ,
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -304,10 +313,11 @@ data class SendMoneyValidationResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ) : Parcelable
         }
     }
 
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -315,5 +325,5 @@ data class SendMoneyValidationResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ) : Parcelable
 }
