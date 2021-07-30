@@ -2,10 +2,9 @@ package com.a2a.data.repository.cards
 
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
-import com.a2a.data.model.card.creditcard.debit.DebitCardPostData
+import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
-import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject

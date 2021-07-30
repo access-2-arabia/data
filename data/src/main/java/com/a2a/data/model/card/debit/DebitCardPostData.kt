@@ -10,5 +10,6 @@ class DebitCardPostData(
         @SerializedName("CustID")
         var custID: String = ""
     )
+
 }
 
