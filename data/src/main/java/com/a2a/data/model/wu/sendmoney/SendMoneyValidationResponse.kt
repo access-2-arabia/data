@@ -263,7 +263,9 @@ data class SendMoneyValidationResponse(
             @SerializedName("transaction_type")
             var transactionType: String = "",
             @SerializedName("version")
-            var version: String = ""
+            var version: String = "",
+            @SerializedName("TRXRefNo")
+            var TRXRefNo: String = ""
         ) : Parcelable {
             @Parcelize
             data class IDDoc(
@@ -272,7 +274,7 @@ data class SendMoneyValidationResponse(
                 @SerializedName("currency_code")
                 var currencyCode: String = "",
                 @SerializedName("data")
-                var `data`: String = "",
+                var data: String = "",
                 @SerializedName("expiration_date")
                 var expirationDate: String = "",
                 @SerializedName("id_expires")
