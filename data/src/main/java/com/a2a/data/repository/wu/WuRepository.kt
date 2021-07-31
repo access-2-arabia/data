@@ -335,7 +335,42 @@ class WuRepository @Inject constructor(
                 remoteDataSource.baseRequest(postData)
             }
         }
+    }
 
+    suspend fun <T> sendMoney(
+        sendMoneyValidationValue: SendMoneyValidationPostData
+    ): Resource<T>? {
+        val sendMoneyValidationPostData = SendMoneyValidationPostData()
+        sendMoneyValidationPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.address = sendMoneyValidationValue.body.address
+            body.bankAccount = sendMoneyValidationValue.body.bankAccount
+            body.destination = sendMoneyValidationValue.body.destination
+            body.origination = sendMoneyValidationValue.body.origination
+            body.receiver = sendMoneyValidationValue.body.receiver
+            body.externalReferenceNo = sendMoneyValidationValue.body.externalReferenceNo
+            body.transactionType = sendMoneyValidationValue.body.transactionType
+            body.transactionReason = sendMoneyValidationValue.body.transactionReason
+            body.myWuNumber = sendMoneyValidationValue.body.myWuNumber
+            body.name = sendMoneyValidationValue.body.name
+            body.code = sendMoneyValidationValue.body.code
+            body.personalMsg = sendMoneyValidationValue.body.personalMsg
+            body.deviceType = sendMoneyValidationValue.body.deviceType
+            body.deviceId = sendMoneyValidationValue.body.deviceId
+            body.StepNumber = 4
+            val postData =
+                BaseRequestModel(
+                    A2ARequest(
+                        sendMoneyValidationPostData.body,
+                        srvID = "WUSend",
+                        serviceIDValue = 0
+                    )
+                )
+            return safeApiCall(postData)
+            {
+                remoteDataSource.baseRequest(postData)
+            }
+        }
     }
 
 

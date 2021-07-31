@@ -111,7 +111,7 @@ data class SendMoneyValidationPostData(
             var rVaddrLine1: String = "",
             @SerializedName("RVcountry_name")
             var rVcountryName: String = "",
-            //send Miney
+            //send Money
             @SerializedName("base_charges")
             var base_charges: String = "",
             @SerializedName("charges")
