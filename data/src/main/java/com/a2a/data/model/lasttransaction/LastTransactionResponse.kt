@@ -1,10 +1,8 @@
 package com.a2a.data.model.lasttransaction
 
 import android.os.Parcelable
-import com.a2a.data.extentions.formatToServerDateDefaults
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import java.util.*
 
 
 data class LastTransactionResponse(

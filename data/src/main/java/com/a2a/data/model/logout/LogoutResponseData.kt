@@ -1,9 +1,9 @@
-package com.a2a.data.model.efawateercom
+package com.a2a.data.model.logout
 
 
 import com.google.gson.annotations.SerializedName
 
-data class BillersResponseData(
+data class LogoutResponseData(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -19,8 +19,23 @@ data class BillersResponseData(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
-        class Body(
-        )
+        data class Body(
+            @SerializedName("CustProfile")
+            var custProfile: CustProfile = CustProfile()
+        ) {
+            data class CustProfile(
+                @SerializedName("CID")
+                var cID: Int = 0,
+                @SerializedName("CustID")
+                var custID: String = "",
+                @SerializedName("CustMnemonic")
+                var custMnemonic: Any = Any(),
+                @SerializedName("RID")
+                var rID: Int = 0,
+                @SerializedName("RepID")
+                var repID: Any = Any()
+            )
+        }
 
         data class Footer(
             @SerializedName("Signature")
@@ -37,7 +52,7 @@ data class BillersResponseData(
             @SerializedName("Device")
             var device: Any = Any(),
             @SerializedName("DeviceID")
-            var deviceID: Any = Any(),
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
             var deviceToken: Any = Any(),
             @SerializedName("GuidID")
@@ -69,44 +84,8 @@ data class BillersResponseData(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
-        data class Body(
-            @SerializedName("Bill")
-            var bill: Bill = Bill(),
-            @SerializedName("ServiceConfiguration")
-            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
-        ) {
-            data class Bill(
-                @SerializedName("A2AChannel")
-                var a2AChannel: String = "",
-                @SerializedName("A2APWD")
-                var a2APWD: String = "",
-                @SerializedName("A2AUserID")
-                var a2AUserID: String = "",
-                @SerializedName("Code")
-                var code: String = "",
-                @SerializedName("Enums")
-                var enums: List<Enum> = listOf(),
-                @SerializedName("ErrorCode")
-                var errorCode: Int = 0,
-                @SerializedName("ErrorEDesc")
-                var errorEDesc: String = "",
-                @SerializedName("SMArImg")
-                var sMArImg: String = "",
-                @SerializedName("SMArMsg")
-                var sMArMsg: String = "",
-                @SerializedName("SMEnImg")
-                var sMEnImg: String = "",
-                @SerializedName("SMEnMsg")
-                var sMEnMsg: String = "",
-                @SerializedName("Type")
-                var type: Int = 0
-            )
-
-            data class ServiceConfiguration(
-                @SerializedName("PWDFlag")
-                var pWDFlag: Int = 0
-            )
-        }
+        class Body(
+        )
 
         data class Footer(
             @SerializedName("Signature")

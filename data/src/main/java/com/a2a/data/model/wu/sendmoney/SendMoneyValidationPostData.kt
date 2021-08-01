@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.internal.PrepareOp
 
+
 @Parcelize
 data class SendMoneyValidationPostData(
     @SerializedName("Body")
