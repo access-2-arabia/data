@@ -10,4 +10,5 @@ data class ChangePasswordPostData(
     var password: String = "",
     @SerializedName("PasswordOld")
     var passwordOld: String = ""
+
 )
