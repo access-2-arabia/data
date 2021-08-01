@@ -205,6 +205,8 @@ class WuRepository @Inject constructor(
             body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.transactionType = feeInquire.body.transactionType
             body.city = feeInquire.body.city
+            body.disStateCode = feeInquire.body.disStateCode
+            body._State = feeInquire.body._State
             if (!body.prmCode.isNullOrEmpty()) {
                 body.prmCode = feeInquire.body.prmCode
             }
