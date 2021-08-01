@@ -1,6 +1,10 @@
 package com.a2a.data.model.wu.feeinquire
-import com.google.gson.annotations.SerializedName
 
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class CrossCurrencyResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -8,7 +12,8 @@ data class CrossCurrencyResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) {
+) : Parcelable {
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -16,27 +21,30 @@ data class CrossCurrencyResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
-        class Body()
+    ) : Parcelable {
+        @Parcelize
+        class Body() : Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: Any = Any(),
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: Any = Any(),
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: Any = Any(),
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: Any = Any(),
+            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -48,16 +56,17 @@ data class CrossCurrencyResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ) : Parcelable
     }
 
+    @Parcelize
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -65,7 +74,8 @@ data class CrossCurrencyResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         data class Body(
             @SerializedName("AccountNumberFrom")
             var accountNumberFrom: String = "",
@@ -213,13 +223,15 @@ data class CrossCurrencyResponse(
             var totalDue: Double = 0.0,
             @SerializedName("TransferDate")
             var transferDate: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -228,12 +240,13 @@ data class CrossCurrencyResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: Any = Any(),
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -241,9 +254,11 @@ data class CrossCurrencyResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ) : Parcelable
         }
     }
+
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -251,5 +266,5 @@ data class CrossCurrencyResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ) : Parcelable
 }
