@@ -3,9 +3,7 @@ package com.a2a.data.repository.accounts
 import MemoryCacheImpl
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.accountlist.AccountListPostData
-import com.a2a.data.model.accountlist.ChangeNicknamePostData
-import com.a2a.data.model.accountlist.EStatementPostData
+import com.a2a.data.model.accountlist.*
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.efawateercom.CategoriesPostData
@@ -110,4 +108,29 @@ class AccountsRepository @Inject constructor(
         }
     }
 
+    suspend fun <T> showHideAccounts(selectedAccounts: List<ShowHidePostData.Account>): Resource<T> {
+
+        val body = ShowHidePostData()
+
+        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
+        body.apply {
+            stepNumber = 3
+            if (currentCustProfile != null) {
+                custProfile.cID = currentCustProfile.cID
+                custProfile.custID = currentCustProfile.custID
+            }
+            accounts = selectedAccounts
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "Pref"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
 }
