@@ -1,9 +1,7 @@
 package com.a2a.data.model.efawateercom
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 data class BillersResponseData(
     @SerializedName("A2ARequest")

@@ -1,7 +1,6 @@
 package com.a2a.data.model.dialogmodel
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 

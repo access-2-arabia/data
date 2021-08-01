@@ -18,7 +18,9 @@ data class LoginPostData(
             @SerializedName("CustMnemonic")
             var custMnemonic: String = "",
             @SerializedName("PWD")
-            var pWD: String = ""
+            var pWD: String = "",
+            @SerializedName("LWTD")
+            var lWTD: Boolean = false,
         )
     }
 }

@@ -1,7 +1,6 @@
 package com.a2a.data.model.wu.wuLookup.purposetransaction
 
 import android.os.Parcelable
-import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 

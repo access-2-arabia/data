@@ -1,11 +1,9 @@
 package com.a2a.data.model.wu.sendmoney
 
-import android.os.Parcelable
 import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
- 
+
 data class SendMoneyValidationPostData(
     @SerializedName("Body")
     var body: Body = Body()
