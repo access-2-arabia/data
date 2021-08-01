@@ -4,7 +4,6 @@ import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
-import com.a2a.data.model.efawateercom.Account
 import com.a2a.data.model.efawateercom.myBills.*
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource

@@ -21,7 +21,7 @@ data class Header(
     var Password: String = "ibank@123",
 
     @SerializedName("Channel")
-    var channel: String = "M",
+    var channel: String = "I",
 
     @SerializedName("Device")
     var device: String = "Android",

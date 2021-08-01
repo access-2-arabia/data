@@ -8,6 +8,9 @@ import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
+import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
+import com.a2a.data.model.transfermodel.withincab.WithinCabTransferModel
+import com.a2a.data.model.wu.feeinquire.CrossCurrencyPostData
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
 import com.a2a.data.model.wu.sendmoney.SendMoneyValidationPostData
@@ -335,7 +338,42 @@ class WuRepository @Inject constructor(
                 remoteDataSource.baseRequest(postData)
             }
         }
+    }
 
+    suspend fun <T> sendMoney(
+        sendMoneyValidationValue: SendMoneyValidationPostData
+    ): Resource<T>? {
+        val sendMoneyValidationPostData = SendMoneyValidationPostData()
+        sendMoneyValidationPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.address = sendMoneyValidationValue.body.address
+            body.bankAccount = sendMoneyValidationValue.body.bankAccount
+            body.destination = sendMoneyValidationValue.body.destination
+            body.origination = sendMoneyValidationValue.body.origination
+            body.receiver = sendMoneyValidationValue.body.receiver
+            body.externalReferenceNo = sendMoneyValidationValue.body.externalReferenceNo
+            body.transactionType = sendMoneyValidationValue.body.transactionType
+            body.transactionReason = sendMoneyValidationValue.body.transactionReason
+            body.myWuNumber = sendMoneyValidationValue.body.myWuNumber
+            body.name = sendMoneyValidationValue.body.name
+            body.code = sendMoneyValidationValue.body.code
+            body.personalMsg = sendMoneyValidationValue.body.personalMsg
+            body.deviceType = sendMoneyValidationValue.body.deviceType
+            body.deviceId = sendMoneyValidationValue.body.deviceId
+            body.StepNumber = 4
+            val postData =
+                BaseRequestModel(
+                    A2ARequest(
+                        sendMoneyValidationPostData.body,
+                        srvID = "WUSend",
+                        serviceIDValue = 0
+                    )
+                )
+            return safeApiCall(postData)
+            {
+                remoteDataSource.baseRequest(postData)
+            }
+        }
     }
 
 
@@ -357,6 +395,29 @@ class WuRepository @Inject constructor(
             )
         return safeApiCall(postData)
         {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getCrossCurrency(
+        crossCurrencyPostData: CrossCurrencyPostData
+    ): Resource<T>? {
+        val postData = ValidationWithinCabPostData()
+        postData.apply {
+            body.stepNumber = "2"
+            body.repID = "0"
+            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.accountNumberFrom = crossCurrencyPostData.fromAccountNumber
+            body.accountNumberTo = crossCurrencyPostData.toBeneficiaryAccount
+            body.currencyFrom = crossCurrencyPostData.fromCurrency
+            body.currencyTo = crossCurrencyPostData.toBeneficiaryCurrency
+            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+            body.amount = crossCurrencyPostData.amount
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+        }
+        return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
     }
