@@ -8,6 +8,8 @@ import com.a2a.data.model.accountlist.ChangeNicknamePostData
 import com.a2a.data.model.accountlist.EStatementPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.efawateercom.CategoriesPostData
+import com.a2a.data.model.logout.LogoutPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject
@@ -83,5 +85,29 @@ class AccountsRepository @Inject constructor(
         }
     }
 
+    suspend fun <T> logout(): Resource<T> {
+
+        val body = LogoutPostData()
+
+        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
+
+        body.apply {
+            if (currentCustProfile != null) {
+                custProfile.cID = currentCustProfile.cID
+                custProfile.custID = currentCustProfile.custID
+            }
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "Logout"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
 
 }
