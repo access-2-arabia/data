@@ -8,6 +8,9 @@ import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
+import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
+import com.a2a.data.model.transfermodel.withincab.WithinCabTransferModel
+import com.a2a.data.model.wu.feeinquire.CrossCurrencyPostData
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
 import com.a2a.data.model.wu.sendmoney.SendMoneyValidationPostData
@@ -392,6 +395,29 @@ class WuRepository @Inject constructor(
             )
         return safeApiCall(postData)
         {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getCrossCurrency(
+        crossCurrencyPostData: CrossCurrencyPostData
+    ): Resource<T>? {
+        val postData = ValidationWithinCabPostData()
+        postData.apply {
+            body.stepNumber = "2"
+            body.repID = "0"
+            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
+            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.accountNumberFrom = crossCurrencyPostData.fromAccountNumber
+            body.accountNumberTo = crossCurrencyPostData.toBeneficiaryAccount
+            body.currencyFrom = crossCurrencyPostData.fromCurrency
+            body.currencyTo = crossCurrencyPostData.toBeneficiaryCurrency
+            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
+            body.amount = crossCurrencyPostData.amount
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+        }
+        return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
     }
