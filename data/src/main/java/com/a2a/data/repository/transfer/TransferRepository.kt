@@ -142,7 +142,6 @@ class TransferRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> getValidationLocalBank(
         localBankModel: LocalBankModel
     ): Resource<T>? {
@@ -170,8 +169,6 @@ class TransferRepository @Inject constructor(
             body.narrative1 = "RTGS Validation"
             body.narrative2 = "RTGS Validation"
             body.narrative3 = "RTGS Validation"
-
-
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)

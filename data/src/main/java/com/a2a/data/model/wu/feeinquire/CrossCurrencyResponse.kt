@@ -222,7 +222,10 @@ data class CrossCurrencyResponse(
             @SerializedName("TotalDue")
             var totalDue: Double = 0.0,
             @SerializedName("TransferDate")
-            var transferDate: String = ""
+            var transferDate: String = "",
+            @SerializedName("ComissionAmt")
+            var comissionAmt: String = ""
+
         ) : Parcelable
 
         @Parcelize
