@@ -403,8 +403,8 @@ class WuRepository @Inject constructor(
     suspend fun <T> getCrossCurrency(
         crossCurrencyPostData: CrossCurrencyPostData
     ): Resource<T>? {
-        val postData = ValidationWithinCabPostData()
-        postData.apply {
+        val validation = ValidationWithinCabPostData()
+        validation.apply {
             body.stepNumber = "2"
             body.repID = "0"
             body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
@@ -417,6 +417,14 @@ class WuRepository @Inject constructor(
             body.amount = crossCurrencyPostData.amount
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
         }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    validation.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }

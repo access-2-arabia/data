@@ -172,14 +172,11 @@ class TransferRepository @Inject constructor(
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
-
     }
 
     suspend fun <T> getTransferLocalBank(
         localBankModel: LocalBankModel
-
     ): Resource<T>? {
         val postData = LocalBankPostData()
         postData.apply {
@@ -206,10 +203,6 @@ class TransferRepository @Inject constructor(
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
-
     }
-
-
 }
