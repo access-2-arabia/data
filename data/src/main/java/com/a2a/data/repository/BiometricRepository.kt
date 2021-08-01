@@ -12,7 +12,7 @@ class BiometricRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> biometricEnable(
+    suspend fun <T> enableBiometric(
         isEnabled: Boolean
     ): Resource<T> {
         val biometricPostData = BiometricPostData()
