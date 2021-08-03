@@ -143,8 +143,9 @@ class TransferRepository @Inject constructor(
             body.accounts.amount = withinCabTransferModel.amount
             body.count = "-1"
             body.period = 0
-            body.eDesc = betweenMyAccountEDesc
-            body.aDesc = betweenMyAccountADesc
+            body.branchCode = MemoryCacheImpl.getCustProfile()?.branch.toString()
+            body.eDesc = TransferType.WithinCabEDesc
+            body.aDesc = TransferType.WithinCabADesc
         }
 
         val postData =
