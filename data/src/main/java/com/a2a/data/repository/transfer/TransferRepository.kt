@@ -3,6 +3,7 @@ package com.a2a.data.repository.transfer
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStamp
+import com.a2a.data.extentions.formatToViewDateStampSlash
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountModel
@@ -74,7 +75,7 @@ class TransferRepository @Inject constructor(
             betweenMyAccount.body.accounts.currencyFrom = betweenMyAccountModel.fromAccountCurrency
             betweenMyAccount.body.accounts.currencyTo = betweenMyAccountModel.toAccountCurrency
             betweenMyAccount.body.accounts.amount = betweenMyAccountModel.amount
-            betweenMyAccount.body.startDate = Date().formatToViewDateStamp()
+            betweenMyAccount.body.startDate = Date().formatToViewDateStampSlash()
             betweenMyAccount.body.count = "-1"
             betweenMyAccount.body.period = 0
             betweenMyAccount.body.eDesc = betweenMyAccountEDesc
@@ -138,7 +139,7 @@ class TransferRepository @Inject constructor(
             body.custProfile= MemoryCacheImpl.getCustProfile()!!
             body.accounts.accountNumberFrom = withinCabTransferModel.fromAccountNumber
             body.accounts.accountNumberTo = withinCabTransferModel.toBeneficiaryAccount
-            body.startDate = Date().formatToViewDateStamp()
+            body.startDate = Date().formatToViewDateStampSlash()
             body.accounts.currencyFrom = withinCabTransferModel.fromCurrency
             body.accounts.currencyTo = withinCabTransferModel.toBeneficiaryCurrency
             body.accounts.amount = withinCabTransferModel.amount
