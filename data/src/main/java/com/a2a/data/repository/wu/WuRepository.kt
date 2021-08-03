@@ -204,6 +204,9 @@ class WuRepository @Inject constructor(
             body.dstcurrencyIsoCode = feeInquire.body.dstcurrencyIsoCode
             body.dstcountryIsoCode = feeInquire.body.dstcountryIsoCode
             body.transactionType = feeInquire.body.transactionType
+            body.city = feeInquire.body.city
+            body.disStateCode = feeInquire.body.disStateCode
+            body._State = feeInquire.body._State
             if (!body.prmCode.isNullOrEmpty()) {
                 body.prmCode = feeInquire.body.prmCode
             }
@@ -403,8 +406,8 @@ class WuRepository @Inject constructor(
     suspend fun <T> getCrossCurrency(
         crossCurrencyPostData: CrossCurrencyPostData
     ): Resource<T>? {
-        val postData = ValidationWithinCabPostData()
-        postData.apply {
+        val validation = ValidationWithinCabPostData()
+        validation.apply {
             body.stepNumber = "2"
             body.repID = "0"
             body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
@@ -417,6 +420,14 @@ class WuRepository @Inject constructor(
             body.amount = crossCurrencyPostData.amount
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
         }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    validation.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }

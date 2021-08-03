@@ -51,6 +51,11 @@ data class FeeInquirePostData(
         @SerializedName("stateCode")
         var stateCode: String = "",
         @SerializedName("city")
-        var city: String = ""
+        var city: String = "",
+        @SerializedName("DisStateCode")
+        var disStateCode: String = "",
+        @SerializedName("State")
+        var _State: String = ""
+
     )
 }

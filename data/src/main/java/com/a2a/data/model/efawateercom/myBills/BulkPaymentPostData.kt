@@ -5,7 +5,6 @@ import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 
 data class BulkPaymentPostData(
-
     @SerializedName("Accounts")
     var accounts: Accounts = Accounts(),
     @SerializedName("Bills")
@@ -19,7 +18,9 @@ data class BulkPaymentPostData(
         @SerializedName("FeesAmount")
         var feesAmount: String = "",
         @SerializedName("PaidAmount")
-        var paidAmount: String = ""
+        var paidAmount: String = "",
+        @SerializedName("CurrencyCodeFrom")
+        var currencyCodeFrom: String = ""
     )
 
     data class Bill(

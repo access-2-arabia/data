@@ -124,7 +124,7 @@ class MyBillsRepository @Inject constructor(
     suspend fun <T> bulkPayment(
         selectedBills: Array<BulkInquireResponse.A2AResponse.Body.Bill>,
         accountNumber: String,
-        totalAmount: Double,
+        currencyCode: String,
         totalFees: Double
     ): Resource<T> {
 
@@ -153,19 +153,19 @@ class MyBillsRepository @Inject constructor(
                 }
                 incPayments = "N"
                 custInfoFlag = "EN"
-                dueAmount = selectedBills[i].bills[0].dueAmount
+                dueAmount = selectedBills[i].bills.first().dueAmount
 
-                if (selectedBills[i].bills[0].paidAmount == 0.0) {
-                    bill.paidAmount = selectedBills[i].bills[0].dueAmount
-                    paidAmount += selectedBills[i].bills[0].dueAmount
+                if (selectedBills[i].bills.first().paidAmount == 0.0) {
+                    bill.paidAmount = selectedBills[i].bills.first().dueAmount
+                    paidAmount += selectedBills[i].bills.first().dueAmount
                 } else {
                     bill.paidAmount =
-                        selectedBills[i].bills[0].paidAmount + selectedBills[i].bills[0].feesAmt
-                    paidAmount += selectedBills[i].bills[0].paidAmount + selectedBills[i].bills[0].feesAmt
+                        selectedBills[i].bills.first().paidAmount + selectedBills[i].bills.first().feesAmt
+                    paidAmount += selectedBills[i].bills.first().paidAmount + selectedBills[i].bills.first().feesAmt
                 }
 
                 bill.apply {
-                    feesAmount = selectedBills[i].bills[0].feesAmt
+                    feesAmount = selectedBills[i].bills.first().feesAmt
                 }
                 listToInquire.add(bill)
             }
@@ -178,6 +178,7 @@ class MyBillsRepository @Inject constructor(
             accounts.accountFrom = accountNumber
             accounts.paidAmount = paidAmount.toString()
             accounts.feesAmount = totalFees.toString()
+            accounts.currencyCodeFrom = currencyCode
         }
 
         val postData = BaseRequestModel(

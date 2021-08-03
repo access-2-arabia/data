@@ -12,5 +12,6 @@ data class WithinCabTransferModel(
     var toBeneficiaryAccount: String = "",
     var toBeneficiaryCurrency: String = "",
     var toBeneficiaryType: String = "",
-    var amount: String = ""
+    var amount: String = "",
+    var beneficiaryName:String=""
 ) : Parcelable
