@@ -10,9 +10,7 @@ data class LoginPostData(
 ) {
     data class Body(
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile(),
-        @SerializedName("Authenticate")
-        var authenticate: Authenticate = Authenticate()
+        var custProfile: CustProfile = CustProfile()
     ) {
         data class CustProfile(
             @SerializedName("CustMnemonic")
