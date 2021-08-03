@@ -1,5 +1,7 @@
 package com.a2a.data.model.transfermodel.localbank
+
 import com.a2a.data.model.CustProfileModel
+import com.a2a.data.repository.transfer.Accounts
 import com.google.gson.annotations.SerializedName
 
 
@@ -7,7 +9,6 @@ data class LocalBankPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {
-
     data class Body(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -57,7 +58,7 @@ data class LocalBankPostData(
         var transRsn: String = "",
         @SerializedName("CustProfile")
         var custProfile: CustProfileModel = CustProfileModel(),
+        @SerializedName("Accounts")
+        var accounts: Accounts = Accounts()
     )
-
-
 }

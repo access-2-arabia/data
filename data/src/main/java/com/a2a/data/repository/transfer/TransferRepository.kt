@@ -136,7 +136,7 @@ class TransferRepository @Inject constructor(
             body.stepNumber = 3
             body.custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
             body.custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
-            body.custProfile= MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.accounts.accountNumberFrom = withinCabTransferModel.fromAccountNumber
             body.accounts.accountNumberTo = withinCabTransferModel.toBeneficiaryAccount
             body.startDate = Date().formatToViewDateStampSlash()
@@ -190,7 +190,7 @@ class TransferRepository @Inject constructor(
             body.narrative1 = "RTGS Validation"
             body.narrative2 = "RTGS Validation"
             body.narrative3 = "RTGS Validation"
-            body.custProfile= MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
 
         }
 
@@ -198,7 +198,7 @@ class TransferRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     localBankValidationPostData.body,
-                    srvID = "IntFund",
+                    srvID = "RTGSPmnt",
                     serviceIDValue = 0
                 )
             )
@@ -230,15 +230,20 @@ class TransferRepository @Inject constructor(
             body.aLName = localBankModel.nameModel.lastName
             body.count = 4
             body.period = 7
-            body.eDesc = "Transfer Between Account"
-            body.aDesc = "تحويل بين حسابات"
-            body.custProfile= MemoryCacheImpl.getCustProfile()!!
+            body.eDesc = "Transfer to Other Banks Inside Jordan"
+            body.aDesc = "تحويل بين الحسابات داخل الاردن"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.accounts.accountNumberFrom = ""
+            body.accounts.accountNumberTo = ""
+            body.accounts.currencyFrom = localBankModel.currFrom
+            body.accounts.amount = localBankModel.amountValue
+            body.chargesFor = localBankModel.chargesForType
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     localBankPostData.body,
-                    srvID = "IntFund",
+                    srvID = "RTGSPmnt",
                     serviceIDValue = 0
                 )
             )
