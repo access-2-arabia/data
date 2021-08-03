@@ -98,8 +98,8 @@ class TransferRepository @Inject constructor(
     suspend fun <T> getValidationTransferWithinCab(
         withinCabTransferModel: WithinCabTransferModel
     ): Resource<T>? {
-        val postData = ValidationWithinCabPostData()
-        postData.apply {
+        val validationWithinCabPostData = ValidationWithinCabPostData()
+        validationWithinCabPostData.apply {
             body.stepNumber = "2"
             body.repID = "0"
             body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
@@ -112,6 +112,15 @@ class TransferRepository @Inject constructor(
             body.amount = withinCabTransferModel.amount
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
         }
+
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    validationWithinCabPostData.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
@@ -121,8 +130,8 @@ class TransferRepository @Inject constructor(
     suspend fun <T> getTransferWithinCab(
         withinCabTransferModel: WithinCabTransferModel
     ): Resource<T>? {
-        val postData = WithinCabPostData()
-        postData.apply {
+        val withinCabPostData = WithinCabPostData()
+        withinCabPostData.apply {
             body.stepNumber = 3
             body.custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
             body.custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
@@ -137,6 +146,15 @@ class TransferRepository @Inject constructor(
             body.eDesc = betweenMyAccountEDesc
             body.aDesc = betweenMyAccountADesc
         }
+
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    withinCabPostData.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
@@ -145,8 +163,8 @@ class TransferRepository @Inject constructor(
     suspend fun <T> getValidationLocalBank(
         localBankModel: LocalBankModel
     ): Resource<T>? {
-        val postData = LocalBankValidationPostData()
-        postData.apply {
+        val localBankValidationPostData = LocalBankValidationPostData()
+        localBankValidationPostData.apply {
             body.stepNumber = "2"
             body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
             body.custID = MemoryCacheImpl.getCustProfile()!!.custID
@@ -170,6 +188,15 @@ class TransferRepository @Inject constructor(
             body.narrative2 = "RTGS Validation"
             body.narrative3 = "RTGS Validation"
         }
+
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    localBankValidationPostData.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
@@ -178,8 +205,8 @@ class TransferRepository @Inject constructor(
     suspend fun <T> getTransferLocalBank(
         localBankModel: LocalBankModel
     ): Resource<T>? {
-        val postData = LocalBankPostData()
-        postData.apply {
+        val localBankPostData = LocalBankPostData()
+        localBankPostData.apply {
             body.stepNumber = "3"
             body.accountNumberFrom = localBankModel.accountNumberFromValue
             body.accountNumberTo = localBankModel.accountNumberToValue
@@ -201,6 +228,14 @@ class TransferRepository @Inject constructor(
             body.eDesc = "Transfer Between Account"
             body.aDesc = "تحويل بين حسابات"
         }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    localBankPostData.body,
+                    srvID = "IntFund",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
