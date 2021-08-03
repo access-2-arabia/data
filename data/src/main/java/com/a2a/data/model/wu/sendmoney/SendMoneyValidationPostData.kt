@@ -1,7 +1,7 @@
 package com.a2a.data.model.wu.sendmoney
 
 import android.os.Parcelable
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.internal.PrepareOp
@@ -21,7 +21,7 @@ data class SendMoneyValidationPostData(
         @SerializedName("code")
         var code: String = "",
         @SerializedName("CustProfile")
-        var custProfile: CustProfileModel = CustProfileModel(),
+        var custProfile: CustProfile = CustProfile(),
         @SerializedName("Destination")
         var destination: Destination = Destination(),
         @SerializedName("DeviceId")

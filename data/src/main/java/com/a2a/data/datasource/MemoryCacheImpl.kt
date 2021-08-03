@@ -1,16 +1,16 @@
 import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.model.BaseResponse
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.a2a.data.model.lookup.LookUpResponse
 
 object MemoryCacheImpl : MemoryCache {
     val memoryDataSource: MemoryDataSource = MemoryDataSource()
 
-    override fun setCustProfile(custProfile: CustProfileModel?) {
+    override fun setCustProfile(custProfile: CustProfile?) {
         memoryDataSource.cacheInMemory(custProfile)
     }
 
-    override fun getCustProfile(): CustProfileModel? {
+    override fun getCustProfile(): CustProfile? {
         return memoryDataSource.getCustProfile()
     }
 

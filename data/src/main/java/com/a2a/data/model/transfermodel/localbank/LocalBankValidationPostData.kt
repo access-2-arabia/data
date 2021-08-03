@@ -1,6 +1,6 @@
 package com.a2a.data.model.transfermodel.localbank
 
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
@@ -56,7 +56,7 @@ data class Body(
     @SerializedName("TransRsn")
     var transRsn: String = "",
     @SerializedName("CustProfile")
-    var custProfile: CustProfileModel = CustProfileModel()
+    var custProfile: CustProfile = CustProfile()
 )
 
 
