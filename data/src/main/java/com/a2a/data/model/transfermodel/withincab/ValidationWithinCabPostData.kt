@@ -1,5 +1,6 @@
 package com.a2a.data.model.transfermodel.withincab
 
+import com.a2a.data.model.CustProfileModel
 import com.google.gson.annotations.SerializedName
 
 data class ValidationWithinCabPostData(
@@ -30,6 +31,8 @@ data class ValidationWithinCabPostData(
         @SerializedName("RepID")
         var repID: String = "",
         @SerializedName("StepNumber")
-        var stepNumber: String = ""
+        var stepNumber: String = "",
+        @SerializedName("CustProfile")
+        var custProfile: CustProfileModel = CustProfileModel()
     )
 }

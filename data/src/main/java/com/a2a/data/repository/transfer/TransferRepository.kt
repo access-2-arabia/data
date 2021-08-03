@@ -189,6 +189,8 @@ class TransferRepository @Inject constructor(
             body.narrative1 = "RTGS Validation"
             body.narrative2 = "RTGS Validation"
             body.narrative3 = "RTGS Validation"
+            body.custProfile= MemoryCacheImpl.getCustProfile()!!
+
         }
 
         val postData =
@@ -229,6 +231,7 @@ class TransferRepository @Inject constructor(
             body.period = 7
             body.eDesc = "Transfer Between Account"
             body.aDesc = "تحويل بين حسابات"
+            body.custProfile= MemoryCacheImpl.getCustProfile()!!
         }
         val postData =
             BaseRequestModel(
