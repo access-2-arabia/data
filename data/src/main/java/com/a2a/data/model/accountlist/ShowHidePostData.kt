@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ShowHidePostData(
     @SerializedName("Accounts")
-    var accounts: ArrayList<AccountListResponse.A2AResponse.Body.Account> = ArrayList(),
+    var accounts: List<AccountListResponse.A2AResponse.Body.Account> = listOf(),
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
     @SerializedName("StepNumber")

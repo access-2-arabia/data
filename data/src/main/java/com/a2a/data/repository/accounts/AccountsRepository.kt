@@ -6,6 +6,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.*
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.efawateercom.CategoriesPostData
 import com.a2a.data.model.logout.LogoutPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -107,7 +108,7 @@ class AccountsRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> showHideAccounts(selectedAccounts: ArrayList<AccountListResponse.A2AResponse.Body.Account>): Resource<T> {
+    suspend fun <T> showHideAccounts(selectedAccounts: List<AccountListResponse.A2AResponse.Body.Account>): Resource<T> {
         val body = ShowHidePostData()
         val currentCustProfile = MemoryCacheImpl.getCustProfile()
         body.apply {
@@ -118,7 +119,6 @@ class AccountsRepository @Inject constructor(
             }
             accounts = selectedAccounts
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
