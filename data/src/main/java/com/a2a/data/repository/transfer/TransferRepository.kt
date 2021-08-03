@@ -127,7 +127,6 @@ class TransferRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> getTransferWithinCab(
         withinCabTransferModel: WithinCabTransferModel
     ): Resource<T>? {
@@ -191,7 +190,6 @@ class TransferRepository @Inject constructor(
             body.narrative2 = "RTGS Validation"
             body.narrative3 = "RTGS Validation"
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-
         }
 
         val postData =
@@ -233,11 +231,15 @@ class TransferRepository @Inject constructor(
             body.eDesc = "Transfer to Other Banks Inside Jordan"
             body.aDesc = "تحويل بين الحسابات داخل الاردن"
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.accounts.accountNumberFrom = ""
+            body.accounts.accountNumberFrom = localBankModel.accountNumberFromValue
             body.accounts.accountNumberTo = ""
             body.accounts.currencyFrom = localBankModel.currFrom
             body.accounts.amount = localBankModel.amountValue
             body.chargesFor = localBankModel.chargesForType
+            body.startDate = Date().formatToViewDateStampSlash()
+            body.benBank = localBankModel.bankName
+            body.cCurrency = localBankModel.currFrom
+
         }
         val postData =
             BaseRequestModel(
