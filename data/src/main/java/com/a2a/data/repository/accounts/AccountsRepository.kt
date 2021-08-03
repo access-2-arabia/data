@@ -108,7 +108,7 @@ class AccountsRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> showHideAccounts(selectedAccounts: List<ShowHidePostData.Account>): Resource<T> {
+    suspend fun <T> showHideAccounts(selectedAccounts: ArrayList<ShowHidePostData.Account>): Resource<T> {
 
         val body = ShowHidePostData()
 
