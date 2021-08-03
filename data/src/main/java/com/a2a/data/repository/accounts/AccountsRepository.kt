@@ -109,11 +109,8 @@ class AccountsRepository @Inject constructor(
     }
 
     suspend fun <T> showHideAccounts(selectedAccounts: ArrayList<ShowHidePostData.Account>): Resource<T> {
-
         val body = ShowHidePostData()
-
         val currentCustProfile = MemoryCacheImpl.getCustProfile()
-
         body.apply {
             stepNumber = 3
             if (currentCustProfile != null) {
