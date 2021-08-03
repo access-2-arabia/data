@@ -135,6 +135,7 @@ class TransferRepository @Inject constructor(
             body.stepNumber = 3
             body.custProfile.cID = MemoryCacheImpl.getCustProfile()!!.cID
             body.custProfile.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.custProfile= MemoryCacheImpl.getCustProfile()!!
             body.accounts.accountNumberFrom = withinCabTransferModel.fromAccountNumber
             body.accounts.accountNumberTo = withinCabTransferModel.toBeneficiaryAccount
             body.startDate = Date().formatToViewDateStamp()
