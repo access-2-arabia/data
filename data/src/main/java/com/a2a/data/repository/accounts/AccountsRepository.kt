@@ -26,7 +26,7 @@ class AccountsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     accountPostData.body,
-                    srvID = "DashBoard",
+                    srvID = "Pref",
                     serviceIDValue = 0
                 )
             )

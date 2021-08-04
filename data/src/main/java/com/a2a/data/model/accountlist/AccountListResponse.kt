@@ -129,7 +129,7 @@ data class AccountListResponse(
                 @SerializedName("ECurrency")
                 var eCurrency: String = "",
                 @SerializedName("Enabled")
-                var enabled: Boolean = false,
+                var enabled: String = "",
                 @SerializedName("IBAN")
                 var iBAN: String = "",
                 @SerializedName("InterestRate")
