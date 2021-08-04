@@ -1,8 +1,7 @@
-package com.a2a.data.model.authentication
+package com.a2a.data.model.mail
 
 
 import android.os.Parcelable
-import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
