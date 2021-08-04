@@ -143,6 +143,7 @@ data class AccountListResponse(
                 @SerializedName("Type")
                 var type: String = "",
                 @SerializedName("Description")
+
                 var description: String = "",
                 var isChecked: Boolean = false
             ) : Parcelable {
