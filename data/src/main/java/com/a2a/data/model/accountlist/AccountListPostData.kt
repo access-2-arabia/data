@@ -14,7 +14,9 @@ data class AccountListPostData(
         @SerializedName("BranchCode")
         var branchCode: String = "",
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile()
+        var custProfile: CustProfile = CustProfile(),
+        @SerializedName("StepNumber")
+        var stepNumber: Int = 1
     )
 
 }
