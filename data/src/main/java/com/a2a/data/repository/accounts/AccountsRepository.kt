@@ -6,10 +6,10 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.*
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
-import com.a2a.data.model.efawateercom.CategoriesPostData
 import com.a2a.data.model.logout.LogoutPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import javax.inject.Inject
 
 class AccountsRepository @Inject constructor(
@@ -110,13 +110,10 @@ class AccountsRepository @Inject constructor(
 
     suspend fun <T> showHideAccounts(selectedAccounts: List<AccountListResponse.A2AResponse.Body.Account>): Resource<T> {
         val body = ShowHidePostData()
-        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
         body.apply {
             stepNumber = 3
-            if (currentCustProfile != null) {
-                custProfile.cID = currentCustProfile.cID
-                custProfile.custID = currentCustProfile.custID
-            }
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             accounts = selectedAccounts
         }
         val postData = BaseRequestModel(
