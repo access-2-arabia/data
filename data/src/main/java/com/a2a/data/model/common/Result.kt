@@ -7,9 +7,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Result(
     @SerializedName("ADesc")
-    var aDesc: String? = "",
+    var aDesc: String = "",
     @SerializedName("EDesc")
-    var eDesc: String? = "",
+    var eDesc: String = "",
     @SerializedName("ErrorCode")
-    var errorCode: Int? = 0
+    var errorCode: Int = 0
 ) : Parcelable
