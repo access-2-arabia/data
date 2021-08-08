@@ -18,7 +18,7 @@ class LastTransactionRepository @Inject constructor(
 
     suspend fun <T> getLastTransactionList(
         accountNumber: String,
-        toDate: String = "3/06/2021",
+        toDate: String = "23/06/2021",
         fromDate: String = "23/12/2020",
     ): Resource<T>? {
         val lastTransactionRepository = LastTransactionPostData()
@@ -35,7 +35,7 @@ class LastTransactionRepository @Inject constructor(
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    lastTransactionRepository,
+                    lastTransactionRepository.body,
                     srvID = "LastNTrans",
                     serviceIDValue = 0
                 )
