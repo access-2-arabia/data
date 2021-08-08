@@ -59,7 +59,7 @@ class AccountsRepository @Inject constructor(
         val account = ChangeNicknamePostData.Account()
         account.accountNumber = accountNumber
         account.description = description
-        account.enabled = "Yes"
+        account.enabled = "1"
 
         val listAccount: List<ChangeNicknamePostData.Account> = listOf(account)
         accountPostData.apply {
