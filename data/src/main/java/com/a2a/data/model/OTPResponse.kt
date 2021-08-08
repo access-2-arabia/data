@@ -40,9 +40,9 @@ data class OTPResponse(
             @Parcelize
             data class OTP(
                 @SerializedName("OTPLength")
-                var oTPLength: Int = 6,
+                var oTPLength: Int = 0,
                 @SerializedName("OTPTimer")
-                var oTPTimer: Int = 120
+                var oTPTimer: Int = 0
             ) : Parcelable
 
             @Parcelize
