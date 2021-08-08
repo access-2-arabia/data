@@ -63,10 +63,8 @@ class AccountsRepository @Inject constructor(
 
         val listAccount: List<ChangeNicknamePostData.Account> = listOf(account)
         accountPostData.apply {
-            cID = MemoryCacheImpl.getCustProfile()?.cID ?: 0
             stepNumber = 3
-            custProfile.cID = MemoryCacheImpl.getCustProfile()?.cID ?: 0
-            custProfile.rID = MemoryCacheImpl.getCustProfile()?.rID ?: 0
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             accountPostData.accounts = listAccount
         }
 
