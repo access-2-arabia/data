@@ -41,12 +41,11 @@ class AccountsRepository @Inject constructor(
             accounts.custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
             accounts.accountNumber = accountNumber
 
-
         }
         val postData = BaseRequestModel(
             A2ARequest(
                 accountPostData,
-                srvID = "ReqEStatmt",
+                srvID = "Pref",
                 serviceIDValue = 0
             )
         )

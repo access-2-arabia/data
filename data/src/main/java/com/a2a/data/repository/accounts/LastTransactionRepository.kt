@@ -22,20 +22,6 @@ class LastTransactionRepository @Inject constructor(
         val postData = LastTransactionPostData()
         postData.apply {
             a2ARequest?.apply {
-                header?.apply {
-                    bankCode = Constants.BankCode
-                    regionCode = Constants.RegionCode
-                    srvID = "LastNTrans"
-                    serviceID = 0
-                    methodName = ""
-                    userID = Constants.UserID
-                    password = Constants.Password
-                    channel = Constants.Channel
-                    timeStamp = Date().formatToViewTimeStamp()
-                    deviceID = Constants.DeviceID
-                    connectorID = Constants.ConnectorID
-                }
-
                 a2ARequest?.body?.apply {
                     account.accountNumber = accountNumber
                     branchCode = MemoryCacheImpl.getCustProfile()!!.branch
@@ -52,7 +38,6 @@ class LastTransactionRepository @Inject constructor(
         }
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
     }
 
