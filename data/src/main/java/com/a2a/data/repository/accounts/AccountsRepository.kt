@@ -45,7 +45,7 @@ class AccountsRepository @Inject constructor(
         val postData = BaseRequestModel(
             A2ARequest(
                 accountPostData,
-                srvID = "Pref",
+                srvID = "ReqEStatmt",
                 serviceIDValue = 0
             )
         )
