@@ -1,6 +1,6 @@
 package com.a2a.data.model.wu.feeinquire
 
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class FeeInquirePostData(
@@ -45,7 +45,7 @@ data class FeeInquirePostData(
         @SerializedName("transaction_type")
         var transactionType: String = "",
         @SerializedName("CustProfile")
-        var custProfile: CustProfileModel = CustProfileModel(),
+        var custProfile: CustProfile = CustProfile(),
         @SerializedName("state")
         var state: String = "",
         @SerializedName("stateCode")

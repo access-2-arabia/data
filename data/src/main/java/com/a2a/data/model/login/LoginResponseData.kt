@@ -1,7 +1,7 @@
 package com.a2a.data.model.login
 
 
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponseData(
@@ -118,7 +118,7 @@ data class LoginResponseData(
             @SerializedName("CustPreferences")
             var custPreferences: List<CustPreference> = listOf(),
             @SerializedName("CustProfile")
-            var custProfile: CustProfileModel = CustProfileModel(),
+            var custProfile: CustProfile = CustProfile(),
             @SerializedName("CustRequest")
             var custRequest: List<Any> = listOf(),
             @SerializedName("DateBirth")

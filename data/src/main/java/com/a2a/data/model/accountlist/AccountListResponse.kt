@@ -129,7 +129,7 @@ data class AccountListResponse(
                 @SerializedName("ECurrency")
                 var eCurrency: String = "",
                 @SerializedName("Enabled")
-                var enabled: Boolean = false,
+                var enabled: String = "",
                 @SerializedName("IBAN")
                 var iBAN: String = "",
                 @SerializedName("InterestRate")
@@ -142,7 +142,8 @@ data class AccountListResponse(
                 var startDate: String = "",
                 @SerializedName("Type")
                 var type: String = "",
-                @SerializedName("description")
+                @SerializedName("Description")
+
                 var description: String = "",
                 var isChecked: Boolean = false
             ) : Parcelable {

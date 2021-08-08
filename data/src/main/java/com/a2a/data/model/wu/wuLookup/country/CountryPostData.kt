@@ -1,6 +1,6 @@
 package com.a2a.data.model.wu.wuLookup.country
 
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 data class CountryPostData(
     @SerializedName("Body")
@@ -8,7 +8,7 @@ data class CountryPostData(
 ) {
     data class Body(
         @SerializedName("CustProfile")
-        var custProfile: CustProfileModel = CustProfileModel(),
+        var custProfile: CustProfile = CustProfile(),
         @SerializedName("DeviceId")
         var deviceId: String = "",
         @SerializedName("DeviceType")

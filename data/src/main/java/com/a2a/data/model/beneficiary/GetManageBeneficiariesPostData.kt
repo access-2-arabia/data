@@ -1,5 +1,5 @@
 package com.a2a.data.model.beneficiary
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
@@ -11,7 +11,7 @@ data class GetManageBeneficiariesPostData(
             @SerializedName("Beneficiary")
             var beneficiary: Beneficiary = Beneficiary(),
             @SerializedName("CustProfile")
-            var custProfile: CustProfileModel = CustProfileModel()
+            var custProfile: CustProfile = CustProfile()
         ) {
             data class Beneficiary(
                 @SerializedName("Type")

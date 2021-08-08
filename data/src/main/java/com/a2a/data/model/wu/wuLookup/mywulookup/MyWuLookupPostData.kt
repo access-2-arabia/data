@@ -1,5 +1,5 @@
 package com.a2a.data.model.wu.wuLookup.mywulookup
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
@@ -39,6 +39,6 @@ data class MyWuLookupPostData(
         @SerializedName("wu_card_lookup_context")
         var wuCardLookupContext: String = "",
         @SerializedName("CustProfile")
-        var custProfile: CustProfileModel = CustProfileModel(),
+        var custProfile: CustProfile = CustProfile(),
     )
 }

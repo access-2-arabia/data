@@ -1,6 +1,5 @@
 package com.a2a.data.model.accountlist
 
-
 import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 

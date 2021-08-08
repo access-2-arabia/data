@@ -1,5 +1,6 @@
 package com.a2a.data.model
 
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 
@@ -11,7 +12,7 @@ data class BiometricPostData(
         @SerializedName("BranchCode")
         var branchCode: String = "JO0092000",
         @SerializedName("CustProfile")
-        var custProfile: CustProfileModel = CustProfileModel()
+        var custProfile: CustProfile = CustProfile()
     )
 
 }

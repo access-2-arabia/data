@@ -1,7 +1,7 @@
 package com.a2a.data.model.efawateercom.myBills
 
 
-import com.a2a.data.model.CustProfileModel
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class BulkPaymentPostData(
@@ -10,7 +10,7 @@ data class BulkPaymentPostData(
     @SerializedName("Bills")
     var bills: List<Bill> = listOf(),
     @SerializedName("CustProfile")
-    var custProfile: CustProfileModel = CustProfileModel()
+    var custProfile: CustProfile = CustProfile()
 ) {
     data class Accounts(
         @SerializedName("AccountFrom")
