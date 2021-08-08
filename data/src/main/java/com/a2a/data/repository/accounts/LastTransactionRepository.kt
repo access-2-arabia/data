@@ -42,7 +42,6 @@ class LastTransactionRepository @Inject constructor(
             )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
-
         }
     }
 
