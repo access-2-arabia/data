@@ -1,4 +1,4 @@
-package com.a2a.mbanking.generalServices.model
+package com.a2a.data.model.preferneces
 
 
 import com.google.gson.annotations.SerializedName
