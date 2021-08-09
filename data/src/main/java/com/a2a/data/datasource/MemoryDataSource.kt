@@ -5,13 +5,15 @@ import com.a2a.data.model.lookup.LookUpResponse
 class MemoryDataSource {
     private var custProfile: CustProfile? = null
     private var deviceId: String = ""
-     private var request: Any = Any()
+    private var ipAddress: String = ""
+    private var request: Any = Any()
     private var response: BaseResponse = BaseResponse()
     private var lookUps: LookUpResponse? = null
 
 
     fun getCustProfile() = custProfile
     fun getDeviceId() = deviceId
+    fun getIpAddress() = ipAddress
     fun getListOfLookUps() = lookUps
     fun getOtpRequest() = request
     fun getOtpResponse() = response
@@ -19,6 +21,9 @@ class MemoryDataSource {
         this.custProfile = custProfile
     }
 
+    fun cacheInMemoryIpAddress(ipAddress: String) {
+        this.ipAddress = ipAddress
+    }
 
     fun cacheInMemory(deviceId: String) {
         this.deviceId = deviceId

@@ -48,6 +48,9 @@ data class Header(
     var serviceID: Int = 0,
 
     @SerializedName("SessionID")
-    var sessionID: String? = ""
+    var sessionID: String? = "",
+
+    @SerializedName("IPAddress")
+    var iPAddress: String? = MemoryCacheImpl.getIpAddress(),
 ) : Parcelable
 
