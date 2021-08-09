@@ -26,10 +26,12 @@ class AuthorizedCountryRepository @Inject constructor(
 
         val body = GetAuthorisedCountryPostData()
 
+        val currentCustProfile = MemoryCacheImpl.getCustProfile()
+
         body.apply {
-            custProfile.custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
-            custProfile.cID = MemoryCacheImpl.getCustProfile()?.cID ?: 0
-            custProfile.rID = 0
+            if (currentCustProfile != null) {
+                custProfile = currentCustProfile
+            }
         }
 
         val postData = BaseRequestModel(
