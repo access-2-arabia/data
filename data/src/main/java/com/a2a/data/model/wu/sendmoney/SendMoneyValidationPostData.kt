@@ -43,9 +43,7 @@ data class SendMoneyValidationPostData(
         @SerializedName("transaction_reason")
         var transactionReason: String = "",
         @SerializedName("transaction_type")
-        var transactionType: String = "",
-        @SerializedName("StepNumber")
-        var StepNumber: Int = 0
+        var transactionType: String = ""
     ) : Parcelable {
         @Parcelize
         data class Address(
