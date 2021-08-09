@@ -363,7 +363,6 @@ class WuRepository @Inject constructor(
             body.personalMsg = sendMoneyValidationValue.body.personalMsg
             body.deviceType = sendMoneyValidationValue.body.deviceType
             body.deviceId = sendMoneyValidationValue.body.deviceId
-            body.StepNumber = 4
             val postData =
                 BaseRequestModel(
                     A2ARequest(
