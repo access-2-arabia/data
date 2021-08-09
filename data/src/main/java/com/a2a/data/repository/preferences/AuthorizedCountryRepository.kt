@@ -17,6 +17,7 @@ import com.a2a.data.model.preferneces.AddAuthorizedCountry
 import com.a2a.data.model.preferneces.GetAuthorisedCountryPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import javax.inject.Inject
 
 class AuthorizedCountryRepository @Inject constructor(
@@ -26,14 +27,8 @@ class AuthorizedCountryRepository @Inject constructor(
 
         val body = GetAuthorisedCountryPostData()
 
-        val currentCustProfile = MemoryCacheImpl.getCustProfile()
-
-        body.apply {
-            if (currentCustProfile != null) {
-                custProfile = currentCustProfile
-            }
-        }
-
+        body.custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+        
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
@@ -44,7 +39,6 @@ class AuthorizedCountryRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 
     suspend fun <T> addAuthorizedCountry(newCountry: String): Resource<T> {
 

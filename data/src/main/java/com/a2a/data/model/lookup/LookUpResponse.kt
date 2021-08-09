@@ -1,6 +1,8 @@
 package com.a2a.data.model.lookup
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 
 data class LookUpResponse(
@@ -162,6 +164,7 @@ data class LookUpResponse(
                 var phoneNo: String = ""
             )
 
+            @Parcelize
             data class Country(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -177,7 +180,11 @@ data class LookUpResponse(
                 var iD: Int = 0,
                 @SerializedName("Telecom")
                 var telecom: String = ""
-            )
+            ) : Parcelable {
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
 
             data class Currency(
                 @SerializedName("ADesc")
