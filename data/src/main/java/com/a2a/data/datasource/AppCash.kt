@@ -6,5 +6,6 @@ class AppCash {
         var sessionID: String? = ""
         var token: String? = ""
         var sslPining: String? = ""
+        var cliQRecordId: String? = ""
     }
 }
