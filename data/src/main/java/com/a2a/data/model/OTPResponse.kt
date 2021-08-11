@@ -30,13 +30,7 @@ data class OTPResponse(
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration(),
             @SerializedName("CustProfile")
-<<<<<<< HEAD
-            var custProfile: CustProfile = CustProfile(),
-
-=======
             var custProfile: CustProfile = CustProfile()
->>>>>>> ccebaef6ce0cc902a6c2e4339af449af33d1f68c
-
             ) : Parcelable {
             @Parcelize
             data class Authenticate(
