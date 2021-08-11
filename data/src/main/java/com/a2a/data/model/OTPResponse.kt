@@ -2,6 +2,7 @@ package com.a2a.data.model
 
 
 import android.os.Parcelable
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -28,7 +29,8 @@ data class OTPResponse(
             var oTP: OTP = OTP(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration(),
-
+            @SerializedName("CustProfile")
+            var custProfile: CustProfile = CustProfile()
 
             ) : Parcelable {
             @Parcelize
