@@ -1,5 +1,7 @@
+package com.a2a.data.datasource
+
+import com.a2a.data.model.authentication.CustProfile
 import com.a2a.network.model.BaseResponse
-import com.a2a.network.model.CustProfile
 
 class MemoryDataSource {
     private var custProfile: CustProfile? = null
