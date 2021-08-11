@@ -35,6 +35,7 @@ class MailRepository @Inject constructor(
                 subject = title
                 text = message
             }
+            stepNumber = 2
         }
         val request = BaseRequest(A2ARequest(srvId = SrvID.MAIL_UTILS, body = postData))
         return safeApiCall(request) { remoteDataSource.baseRequest(request) }
