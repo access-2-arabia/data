@@ -23,17 +23,13 @@ class AuthorizedCountryRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
     suspend fun <T> getAuthorizedCountry(): Resource<T> {
-
         val body = GetAuthorisedCountryPostData()
-
         val currentCustProfile = MemoryCacheImpl.getCustProfile()
-
         body.apply {
             if (currentCustProfile != null) {
                 custProfile = currentCustProfile
             }
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
@@ -47,11 +43,8 @@ class AuthorizedCountryRepository @Inject constructor(
 
 
     suspend fun <T> addAuthorizedCountry(newCountry: String): Resource<T> {
-
         val body = AddAuthorizedCountry()
-
         val currentCustProfile = MemoryCacheImpl.getCustProfile()
-
         body.apply {
             if (currentCustProfile != null) {
                 custProfile = currentCustProfile
@@ -59,7 +52,6 @@ class AuthorizedCountryRepository @Inject constructor(
             stepNumber = "2"
             country = newCountry
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
