@@ -5,18 +5,14 @@ import com.google.gson.annotations.SerializedName
 
 
 data class AccountListPostData(
-    @SerializedName("Body")
-    var body: Body = Body(),
-) {
-    data class Body(
-        @SerializedName("BankRef")
-        var bankRef: String = "",
-        @SerializedName("BranchCode")
-        var branchCode: String = "",
-        @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile(),
-        @SerializedName("StepNumber")
-        var stepNumber: Int = 1
-    )
+    @SerializedName("BankRef")
+    var bankRef: String = "",
+    @SerializedName("BranchCode")
+    var branchCode: String = "",
+    @SerializedName("CustProfile")
+    var custProfile: CustProfile = CustProfile(),
+    @SerializedName("StepNumber")
+    var stepNumber: Int = 1
+)
 
-}
+

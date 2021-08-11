@@ -19,13 +19,13 @@ class AccountsRepository @Inject constructor(
     suspend fun <T> getAccountsList(): Resource<T>? {
         val accountPostData = AccountListPostData()
         accountPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.branchCode = Constants.BankCode
+            custProfile = MemoryCacheImpl.getCustProfile()!!
+            branchCode = Constants.BankCode
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    accountPostData.body,
+                    accountPostData,
                     srvID = "Pref",
                     serviceIDValue = 0
                 )

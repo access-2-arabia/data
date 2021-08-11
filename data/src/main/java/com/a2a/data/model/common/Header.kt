@@ -1,6 +1,7 @@
 package com.a2a.data.model.common
 
 import android.os.Parcelable
+import com.a2a.data.datasource.AppCash
 import com.a2a.data.extentions.formatToViewTimeStamp
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -30,13 +31,13 @@ data class Header(
     var timeStamp: String = Date().formatToViewTimeStamp(),
 
     @SerializedName("DeviceID")
-    var deviceID: String = "Mobile",
+    var deviceID: String =  AppCash.deviceID?:"",
 
     @SerializedName("GuidID")
     var GuidID: String = "74402e7c-2d79-4a38-b2f8-396fb34c5c40",
 
     @SerializedName("DeviceToken")
-    var deviceToken: String = "0f8378650bed45839fffa9fbcbd72514",
+    var deviceToken: String = AppCash.deviceID?:"",
 
     @SerializedName("ConnectorID")
     var ConnectorID: String = "CB",
@@ -48,6 +49,9 @@ data class Header(
     var serviceID: Int = 0,
 
     @SerializedName("SessionID")
-    var sessionID: String? = ""
+    var sessionID: String? = AppCash.sessionID,
+
+    @SerializedName("IPAddress")
+    var iPAddress: String? = MemoryCacheImpl.getIpAddress(),
 ) : Parcelable
 

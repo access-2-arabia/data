@@ -22,5 +22,6 @@ interface MemoryCache {
     fun setDeviceId(deviceId: String)
     fun getDeviceId(): String
 
-
+    fun setIpAddress(ipAddress: String)
+    fun getIpAddress(): String
 }
