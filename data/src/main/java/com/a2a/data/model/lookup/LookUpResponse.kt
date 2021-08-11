@@ -105,7 +105,9 @@ data class LookUpResponse(
             @SerializedName("TrxTypes")
             var trxTypes: List<TrxType> = listOf(),
             @SerializedName("ATMs")
-            var aTMs: ArrayList<ATM?> = arrayListOf()
+            var aTMs: ArrayList<ATM?> = arrayListOf(),
+            @SerializedName("MaritalStatus")
+            var maritalStatus: ArrayList<AddPredAcc?> = arrayListOf()
         ) {
             data class ATM(
                 @SerializedName("AName")
