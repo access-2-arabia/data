@@ -130,7 +130,7 @@ class CliQRepository @Inject constructor(
             name = currentCustProfile.eName
             surname = currentCustProfile.eName
             nickName = currentCustProfile.custMnemonic
-            gender = if (currentCustProfile.gender)
+            gender = if (currentCustProfile.gender == "Male")
                 "MALE"
             else
                 "FEMA"
