@@ -28,7 +28,7 @@ class CliQRepository @Inject constructor(
 
         body.apply {
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
-            uValue = MemoryCacheImpl.getCustProfile()?.docNo ?: ""
+            uValue = MemoryCacheImpl.getCustProfile()?.nationalityID ?: ""
             uType = "NID"
             requestType = "GetCust"
 
