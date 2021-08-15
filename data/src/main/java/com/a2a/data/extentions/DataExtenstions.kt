@@ -1,5 +1,6 @@
 package com.a2a.data.extentions
 
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,6 +24,16 @@ fun Date.formatToViewDateStamp(): String {
 fun Date.formatToViewDateStampSlash(): String {
     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
     return sdf.format(this)
+}
+
+fun formatCliqDate(date: Date?): String {
+    val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+    return dateFormat.format(date)
+}
+
+fun formatCliqTime(date: Date?): String {
+    val dateFormat: DateFormat = SimpleDateFormat("HH:mm:ss", Locale.US)
+    return dateFormat.format(date)
 }
 
 
