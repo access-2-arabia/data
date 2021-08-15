@@ -27,12 +27,12 @@ fun Date.formatToViewDateStampSlash(): String {
 }
 
 fun formatCliqDate(date: Date?): String {
-    val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+    val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     return dateFormat.format(date)
 }
 
 fun formatCliqTime(date: Date?): String {
-    val dateFormat: DateFormat = SimpleDateFormat("HH:mm:ss", Locale.US)
+    val dateFormat: DateFormat = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
     return dateFormat.format(date)
 }
 
