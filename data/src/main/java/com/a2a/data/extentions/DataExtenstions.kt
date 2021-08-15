@@ -4,24 +4,24 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun Date.formatToViewTimeStamp(): String {
-    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ", Locale.getDefault())
+    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ", Locale.ENGLISH)
     return sdf.format(this)
 }
 
 
 fun String.formatToServerDateDefaults(): String {
-    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     return sdf.format(this)
 }
 
 
 fun Date.formatToViewDateStamp(): String {
-    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     return sdf.format(this)
 }
 
 fun Date.formatToViewDateStampSlash(): String {
-    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
     return sdf.format(this)
 }
 
