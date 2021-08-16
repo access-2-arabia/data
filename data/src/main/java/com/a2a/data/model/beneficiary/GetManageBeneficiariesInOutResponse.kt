@@ -141,7 +141,11 @@ data class GetManageBeneficiariesInOutResponse(
                 var tblCust: String = "",
                 @SerializedName("Trusted")
                 var trusted: Boolean = false
-            ) : Parcelable
+            ) : Parcelable{
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
 
             @Parcelize
             data class ServiceConfiguration(

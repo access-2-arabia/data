@@ -92,6 +92,10 @@ data class LookUpResponse(
             var marketingBanner: List<MarketingBanner> = listOf(),
             @SerializedName("RTGSAccTypes")
             var rTGSAccTypes: List<RTGSAccType> = listOf(),
+            @SerializedName("TransferPurpose")
+            var transferPurpose: List<TransferPurpose> = listOf(),
+            @SerializedName("AliasType")
+            var aliasTypes: List<AliasTypes> = listOf(),
             @SerializedName("RTGSBankList")
             var rTGSBankList: List<RTGSBank> = listOf(),
             @SerializedName("RTGSTransferList")
@@ -285,6 +289,41 @@ data class LookUpResponse(
                 @SerializedName("EValue")
                 var eValue: String = ""
             )
+
+            data class AliasTypes(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
+            {
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
+
+            data class TransferPurpose(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            ){
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
 
             data class RTGSBank(
                 @SerializedName("ADesc")
