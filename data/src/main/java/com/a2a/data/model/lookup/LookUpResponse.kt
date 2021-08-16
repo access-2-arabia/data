@@ -107,7 +107,9 @@ data class LookUpResponse(
             @SerializedName("ATMs")
             var aTMs: ArrayList<ATM?> = arrayListOf(),
             @SerializedName("MaritalStatus")
-            var maritalStatus: ArrayList<AddPredAcc?> = arrayListOf()
+            var maritalStatus: ArrayList<AddPredAcc?> = arrayListOf(),
+            @SerializedName("eMailCategory")
+            var eMailCategory: List<BaseLookUpsModel> = listOf(),
         ) {
             data class ATM(
                 @SerializedName("AName")
@@ -165,7 +167,19 @@ data class LookUpResponse(
                 @SerializedName("PhoneNo")
                 var phoneNo: String = ""
             )
-
+            @Parcelize
+            data class BaseLookUpsModel(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0
+            ):Parcelable
             @Parcelize
             data class Country(
                 @SerializedName("ADesc")
