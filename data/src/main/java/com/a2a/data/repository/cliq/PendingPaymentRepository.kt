@@ -12,6 +12,7 @@ import com.a2a.data.model.cliq.createProfile.ReactivateAccountPostData
 import com.a2a.data.model.cliq.pendingRequest.ApproveRequestPostData
 import com.a2a.data.model.cliq.pendingRequest.PendingPaymentPostData
 import com.a2a.data.model.cliq.pendingRequest.PendingPaymentResponse
+import com.a2a.data.model.cliq.pendingRequest.TrxDetail
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
@@ -61,7 +62,7 @@ class PendingPaymentRepository @Inject constructor(
     }
 
     suspend fun <T> approveIncomingRequest(
-        transaction: PendingPaymentResponse.A2AResponse.Body.TrxDetail,
+        transaction: TrxDetail,
         accountNumber: String,
         isApprove: Boolean,
         eValue: String,
