@@ -32,18 +32,11 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val validationBetweenMyAccount = ValidationBetweenMyAccountPostData()
         validationBetweenMyAccount.apply {
-            validationBetweenMyAccount.body.repID =
-                MemoryCacheImpl.getCustProfile()!!.repID.toString()
-            validationBetweenMyAccount.body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-            validationBetweenMyAccount.body.custID =
-                MemoryCacheImpl.getCustProfile()!!.custID.toString()
             validationBetweenMyAccount.body.accountNumberFrom =
                 betweenMyAccountModel.fromAccountNumber
             validationBetweenMyAccount.body.accountNumberTo = betweenMyAccountModel.toAccountNumber
             validationBetweenMyAccount.body.currencyFrom = betweenMyAccountModel.fromAccountCurrency
             validationBetweenMyAccount.body.currencyTo = betweenMyAccountModel.toAccountCurrency
-            validationBetweenMyAccount.body.custType =
-                MemoryCacheImpl.getCustProfile()!!.custType.toString()
             validationBetweenMyAccount.body.amount = betweenMyAccountModel.amount
             validationBetweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             validationBetweenMyAccount.body.stepNumber = "2"
