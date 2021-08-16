@@ -23,12 +23,12 @@ import java.util.*
 import javax.inject.Inject
 
 class TransferRepository @Inject constructor(
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
 ) : BaseRepository() {
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
-        betweenMyAccountModel: BetweenMyAccountModel
+        betweenMyAccountModel: BetweenMyAccountModel,
     ): Resource<T>? {
         val validationBetweenMyAccount = ValidationBetweenMyAccountPostData()
         validationBetweenMyAccount.apply {
@@ -63,7 +63,7 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getTransferBetweenMyAccount(
-        betweenMyAccountModel: BetweenMyAccountModel
+        betweenMyAccountModel: BetweenMyAccountModel,
     ): Resource<T>? {
 
         val betweenMyAccount = BetweenMyAccountPostData()
@@ -97,7 +97,7 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getValidationTransferWithinCab(
-        withinCabTransferModel: WithinCabTransferModel
+        withinCabTransferModel: WithinCabTransferModel,
     ): Resource<T>? {
         val validationWithinCabPostData = ValidationWithinCabPostData()
         validationWithinCabPostData.apply {
@@ -128,7 +128,7 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getTransferWithinCab(
-        withinCabTransferModel: WithinCabTransferModel
+        withinCabTransferModel: WithinCabTransferModel,
     ): Resource<T>? {
         val withinCabPostData = WithinCabPostData()
         withinCabPostData.apply {
@@ -163,7 +163,7 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getValidationLocalBank(
-        localBankModel: LocalBankModel
+        localBankModel: LocalBankModel,
     ): Resource<T>? {
         val localBankValidationPostData = LocalBankValidationPostData()
         localBankValidationPostData.apply {
@@ -181,7 +181,7 @@ class TransferRepository @Inject constructor(
             body.benName = localBankModel.nameModel.benefName
             body.cCurrency = localBankModel.currTo
             body.transRsn = localBankModel.transReasonCode
-            body.bFDType = "CORPORATE"
+            body.bFDType = localBankModel.bFDType
             body.aFName = localBankModel.nameModel.firstName
             body.aSName = localBankModel.nameModel.secondName
             body.aTName = localBankModel.nameModel.thirdName
@@ -191,12 +191,11 @@ class TransferRepository @Inject constructor(
             body.narrative3 = "RTGS Validation"
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
-
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     localBankValidationPostData.body,
-                    srvID = "RTGSPmnt",
+                    srvID = localBankModel.srvID,
                     serviceIDValue = 0
                 )
             )
@@ -206,7 +205,7 @@ class TransferRepository @Inject constructor(
     }
 
     suspend fun <T> getTransferLocalBank(
-        localBankModel: LocalBankModel
+        localBankModel: LocalBankModel,
     ): Resource<T>? {
         val localBankPostData = LocalBankPostData()
         localBankPostData.apply {
@@ -221,7 +220,7 @@ class TransferRepository @Inject constructor(
             body.benName = localBankModel.nameModel.benefName
             body.cCurrency = localBankModel.currTo
             body.transRsn = localBankModel.transReasonCode
-            body.bFDType = "CORPORATE"
+            body.bFDType = localBankModel.bFDType
             body.aFName = localBankModel.nameModel.firstName
             body.aSName = localBankModel.nameModel.secondName
             body.aTName = localBankModel.nameModel.thirdName
@@ -239,13 +238,12 @@ class TransferRepository @Inject constructor(
             body.startDate = Date().formatToViewDateStampSlash()
             body.benBank = localBankModel.bankName
             body.cCurrency = localBankModel.currFrom
-
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     localBankPostData.body,
-                    srvID = "RTGSPmnt",
+                    srvID = localBankModel.srvID,
                     serviceIDValue = 0
                 )
             )
