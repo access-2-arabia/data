@@ -14,7 +14,10 @@ data class LocalBankModel(
     var chargesForType: String = "",
     var benefAccountIban: String = "",
     var transReasonCode: String = "",
+    var transReasonName: String = "",
     var bankName:String="",
+    var srvID:String="",
+    var bFDType:String="",
     var nameModel: NameModel = NameModel()
 ):Parcelable
 

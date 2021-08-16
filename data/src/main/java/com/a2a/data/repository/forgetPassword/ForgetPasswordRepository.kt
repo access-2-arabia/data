@@ -27,7 +27,6 @@ class ForgetPasswordRepository @Inject constructor(
                 custProfile.custID = custId
                 custProfile.mobileNumber = mobileNumber
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
