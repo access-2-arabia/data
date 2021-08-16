@@ -95,17 +95,19 @@ class MailRepository @Inject constructor(
     }
 
     suspend fun <T> updateMail(
-        mailId: String
+        mailId: String,
+        enabled: String,
+        stepNumber: String,
     ): Resource<T> {
 
         val body = MailPostData()
 
         body.apply {
             custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
-            this.stepNumber = "3"
+            this.stepNumber = stepNumber
 
             email.apply {
-                enabled = "0"
+                this.enabled = enabled
                 iD = mailId
             }
         }
