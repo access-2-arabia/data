@@ -18,18 +18,10 @@ data class ValidationBetweenMyAccountPostData(
         var bankRef: String = "",
         @SerializedName("BranchCode")
         var branchCode: String = "",
-        @SerializedName("CID")
-        var cID: String = "",
         @SerializedName("CurrencyFrom")
         var currencyFrom: String = "",
         @SerializedName("CurrencyTo")
         var currencyTo: String = "",
-        @SerializedName("CustID")
-        var custID: String = "",
-        @SerializedName("CustType")
-        var custType: String = "",
-        @SerializedName("RepID")
-        var repID: String = "",
         @SerializedName("StepNumber")
         var stepNumber: String = ""
     )
