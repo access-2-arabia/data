@@ -3,8 +3,10 @@ package com.a2a.data.repository.cliq
 import MemoryCacheImpl
 import com.a2a.data.datasource.AppCash
 import com.a2a.data.datasource.RemoteDataSource
+import com.a2a.data.extentions.formatCliqDate
 import com.a2a.data.model.cliq.createProfile.AliasTypePostData
 import com.a2a.data.model.cliq.GetCustomerPostData
+import com.a2a.data.model.cliq.createProfile.CliQRegistrationPostData
 import com.a2a.data.model.cliq.createProfile.FundsAccountPostData
 import com.a2a.data.model.cliq.createProfile.ReactivateAccountPostData
 import com.a2a.data.model.common.A2ARequest
@@ -26,7 +28,7 @@ class CliQRepository @Inject constructor(
 
         body.apply {
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
-            uValue = MemoryCacheImpl.getCustProfile()?.docNo ?: ""
+            uValue = MemoryCacheImpl.getCustProfile()?.nationalityID ?: ""
             uType = "NID"
             requestType = "GetCust"
 
@@ -106,5 +108,84 @@ class CliQRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+    suspend fun <T> register(
+        iban: String,
+        aliasType: String,
+        bic: String,
+        value: String,
+        isDefault: Boolean
+    ): Resource<T> {
+
+        val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+
+        val body = CliQRegistrationPostData()
+        val custReg = CliQRegistrationPostData.CustReg()
+
+        custReg.apply {
+            custID = currentCustProfile.custID
+            uType = "NID"
+            uValue = currentCustProfile.docNo
+            resident = true
+            name = currentCustProfile.eName
+            surname = currentCustProfile.eName
+            nickName = currentCustProfile.custMnemonic
+            gender = if (currentCustProfile.gender == "Male")
+                "MALE"
+            else
+                "FEMA"
+
+            birthDate = currentCustProfile.birthDate
+            placeOfBirth = currentCustProfile.placeOfBirth ?: ""
+            mobile = currentCustProfile.mobileNumber
+            email = currentCustProfile.eMail
+            addressCity = currentCustProfile.AddressCity ?: ""
+            addressCountry = currentCustProfile.AddressCountry ?: ""
+            addressSPR = currentCustProfile.address2
+            address = currentCustProfile.address2
+            docValidDate = currentCustProfile.DocValidDate ?: ""
+            detCustomerType = currentCustProfile.custType.toString()
+            detPrivateNationality = currentCustProfile.detPrivateNationality ?:""
+        }
+
+        body.apply {
+
+            this.custReg = custReg
+            custProfile = currentCustProfile
+
+            account.apply {
+                acciban = iban
+                this.bic = bic
+                openingDate = formatCliqDate(Date())
+                closingDate = "2032-01-01"
+                currency = "JOD"
+                type = "DFLT"
+                this.isDefault = isDefault
+                custID = currentCustProfile.custID
+            }
+
+            alias.alias.apply {
+                type = aliasType
+                this.value = value.toUpperCase()
+                startDate = formatCliqDate(Date())
+                status = "active"
+            }
+            alias.cust.recordId = AppCash.cliQRecordId.toString()
+        }
+
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "ICLIQReg"
+            )
+        )
+
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+
+    }
+
 }
 

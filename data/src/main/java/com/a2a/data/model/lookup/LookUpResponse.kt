@@ -323,7 +323,11 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
-            )
+            ){
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
 
             data class StopCCardR(
                 @SerializedName("ADesc")
