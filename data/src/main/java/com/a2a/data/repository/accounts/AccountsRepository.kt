@@ -7,6 +7,7 @@ import com.a2a.data.model.accountlist.*
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.logout.LogoutPostData
+import com.a2a.data.model.reward.RewardTokenPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
@@ -113,6 +114,24 @@ class AccountsRepository @Inject constructor(
             custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             accounts = selectedAccounts
         }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "Pref"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+    suspend fun <T> getRewardsToken(): Resource<T> {
+        val body = RewardTokenPostData()
+
+
+
+
+
+
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
