@@ -13,10 +13,11 @@ class ProfileRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> updateProfile(buildingNumber: String, streetName: String): Resource<T> {
+    suspend fun <T> updateProfile(buildingNumber: String, streetName: String , zipCode:String): Resource<T> {
         val body = UpdateProfile()
         body.custProfile.buildingNo = buildingNumber
-        body.custProfile.StreetAddress = streetName
+        body.custProfile.StreetAddress = zipCode
+        body.custProfile.address1 = streetName
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
