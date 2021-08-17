@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
 
 data class RewardTokenPostData(
     @SerializedName("AFName")
-    var aFName: String = MemoryCacheImpl.getCustProfile()?.AFName ?: "",
+    var aFName: String = MemoryCacheImpl.getCustProfile()?.aFName ?: "",
     @SerializedName("ALName")
-    var aLName: String = MemoryCacheImpl.getCustProfile()?.ALName ?: "",
+    var aLName: String = MemoryCacheImpl.getCustProfile()?.aLName ?: "",
     @SerializedName("AMName")
-    var aMName: String = MemoryCacheImpl.getCustProfile()?.AMName ?: "",
+    var aMName: String = MemoryCacheImpl.getCustProfile()?.aMName ?: "",
     @SerializedName("AName")
     var aName: String = MemoryCacheImpl.getCustProfile()?.aName ?: "",
     @SerializedName("ANameShort")
@@ -20,9 +20,9 @@ data class RewardTokenPostData(
     @SerializedName("Address2")
     var address2: String = MemoryCacheImpl.getCustProfile()?.address2 ?: "",
     @SerializedName("AddressCity")
-    var addressCity: String = MemoryCacheImpl.getCustProfile()?.AddressCity ?: "",
+    var addressCity: String = MemoryCacheImpl.getCustProfile()?.addressCity ?: "",
     @SerializedName("AddressCountry")
-    var addressCountry: String = MemoryCacheImpl.getCustProfile()?.AddressCountry ?: "",
+    var addressCountry: String = MemoryCacheImpl.getCustProfile()?.addressCountry ?: "",
     @SerializedName("BirthDate")
     var birthDate: String = MemoryCacheImpl.getCustProfile()?.birthDate ?: "",
     @SerializedName("Branch")
@@ -38,19 +38,19 @@ data class RewardTokenPostData(
     @SerializedName("CustType")
     var custType: Int = MemoryCacheImpl.getCustProfile()?.custType ?: 0,
     @SerializedName("DocDesc")
-    var docDesc: String = MemoryCacheImpl.getCustProfile()?.DocDesc ?: "",
+    var docDesc: String = MemoryCacheImpl.getCustProfile()?.docDesc ?: "",
     @SerializedName("DocNo")
     var docNo: String = MemoryCacheImpl.getCustProfile()?.docNo ?: "",
     @SerializedName("DocNo1")
     var docNo1: String = MemoryCacheImpl.getCustProfile()?.docNo1 ?: "",
     @SerializedName("DocValidDate")
-    var docValidDate: String = MemoryCacheImpl.getCustProfile()?.DocValidDate ?: "",
+    var docValidDate: String = MemoryCacheImpl.getCustProfile()?.docValidDate ?: "",
     @SerializedName("EFName")
-    var eFName: String = MemoryCacheImpl.getCustProfile()?.EFName ?: "",
+    var eFName: String = MemoryCacheImpl.getCustProfile()?.eFName ?: "",
     @SerializedName("ELName")
-    var eLName: String = MemoryCacheImpl.getCustProfile()?.ELName ?: "",
+    var eLName: String = MemoryCacheImpl.getCustProfile()?.eLName ?: "",
     @SerializedName("EMName")
-    var eMName: String = MemoryCacheImpl.getCustProfile()?.EMName ?: "",
+    var eMName: String = MemoryCacheImpl.getCustProfile()?.eMName ?: "",
     @SerializedName("EMail")
     var eMail: String = MemoryCacheImpl.getCustProfile()?.eMail ?: "",
     @SerializedName("EName")
@@ -86,7 +86,7 @@ data class RewardTokenPostData(
     @SerializedName("RepID")
     var repID: String = MemoryCacheImpl.getCustProfile()?.repID ?: "",
     @SerializedName("StreetAddress")
-    var streetAddress: String = MemoryCacheImpl.getCustProfile()?.StreetAddress ?: "",
+    var streetAddress: String = MemoryCacheImpl.getCustProfile()?.streetAddress ?: "",
     @SerializedName("TermsAndCondition")
     var termsAndCondition: Int = MemoryCacheImpl.getCustProfile()?.termsAndCondition ?: 0,
 )

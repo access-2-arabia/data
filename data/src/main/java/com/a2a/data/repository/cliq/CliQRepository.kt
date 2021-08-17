@@ -139,11 +139,11 @@ class CliQRepository @Inject constructor(
             placeOfBirth = currentCustProfile.placeOfBirth ?: ""
             mobile = currentCustProfile.mobileNumber
             email = currentCustProfile.eMail
-            addressCity = currentCustProfile.AddressCity ?: ""
-            addressCountry = currentCustProfile.AddressCountry ?: ""
+            addressCity = currentCustProfile.addressCity ?: ""
+            addressCountry = currentCustProfile.addressCountry ?: ""
             addressSPR = currentCustProfile.address2
             address = currentCustProfile.address2
-            docValidDate = currentCustProfile.DocValidDate ?: ""
+            docValidDate = currentCustProfile.docValidDate ?: ""
             detCustomerType = currentCustProfile.custType.toString()
             detPrivateNationality = currentCustProfile.detPrivateNationality ?:""
         }
