@@ -50,7 +50,7 @@ class CilQTransferRepository @Inject constructor(
             amt = amount
             custID = custProfile.custID
             this.stepNumber = stepNumber
-            dbtrIsIndvl = if (custProfile.custType == 0) "true" else "false"
+            dbtrIsIndvl = custProfile.custType.toString()
             this.amount = amount
             dbtrRecordID = AppCash.cliQRecordId.toString()
             currCodeTo = selectedAccount.currencyISOCode
