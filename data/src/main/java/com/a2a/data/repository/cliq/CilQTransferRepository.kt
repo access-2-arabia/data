@@ -29,6 +29,7 @@ class CilQTransferRepository @Inject constructor(
         ibanNumber: String,
         amount : String,
         stepNumber : Int,
+        aliasType : String,
         aliasValue : String
     ): Resource<T> {
 
@@ -51,6 +52,7 @@ class CilQTransferRepository @Inject constructor(
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
             dbtrAcct = ibanNumber
             dbtrIsIndvl = "true"
+            dbtrAlias = aliasType
             dbtValue = aliasValue.toUpperCase() ?: ""
             fees = 0
             senderName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
