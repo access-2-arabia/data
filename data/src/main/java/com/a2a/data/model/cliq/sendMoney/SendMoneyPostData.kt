@@ -27,6 +27,16 @@ data class SendMoneyPostData(
     var currFrom: String = "",
     @SerializedName("CustID")
     var custID: String = "",
+    @SerializedName("AccountNumberTo")
+    var accountNumberTo: String = "",
+    @SerializedName("CdtrAlias")
+    var cdtrAlias: String = "",
+    @SerializedName("CdtrMCC")
+    var cdtrMCC: String = "",
+    @SerializedName("CdtrValue")
+    var cdtrValue: String = "",
+    @SerializedName("CtgyPurp")
+    var ctgyPurp: String = "",
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
     @SerializedName("DbtValue")
@@ -35,6 +45,22 @@ data class SendMoneyPostData(
     var dbtrAcct: String = "",
     @SerializedName("DbtrIsIndvl")
     var dbtrIsIndvl: String = "",
+    @SerializedName("DbtrAlias")
+    var dbtrAlias: String = "",
+    @SerializedName("DbtrBic")
+    var dbtrBic: String = "",
+    @SerializedName("CdtrBic")
+    var cdtrBic: String = "",
+    @SerializedName("CdtrIsIndvl")
+    var cdtrIsIndvl: String = "",
+    @SerializedName("DbtrMCC")
+    var dbtrMCC: String = "",
+    @SerializedName("DbtrName")
+    var dbtrName: String = "",
+    @SerializedName("DbtrPstlAdr")
+    var dbtrPstlAdr: String = "",
+    @SerializedName("DbtrRecordID")
+    var dbtrRecordID: String = "",
     @SerializedName("Fees")
     var fees: Int = 0,
     @SerializedName("SenderName")
@@ -42,5 +68,6 @@ data class SendMoneyPostData(
     @SerializedName("SenderPstlAdr")
     var senderPstlAdr: String = "",
     @SerializedName("StepNumber")
-    var stepNumber: Int = 0
+    var stepNumber: Int = 0,
+
 )
