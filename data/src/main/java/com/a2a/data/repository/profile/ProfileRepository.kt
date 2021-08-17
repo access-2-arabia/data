@@ -16,8 +16,8 @@ class ProfileRepository @Inject constructor(
     suspend fun <T> updateProfile(buildingNumber: String, streetName: String , zipCode:String): Resource<T> {
         val body = UpdateProfile()
         body.custProfile.buildingNo = buildingNumber
-        body.custProfile.StreetAddress = zipCode
-        body.custProfile.address1 = streetName
+        body.custProfile.postZip = zipCode
+        body.custProfile.streetAddress = streetName
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
