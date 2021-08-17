@@ -408,14 +408,10 @@ class WuRepository @Inject constructor(
         val validation = ValidationWithinCabPostData()
         validation.apply {
             body.stepNumber = "2"
-            body.repID = "0"
-            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
             body.accountNumberFrom = crossCurrencyPostData.fromAccountNumber
             body.accountNumberTo = crossCurrencyPostData.toBeneficiaryAccount
             body.currencyFrom = crossCurrencyPostData.fromCurrency
             body.currencyTo = crossCurrencyPostData.toBeneficiaryCurrency
-            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
             body.amount = crossCurrencyPostData.amount
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
         }
