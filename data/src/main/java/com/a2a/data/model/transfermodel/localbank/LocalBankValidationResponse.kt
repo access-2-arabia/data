@@ -58,7 +58,7 @@ data class LocalBankValidationResponse(
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
-            var userID: String = "",
+            var userID: String = ""
         )
     }
 
