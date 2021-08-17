@@ -95,16 +95,13 @@ class TransferRepository @Inject constructor(
         val validationWithinCabPostData = ValidationWithinCabPostData()
         validationWithinCabPostData.apply {
             body.stepNumber = "2"
-            body.repID = "0"
-            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
             body.accountNumberFrom = withinCabTransferModel.fromAccountNumber
             body.accountNumberTo = withinCabTransferModel.toBeneficiaryAccount
             body.currencyFrom = withinCabTransferModel.fromCurrency
             body.currencyTo = withinCabTransferModel.toBeneficiaryCurrency
-            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
             body.amount = withinCabTransferModel.amount
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
 
         val postData =
@@ -161,12 +158,9 @@ class TransferRepository @Inject constructor(
         val localBankValidationPostData = LocalBankValidationPostData()
         localBankValidationPostData.apply {
             body.stepNumber = "2"
-            body.cID = MemoryCacheImpl.getCustProfile()!!.cID.toString()
-            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
             body.accountNumberFrom = localBankModel.accountNumberFromValue
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
-            body.custType = MemoryCacheImpl.getCustProfile()!!.custType.toString()
             body.amount = localBankModel.amountValue
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             body.benBank = ""
