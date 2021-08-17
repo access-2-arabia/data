@@ -50,7 +50,7 @@ class CilQTransferRepository @Inject constructor(
             amt = amount
             custID = custProfile.custID
             this.stepNumber = stepNumber
-            dbtrIsIndvl = custProfile.custType.toString()
+            dbtrIsIndvl = if(custProfile.custType == 0) "ture" else "false"
             this.amount = amount
             dbtrRecordID = AppCash.cliQRecordId.toString()
             currCodeTo = selectedAccount.currencyISOCode
@@ -71,10 +71,10 @@ class CilQTransferRepository @Inject constructor(
                     cdtrBic = selectedBeneficiary.bankCode
 
                 } else {
-                    dbtrAcct = selectedAccount.accountNumber
+                    cdtrAcct = selectedAccount.accountNumber
                     ctgyPurp = purpose.eValue
-                    dbtrName = custProfile.eNameShort
-                    dbtrPstlAdr = custProfile.address1
+                    cdtrName = custProfile.eNameShort
+                    cdtrPstlAdr = custProfile.address1
 
                     if (isIban) {
                         cdtrAcct = ibanNumber
@@ -84,13 +84,10 @@ class CilQTransferRepository @Inject constructor(
                         cdtrAlias = selectedBeneficiary.aliasType
                         cdtrBic = selectedBeneficiary.bankCode
                     } else {
-                        cdtrAlias = aliasType
-                        cdtrValue = aliasValue
-
-                        // test
-//                        cdtrName = selectedBeneficiary.iD.toString()
-//                        cdtrPstlAdr = selectedBeneficiary.address
-//                        cdtrBic = selectedBeneficiary.bankCode
+                        dbtrAlias = aliasType
+                        dbtValue = aliasValue
+                        senderName = custProfile.eName
+                        senderPstlAdr = custProfile.address1
                     }
                 }
             }
