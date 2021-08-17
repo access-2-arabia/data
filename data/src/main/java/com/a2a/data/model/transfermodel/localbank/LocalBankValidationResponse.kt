@@ -1,14 +1,16 @@
 package com.a2a.data.model.transfermodel.localbank
+
 import com.google.gson.annotations.SerializedName
 
 
 data class LocalBankValidationResponse(
+
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
-    var errorMsg: ErrorMsg = ErrorMsg()
+    var errorMsg: ErrorMsg = ErrorMsg(),
 ) {
     data class A2ARequest(
         @SerializedName("Body")
@@ -16,14 +18,14 @@ data class LocalBankValidationResponse(
         @SerializedName("Footer")
         var footer: Footer = Footer(),
         @SerializedName("Header")
-        var header: Header = Header()
+        var header: Header = Header(),
     ) {
         class Body(
         )
 
         data class Footer(
             @SerializedName("Signature")
-            var signature: String = ""
+            var signature: String = "",
         )
 
         data class Header(
@@ -32,13 +34,13 @@ data class LocalBankValidationResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: String = "",
+            var connectorID: Any = Any(),
             @SerializedName("Device")
-            var device: String = "",
+            var device: Any = Any(),
             @SerializedName("DeviceID")
-            var deviceID: String = "",
+            var deviceID: Any = Any(),
             @SerializedName("DeviceToken")
-            var deviceToken: String = "",
+            var deviceToken: Any = Any(),
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -50,13 +52,13 @@ data class LocalBankValidationResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID: Any = Any(),
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
             var timeStamp: String = "",
             @SerializedName("UserID")
-            var userID: String = ""
+            var userID: String = "",
         )
     }
 
@@ -66,14 +68,35 @@ data class LocalBankValidationResponse(
         @SerializedName("Footer")
         var footer: Footer = Footer(),
         @SerializedName("Header")
-        var header: Header = Header()
+        var header: Header = Header(),
     ) {
-        class Body(
-        )
+        data class Body(
+            @SerializedName("Amt")
+            var amt: Double = 0.0,
+            @SerializedName("AmtTo")
+            var amtTo: Double = 0.0,
+            @SerializedName("Charge")
+            var charge: Double = 0.0,
+            @SerializedName("Commission")
+            var commission: String = "",
+            @SerializedName("ExchangeRate")
+            var exchangeRate: Double = 0.0,
+            @SerializedName("LocalAmtCredit")
+            var localAmtCredit: Double = 0.0,
+            @SerializedName("LocalAmtDebit")
+            var localAmtDebit: Double = 0.0,
+            @SerializedName("ServiceConfiguration")
+            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration(),
+        ) {
+            data class ServiceConfiguration(
+                @SerializedName("PWDFlag")
+                var pWDFlag: Int = 0,
+            )
+        }
 
         data class Footer(
             @SerializedName("Signature")
-            var signature: String = ""
+            var signature: String = "",
         )
 
         data class Header(
@@ -84,11 +107,11 @@ data class LocalBankValidationResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID: Any = Any(),
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
-            var timeStamp: String = ""
+            var timeStamp: String = "",
         ) {
             data class Result(
                 @SerializedName("ADesc")
@@ -96,7 +119,7 @@ data class LocalBankValidationResponse(
                 @SerializedName("EDesc")
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
-                var errorCode: Int = 0
+                var errorCode: Int = 0,
             )
         }
     }
@@ -107,6 +130,6 @@ data class LocalBankValidationResponse(
         @SerializedName("EDesc")
         var eDesc: String = "",
         @SerializedName("ErrorCode")
-        var errorCode: Int = 0
+        var errorCode: Int = 0,
     )
 }
