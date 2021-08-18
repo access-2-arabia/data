@@ -7,17 +7,16 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.profile.UpdateProfile
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import javax.inject.Inject
 
 class ProfileRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> updateProfile(buildingNumber: String, streetName: String , zipCode:String): Resource<T> {
+    suspend fun <T> updateProfile(custProfile: CustProfile): Resource<T> {
         val body = UpdateProfile()
-        body.custProfile.buildingNo = buildingNumber
-        body.custProfile.postZip = zipCode
-        body.custProfile.streetAddress = streetName
+        body.custProfile = custProfile
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
