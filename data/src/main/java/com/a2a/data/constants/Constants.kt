@@ -30,4 +30,11 @@ class Constants {
 
     }
 
+    enum class RequestType(val type: String) {
+        EditAlias("EditAlias"),
+        EditAccount("EditAccount"),
+        AddAccount("AddAccount"),
+        AddAlias("AddAlias")
+    }
+
 }
