@@ -3,6 +3,7 @@ package com.a2a.data.repository.cliq
 import com.a2a.data.constants.Constants
 import com.a2a.data.datasource.AppCash
 import com.a2a.data.datasource.RemoteDataSource
+import com.a2a.data.model.cliq.AccountsPostData
 import com.a2a.data.model.cliq.settings.*
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -15,16 +16,14 @@ class CilQSettingsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> getAccounts(
-    ): Resource<T> {
+    suspend fun <T> getAccounts(): Resource<T> {
 
-        val body = GetAccountsPostData()
+        val body = AccountsPostData()
         val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
 
         body.apply {
             requestType = "GetAcc"
-            uType = "NID"
-            uValue = currentCustProfile.docNo
+            recordId = AppCash.cliQRecordId.toString()
             custID = currentCustProfile.custID
         }
 
