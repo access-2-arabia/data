@@ -38,6 +38,28 @@ class CilQSettingsRepository @Inject constructor(
         }
     }
 
+
+    suspend fun <T> getAccountsCliQ(): Resource<T> {
+
+        val body = com.a2a.data.model.cliq.alias.GetAccountsPostData()
+        val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+
+        body.apply {
+            srvID = "ICLIQ"
+            custProfile = currentCustProfile
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "AccBal"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+    
     suspend fun <T> deleteCust(
     ): Resource<T> {
 
