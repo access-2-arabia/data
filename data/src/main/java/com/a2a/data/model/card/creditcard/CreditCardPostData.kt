@@ -14,5 +14,5 @@ data class CreditCardPostData(
     data class Body(
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile()
-    )
+    ) : Parcelable
 }
