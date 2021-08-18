@@ -15,15 +15,13 @@ class CilQSettingsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> getAccounts(
-        requestTypeSent: String
-    ): Resource<T> {
+    suspend fun <T> getAccounts(): Resource<T> {
 
         val body = GetAccountsPostData()
         val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
 
         body.apply {
-            requestType = requestTypeSent
+            requestType = "GetAcc"
             uType = "NID"
             uValue = currentCustProfile.docNo
             custID = currentCustProfile.custID
