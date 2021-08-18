@@ -1,7 +1,10 @@
 package com.a2a.data.repository.cards
 
+import com.a2a.data.datasource.MemoryCache
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
+import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
+import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -59,5 +62,50 @@ class CardsRepository @Inject constructor(
         }
     }
 
+    suspend fun <T> getEnableDisableCreditCardInternet(
+        activeDeactiveCard: EnableDisableInternetPostData
+    ): Resource<T>? {
+        val enableDisableInternetPostData = EnableDisableInternetPostData()
+        enableDisableInternetPostData.apply {
+            body.stepNumber = "3"
+            body.cardNumber = activeDeactiveCard.body.cardNumber
+            body.regionCode = "02"
+            body.action = activeDeactiveCard.body.action
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    enableDisableInternetPostData.body,
+                    srvID = "CreditCard",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getStopCreditCardInternet(
+        stopCard: StopCardPostData
+    ): Resource<T>? {
+        val stopCardPostData = StopCardPostData()
+        stopCardPostData.apply {
+            body.cardNumber = stopCard.body.cardNumber
+            body.oppReason = stopCard.body.oppReason
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    stopCardPostData.body,
+                    srvID = "StopCredit",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
 
 }
