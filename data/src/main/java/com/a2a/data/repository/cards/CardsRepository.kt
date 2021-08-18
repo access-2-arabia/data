@@ -1,6 +1,6 @@
 package com.a2a.data.repository.cards
 
-import com.a2a.data.datasource.MemoryCache
+import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
@@ -16,16 +16,11 @@ class CardsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-
     suspend fun <T> getCreditCard(
     ): Resource<T>? {
         val creditCardPostData = CreditCardPostData()
         creditCardPostData.apply {
-            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
-            body.rIMNumber = MemoryCacheImpl.getCustProfile()!!.custID
-            body.cardType = "A"
-            body.maskPan = "N"
-            body.regionCode = MemoryCacheImpl.getCustProfile()!!.custID
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
         val postData =
             BaseRequestModel(
@@ -46,7 +41,7 @@ class CardsRepository @Inject constructor(
     ): Resource<T>? {
         val debitCardPostData = DebitCardPostData()
         debitCardPostData.apply {
-            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
         val postData =
             BaseRequestModel(
@@ -107,5 +102,4 @@ class CardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 }
