@@ -15,8 +15,7 @@ import javax.inject.Inject
 class CardsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
-
-
+    
     suspend fun <T> getCreditCard(
     ): Resource<T>? {
         val creditCardPostData = CreditCardPostData()
@@ -36,7 +35,6 @@ class CardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 
     suspend fun <T> getDebitPrepaidCard(
     ): Resource<T>? {
