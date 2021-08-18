@@ -71,7 +71,7 @@ data class GetAliasReposne(
     ) {
         data class Body(
             @SerializedName("Aliases")
-            var aliases: List<Aliase> = listOf()
+            var aliases: List<Alias> = listOf()
         )
 
         data class Footer(
