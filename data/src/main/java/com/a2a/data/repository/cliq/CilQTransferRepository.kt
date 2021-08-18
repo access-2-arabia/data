@@ -50,7 +50,7 @@ class CilQTransferRepository @Inject constructor(
             amt = amount
             custID = custProfile.custID
             this.stepNumber = stepNumber
-            dbtrIsIndvl = if(custProfile.custType == 0) "ture" else "false"
+            dbtrIsIndvl = if (custProfile.custType == 0) "ture" else "false"
             this.amount = amount
             dbtrRecordID = AppCash.cliQRecordId.toString()
             currCodeTo = selectedAccount.currencyISOCode
@@ -91,17 +91,16 @@ class CilQTransferRepository @Inject constructor(
                     }
                 }
             }
+        }
 
-
-            val postData = BaseRequestModel(
-                A2ARequest(
-                    body,
-                    srvID = "ReqToPay"
-                )
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "ReqToPay"
             )
-            return safeApiCall(postData) {
-                remoteDataSource.baseRequest(postData)
-            }
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
         }
     }
 }
