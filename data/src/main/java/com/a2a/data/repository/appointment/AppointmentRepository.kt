@@ -25,7 +25,6 @@ class AppointmentRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
     suspend fun <T> getCities(countryId: String, cityId: String): Resource<T> {
         val body = CityPostData()
         body.countryID = countryId
