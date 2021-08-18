@@ -171,6 +171,7 @@ data class LookUpResponse(
                 @SerializedName("PhoneNo")
                 var phoneNo: String = ""
             )
+
             @Parcelize
             data class BaseLookUpsModel(
                 @SerializedName("ADesc")
@@ -183,7 +184,8 @@ data class LookUpResponse(
                 var eValue: String = "",
                 @SerializedName("ID")
                 var iD: Int = 0
-            ):Parcelable
+            ) : Parcelable
+
             @Parcelize
             data class Country(
                 @SerializedName("ADesc")
@@ -290,6 +292,7 @@ data class LookUpResponse(
                 var eValue: String = ""
             )
 
+            @Parcelize
             data class AliasTypes(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -301,13 +304,14 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
-            )
-            {
+            ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
                 }
             }
 
+
+            @Parcelize
             data class TransferPurpose(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -319,7 +323,7 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
-            ){
+            ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
                 }
@@ -362,7 +366,7 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
-            ){
+            ) {
                 override fun toString(): String {
                     return eDesc
                 }

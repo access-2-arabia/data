@@ -1,7 +1,9 @@
 package com.a2a.data.model.cliq.sendMoney
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class SendMoneyResponse(
     @SerializedName("A2ARequest")
@@ -69,6 +71,7 @@ data class SendMoneyResponse(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
+        @Parcelize
         data class Body(
             @SerializedName("Amount")
             var amount: Double = 0.0,
@@ -158,7 +161,7 @@ data class SendMoneyResponse(
             var senderPstlAdr: String = "",
             @SerializedName("SvcLvl")
             var svcLvl: String = ""
-        )
+        ) : Parcelable
 
         data class Footer(
             @SerializedName("Signature")
