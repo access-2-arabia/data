@@ -3,99 +3,115 @@ package com.a2a.data.repository.cliq
 import MemoryCacheImpl
 import com.a2a.data.datasource.AppCash
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.extentions.formatCliqDate
-import com.a2a.data.model.accountlist.AccountListResponse
-import com.a2a.data.model.beneficiary.GetManageBeneficiariesInOutResponse
-import com.a2a.data.model.cliq.createProfile.AliasTypePostData
-import com.a2a.data.model.cliq.GetCustomerPostData
-import com.a2a.data.model.cliq.createProfile.CliQRegistrationPostData
-import com.a2a.data.model.cliq.createProfile.FundsAccountPostData
-import com.a2a.data.model.cliq.createProfile.ReactivateAccountPostData
-import com.a2a.data.model.cliq.sendMoney.SendMoneyPostData
+import com.a2a.data.model.accountlist.AccountListResponse.A2AResponse.Body.Account
+import com.a2a.data.model.cliq.sendMoney.CliQRequestMoneyPostData
+import com.a2a.data.model.cliq.sendMoney.CliQSendMoneyPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
-import com.a2a.data.model.lookup.LookUpResponse
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
-import com.a2a.network.model.CustProfile
-import com.google.gson.Gson
-import kotlinx.coroutines.selects.select
-import java.util.*
 import javax.inject.Inject
 
 class CilQTransferRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> proceedMoney(
-        isSendPayment: Boolean,
-        isExisting: Boolean,
-        isIban: Boolean,
-        selectedAccount: AccountListResponse.A2AResponse.Body.Account,
-        selectedBeneficiary: GetManageBeneficiariesInOutResponse.A2AResponse.Body.BeneficiaryIn,
-        purpose: LookUpResponse.A2AResponse.Body.TransferPurpose,
+    suspend fun <T> sendMoney(
+        name: String,
+        surName: String,
+        aliasType: String,
+        aliasValue: String,
+        bic: String,
+        ibanNumber: String,
+        address: String,
+        paymentPurpose: String,
+        amount: String,
+        stepNumber: Int,
+        accountNumber: Account
+    ): Resource<T> {
+
+
+        val cliQSendMoneyPostData = CliQSendMoneyPostData()
+        if (name.isNullOrEmpty() && surName.isNullOrEmpty())
+            cliQSendMoneyPostData.cdtrName = ""
+        else
+            cliQSendMoneyPostData.cdtrName = "$name  $surName"
+        cliQSendMoneyPostData.custIDTO = ""
+        cliQSendMoneyPostData.cdtrIsIndvl = ""
+        cliQSendMoneyPostData.cdtrMCC = ""
+        cliQSendMoneyPostData.dbtrAlias = ""
+        cliQSendMoneyPostData.cdtrAlias = aliasType
+        cliQSendMoneyPostData.cdtrValue = aliasValue.toUpperCase()
+        cliQSendMoneyPostData.cdtrBic = bic
+        cliQSendMoneyPostData.cdtrAcct = ibanNumber
+        cliQSendMoneyPostData.cdtrPstlAdr = address
+        cliQSendMoneyPostData.ctgyPurp = paymentPurpose
+        cliQSendMoneyPostData.amt = amount
+        cliQSendMoneyPostData.amount = amount
+        cliQSendMoneyPostData.cdtrRecordID = ""
+        cliQSendMoneyPostData.dbtrMCC = ""
+        cliQSendMoneyPostData.dbtrRecordID = AppCash.cliQRecordId ?: ""
+        cliQSendMoneyPostData.dbtrAcct = accountNumber.accountNumber
+        cliQSendMoneyPostData.qRFlag = "false"
+        cliQSendMoneyPostData.curr = accountNumber.currencyISOCode
+        cliQSendMoneyPostData.stepNumber = stepNumber
+        cliQSendMoneyPostData.dbtrName =
+            MemoryCacheImpl.getCustProfile()?.eName ?: ""
+        cliQSendMoneyPostData.fees = 0
+        cliQSendMoneyPostData.dbtrPstlAdr =
+            MemoryCacheImpl.getCustProfile()?.address1 ?: ""
+        cliQSendMoneyPostData.currFrom = accountNumber.currencyISOCode
+        cliQSendMoneyPostData.dbtrIsIndvl = "true"
+        cliQSendMoneyPostData.custID =
+            MemoryCacheImpl.getCustProfile()?.custID ?: ""
+        cliQSendMoneyPostData.currCodeTo = "JOD"
+        cliQSendMoneyPostData.QRAddLangTemp = ""
+        cliQSendMoneyPostData.QRTaxId = ""
+
+        cliQSendMoneyPostData.custProfile = MemoryCacheImpl.getCustProfile()!!
+        val postData = BaseRequestModel(
+            A2ARequest(
+                cliQSendMoneyPostData,
+                srvID = "ICLIQPay"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> sendMoney(
+        aliasType: String,
+        aliasValue: String,
         ibanNumber: String,
         amount: String,
         stepNumber: Int,
-        aliasType: String,
-        aliasValue: String
+        selectedAccount: Account
     ): Resource<T> {
 
-        val body = SendMoneyPostData()
-
-        body.apply {
-
-            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
-            curr = selectedAccount.currencyISOCode
+        val requestMoneyPostData = CliQRequestMoneyPostData()
+        requestMoneyPostData.apply {
             amt = amount
-            custID = custProfile.custID
-            this.stepNumber = stepNumber
-            dbtrIsIndvl = if (custProfile.custType == 0) "ture" else "false"
+            cdtrAcct = selectedAccount.accountNumber
             this.amount = amount
-            dbtrRecordID = AppCash.cliQRecordId.toString()
-            currCodeTo = selectedAccount.currencyISOCode
-            currFrom = selectedAccount.currencyISOCode
-
-            if (isSendPayment) {
-                if (isExisting) {
-                    dbtrAcct = selectedAccount.accountNumber
-                    ctgyPurp = purpose.eValue
-                    dbtrName = custProfile.eNameShort
-                    dbtrPstlAdr = custProfile.address1
-
-                    cdtrAcct = selectedBeneficiary.clientAccNo
-                    cdtrValue = selectedBeneficiary.clientAccNo
-                    cdtrName = selectedBeneficiary.iD.toString()
-                    cdtrPstlAdr = selectedBeneficiary.address
-                    cdtrAlias = selectedBeneficiary.aliasType
-                    cdtrBic = selectedBeneficiary.bankCode
-
-                } else {
-                    cdtrAcct = selectedAccount.accountNumber
-                    ctgyPurp = purpose.eValue
-                    cdtrName = custProfile.eNameShort
-                    cdtrPstlAdr = custProfile.address1
-
-                    if (isIban) {
-                        cdtrAcct = ibanNumber
-                        cdtrValue = ibanNumber
-                        cdtrName = selectedBeneficiary.iD.toString()
-                        cdtrPstlAdr = selectedBeneficiary.address
-                        cdtrAlias = selectedBeneficiary.aliasType
-                        cdtrBic = selectedBeneficiary.bankCode
-                    } else {
-                        dbtrAlias = aliasType
-                        dbtValue = aliasValue
-                        senderName = custProfile.eName
-                        senderPstlAdr = custProfile.address1
-                    }
-                }
-            }
+            cdtrName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
+            cdtrRecordID = AppCash.cliQRecordId ?: ""
+            curr = "JOD"
+            dbtrAlias = aliasType ?: ""
+            dbtValue = aliasValue?.toUpperCase() ?: ""
+            fees = 0
+            custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
+            currFrom = "JOD"
+            currCodeTo = "JOD"
+            dbtrIsIndvl = "true"
+            senderName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
+            senderPstlAdr = MemoryCacheImpl.getCustProfile()?.address1 ?: ""
+            dbtrAcct = ibanNumber
+            this.stepNumber = stepNumber
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
-                body,
+                requestMoneyPostData,
                 srvID = "ReqToPay"
             )
         )
