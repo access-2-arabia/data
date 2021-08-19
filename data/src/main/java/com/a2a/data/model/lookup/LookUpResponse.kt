@@ -114,6 +114,8 @@ data class LookUpResponse(
             var maritalStatus: ArrayList<AddPredAcc?> = arrayListOf(),
             @SerializedName("eMailCategory")
             var eMailCategory: List<BaseLookUpsModel> = listOf(),
+            @SerializedName("Banks")
+            var banks: List<BaseLookUpsModel> = listOf(),
         ) {
             data class ATM(
                 @SerializedName("AName")
@@ -183,7 +185,9 @@ data class LookUpResponse(
                 @SerializedName("EValue")
                 var eValue: String = "",
                 @SerializedName("ID")
-                var iD: Int = 0
+                var iD: Int = 0,
+                @SerializedName("DescEnAr")
+                var descEnAr: String = ""
             ) : Parcelable
 
             @Parcelize
