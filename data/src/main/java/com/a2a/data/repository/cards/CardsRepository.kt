@@ -4,6 +4,7 @@ import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
+import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.common.A2ARequest
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class CardsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
-    
+
     suspend fun <T> getCreditCard(
     ): Resource<T>? {
         val creditCardPostData = CreditCardPostData()
@@ -47,6 +48,30 @@ class CardsRepository @Inject constructor(
                 A2ARequest(
                     debitCardPostData.body,
                     srvID = "CardSList",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getCardsLastTransactionHistory(
+        cardPostData: CardLastTransactionPostData
+    ): Resource<T>? {
+        val cardLastTransactionPostData = CardLastTransactionPostData()
+        cardLastTransactionPostData.apply {
+            body.cardNumber = cardPostData.body.cardNumber
+            body.dateFrom = cardPostData.body.dateFrom
+            body.dateTo = cardPostData.body.dateTo
+            body.regionCode = cardPostData.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    cardLastTransactionPostData.body,
+                    srvID = "CardTrHis",
                     serviceIDValue = 0
                 )
             )
@@ -101,4 +126,6 @@ class CardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+
 }
