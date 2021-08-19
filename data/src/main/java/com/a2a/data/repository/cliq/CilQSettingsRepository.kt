@@ -180,7 +180,9 @@ class CilQSettingsRepository @Inject constructor(
         val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
 
         body.apply {
+            currentAccount.custId = currentCustProfile.custID
             Account = currentAccount
+
 
             when (requestType) {
                 Constants.RequestType.EditAlias.type -> {
