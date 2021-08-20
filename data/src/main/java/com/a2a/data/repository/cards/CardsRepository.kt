@@ -3,6 +3,7 @@ package com.a2a.data.repository.cards
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
+import com.a2a.data.model.card.creditcard.activedeactivecreditcard.ActiveDeactivePostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
@@ -118,6 +119,31 @@ class CardsRepository @Inject constructor(
                 A2ARequest(
                     stopCardPostData.body,
                     srvID = "StopCredit",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getActiveDeactive(
+        activeDeactiveCard: ActiveDeactivePostData
+    ): Resource<T>? {
+        val activeDeactivePostData = ActiveDeactivePostData()
+        activeDeactivePostData.apply {
+            body.stepNumber = "3"
+            body.cardNumber = activeDeactiveCard.body.cardNumber
+            body.regionCode = "02"
+            body.action = activeDeactiveCard.body.action
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    activeDeactivePostData.body,
+                    srvID = "CreditCard",
                     serviceIDValue = 0
                 )
             )
