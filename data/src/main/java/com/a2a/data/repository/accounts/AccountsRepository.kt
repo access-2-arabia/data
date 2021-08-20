@@ -7,6 +7,7 @@ import com.a2a.data.model.accountlist.*
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.logout.LogoutPostData
+import com.a2a.data.model.reward.RewardPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
@@ -125,10 +126,13 @@ class AccountsRepository @Inject constructor(
     }
 
     suspend fun <T> getRewardsToken(): Resource<T> {
-
+        val reward = RewardPostData()
+        reward.apply {
+            reward.body.custProfile = MemoryCacheImpl.getCustProfile()!!
+        }
         val postData = BaseRequestModel(
             A2ARequest(
-                MemoryCacheImpl.getCustProfile(),
+                reward.body,
                 srvID = "Reward"
             )
         )
