@@ -1,11 +1,11 @@
-package com.a2a.data.model.cliq.sendMoney
+package com.a2a.data.model.cliq.transactions
 
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-data class SendMoneyResponse(
+data class HistoryResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -71,97 +71,100 @@ data class SendMoneyResponse(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
-        @Parcelize
         data class Body(
-            @SerializedName("Amount")
-            var amount: Double = 0.0,
-            @SerializedName("CdtrAcct")
-            var cdtrAcct: String = "",
-            @SerializedName("CdtrAlias")
-            var cdtrAlias: String = "",
-            @SerializedName("CdtrIsIndvl")
-            var cdtrIsIndvl: Boolean = false,
-            @SerializedName("CdtrMCC")
-            var cdtrMCC: String = "",
-            @SerializedName("CdtrName")
-            var cdtrName: String = "",
-            @SerializedName("CdtrPstlAdr")
-            var cdtrPstlAdr: String = "",
-            @SerializedName("CdtrRecordID")
-            var cdtrRecordID: String = "",
-            @SerializedName("CrdtAccIsIBan")
-            var crdtAccIsIBan: Boolean = false,
-            @SerializedName("CtgyPurp")
-            var ctgyPurp: String = "",
-            @SerializedName("Curr")
-            var curr: String = "",
             @SerializedName("CustID")
             var custID: String = "",
-            @SerializedName("DbtrAccIsIBan")
-            var dbtrAccIsIBan: Boolean = false,
-            @SerializedName("DbtrAcct")
-            var dbtrAcct: String = "",
-            @SerializedName("DbtrAlias")
-            var dbtrAlias: String = "",
-            @SerializedName("DbtrBic")
-            var dbtrBic: String = "",
-            @SerializedName("DbtrIsIndvl")
-            var dbtrIsIndvl: Boolean = false,
-            @SerializedName("DbtrMCC")
-            var dbtrMCC: String = "",
-            @SerializedName("DbtrName")
-            var dbtrName: String = "",
-            @SerializedName("DbtrPstlAdr")
-            var dbtrPstlAdr: String = "",
-            @SerializedName("DbtrRecordID")
-            var dbtrRecordID: String = "",
+            @SerializedName("DateFrom")
+            var dateFrom: String = "",
+            @SerializedName("DateTo")
+            var dateTo: String = "",
             @SerializedName("ErrorCode")
             var errorCode: Int = 0,
             @SerializedName("ErrorDesc")
             var errorDesc: String = "",
-            @SerializedName("FwdgAgt")
-            var fwdgAgt: String = "",
-            @SerializedName("id")
-            var id: String = "",
-            @SerializedName("InstrInf")
-            var instrInf: String = "",
-            @SerializedName("MsgId")
-            var msgId: String = "",
-            @SerializedName("OrgMsgType")
-            var orgMsgType: String = "",
-            @SerializedName("OrgnlCreDtTm")
-            var orgnlCreDtTm: String = "",
-            @SerializedName("OrgnlEndToEndId")
-            var orgnlEndToEndId: String = "",
-            @SerializedName("OrgnlInstrId")
-            var orgnlInstrId: String = "",
-            @SerializedName("OrgnlMsgId")
-            var orgnlMsgId: String = "",
-            @SerializedName("OrgnlPmtInfId")
-            var orgnlPmtInfId: String = "",
+            @SerializedName("LastTrxNo")
+            var lastTrxNo: Int = 0,
             @SerializedName("PayRefNo")
             var payRefNo: String = "",
-            @SerializedName("ProcessFlag")
-            var processFlag: Int = 0,
-            @SerializedName("RTPStatus")
-            var rTPStatus: Boolean = false,
-            @SerializedName("RejectAddInfo")
-            var rejectAddInfo: String = "",
-            @SerializedName("RejectDescription")
-            var rejectDescription: String = "",
-            @SerializedName("RejectReason")
-            var rejectReason: String = "",
-            @SerializedName("RgltryRptg")
-            var rgltryRptg: String = "",
-            @SerializedName("RmtInf")
-            var rmtInf: String = "",
-            @SerializedName("SenderName")
-            var senderName: String = "",
-            @SerializedName("SenderPstlAdr")
-            var senderPstlAdr: String = "",
-            @SerializedName("SvcLvl")
-            var svcLvl: String = ""
-        ) : Parcelable
+            @SerializedName("TrxDetails")
+            var trxDetails: List<TrxDetail> = listOf(),
+            @SerializedName("TrxDir")
+            var trxDir: String = "",
+            @SerializedName("TrxStatus")
+            var trxStatus: String = ""
+        ) {
+            @Parcelize
+            data class TrxDetail(
+                @SerializedName("AddInfo1")
+                var addInfo1: String = "",
+                @SerializedName("AddInfo2")
+                var addInfo2: String = "",
+                @SerializedName("AddInfo3")
+                var addInfo3: String = "",
+                @SerializedName("AddInfo4")
+                var addInfo4: String = "",
+                @SerializedName("AllowReturn")
+                var allowReturn: Boolean = false,
+                @SerializedName("Amount")
+                var amount: Double = 0.0,
+                @SerializedName("CdtrAcct")
+                var cdtrAcct: String = "",
+                @SerializedName("CdtrAddr")
+                var cdtrAddr: String = "",
+                @SerializedName("CdtrAgt")
+                var cdtrAgt: String = "",
+                @SerializedName("CdtrAlias")
+                var cdtrAlias: String = "",
+                @SerializedName("CdtrMCC")
+                var cdtrMCC: String = "",
+                @SerializedName("CdtrName")
+                var cdtrName: String = "",
+                @SerializedName("CdtrRecordID")
+                var cdtrRecordID: String = "",
+                @SerializedName("CreDtTm")
+                var creDtTm: String = "",
+                @SerializedName("CtgyPurp")
+                var ctgyPurp: String = "",
+                @SerializedName("Curr")
+                var curr: String = "",
+                @SerializedName("DbtrAcct")
+                var dbtrAcct: String = "",
+                @SerializedName("DbtrAddr")
+                var dbtrAddr: String = "",
+                @SerializedName("DbtrAgt")
+                var dbtrAgt: String = "",
+                @SerializedName("DbtrAlias")
+                var dbtrAlias: String = "",
+                @SerializedName("DbtrMCC")
+                var dbtrMCC: String = "",
+                @SerializedName("DbtrName")
+                var dbtrName: String = "",
+                @SerializedName("DbtrRecordID")
+                var dbtrRecordID: String = "",
+                @SerializedName("ErrorCode")
+                var errorCode: Int = 0,
+                @SerializedName("IntrBkSttlmDt")
+                var intrBkSttlmDt: String = "",
+                @SerializedName("MsgID")
+                var msgID: String = "",
+                @SerializedName("PayRefNo")
+                var payRefNo: String = "",
+                @SerializedName("PaymentDate")
+                var paymentDate: String = "",
+                @SerializedName("RgltryRptg")
+                var rgltryRptg: String = "",
+                @SerializedName("RmtInf")
+                var rmtInf: String = "",
+                @SerializedName("TrxDir")
+                var trxDir: String = "",
+                @SerializedName("TrxReason")
+                var trxReason: String = "",
+                @SerializedName("TrxStatus")
+                var trxStatus: String = "",
+                @SerializedName("TrxType")
+                var trxType: String = ""
+            ):Parcelable
+        }
 
         data class Footer(
             @SerializedName("Signature")

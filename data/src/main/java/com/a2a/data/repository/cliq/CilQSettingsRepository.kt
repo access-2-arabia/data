@@ -59,7 +59,7 @@ class CilQSettingsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-    
+
     suspend fun <T> deleteCust(
     ): Resource<T> {
 
@@ -180,7 +180,7 @@ class CilQSettingsRepository @Inject constructor(
         val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
 
         body.apply {
-            Account = currentAccount
+            currentAccount.custId = currentCustProfile.custID
 
             when (requestType) {
                 Constants.RequestType.EditAlias.type -> {
@@ -188,12 +188,14 @@ class CilQSettingsRepository @Inject constructor(
                     UpdateAccount = false
                     addAlias = false
                     addAccount = false
+                    Account = currentAccount
                 }
                 Constants.RequestType.EditAccount.type -> {
                     UpdateAccount = isAccountChanges
                     addAlias = false
                     updateAlias = false
                     addAccount = false
+                    Account = currentAccount
                 }
                 Constants.RequestType.AddAccount.type -> {
                     addAccount = true
@@ -206,6 +208,7 @@ class CilQSettingsRepository @Inject constructor(
                     UpdateAccount = false
                     addAccount = false
                     updateAlias = false
+                    Account = currentAccount
                 }
             }
 
@@ -213,6 +216,51 @@ class CilQSettingsRepository @Inject constructor(
             Alias.type = currentAlias.eValue
             cust.recordId = AppCash.cliQRecordId.toString()
             custProfile = currentCustProfile
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "AddAlias"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> addAndUpdateAccount(
+        currentAccount: AddAccountResponse.Account,
+        currentAlias: AddAccountResponse.Alias.Alias,
+        requestType: String,
+        isAccountChanges: Boolean
+    ): Resource<T> {
+
+        val body = AddAccountResponse()
+        val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+
+        body.apply {
+
+            when (requestType) {
+
+                Constants.RequestType.EditAccount.type -> {
+                    updateAccount = isAccountChanges
+                    addAlias = false
+                    updateAlias = false
+                    addAccount = false
+                }
+                Constants.RequestType.AddAccount.type -> {
+                    addAccount = true
+                    updateAccount = false
+                    addAlias = false
+                    updateAlias = false
+                }
+            }
+
+            alias.alias = currentAlias
+            account = currentAccount
+            cust.recordId = AppCash.cliQRecordId.toString()
+            branchCode = currentCustProfile.branch
         }
 
         val postData = BaseRequestModel(

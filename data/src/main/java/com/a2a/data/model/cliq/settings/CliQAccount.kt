@@ -27,6 +27,9 @@ data class CliQAccount(
     @SerializedName("RecordId")
     var recordId: String = "",
 
+    @SerializedName("CustID")
+    var custId: String = "",
+
     @SerializedName("type")
     var type: String = "",
     var accountDec: String = ""

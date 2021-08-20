@@ -1,9 +1,10 @@
 package com.a2a.data.model.cliq.sendMoney
 
 
+import com.a2a.data.model.cliq.sendMoney.CliQSendMoneyResponse.A2AResponse.Body
 import com.google.gson.annotations.SerializedName
 
-data class SendMoneyResponseData(
+data class CliQRequestMoneyResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -20,7 +21,34 @@ data class SendMoneyResponseData(
         var header: Header = Header()
     ) {
         class Body(
-        )
+            @SerializedName("Authenticate")
+            var authenticate: Authenticate = Authenticate(),
+            @SerializedName("OTP")
+            var oTP: OTP = OTP(),
+            @SerializedName("ServiceConfiguration")
+            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
+        ) {
+            data class Authenticate(
+                @SerializedName("UTR")
+                var uTR: String = ""
+            )
+
+
+            data class OTP(
+                @SerializedName("OTPLength")
+                var oTPLength: Int = 0,
+                @SerializedName("OTPTimer")
+                var oTPTimer: Int = 0
+            )
+
+            data class ServiceConfiguration(
+                @SerializedName("PWDFlag")
+                var pWDFlag: Int = 0
+            )
+
+
+        }
+
 
         data class Footer(
             @SerializedName("Signature")
@@ -69,17 +97,7 @@ data class SendMoneyResponseData(
         @SerializedName("Header")
         var header: Header = Header()
     ) {
-        data class Body(
-            @SerializedName("Result")
-            var result: Result = Result()
-        ) {
-            data class Result(
-                @SerializedName("EDesc")
-                var eDesc: String = "",
-                @SerializedName("ErrorCode")
-                var errorCode: Int = 0
-            )
-        }
+
 
         data class Footer(
             @SerializedName("Signature")
