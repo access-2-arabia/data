@@ -4,6 +4,7 @@ import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
 import com.a2a.data.model.card.creditcard.activedeactivecreditcard.ActiveDeactivePostData
+import com.a2a.data.model.card.creditcard.changemobilenumber.ChangeMobileNumberCreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
@@ -143,6 +144,30 @@ class CardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     activeDeactivePostData.body,
+                    srvID = "CreditCard",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getChangeMobileNumber(
+        changeMobileNumberCreditCard: ChangeMobileNumberCreditCardPostData
+    ): Resource<T>? {
+        val changeMobileNumberCreditCardPostData = ChangeMobileNumberCreditCardPostData()
+        changeMobileNumberCreditCardPostData.apply {
+            body.stepNumber = changeMobileNumberCreditCard.body.stepNumber
+            body.cardNumber = changeMobileNumberCreditCard.body.cardNumber
+            body.regionCode = changeMobileNumberCreditCard.body.regionCode
+            body.newMobNo = changeMobileNumberCreditCard.body.newMobNo
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    changeMobileNumberCreditCardPostData.body,
                     srvID = "CreditCard",
                     serviceIDValue = 0
                 )
