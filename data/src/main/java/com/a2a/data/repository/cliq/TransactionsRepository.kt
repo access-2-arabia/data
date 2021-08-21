@@ -93,7 +93,6 @@ class TransactionsRepository @Inject constructor(
             dbtrAgt = transactionData.dbtrAgt
             dbtrRecordID = transactionData.dbtrRecordID
             dbtrAlias = transactionData.dbtrAlias
-
             amount = amountValue
         }
 
