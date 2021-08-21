@@ -116,6 +116,10 @@ data class LookUpResponse(
             var eMailCategory: List<BaseLookUpsModel> = listOf(),
             @SerializedName("Banks")
             var banks: List<BaseLookUpsModel> = listOf(),
+            @SerializedName("TrxDir")
+            var trxDir: List<BaseLookUpsModel> = listOf(),
+            @SerializedName("TrxStatus")
+            var trxStatus: List<BaseLookUpsModel> = listOf(),
         ) {
             data class ATM(
                 @SerializedName("AName")
@@ -133,6 +137,24 @@ data class LookUpResponse(
                 @SerializedName("Longitude")
                 var longitude: String = ""
             )
+
+            @Parcelize
+            data class BaseLookUpsModel(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0
+            ):Parcelable{
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
 
             data class AddPredAcc(
                 @SerializedName("ADesc")
@@ -173,22 +195,6 @@ data class LookUpResponse(
                 @SerializedName("PhoneNo")
                 var phoneNo: String = ""
             )
-
-            @Parcelize
-            data class BaseLookUpsModel(
-                @SerializedName("ADesc")
-                var aDesc: String = "",
-                @SerializedName("AValue")
-                var aValue: String = "",
-                @SerializedName("EDesc")
-                var eDesc: String = "",
-                @SerializedName("EValue")
-                var eValue: String = "",
-                @SerializedName("ID")
-                var iD: Int = 0,
-                @SerializedName("DescEnAr")
-                var descEnAr: String = ""
-            ) : Parcelable
 
             @Parcelize
             data class Country(
