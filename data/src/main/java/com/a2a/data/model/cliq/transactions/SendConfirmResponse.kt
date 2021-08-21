@@ -3,7 +3,7 @@ package com.a2a.data.model.cliq.transactions
 
 import com.google.gson.annotations.SerializedName
 
-data class HistoryResponse(
+data class SendConfirmResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -72,27 +72,19 @@ data class HistoryResponse(
         data class Body(
             @SerializedName("CustID")
             var custID: String = "",
-            @SerializedName("DateFrom")
-            var dateFrom: String = "",
-            @SerializedName("DateTo")
-            var dateTo: String = "",
             @SerializedName("ErrorCode")
             var errorCode: Int = 0,
             @SerializedName("ErrorDesc")
             var errorDesc: String = "",
-            @SerializedName("LastTrxNo")
-            var lastTrxNo: Int = 0,
-            @SerializedName("PayRefNo")
-            var payRefNo: String = "",
-            @SerializedName("TrxDetails")
-            var trxDetails: List<TrxDetail> = listOf(),
-            @SerializedName("TrxDir")
-            var trxDir: String = "",
+            @SerializedName("MsgId")
+            var msgId: String = "",
+            @SerializedName("TransStatus")
+            var transStatus: String = "",
             @SerializedName("TrxStatus")
-            var trxStatus: String = ""
-        ) {
-
-        }
+            var trxStatus: String = "",
+            @SerializedName("ValueDate")
+            var valueDate: String = ""
+        )
 
         data class Footer(
             @SerializedName("Signature")
