@@ -17,6 +17,7 @@ data class AddUpdateBeneficiaryWUPostData(
         @SerializedName("StepNumber")
         var stepNumber: Int = 0
     )  {
+
         data class Beneficiary(
             @SerializedName("BCountry")
             var bCountry: String = "",
