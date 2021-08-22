@@ -71,10 +71,14 @@ data class RewardResponse(
         data class Body(
             @SerializedName("Result")
             var result: Result = Result(),
+            @SerializedName("register")
+            var register: Boolean = false,
+            @SerializedName("success")
+            var success: Boolean = false,
 
             ) {
             data class Result(
-                @SerializedName("SessionToken")
+                @SerializedName("sessionToken")
                 var sessionToken: String = "",
             )
         }
@@ -108,6 +112,7 @@ data class RewardResponse(
             )
         }
     }
+
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
