@@ -89,32 +89,6 @@ class BeneficiaryRepository @Inject constructor(
         }
     }
 
-
-    suspend fun <T> updateAddBeneficiaryWU(
-        addUpdateBeneficiaryWU: AddUpdateBeneficiaryWUPostData,
-        stepNumber: Int
-    ): Resource<T>? {
-        val addUpdateBeneficiaryWUPostData = AddUpdateBeneficiaryWUPostData()
-        addUpdateBeneficiaryWUPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.beneficiary = addUpdateBeneficiaryWU.body.beneficiary
-            body.stepNumber = stepNumber
-        }
-        val postData =
-            BaseRequestModel(
-                A2ARequest(
-                    addUpdateBeneficiaryWUPostData.body,
-                    srvID = "MngBenf",
-                    serviceIDValue = 0
-                )
-            )
-        return safeApiCall(postData)
-        {
-            remoteDataSource.baseRequest(postData)
-        }
-    }
-
-
     suspend fun <T> deleteBeneficiary(
         deleteBeneficiaryPostData: DeleteBeneficary
     ): Resource<T>? {

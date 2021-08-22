@@ -5,6 +5,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.AccountListResponse
 import com.a2a.data.model.accountlist.AccountListResponse.A2AResponse.Body.Account
 import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
+import com.a2a.data.model.beneficiary.addupdatebeneficiarywu.AddUpdateBeneficiaryWUPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
@@ -424,6 +425,30 @@ class WuRepository @Inject constructor(
                 )
             )
         return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> updateAddBeneficiaryWU(
+        addUpdateBeneficiaryWU: AddUpdateBeneficiaryWUPostData,
+        stepNumber: Int
+    ): Resource<T>? {
+        val addUpdateBeneficiaryWUPostData = AddUpdateBeneficiaryWUPostData()
+        addUpdateBeneficiaryWUPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.beneficiary = addUpdateBeneficiaryWU.body.beneficiary
+            body.stepNumber = stepNumber
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    addUpdateBeneficiaryWUPostData.body,
+                    srvID = "MngBenf",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
             remoteDataSource.baseRequest(postData)
         }
     }
