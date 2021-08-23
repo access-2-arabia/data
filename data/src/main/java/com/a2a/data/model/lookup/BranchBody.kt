@@ -1,10 +1,10 @@
 package com.a2a.data.model.lookup
 
 
-import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.a2a.data.utility.isArabicLanguage
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BranchBody(
@@ -41,10 +41,11 @@ data class BranchBody(
         var phoneNo: String = "",
         @SerializedName("PlaceID")
         var placeID: String = ""
-    ) : Parcelable{
+    ) : Parcelable {
         fun getTitle(language: String) = if (language.isArabicLanguage()) aTitle else eTitle
 
-        fun getLocation(language: String) = if (language.isArabicLanguage()) aLocation else eLocation
+        fun getLocation(language: String) =
+            if (language.isArabicLanguage()) aLocation else eLocation
 
         fun getDesc(language: String) = if (language.isArabicLanguage()) aDesc else eDesc
     }

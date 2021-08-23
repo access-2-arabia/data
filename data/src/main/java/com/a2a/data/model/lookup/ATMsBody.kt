@@ -1,9 +1,10 @@
 package com.a2a.data.model.lookup
 
 
+import android.os.Parcelable
+import com.a2a.data.utility.isArabicLanguage
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import android.os.Parcelable
 
 @Parcelize
 data class ATMsBody(
@@ -26,5 +27,9 @@ data class ATMsBody(
         var latitude: String = "",
         @SerializedName("Longitude")
         var longitude: String = ""
-    ) : Parcelable
+    ) : Parcelable {
+        fun getName(language: String) = if (language.isArabicLanguage()) aName else eName
+
+        fun getValue(language: String) = if (language.isArabicLanguage()) aValue else eValue
+    }
 }
