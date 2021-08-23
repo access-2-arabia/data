@@ -55,10 +55,11 @@ class AppointmentRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> getBranches(countryId: String, regionId: String): Resource<T> {
-        val body = RegionPostData()
+    suspend fun <T> getBranches(countryId: String, regionId: String , cityId: String): Resource<T> {
+        val body = BranchPostData()
         body.countryID = countryId
         body.regionID = regionId
+        body.cityID = cityId
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
