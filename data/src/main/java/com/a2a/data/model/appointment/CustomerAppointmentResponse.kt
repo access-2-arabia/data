@@ -78,7 +78,7 @@ data class CustomerAppointmentResponse(
             @SerializedName("CustType")
             var custType: Int = 0,
             @SerializedName("Details")
-            var details: List<Any> = listOf(),
+            var details: List<AppointmentDetails> = ArrayList(),
             @SerializedName("ErrorADesc")
             var errorADesc: String = "",
             @SerializedName("ErrorCode")
