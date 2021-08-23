@@ -3,7 +3,7 @@ package com.a2a.data.model.appointment
 
 import com.google.gson.annotations.SerializedName
 
-data class CustomerAppointmentResponse(
+data class AppointmentResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -78,7 +78,7 @@ data class CustomerAppointmentResponse(
             @SerializedName("CustType")
             var custType: Int = 0,
             @SerializedName("Details")
-            var details: List<AppointmentDetails> = ArrayList(),
+            var details: List<Detail> = listOf(),
             @SerializedName("ErrorADesc")
             var errorADesc: String = "",
             @SerializedName("ErrorCode")
@@ -91,7 +91,40 @@ data class CustomerAppointmentResponse(
             var mobileNumber: String = "",
             @SerializedName("RepID")
             var repID: Int = 0
-        )
+        ) {
+            data class Detail(
+                @SerializedName("ActivationCode")
+                var activationCode: String = "",
+                @SerializedName("AppDate")
+                var appDate: String = "",
+                @SerializedName("AppTime")
+                var appTime: String = "",
+                @SerializedName("AppointmentTimeIndex")
+                var appointmentTimeIndex: String = "",
+                @SerializedName("BankName")
+                var bankName: String = "",
+                @SerializedName("BranchID")
+                var branchID: String = "",
+                @SerializedName("BranchName")
+                var branchName: String = "",
+                @SerializedName("Language")
+                var language: String = "",
+                @SerializedName("NoOfCustomers")
+                var noOfCustomers: String = "",
+                @SerializedName("PreChar")
+                var preChar: String = "",
+                @SerializedName("ServiceID")
+                var serviceID: String = "",
+                @SerializedName("ServiceName")
+                var serviceName: String = "",
+                @SerializedName("TicketID")
+                var ticketID: String = "",
+                @SerializedName("TicketImage")
+                var ticketImage: String = "",
+                @SerializedName("TicketNumber")
+                var ticketNumber: String = ""
+            )
+        }
 
         data class Footer(
             @SerializedName("Signature")
