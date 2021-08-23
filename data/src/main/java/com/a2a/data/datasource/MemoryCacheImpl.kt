@@ -1,34 +1,26 @@
 package com.a2a.data.datasource
 
 import com.a2a.data.model.authentication.CustProfile
+import com.a2a.data.model.authentication.login.LoginBody
 import com.a2a.network.model.BaseResponse
 
 object MemoryCacheImpl : MemoryCache {
-    val memoryDataSource: MemoryDataSource = MemoryDataSource()
+    private val memoryDataSource: MemoryDataSource = MemoryDataSource()
 
-    override fun setCustProfile(custProfile: CustProfile?) {
-        memoryDataSource.cacheInMemory(custProfile)
-    }
+    override fun setCustProfile(custProfile: CustProfile?) = memoryDataSource.cacheInMemory(custProfile)
 
-    override fun getCustProfile(): CustProfile? {
-        return memoryDataSource.getCustProfile()
-    }
+    override fun setLoginBody(logs: LoginBody?) = memoryDataSource.cacheLoginBody(logs)
+
+    override fun setOtpResponse(response: BaseResponse) = memoryDataSource.cacheResponse(response)
+
+    override fun setOtpRequest(request: Any) = memoryDataSource.cacheRequest(request)
 
 
-    override fun setOtpRequest(request: Any) {
-        return memoryDataSource.cacheRequest(request)
-    }
+    override fun getCustProfile(): CustProfile? = memoryDataSource.getCustProfile()
 
-    override fun getOtpRequest(): Any {
-        return memoryDataSource.getOtpRequest()
+    override fun getLoginBody(): LoginBody? = memoryDataSource.getLoginBody()
 
-    }
+    override fun getOtpRequest(): Any = memoryDataSource.getOtpRequest()
 
-    override fun setOtpResponse(response: BaseResponse) {
-        memoryDataSource.cacheResponse(response)
-    }
-
-    override fun getOtpResponse(): BaseResponse {
-        return memoryDataSource.getOtpResponse()
-    }
+    override fun getOtpResponse(): BaseResponse = memoryDataSource.getOtpResponse()
 }
