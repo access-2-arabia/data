@@ -15,16 +15,25 @@ class RegistrationRepositry @Inject constructor(
     suspend fun <T> doCustomerRegistration(registration: RegistrationPostData): Resource<T>? {
         val registrationPostData = RegistrationPostData()
         registrationPostData.apply {
-            body.custProfile.mobileNumber = registration.body.mobileNumber
-            body.regionCode = registration.body.regionCode
-            body.pAN = registration.body.pAN
-            body.pIN=registration.body.pIN
-            if  (registration.body.isSignature){
-                body.isSignature=registration.body.isSignature
+            if (registration.body.isSignature) {
+                body.isSignature = registration.body.isSignature
+                body.stepNumber = registration.body.stepNumber
+                body.custProfile.custID = registration.body.custID
+            } else {
+                body.custProfile.mobileNumber = registration.body.mobileNumber
+                body.regionCode = registration.body.regionCode
+                body.pAN = registration.body.pAN
+                body.pIN = registration.body.pIN
             }
         }
         val postData =
-            BaseRequestModel(A2ARequest(registrationPostData.body, srvID = "SelfReg", serviceIDValue = 0))
+            BaseRequestModel(
+                A2ARequest(
+                    registrationPostData.body,
+                    srvID = "SelfReg",
+                    serviceIDValue = 0
+                )
+            )
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }

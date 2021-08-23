@@ -19,6 +19,11 @@ data class RegistrationPostData(
         @SerializedName("IsSignature")
         var isSignature: Boolean =false,
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile()
+        var custProfile: CustProfile = CustProfile(),
+        @SerializedName("StepNumber")
+        var stepNumber: String = "",
+        @SerializedName("CustID")
+        var custID: String = "",
+
     )
 }
