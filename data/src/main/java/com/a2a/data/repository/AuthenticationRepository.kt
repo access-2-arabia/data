@@ -19,10 +19,10 @@ class AuthenticationRepository @Inject constructor(
         password: String,
         customerId: String
     ): Resource<T> {
-        val postData = LoginPostData()
+        val postData = BaseRequest<LoginPostData>()
         postData.a2ARequest.apply {
-            body.custProfile.pWD = password
-            body.custProfile.custMnemonic = customerId
+            body?.custProfile?.pWD = password
+            body?.custProfile?.custMnemonic = customerId
             header.srvID = SrvID.LOGIN
         }
         return safeApiCall(postData) { remoteDataSource.baseRequest(postData) }
