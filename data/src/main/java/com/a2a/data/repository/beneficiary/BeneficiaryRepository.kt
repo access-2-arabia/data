@@ -5,6 +5,7 @@ import com.a2a.data.model.beneficiary.GetManageBeneficiariesPostData
 import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryOtherBankPostData
 import com.a2a.data.model.beneficiary.addupdatebeneficiarylocalbank.AddUpdateBeneficiaryOtherBankPostData.Body.Beneficiary
 import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinBankPostData
+import com.a2a.data.model.beneficiary.addupdatebeneficiarywu.AddUpdateBeneficiaryWUPostData
 import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -87,7 +88,6 @@ class BeneficiaryRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 
     suspend fun <T> deleteBeneficiary(
         deleteBeneficiaryPostData: DeleteBeneficary
