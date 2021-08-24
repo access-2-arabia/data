@@ -9,7 +9,7 @@ data class A2AResponse<T : Parcelable>(
     @SerializedName("Body")
     var body: T? = null,
     @SerializedName("Footer")
-    var footer: Footer = Footer(),
+    var footer: FooterResponse = FooterResponse(),
     @SerializedName("Header")
     var header: HeaderResponse = HeaderResponse()
 ) : Parcelable

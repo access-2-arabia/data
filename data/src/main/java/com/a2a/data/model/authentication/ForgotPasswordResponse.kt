@@ -2,7 +2,7 @@ package com.a2a.data.model.authentication
 
 
 import com.a2a.data.model.common.ErrorMsg
-import com.a2a.data.model.common.Footer
+import com.a2a.data.model.common.FooterResponse
 import com.a2a.data.model.common.HeaderResponse
 import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
@@ -17,7 +17,7 @@ data class ForgotPasswordResponse(
         @SerializedName("Body")
         var body: Body = Body(),
         @SerializedName("Footer")
-        var footer: Footer = Footer(),
+        var footer: FooterResponse = FooterResponse(),
         @SerializedName("Header")
         var header: HeaderResponse = HeaderResponse()
     ) {

@@ -3,7 +3,7 @@ package com.a2a.data.model.mail
 
 import android.os.Parcelable
 import com.a2a.data.model.common.ErrorMsg
-import com.a2a.data.model.common.Footer
+import com.a2a.data.model.common.FooterResponse
 import com.a2a.data.model.common.HeaderResponse
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
@@ -20,7 +20,7 @@ data class MailResponse(
         @SerializedName("Body")
         var body: MailBody = MailBody(),
         @SerializedName("Footer")
-        var footer: Footer = Footer(),
+        var footer: FooterResponse = FooterResponse(),
         @SerializedName("Header")
         var header: HeaderResponse = HeaderResponse()
     ) : Parcelable
