@@ -102,7 +102,8 @@ data class AvailableTimeResponse(
                 @SerializedName("NoConcurrentTicketOnApp")
                 var noConcurrentTicketOnApp: String = "",
                 @SerializedName("TotalConcurrentTicketOnApp")
-                var totalConcurrentTicketOnApp: String = ""
+                var totalConcurrentTicketOnApp: String = "",
+                var isSelected :Boolean = false
             )
         }
 
