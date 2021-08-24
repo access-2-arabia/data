@@ -25,6 +25,7 @@ class AppointmentRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
     suspend fun <T> getCities(countryId: String, cityId: String): Resource<T> {
         val body = CityPostData()
         body.countryID = countryId
@@ -55,7 +56,7 @@ class AppointmentRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> getBranches(countryId: String, regionId: String , cityId: String): Resource<T> {
+    suspend fun <T> getBranches(countryId: String, regionId: String, cityId: String): Resource<T> {
         val body = BranchPostData()
         body.countryID = countryId
         body.regionID = regionId
@@ -103,7 +104,6 @@ class AppointmentRepository @Inject constructor(
     }
 
     suspend fun <T> reserveAppointment(reserveAppointment: ReserveAppointment): Resource<T> {
-
         val postData = BaseRequestModel(
             A2ARequest(
                 reserveAppointment,
@@ -146,13 +146,34 @@ class AppointmentRepository @Inject constructor(
     }
 
     suspend fun <T> getCancelAppointment(appointmentID: String): Resource<T> {
-
         val body = CancelAppointmentPostData()
         body.appointmentID = appointmentID
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
                 srvID = "QCancelApp"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getAvailableTime(
+        branchId: String,
+        serviceId: String,
+        currentDay: String
+    ): Resource<T> {
+        val body = AvailableTimePostData()
+        body.apply {
+            branchID = branchId
+            serviceID = serviceId
+            this.currentDay = currentDay
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "QATimesBh"
             )
         )
         return safeApiCall(postData) {
