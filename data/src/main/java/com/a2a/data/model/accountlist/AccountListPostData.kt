@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 
 data class AccountListPostData(
-    @SerializedName("BankRef")
-    var bankRef: String = "",
     @SerializedName("BranchCode")
     var branchCode: String = "",
     @SerializedName("CustProfile")
