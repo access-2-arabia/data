@@ -1,11 +1,15 @@
 package com.a2a.data.model.card.creditcard.cardpayment
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class CardPaymentPostData(
     @SerializedName("Body")
     var body: Body = Body()
-) {
+):Parcelable {
+    @Parcelize
     data class Body(
         @SerializedName("Accounts")
         var accounts: Accounts = Accounts(),
@@ -17,7 +21,8 @@ data class CardPaymentPostData(
         var TRXRefNo: String = "",
         @SerializedName("StepNumber")
         var StepNumber: String = ""
-    ) {
+    ):Parcelable {
+        @Parcelize
         data class Accounts(
             @SerializedName("AccountNumber")
             var accountNumber: String = "",
@@ -25,7 +30,8 @@ data class CardPaymentPostData(
             var amount: String = "",
             @SerializedName("Currency")
             var currency: String = ""
-        )
+        ):Parcelable
+        @Parcelize
         data class Cards(
             @SerializedName("AccountNumber")
             var accountNumber: String = "",
@@ -37,6 +43,6 @@ data class CardPaymentPostData(
             var currencyFrom: String = "",
             @SerializedName("CurrencyTo")
             var currencyTo: String = ""
-        )
+        ):Parcelable
     }
 }
