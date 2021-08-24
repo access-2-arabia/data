@@ -5,6 +5,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.card.creditcard.CreditCardPostData
 import com.a2a.data.model.card.creditcard.activedeactivecreditcard.ActiveDeactivePostData
 import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentPostData
+import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentValidationPostData
 import com.a2a.data.model.card.creditcard.changemobilenumber.ChangeMobileNumberCreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
@@ -180,6 +181,36 @@ class CardsRepository @Inject constructor(
     }
 
 
+    suspend fun <T> getCardPaymentValidation(
+        cardPayment: CardPaymentValidationPostData
+    ): Resource<T>? {
+        val cardPaymentPostData = CardPaymentValidationPostData()
+        cardPaymentPostData.apply {
+            body.cards.currencyFrom = cardPayment.body.cards.currencyFrom
+            body.cards.currencyTo = cardPayment.body.cards.currencyTo
+            body.cards.cardNumber = cardPayment.body.cards.cardNumber
+            body.cards.amount = cardPayment.body.cards.amount
+            body.cards.accountNumber = cardPayment.body.cards.accountNumber
+            body.accounts.accountNumber = cardPayment.body.accounts.accountNumber
+            body.accounts.amount = cardPayment.body.accounts.amount
+            body.accounts.currency = cardPayment.body.accounts.currency
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.accounts.currency = cardPayment.body.accounts.currency
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    cardPaymentPostData.body,
+                    srvID = "CardPaymnt",
+                    serviceIDValue = 3247
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
     suspend fun <T> getCardPayment(
         cardPayment: CardPaymentPostData
     ): Resource<T>? {
@@ -194,6 +225,8 @@ class CardsRepository @Inject constructor(
             body.accounts.amount = cardPayment.body.accounts.amount
             body.accounts.currency = cardPayment.body.accounts.currency
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.StepNumber = "4"
+            body.TRXRefNo = cardPayment.body.TRXRefNo
         }
         val postData =
             BaseRequestModel(
