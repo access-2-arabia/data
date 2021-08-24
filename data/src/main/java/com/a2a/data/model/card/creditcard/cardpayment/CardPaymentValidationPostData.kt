@@ -2,7 +2,7 @@ package com.a2a.data.model.card.creditcard.cardpayment
 
 import com.google.gson.annotations.SerializedName
 
-data class CardPaymentPostData(
+data class CardPaymentValidationPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {
@@ -12,11 +12,7 @@ data class CardPaymentPostData(
         @SerializedName("BranchCode")
         var branchCode: String = "",
         @SerializedName("Cards")
-        var cards: Cards = Cards(),
-        @SerializedName("TRXRefNo")
-        var TRXRefNo: String = "",
-        @SerializedName("StepNumber")
-        var StepNumber: String = ""
+        var cards: Cards = Cards()
     ) {
         data class Accounts(
             @SerializedName("AccountNumber")
@@ -26,6 +22,7 @@ data class CardPaymentPostData(
             @SerializedName("Currency")
             var currency: String = ""
         )
+
         data class Cards(
             @SerializedName("AccountNumber")
             var accountNumber: String = "",
