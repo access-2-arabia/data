@@ -98,7 +98,7 @@ class CardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     enableDisableInternetPostData.body,
-                    srvID = "CreditCard",
+                    srvID = "IntOrderUr",
                     serviceIDValue = 0
                 )
             )
