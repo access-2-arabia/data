@@ -78,14 +78,10 @@ data class ValidationWithinCabResponse(
             val fromCurrency: String = "",
             @SerializedName("ToCurrency")
             val toCurrency: String = "",
-            @SerializedName("AmountTo")
+            @SerializedName("AmtTo")
             val amount: Double? = 0.0,
-            @SerializedName("LocalAmtdebit")
-            val totalAmount: Double? = 0.0,
             @SerializedName("ExchangeRate")
-            val rate: Double? = 0.0,
-            @SerializedName("Rate")
-            val deprecatedRate: Double? = 0.0,
+            val exchangeRate: Double? = 0.0,
             @SerializedName("Commission")
             val commission: String = "",
         )
