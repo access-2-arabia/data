@@ -157,7 +157,7 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val localBankValidationPostData = LocalBankValidationPostData()
         localBankValidationPostData.apply {
-            body.stepNumber = "2"
+            body.stepNumber = "1"
             body.accountNumberFrom = localBankModel.accountNumberFromValue
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
