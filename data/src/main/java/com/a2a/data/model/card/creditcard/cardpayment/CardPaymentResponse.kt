@@ -165,6 +165,7 @@ data class CardPaymentResponse(
             var totalDr: Double = 0.0,
             @SerializedName("TreasuryRate")
             var treasuryRate: Double = 0.0
+
         ) : Parcelable
 
         @Parcelize
