@@ -90,16 +90,15 @@ class CardsRepository @Inject constructor(
     ): Resource<T>? {
         val enableDisableInternetPostData = EnableDisableInternetPostData()
         enableDisableInternetPostData.apply {
-            body.stepNumber = "3"
             body.cardNumber = activeDeactiveCard.body.cardNumber
-            body.regionCode = "02"
             body.action = activeDeactiveCard.body.action
+            body.amount = activeDeactiveCard.body.amount
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     enableDisableInternetPostData.body,
-                    srvID = "CreditCard",
+                    srvID = "IntOrderUr",
                     serviceIDValue = 0
                 )
             )

@@ -6,15 +6,12 @@ data class EnableDisableInternetPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) {
-
     data class Body(
         @SerializedName("Action")
         var action: String = "",
         @SerializedName("CardNumber")
         var cardNumber: String = "",
-        @SerializedName("RegionCode")
-        var regionCode: String = "",
-        @SerializedName("StepNumber")
-        var stepNumber: String = ""
+        @SerializedName("Amount")
+        var amount: Double = 0.0
     )
 }
