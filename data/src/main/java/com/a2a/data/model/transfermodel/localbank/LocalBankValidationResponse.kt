@@ -71,28 +71,25 @@ data class LocalBankValidationResponse(
         var header: Header = Header(),
     ) {
         data class Body(
-            @SerializedName("Amt")
-            var amt: Double = 0.0,
-            @SerializedName("AmtTo")
-            var amtTo: Double = 0.0,
-            @SerializedName("Charge")
-            var charge: Double = 0.0,
-            @SerializedName("Commission")
-            var commission: String = "",
+            @SerializedName("AccountNumberFrom")
+            val fromAccount: String = "",
+            @SerializedName("AccountNumber")
+            val toAccount: String = "",
+            @SerializedName("FromCurrency")
+            val fromCurrency: String = "",
+            @SerializedName("ToCurrency")
+            val toCurrency: String = "",
+            @SerializedName("AmountTo")
+            val amount: Double? = 0.0,
+            @SerializedName("LocalAmtdebit")
+            val totalAmount: Double? = 0.0,
             @SerializedName("ExchangeRate")
-            var exchangeRate: Double = 0.0,
-            @SerializedName("LocalAmtCredit")
-            var localAmtCredit: Double = 0.0,
-            @SerializedName("LocalAmtDebit")
-            var localAmtDebit: Double = 0.0,
-            @SerializedName("ServiceConfiguration")
-            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration(),
-        ) {
-            data class ServiceConfiguration(
-                @SerializedName("PWDFlag")
-                var pWDFlag: Int = 0,
-            )
-        }
+            val rate: Double? = 0.0,
+            @SerializedName("Rate")
+            val deprecatedRate: Double? = 0.0,
+            @SerializedName("Commission")
+            val commission: String = "",
+        )
 
         data class Footer(
             @SerializedName("Signature")

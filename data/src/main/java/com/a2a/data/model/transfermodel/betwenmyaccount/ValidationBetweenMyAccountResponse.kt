@@ -70,20 +70,24 @@ data class ValidationBetweenMyAccountResponse(
         var header: Header = Header()
     ) {
         data class Body(
-            @SerializedName("AmtCr")
-            var amtCr: String = "",
-            @SerializedName("AmtDb")
-            var amtDb: String = "",
-            @SerializedName("CalculatedAmount")
-            var calculatedAmount: String = "",
-            @SerializedName("ComissionAmt")
-            var comissionAmt: String = "",
-            @SerializedName("LocalAmtCr")
-            var localAmtCr: String = "",
-            @SerializedName("LocalChargeAmt")
-            var localChargeAmt: Double = 0.0,
-            @SerializedName("TreasuryRate")
-            var treasuryRate: Double = 0.0
+            @SerializedName("AccountNumberFrom")
+            val fromAccount: String = "",
+            @SerializedName("AccountNumber")
+            val toAccount: String = "",
+            @SerializedName("FromCurrency")
+            val fromCurrency: String = "",
+            @SerializedName("ToCurrency")
+            val toCurrency: String = "",
+            @SerializedName("AmountTo")
+            val amount: Double? = 0.0,
+            @SerializedName("LocalAmtdebit")
+            val totalAmount: Double? = 0.0,
+            @SerializedName("ExchangeRate")
+            val rate: Double? = 0.0,
+            @SerializedName("Rate")
+            val deprecatedRate: Double? = 0.0,
+            @SerializedName("Commission")
+            val commission: String = "",
         )
 
         data class Footer(
