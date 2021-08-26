@@ -56,7 +56,9 @@ data class Body(
     @SerializedName("TransRsn")
     var transRsn: String = "",
     @SerializedName("CustProfile")
-    var custProfile: CustProfile = CustProfile()
+    var custProfile: CustProfile = CustProfile(),
+    @SerializedName("ChargesFor")
+    var chargesFor: String = ""
 )
 
 

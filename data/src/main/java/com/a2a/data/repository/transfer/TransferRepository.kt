@@ -177,6 +177,7 @@ class TransferRepository @Inject constructor(
             body.narrative2 = "RTGS Validation"
             body.narrative3 = "RTGS Validation"
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.chargesFor = localBankModel.chargesForType
         }
         val postData =
             BaseRequestModel(
@@ -196,7 +197,7 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val localBankPostData = LocalBankPostData()
         localBankPostData.apply {
-            body.stepNumber = "3"
+            body.stepNumber = "2"
             body.accountNumberFrom = localBankModel.accountNumberFromValue
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
