@@ -110,7 +110,6 @@ class DebitCardsRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> getActiveDeactive(
         activeDeactiveCard: ActiveDeactivePostData
     ): Resource<T>? {
@@ -158,7 +157,6 @@ class DebitCardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 
     suspend fun <T> getCardPaymentValidation(
         cardPayment: CardPaymentValidationPostData
