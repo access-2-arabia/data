@@ -17,29 +17,9 @@ import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import javax.inject.Inject
 
-class CardsRepository @Inject constructor(
+class DebitCardsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
-
-    suspend fun <T> getCreditCard(
-    ): Resource<T>? {
-        val creditCardPostData = CreditCardPostData()
-        creditCardPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
-        }
-        val postData =
-            BaseRequestModel(
-                A2ARequest(
-                    creditCardPostData.body,
-                    srvID = "CardList",
-                    serviceIDValue = 0
-                )
-            )
-        return safeApiCall(postData)
-        {
-            remoteDataSource.baseRequest(postData)
-        }
-    }
 
     suspend fun <T> getDebitPrepaidCard(
     ): Resource<T>? {
@@ -120,7 +100,7 @@ class CardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     stopCardPostData.body,
-                    srvID = "StopCredit",
+                    srvID = "CardSStop",
                     serviceIDValue = 0
                 )
             )
@@ -145,7 +125,7 @@ class CardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     activeDeactivePostData.body,
-                    srvID = "CreditCard",
+                    srvID = "CardSEDInt",
                     serviceIDValue = 0
                 )
             )
@@ -169,7 +149,7 @@ class CardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     changeMobileNumberCreditCardPostData.body,
-                    srvID = "CreditCard",
+                    srvID = "CardSChMo",
                     serviceIDValue = 0
                 )
             )
