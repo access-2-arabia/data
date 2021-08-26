@@ -10,6 +10,7 @@ import com.a2a.data.model.card.creditcard.changemobilenumber.ChangeMobileNumberC
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
+import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -234,6 +235,31 @@ class CreditCardsRepository @Inject constructor(
                     cardPaymentPostData.body,
                     srvID = "CardPaymnt",
                     serviceIDValue = 3247
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getTransactionHistory(
+        TransactionHistory: TransactionHistoryPostData
+    ): Resource<T>? {
+        val transactionHistoryPostData = TransactionHistoryPostData()
+        transactionHistoryPostData.apply {
+            body.cardNumber = TransactionHistory.body.cardNumber
+            body.dateFrom = TransactionHistory.body.dateFrom
+            body.dateTo = TransactionHistory.body.dateTo
+            body.regionCode = TransactionHistory.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    transactionHistoryPostData.body,
+                    srvID = "CardTrHis",
+                    serviceIDValue = 0
                 )
             )
         return safeApiCall(postData)
