@@ -12,6 +12,7 @@ import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccou
 import com.a2a.data.model.transfermodel.localbank.LocalBankModel
 import com.a2a.data.model.transfermodel.localbank.LocalBankPostData
 import com.a2a.data.model.transfermodel.localbank.LocalBankValidationPostData
+import com.a2a.data.model.transfermodel.localbank.ValidationPostData
 import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
 import com.a2a.data.model.transfermodel.withincab.WithinCabPostData
 import com.a2a.data.model.transfermodel.withincab.WithinCabTransferModel
@@ -25,6 +26,7 @@ import javax.inject.Inject
 class TransferRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
 ) : BaseRepository() {
+
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
@@ -152,6 +154,9 @@ class TransferRepository @Inject constructor(
         }
     }
 
+
+
+
     suspend fun <T> getValidationLocalBank(
         localBankModel: LocalBankModel,
     ): Resource<T>? {
@@ -231,6 +236,42 @@ class TransferRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     localBankPostData.body,
+                    srvID = localBankModel.srvID,
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> validateLocalTransfer(
+        localBankModel: LocalBankModel,
+    ): Resource<T>? {
+        val localBankPostData = ValidationPostData()
+        localBankPostData.apply {
+            stepNumber = "1"
+            accountNumberFrom = localBankModel.accountNumberFromValue
+            accountNumberTo = localBankModel.accountNumberToValue
+            currencyCodeFrom = localBankModel.currFrom
+            amount = localBankModel.amountValue
+            branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            benAccIBAN = localBankModel.benefAccountIban
+            benName = localBankModel.nameModel.benefName
+            cCurrency = localBankModel.currTo
+            transRsn = localBankModel.transReasonCode
+            bFDType = localBankModel.bFDType
+            aFName = localBankModel.nameModel.firstName
+            aSName = localBankModel.nameModel.secondName
+            aTName = localBankModel.nameModel.thirdName
+            aLName = localBankModel.nameModel.lastName
+            chargesFor = localBankModel.chargesForType
+            benBank = localBankModel.bankName
+         }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    localBankPostData,
                     srvID = localBankModel.srvID,
                     serviceIDValue = 0
                 )
