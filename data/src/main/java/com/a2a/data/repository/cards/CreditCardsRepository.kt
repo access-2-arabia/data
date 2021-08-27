@@ -226,8 +226,7 @@ class CreditCardsRepository @Inject constructor(
             body.accounts.amount = cardPayment.body.accounts.amount
             body.accounts.currency = cardPayment.body.accounts.currency
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-            body.StepNumber = "4"
-            body.TRXRefNo = cardPayment.body.TRXRefNo
+            body.StepNumber = "2"
         }
         val postData =
             BaseRequestModel(

@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class CardPaymentPostData(
     @SerializedName("Body")
     var body: Body = Body()
-):Parcelable {
+) : Parcelable {
     @Parcelize
     data class Body(
         @SerializedName("Accounts")
@@ -17,11 +17,9 @@ data class CardPaymentPostData(
         var branchCode: String = "",
         @SerializedName("Cards")
         var cards: Cards = Cards(),
-        @SerializedName("TRXRefNo")
-        var TRXRefNo: String = "",
         @SerializedName("StepNumber")
         var StepNumber: String = ""
-    ):Parcelable {
+    ) : Parcelable {
         @Parcelize
         data class Accounts(
             @SerializedName("AccountNumber")
@@ -30,7 +28,8 @@ data class CardPaymentPostData(
             var amount: String = "",
             @SerializedName("Currency")
             var currency: String = ""
-        ):Parcelable
+        ) : Parcelable
+
         @Parcelize
         data class Cards(
             @SerializedName("AccountNumber")
@@ -43,6 +42,6 @@ data class CardPaymentPostData(
             var currencyFrom: String = "",
             @SerializedName("CurrencyTo")
             var currencyTo: String = ""
-        ):Parcelable
+        ) : Parcelable
     }
 }
