@@ -91,6 +91,7 @@ class CilQTransferRepository @Inject constructor(
 
         val requestMoneyPostData = CliQRequestMoneyPostData()
         requestMoneyPostData.apply {
+            custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
             amt = amount
             cdtrAcct = selectedAccount.accountNumber
             this.amount = amount
