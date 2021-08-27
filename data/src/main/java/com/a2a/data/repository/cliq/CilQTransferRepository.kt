@@ -10,6 +10,7 @@ import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import javax.inject.Inject
 
 class CilQTransferRepository @Inject constructor(
@@ -109,7 +110,9 @@ class CilQTransferRepository @Inject constructor(
             senderPstlAdr = MemoryCacheImpl.getCustProfile()?.address1 ?: ""
             dbtrAcct = ibanNumber
             this.stepNumber = stepNumber
+            custProfile = MemoryCacheImpl.getCustProfile()?: CustProfile()
         }
+
         val postData = BaseRequestModel(
             A2ARequest(
                 requestMoneyPostData,
