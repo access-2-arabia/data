@@ -12,6 +12,7 @@ import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPos
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
+import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidValidationPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
@@ -160,27 +161,24 @@ class DebitCardsRepository @Inject constructor(
     }
 
     suspend fun <T> getCardPaymentValidation(
-        cardPayment: CardPaymentValidationPostData
+        cardPayment: ChargePrepaidValidationPostData
     ): Resource<T>? {
-        val cardPaymentPostData = CardPaymentValidationPostData()
+        val cardPaymentPostData = ChargePrepaidValidationPostData()
         cardPaymentPostData.apply {
-            body.cards.currencyFrom = cardPayment.body.cards.currencyFrom
-            body.cards.currencyTo = cardPayment.body.cards.currencyTo
-            body.cards.cardNumber = cardPayment.body.cards.cardNumber
-            body.cards.amount = cardPayment.body.cards.amount
-            body.cards.accountNumber = cardPayment.body.cards.accountNumber
-            body.accounts.accountNumber = cardPayment.body.accounts.accountNumber
-            body.accounts.amount = cardPayment.body.accounts.amount
-            body.accounts.currency = cardPayment.body.accounts.currency
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-            body.accounts.currency = cardPayment.body.accounts.currency
+            body.stepNumber = "2"
+            body.branchCode= MemoryCacheImpl.getCustProfile()!!.branch
+            body.currencyCodeFrom =  body.currencyCodeFrom
+            body.currencyCodeTo = body.currencyCodeTo
+            body.amount =  body.amount
+            body.accountNumberTo = body.accountNumberTo
+            body.accountNumberFrom=  body.accountNumberFrom
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     cardPaymentPostData.body,
-                    srvID = "CardPaymnt",
-                    serviceIDValue = 3247
+                    srvID = "CardPay",
+                    serviceIDValue = 0
                 )
             )
 
@@ -205,7 +203,6 @@ class DebitCardsRepository @Inject constructor(
             body.accounts.currency = cardPayment.body.accounts.currency
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             body.StepNumber = "4"
-            body.TRXRefNo = cardPayment.body.TRXRefNo
         }
         val postData =
             BaseRequestModel(
