@@ -1,5 +1,7 @@
 package com.a2a.data.model.card.debit.chargeprepaid
+
 import android.os.Parcelable
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -13,8 +15,6 @@ data class ChargePrepaidPostData(
     data class Body(
         @SerializedName("Accounts")
         var accounts: Accounts = Accounts(),
-        @SerializedName("BankRef")
-        var bankRef: String = "",
         @SerializedName("BranchCode")
         var branchCode: String = "",
         @SerializedName("Cards")
@@ -22,9 +22,7 @@ data class ChargePrepaidPostData(
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("StepNumber")
-        var stepNumber: Int = 0,
-        @SerializedName("TRXRefNo")
-        var tRXRefNo: String = ""
+        var stepNumber: Int = 0
     ) : Parcelable {
         @Parcelize
         data class Accounts(
@@ -44,18 +42,6 @@ data class ChargePrepaidPostData(
             var cardNumber: String = "",
             @SerializedName("Program")
             var program: String = ""
-        ) : Parcelable
-
-        @Parcelize
-        data class CustProfile(
-            @SerializedName("CID")
-            var cID: String = "",
-            @SerializedName("CustID")
-            var custID: String = "",
-            @SerializedName("CustMnemonic")
-            var custMnemonic: String = "",
-            @SerializedName("CustType")
-            var custType: Int = 0
         ) : Parcelable
     }
 }

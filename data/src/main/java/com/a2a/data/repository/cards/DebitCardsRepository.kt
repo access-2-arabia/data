@@ -12,6 +12,7 @@ import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPos
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
+import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidValidationPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -165,13 +166,13 @@ class DebitCardsRepository @Inject constructor(
     ): Resource<T>? {
         val cardPaymentPostData = ChargePrepaidValidationPostData()
         cardPaymentPostData.apply {
-            body.stepNumber = "2"
-            body.branchCode= MemoryCacheImpl.getCustProfile()!!.branch
-            body.currencyCodeFrom =  body.currencyCodeFrom
-            body.currencyCodeTo = body.currencyCodeTo
-            body.amount =  body.amount
-            body.accountNumberTo = body.accountNumberTo
-            body.accountNumberFrom=  body.accountNumberFrom
+            body.stepNumber = cardPayment.body.stepNumber
+            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.currencyCodeFrom = cardPayment.body.currencyCodeFrom
+            body.currencyCodeTo = cardPayment.body.currencyCodeTo
+            body.amount = cardPayment.body.amount
+            body.accountNumberTo =cardPayment. body.accountNumberTo
+            body.accountNumberFrom =cardPayment. body.accountNumberFrom
         }
         val postData =
             BaseRequestModel(
@@ -181,7 +182,6 @@ class DebitCardsRepository @Inject constructor(
                     serviceIDValue = 0
                 )
             )
-
         return safeApiCall(postData)
         {
             remoteDataSource.baseRequest(postData)
@@ -189,27 +189,26 @@ class DebitCardsRepository @Inject constructor(
     }
 
     suspend fun <T> getCardPayment(
-        cardPayment: CardPaymentPostData
+        chargePrepaid: ChargePrepaidPostData
     ): Resource<T>? {
-        val cardPaymentPostData = CardPaymentPostData()
+        val cardPaymentPostData = ChargePrepaidPostData()
         cardPaymentPostData.apply {
-            body.cards.currencyFrom = cardPayment.body.cards.currencyFrom
-            body.cards.currencyTo = cardPayment.body.cards.currencyTo
-            body.cards.cardNumber = cardPayment.body.cards.cardNumber
-            body.cards.amount = cardPayment.body.cards.amount
-            body.cards.accountNumber = cardPayment.body.cards.accountNumber
-            body.accounts.AccountNumberFrom = cardPayment.body.accounts.AccountNumberFrom
-            body.accounts.amount = cardPayment.body.accounts.amount
-            body.accounts.currency = cardPayment.body.accounts.currency
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-            body.StepNumber = "4"
+            body.stepNumber=chargePrepaid.body.stepNumber
+            body.branchCode=chargePrepaid.body.branchCode
+            body.accounts.accountFrom=chargePrepaid.body.accounts.accountFrom
+            body.accounts.amount=chargePrepaid.body.accounts.amount
+            body.accounts.currencyCodeFrom=chargePrepaid.body.accounts.currencyCodeFrom
+            body.accounts.fees=chargePrepaid.body.accounts.fees
+            body.custProfile=MemoryCacheImpl.getCustProfile()!!
+            body.cards.program=chargePrepaid.body.cards.program
+            body.cards.cardNumber=chargePrepaid.body.cards.cardNumber
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     cardPaymentPostData.body,
                     srvID = "CardPay",
-                    serviceIDValue = 3247
+                    serviceIDValue = 0
                 )
             )
         return safeApiCall(postData)
