@@ -217,16 +217,15 @@ class CreditCardsRepository @Inject constructor(
     ): Resource<T>? {
         val cardPaymentPostData = CardPaymentPostData()
         cardPaymentPostData.apply {
-            body.cards.currencyFrom = cardPayment.body.cards.currencyFrom
-            body.cards.currencyTo = cardPayment.body.cards.currencyTo
-            body.cards.cardNumber = cardPayment.body.cards.cardNumber
             body.cards.amount = cardPayment.body.cards.amount
-            body.cards.accountNumber = cardPayment.body.cards.accountNumber
-            body.accounts.AccountNumberFrom = cardPayment.body.accounts.AccountNumberFrom
+            body.cards.cardNumber = cardPayment.body.cards.cardNumber
+            body.accounts.accountNumberFrom = cardPayment.body.accounts.accountNumberFrom
             body.accounts.amount = cardPayment.body.accounts.amount
             body.accounts.currency = cardPayment.body.accounts.currency
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
-            body.StepNumber = "2"
+            body.accounts.accountNumberTo = cardPayment.body.accounts.accountNumberTo
+            body.accounts.currencyFrom = cardPayment.body.accounts.currencyFrom
+            body.accounts.currencyTo = cardPayment.body.accounts.currencyTo
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
         val postData =
             BaseRequestModel(
@@ -241,7 +240,6 @@ class CreditCardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 
     suspend fun <T> getTransactionHistory(
         TransactionHistory: TransactionHistoryPostData
