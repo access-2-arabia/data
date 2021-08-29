@@ -22,8 +22,8 @@ data class CardPaymentPostData(
     ) : Parcelable {
         @Parcelize
         data class Accounts(
-            @SerializedName("AccountNumber")
-            var accountNumber: String = "",
+            @SerializedName("AccountNumberFrom")
+            var AccountNumberFrom: String = "",
             @SerializedName("Amount")
             var amount: String = "",
             @SerializedName("Currency")

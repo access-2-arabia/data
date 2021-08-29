@@ -18,8 +18,6 @@ data class ChargePrepaidValidationPostData(
         var accountNumberTo: String = "",
         @SerializedName("Amount")
         var amount: String = "",
-        @SerializedName("BankRef")
-        var bankRef: String = "",
         @SerializedName("BranchCode")
         var branchCode: String = "",
         @SerializedName("CurrencyCodeFrom")
