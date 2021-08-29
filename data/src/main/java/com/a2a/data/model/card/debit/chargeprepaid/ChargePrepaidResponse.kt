@@ -38,13 +38,13 @@ data class ChargePrepaidResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: Any? = null,
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: Any? = null,
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: Any? = null,
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: Any? = null,
+            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -56,7 +56,7 @@ data class ChargePrepaidResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: Any? = null,
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
@@ -230,7 +230,7 @@ data class ChargePrepaidResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: Any? = null,
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
