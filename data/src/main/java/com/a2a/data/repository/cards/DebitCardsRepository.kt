@@ -198,7 +198,7 @@ class DebitCardsRepository @Inject constructor(
             body.cards.cardNumber = cardPayment.body.cards.cardNumber
             body.cards.amount = cardPayment.body.cards.amount
             body.cards.accountNumber = cardPayment.body.cards.accountNumber
-            body.accounts.accountNumber = cardPayment.body.accounts.accountNumber
+            body.accounts.AccountNumberFrom = cardPayment.body.accounts.AccountNumberFrom
             body.accounts.amount = cardPayment.body.accounts.amount
             body.accounts.currency = cardPayment.body.accounts.currency
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
@@ -208,7 +208,7 @@ class DebitCardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     cardPaymentPostData.body,
-                    srvID = "CardPaymnt",
+                    srvID = "CardPay",
                     serviceIDValue = 3247
                 )
             )
