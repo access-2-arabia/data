@@ -14,6 +14,8 @@ import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryP
 import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidValidationPostData
+import com.a2a.data.model.card.debit.retrivecardpin.RetrieveCardPinPostData
+import com.a2a.data.model.card.debit.vertualprepaid.VirtualPrepaidPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
@@ -232,6 +234,47 @@ class DebitCardsRepository @Inject constructor(
                 A2ARequest(
                     transactionHistoryPostData.body,
                     srvID = "CardSTrHis",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getVirtualCard(
+    ): Resource<T>? {
+        val virtualCard = VirtualPrepaidPostData()
+        virtualCard.apply {
+            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    virtualCard.body,
+                    srvID = "ReqVirCard",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getCardPin(
+          retrieveCardPin : RetrieveCardPinPostData
+    ): Resource<T>? {
+        val retrieveCardPin = RetrieveCardPinPostData()
+        retrieveCardPin.apply {
+            body.cardNumber = retrieveCardPin.body.cardNumber
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    retrieveCardPin.body,
+                    srvID = "CardSPIN",
                     serviceIDValue = 0
                 )
             )
