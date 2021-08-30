@@ -145,7 +145,7 @@ class CliQRepository @Inject constructor(
             address = currentCustProfile.address2
             docValidDate = currentCustProfile.docValidDate ?: ""
             detCustomerType = currentCustProfile.custType.toString()
-            detPrivateNationality = currentCustProfile.detPrivateNationality ?:""
+            detPrivateNationality = currentCustProfile.nationalityID ?:""
         }
 
         body.apply {
