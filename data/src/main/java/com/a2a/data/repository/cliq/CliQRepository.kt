@@ -144,15 +144,15 @@ class CliQRepository @Inject constructor(
             addressSPR = currentCustProfile.address2
             address = currentCustProfile.address2
             docValidDate = currentCustProfile.docValidDate ?: ""
-            detCustomerType = currentCustProfile.docNo.toString()
+            detCustomerType = currentCustProfile.nationalityID
             detPrivateNationality = "JO"
-
         }
 
         body.apply {
 
             this.custReg = custReg
             custProfile = currentCustProfile
+            branchCode = currentCustProfile.branch
 
             account.apply {
                 acciban = iban

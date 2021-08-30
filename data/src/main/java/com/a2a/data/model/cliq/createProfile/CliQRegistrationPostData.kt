@@ -13,6 +13,8 @@ data class CliQRegistrationPostData(
     var custReg: CustReg = CustReg(),
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
+    @SerializedName("BranchCode")
+    var branchCode: String = ""
 ) {
     data class Account(
         @SerializedName("Acciban")
