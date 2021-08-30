@@ -69,12 +69,15 @@ data class CliQRequestMoneyPostData(
     @SerializedName("SenderName")
     var senderName: String = "",
     @SerializedName("SenderPstlAdr")
-    var senderPstlAdr: String = "", @SerializedName("Authenticate")
+    var senderPstlAdr: String = "",
+    @SerializedName("Authenticate")
     var authenticate: CliQRequestMoneyResponse.A2ARequest.Body.Authenticate = CliQRequestMoneyResponse.A2ARequest.Body.Authenticate(),
     @SerializedName("OTP")
     var oTP: CliQRequestMoneyResponse.A2ARequest.Body.OTP = CliQRequestMoneyResponse.A2ARequest.Body.OTP(),
     @SerializedName("ServiceConfiguration")
     var serviceConfiguration: CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration = CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration(),
     @SerializedName("StepNumber")
-    var stepNumber: Int = 0
+    var stepNumber: Int = 0,
+    @SerializedName("BenAccIBAN")
+    var benAccIBAN: String = "",
 )

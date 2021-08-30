@@ -119,5 +119,7 @@ data class CliQSendMoneyPostData(
     @SerializedName("OTP")
     var oTP: CliQRequestMoneyResponse.A2ARequest.Body.OTP = CliQRequestMoneyResponse.A2ARequest.Body.OTP(),
     @SerializedName("ServiceConfiguration")
-    var serviceConfiguration: CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration = CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration()
-)
+    var serviceConfiguration: CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration = CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration(),
+    @SerializedName("BenAccIBAN")
+    var benAccIBAN: String = "",
+    )
