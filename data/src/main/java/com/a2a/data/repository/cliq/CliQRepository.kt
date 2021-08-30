@@ -136,7 +136,7 @@ class CliQRepository @Inject constructor(
                 "FEMA"
 
             birthDate = currentCustProfile.birthDate
-            placeOfBirth = currentCustProfile.placeOfBirth ?: ""
+            placeOfBirth = "JO"
             mobile = currentCustProfile.mobileNumber
             email = currentCustProfile.eMail
             addressCity = currentCustProfile.addressCity ?: ""
@@ -144,8 +144,9 @@ class CliQRepository @Inject constructor(
             addressSPR = currentCustProfile.address2
             address = currentCustProfile.address2
             docValidDate = currentCustProfile.docValidDate ?: ""
-            detCustomerType = currentCustProfile.custType.toString()
-            detPrivateNationality = currentCustProfile.detPrivateNationality ?:""
+            detCustomerType = currentCustProfile.docNo.toString()
+            detPrivateNationality = "JO"
+
         }
 
         body.apply {
