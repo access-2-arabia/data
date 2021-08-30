@@ -68,6 +68,7 @@ class CilQTransferRepository @Inject constructor(
         cliQSendMoneyPostData.currCodeTo = "JOD"
         cliQSendMoneyPostData.QRAddLangTemp = ""
         cliQSendMoneyPostData.QRTaxId = ""
+        cliQSendMoneyPostData.benAccIBAN = ibanNumber
 
         cliQSendMoneyPostData.custProfile = MemoryCacheImpl.getCustProfile()!!
         val postData = BaseRequestModel(
