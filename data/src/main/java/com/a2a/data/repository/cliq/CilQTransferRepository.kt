@@ -111,6 +111,7 @@ class CilQTransferRepository @Inject constructor(
             dbtrAcct = ibanNumber
             this.stepNumber = stepNumber
             custProfile = MemoryCacheImpl.getCustProfile()?: CustProfile()
+            benAccIBAN = ibanNumber
         }
 
         val postData = BaseRequestModel(
