@@ -80,7 +80,7 @@ data class AccountListResponse(
         @Parcelize
         data class Body(
             @SerializedName("Accounts")
-            var accounts: List<Account> = listOf(),
+            var accounts: ArrayList<Account> = ArrayList(),
             @SerializedName("ServiceConfiguration")
             var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) : Parcelable {
