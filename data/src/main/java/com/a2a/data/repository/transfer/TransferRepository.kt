@@ -267,7 +267,7 @@ class TransferRepository @Inject constructor(
             aLName = localBankModel.nameModel.lastName
             chargesFor = localBankModel.chargesForType
             benBank = localBankModel.bankName
-         }
+          }
         val postData =
             BaseRequestModel(
                 A2ARequest(
