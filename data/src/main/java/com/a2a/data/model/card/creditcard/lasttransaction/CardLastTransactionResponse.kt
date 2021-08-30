@@ -135,7 +135,7 @@ data class CardLastTransactionResponse(
                 @SerializedName("TransInAccCurr")
                 var transInAccCurr: String = "",
                 @SerializedName("Withdrawals")
-                var withdrawals: Int = 0
+                var withdrawals: Double = 0.0
             ) : Parcelable
         }
 
