@@ -21,8 +21,6 @@ class LookUpRepository @Inject constructor(
         val body = LookupPostData()
         body.apply {
             lookUpName = LookUpName
-            locX = "31.9500"
-            locY = "35.9334"
         }
         val postData = BaseRequestModel(
             A2ARequest(
