@@ -45,7 +45,13 @@ data class AddUpdateBeneficiaryOtherBankPostData(
             @SerializedName("Type")
             var type: String = "",
             @SerializedName("ID")
-            var id: String = ""
+            var id: String = "",
+            @SerializedName("Trusted")
+            var trusted: Boolean = true,
+            @SerializedName("BankCode")
+            var bankCode: String = "",
+            @SerializedName("Swift")
+            var swift: String = "",
         ):Parcelable
 
 
