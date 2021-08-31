@@ -135,7 +135,7 @@ data class FundsAccountResponse(
                 var type: String = ""
             ){
                 override fun toString(): String {
-                    return "$eAccountType $currencyCode $nickName"
+                    return "$accountNumber $currencyCode $nickName"
                 }
             }
 
