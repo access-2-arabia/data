@@ -379,7 +379,6 @@ class WuRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> getBeneficiary(
         beneficiaryType: String
     ): Resource<T>? {
@@ -401,7 +400,6 @@ class WuRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
-
 
     suspend fun <T> getCrossCurrency(
         crossCurrencyPostData: CrossCurrencyPostData

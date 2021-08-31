@@ -9,6 +9,7 @@ import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentValidationPostD
 import com.a2a.data.model.card.creditcard.changemobilenumber.ChangeMobileNumberCreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
+import com.a2a.data.model.card.creditcard.requestestatment.EstatmentRequestPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
@@ -265,5 +266,27 @@ class CreditCardsRepository @Inject constructor(
         }
     }
 
-
+    suspend fun <T> getEstatmentHistory(
+        estatmentRequest: EstatmentRequestPostData
+    ): Resource<T>? {
+        val estatmentRequestPostData = EstatmentRequestPostData()
+        estatmentRequestPostData.apply {
+            body.cardNumber = estatmentRequest.body.cardNumber
+            body.dateFrom = estatmentRequest.body.dateFrom
+            body.dateTo = estatmentRequest.body.dateTo
+            body.regionCode = estatmentRequest.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    estatmentRequestPostData.body,
+                    srvID = "CardTrHis",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
 }
