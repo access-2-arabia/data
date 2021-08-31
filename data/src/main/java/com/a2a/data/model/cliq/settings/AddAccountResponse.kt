@@ -52,7 +52,8 @@ data class AddAccountResponse(
             @SerializedName("type")
             var type: String = "",
             @SerializedName("value")
-            var value: String = ""
+            var value: String = "",
+
         )
     }
 
