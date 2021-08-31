@@ -217,6 +217,7 @@ class CilQSettingsRepository @Inject constructor(
             Alias.type = currentAlias.eValue
             cust.recordId = AppCash.cliQRecordId.toString()
             custProfile = currentCustProfile
+
         }
 
         val postData = BaseRequestModel(
