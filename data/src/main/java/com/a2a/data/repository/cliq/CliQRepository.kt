@@ -166,7 +166,7 @@ class CliQRepository @Inject constructor(
                 custID = currentCustProfile.custID
             }
 
-            alias.alias.apply {
+            alias.apply {
                 type = aliasType
                 this.value = value.toUpperCase()
                 startDate = formatCliqDate(Date())

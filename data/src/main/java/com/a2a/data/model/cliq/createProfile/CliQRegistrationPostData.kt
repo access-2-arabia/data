@@ -38,22 +38,17 @@ data class CliQRegistrationPostData(
     )
 
     data class Alias(
-        @SerializedName("alias")
-        var alias: Alias = Alias(),
+        @SerializedName("startDate")
+        var startDate: String = "",
+        @SerializedName("status")
+        var status: String = "",
+        @SerializedName("type")
+        var type: String = "",
+        @SerializedName("value")
+        var value: String = "",
         @SerializedName("Cust")
         var cust: Cust = Cust()
     ) {
-        data class Alias(
-            @SerializedName("startDate")
-            var startDate: String = "",
-            @SerializedName("status")
-            var status: String = "",
-            @SerializedName("type")
-            var type: String = "",
-            @SerializedName("value")
-            var value: String = ""
-        )
-
         data class Cust(
             @SerializedName("RecordId")
             var recordId: String = ""
