@@ -202,6 +202,7 @@ class CilQSettingsRepository @Inject constructor(
                     UpdateAccount = false
                     addAlias = false
                     updateAlias = false
+                    Account = currentAccount
                 }
                 Constants.RequestType.AddAlias.type -> {
                     addAlias = true
