@@ -124,6 +124,8 @@ data class LookUpResponse(
             var eInternetService: List<EInternetService> = listOf(),
             @SerializedName("EInternetPeriouds")
             var eInternetPeriouds: List<EInternetPeriouds> = listOf(),
+            @SerializedName("BankProducts")
+            var bankProducts: List<Product> = listOf(),
         ) {
             data class ATM(
                 @SerializedName("AName")
