@@ -142,7 +142,9 @@ data class DebitTransactionHistoryResponse(
                 @SerializedName("cardType")
                 var cardType: String = "",
                 @SerializedName("CardNumberMasked")
-                var CardNumberMasked: String = ""
+                var CardNumberMasked: String = "",
+                @SerializedName("TransDate")
+                var transDate: String = ""
             ) : Parcelable
         }
 
