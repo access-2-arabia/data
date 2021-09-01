@@ -96,8 +96,19 @@ class CreditCardsRepository @Inject constructor(
             body.cardNumber = activeDeactiveCard.body.cardNumber
             body.action = activeDeactiveCard.body.action
             body.amount = activeDeactiveCard.body.amount
-            body.internetServicesBody = activeDeactiveCard.body.internetServicesBody
-            body.periodicity = "5"
+            body.internetServicesBody.MailDailyLimit =
+                activeDeactiveCard.body.internetServicesBody.MailDailyLimit
+            body.internetServicesBody.MailAction =
+                activeDeactiveCard.body.internetServicesBody.MailAction
+            body.internetServicesBody.InternetDailyLimit =
+                activeDeactiveCard.body.internetServicesBody.InternetDailyLimit
+            body.internetServicesBody.InternetAction =
+                activeDeactiveCard.body.internetServicesBody.InternetAction
+            if (body.action == "D") {
+                body.periodicity = "5"
+            } else {
+                body.periodicity = activeDeactiveCard.body.periodicity
+            }
         }
         val postData =
             BaseRequestModel(
