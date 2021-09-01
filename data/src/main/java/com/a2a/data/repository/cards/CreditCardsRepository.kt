@@ -17,6 +17,7 @@ import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
 class CreditCardsRepository @Inject constructor(
@@ -95,6 +96,11 @@ class CreditCardsRepository @Inject constructor(
             body.cardNumber = activeDeactiveCard.body.cardNumber
             body.action = activeDeactiveCard.body.action
             body.amount = activeDeactiveCard.body.amount
+            body.mailDailyLimit = activeDeactiveCard.body.mailDailyLimit
+            body.periodicity = activeDeactiveCard.body.periodicity
+            body.mailAction = activeDeactiveCard.body.mailAction
+            body.internetDailyLimit = activeDeactiveCard.body.internetDailyLimit
+            body.internetAction = activeDeactiveCard.body.internetAction
         }
         val postData =
             BaseRequestModel(
