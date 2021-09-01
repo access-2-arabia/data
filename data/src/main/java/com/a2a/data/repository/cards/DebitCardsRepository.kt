@@ -15,6 +15,7 @@ import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidValidationPostData
 import com.a2a.data.model.card.debit.retrivecardpin.RetrieveCardPinPostData
+import com.a2a.data.model.card.debit.transactionhistory.DebitTransactionHistoryPostData
 import com.a2a.data.model.card.debit.vertualprepaid.VirtualPrepaidPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -274,6 +275,30 @@ class DebitCardsRepository @Inject constructor(
                 A2ARequest(
                     retrieveCardPin.body,
                     srvID = "CardSPIN",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getTransactionHistory(
+        TransactionHistory: DebitTransactionHistoryPostData
+    ): Resource<T>? {
+        val transactionHistoryPostData = DebitTransactionHistoryPostData()
+        transactionHistoryPostData.apply {
+            body.cardNumber = TransactionHistory.body.cardNumber
+            body.dateFrom = TransactionHistory.body.dateFrom
+            body.dateTo = TransactionHistory.body.dateTo
+            body.regionCode = TransactionHistory.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    transactionHistoryPostData.body,
+                    srvID = "CardSTrHis",
                     serviceIDValue = 0
                 )
             )
