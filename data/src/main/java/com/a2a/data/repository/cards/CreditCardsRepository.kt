@@ -138,9 +138,9 @@ class CreditCardsRepository @Inject constructor(
     ): Resource<T>? {
         val activeDeactivePostData = ActiveDeactivePostData()
         activeDeactivePostData.apply {
-            body.stepNumber = "3"
+            body.stepNumber = activeDeactiveCard.body.stepNumber
             body.cardNumber = activeDeactiveCard.body.cardNumber
-            body.regionCode = "02"
+            body.stopReason = activeDeactiveCard.body.stopReason
             body.action = activeDeactiveCard.body.action
         }
         val postData =
