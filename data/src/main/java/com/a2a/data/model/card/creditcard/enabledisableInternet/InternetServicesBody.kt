@@ -1,8 +1,12 @@
 package com.a2a.data.model.card.creditcard.enabledisableInternet
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class InternetServicesBody(
-    private var mailAction: String,
-    private var mailLimit: String,
-    private var internetAction: String,
-    private var internetLimit: String
-)
+    var MailAction: String = "",
+    var MailDailyLimit: String = "",
+    var InternetAction: String = "",
+    var InternetDailyLimit: String = ""
+) : Parcelable

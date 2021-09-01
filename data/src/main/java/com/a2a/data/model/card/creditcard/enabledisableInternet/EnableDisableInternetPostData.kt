@@ -13,15 +13,8 @@ data class EnableDisableInternetPostData(
         var cardNumber: String = "",
         @SerializedName("Amount")
         var amount: Double = 0.0,
-        @SerializedName("MailDailyLimit")
-        var mailDailyLimit: String = "",
         @SerializedName("Periodicity")
         var periodicity: String = "",
-        @SerializedName("MailAction")
-        var mailAction: String = "",
-        @SerializedName("InternetDailyLimit")
-        var internetDailyLimit: String = "",
-        @SerializedName("InternetAction")
-        var internetAction: String = ""
+        var internetServicesBody: InternetServicesBody = InternetServicesBody()
     )
 }
