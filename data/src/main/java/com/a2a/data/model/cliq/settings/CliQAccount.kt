@@ -32,6 +32,9 @@ data class CliQAccount(
 
     @SerializedName("type")
     var type: String = "",
+
+
+
     var accountDec: String = ""
 ) : Parcelable {
     override fun toString(): String {
