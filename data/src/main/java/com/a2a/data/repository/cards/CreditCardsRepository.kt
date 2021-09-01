@@ -142,6 +142,7 @@ class CreditCardsRepository @Inject constructor(
             body.cardNumber = activeDeactiveCard.body.cardNumber
             body.stopReason = activeDeactiveCard.body.stopReason
             body.action = activeDeactiveCard.body.action
+            body.regionCode = activeDeactiveCard.body.regionCode
         }
         val postData =
             BaseRequestModel(
