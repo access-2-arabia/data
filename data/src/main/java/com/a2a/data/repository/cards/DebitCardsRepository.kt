@@ -120,10 +120,9 @@ class DebitCardsRepository @Inject constructor(
     ): Resource<T>? {
         val activeDeactivePostData = ActiveDeactivePostData()
         activeDeactivePostData.apply {
-            body.stepNumber = "3"
             body.cardNumber = activeDeactiveCard.body.cardNumber
-            body.regionCode = "02"
             body.action = activeDeactiveCard.body.action
+            body.stopReason=activeDeactiveCard.body.stopReason
         }
         val postData =
             BaseRequestModel(

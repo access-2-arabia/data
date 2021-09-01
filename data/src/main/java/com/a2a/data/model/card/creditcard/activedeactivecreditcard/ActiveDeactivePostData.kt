@@ -15,6 +15,8 @@ data class ActiveDeactivePostData(
         @SerializedName("RegionCode")
         var regionCode: String = "",
         @SerializedName("StepNumber")
-        var stepNumber: String = ""
+        var stepNumber: String = "",
+        @SerializedName("StopReason")
+        var stopReason: String = ""
     )
 }
