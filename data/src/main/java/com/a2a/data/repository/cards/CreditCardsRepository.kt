@@ -243,6 +243,7 @@ class CreditCardsRepository @Inject constructor(
             body.accounts.currencyFrom = cardPayment.body.accounts.currencyFrom
             body.accounts.currencyTo = cardPayment.body.accounts.currencyTo
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.stepNumber = cardPayment.body.stepNumber
         }
         val postData =
             BaseRequestModel(
