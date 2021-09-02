@@ -15,6 +15,10 @@ data class EnableDisableInternetPostData(
         var amount: Double = 0.0,
         @SerializedName("Periodicity")
         var periodicity: String = "",
-        var internetServicesBody: InternetServicesBody = InternetServicesBody()
+        var MailAction: String = "",
+        var MailDailyLimit: String = "",
+        var InternetAction: String = "",
+        var InternetDailyLimit: String = ""
+
     )
 }
