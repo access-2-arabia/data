@@ -2,7 +2,6 @@ package com.a2a.data.repository.transfer
 
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.extentions.formatToViewDateStamp
 import com.a2a.data.extentions.formatToViewDateStampSlash
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -20,13 +19,13 @@ import com.a2a.data.repository.BaseRepository
 import com.a2a.data.repository.transfer.TransferType.Companion.betweenMyAccountADesc
 import com.a2a.data.repository.transfer.TransferType.Companion.betweenMyAccountEDesc
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import java.util.*
 import javax.inject.Inject
 
 class TransferRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
 ) : BaseRepository() {
-
 
 
     suspend fun <T> getValidationTransferBetweenMyAccount(
@@ -155,8 +154,6 @@ class TransferRepository @Inject constructor(
     }
 
 
-
-
     suspend fun <T> getValidationLocalBank(
         localBankModel: LocalBankModel,
     ): Resource<T>? {
@@ -202,6 +199,7 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val localBankPostData = LocalBankPostData()
         localBankPostData.apply {
+            body.custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             body.stepNumber = "2"
             body.accountNumberFrom = localBankModel.accountNumberFromValue
             body.accountNumberTo = localBankModel.accountNumberToValue
@@ -250,6 +248,7 @@ class TransferRepository @Inject constructor(
     ): Resource<T>? {
         val localBankPostData = ValidationPostData()
         localBankPostData.apply {
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             stepNumber = "1"
             accountNumberFrom = localBankModel.accountNumberFromValue
             accountNumberTo = localBankModel.accountNumberToValue
@@ -267,7 +266,7 @@ class TransferRepository @Inject constructor(
             aLName = localBankModel.nameModel.lastName
             chargesFor = localBankModel.chargesForType
             benBank = localBankModel.bankName
-          }
+        }
         val postData =
             BaseRequestModel(
                 A2ARequest(
