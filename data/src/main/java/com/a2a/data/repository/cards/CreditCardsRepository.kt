@@ -235,6 +235,7 @@ class CreditCardsRepository @Inject constructor(
         cardPaymentPostData.apply {
             body.cards.amount = cardPayment.body.cards.amount
             body.cards.cardNumber = cardPayment.body.cards.cardNumber
+            body.cards.accountNumberFrom = cardPayment.body.accounts.accountNumberFrom
             body.accounts.accountNumberFrom = cardPayment.body.accounts.accountNumberFrom
             body.accounts.amount = cardPayment.body.accounts.amount
             body.accounts.currency = cardPayment.body.accounts.currency
