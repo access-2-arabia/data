@@ -99,13 +99,13 @@ class CilQTransferRepository @Inject constructor(
             this.amount = amount
             cdtrName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
             cdtrRecordID = AppCash.cliQRecordId ?: ""
-            curr = selectedAccount.currencyCode
+            curr = "JOD"
             dbtrAlias = aliasType ?: ""
             dbtValue = aliasValue?.toUpperCase() ?: ""
             fees = 0
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
-            currFrom = selectedAccount.currencyCode
-            currCodeTo = selectedAccount.currencyCode
+            currFrom = "JOD"
+            currCodeTo = "JOD"
             dbtrIsIndvl = "true"
             senderName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
             senderPstlAdr = MemoryCacheImpl.getCustProfile()?.address1 ?: ""
