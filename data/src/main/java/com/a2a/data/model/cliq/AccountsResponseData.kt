@@ -87,7 +87,9 @@ data class AccountsResponseData(
                 @SerializedName("RecordId")
                 var recordId: String = "",
                 @SerializedName("type")
-                var type: String = ""
+                var type: String = "",
+                @SerializedName("IsDefault")
+                var isDefault: Boolean = false
             )
 
             data class ServiceConfiguration(

@@ -25,7 +25,9 @@ data class AddAliasPostData(
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
     @SerializedName("RecordId")
-    var recordId: String = ""
+    var recordId: String = "",
+    @SerializedName("BranchCode")
+    var branchCode: String = ""
 ) {
     data class Cust(
         @SerializedName("RecordId")

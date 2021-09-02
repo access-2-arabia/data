@@ -132,10 +132,13 @@ data class FundsAccountResponse(
                 @SerializedName("NickName")
                 var nickName: String = "",
                 @SerializedName("Type")
-                var type: String = ""
+                var type: String = "",
+                @SerializedName("AccFullEDescCurr")
+                var accFullEDescCurr: String = "",
+
             ){
                 override fun toString(): String {
-                    return nickName
+                    return accFullEDescCurr
                 }
             }
 

@@ -9,6 +9,7 @@ import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentValidationPostD
 import com.a2a.data.model.card.creditcard.changemobilenumber.ChangeMobileNumberCreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
+import com.a2a.data.model.card.creditcard.requestestatment.EstatmentRequestPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
@@ -16,6 +17,7 @@ import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
 class CreditCardsRepository @Inject constructor(
@@ -94,6 +96,19 @@ class CreditCardsRepository @Inject constructor(
             body.cardNumber = activeDeactiveCard.body.cardNumber
             body.action = activeDeactiveCard.body.action
             body.amount = activeDeactiveCard.body.amount
+            body.internetServicesBody.MailDailyLimit =
+                activeDeactiveCard.body.internetServicesBody.MailDailyLimit
+            body.internetServicesBody.MailAction =
+                activeDeactiveCard.body.internetServicesBody.MailAction
+            body.internetServicesBody.InternetDailyLimit =
+                activeDeactiveCard.body.internetServicesBody.InternetDailyLimit
+            body.internetServicesBody.InternetAction =
+                activeDeactiveCard.body.internetServicesBody.InternetAction
+            if (body.action == "D") {
+                body.periodicity = "5"
+            } else {
+                body.periodicity = activeDeactiveCard.body.periodicity
+            }
         }
         val postData =
             BaseRequestModel(
@@ -137,10 +152,11 @@ class CreditCardsRepository @Inject constructor(
     ): Resource<T>? {
         val activeDeactivePostData = ActiveDeactivePostData()
         activeDeactivePostData.apply {
-            body.stepNumber = "3"
+            body.stepNumber = activeDeactiveCard.body.stepNumber
             body.cardNumber = activeDeactiveCard.body.cardNumber
-            body.regionCode = "02"
+            body.stopReason = activeDeactiveCard.body.stopReason
             body.action = activeDeactiveCard.body.action
+            body.regionCode = activeDeactiveCard.body.regionCode
         }
         val postData =
             BaseRequestModel(
@@ -196,6 +212,7 @@ class CreditCardsRepository @Inject constructor(
             body.accounts.currency = cardPayment.body.accounts.currency
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             body.accounts.currency = cardPayment.body.accounts.currency
+
         }
         val postData =
             BaseRequestModel(
@@ -219,6 +236,7 @@ class CreditCardsRepository @Inject constructor(
         cardPaymentPostData.apply {
             body.cards.amount = cardPayment.body.cards.amount
             body.cards.cardNumber = cardPayment.body.cards.cardNumber
+            body.cards.accountNumberFrom = cardPayment.body.accounts.accountNumberFrom
             body.accounts.accountNumberFrom = cardPayment.body.accounts.accountNumberFrom
             body.accounts.amount = cardPayment.body.accounts.amount
             body.accounts.currency = cardPayment.body.accounts.currency
@@ -226,6 +244,8 @@ class CreditCardsRepository @Inject constructor(
             body.accounts.currencyFrom = cardPayment.body.accounts.currencyFrom
             body.accounts.currencyTo = cardPayment.body.accounts.currencyTo
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.stepNumber = cardPayment.body.stepNumber
+            body.branchCode = cardPayment.body.branchCode
         }
         val postData =
             BaseRequestModel(
@@ -265,5 +285,27 @@ class CreditCardsRepository @Inject constructor(
         }
     }
 
-
+    suspend fun <T> getEstatmentHistory(
+        estatmentRequest: EstatmentRequestPostData
+    ): Resource<T>? {
+        val estatmentRequestPostData = EstatmentRequestPostData()
+        estatmentRequestPostData.apply {
+            body.cardNumber = estatmentRequest.body.cardNumber
+            body.dateFrom = estatmentRequest.body.dateFrom
+            body.dateTo = estatmentRequest.body.dateTo
+            body.regionCode = estatmentRequest.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    estatmentRequestPostData.body,
+                    srvID = "CardTrHis",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
 }

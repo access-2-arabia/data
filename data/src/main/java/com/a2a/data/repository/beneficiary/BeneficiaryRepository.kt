@@ -11,6 +11,7 @@ import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import javax.inject.Inject
 import com.a2a.data.model.beneficiary.addupdatebeneficiarywithincab.AddUpdateBeneficiaryWithinBankPostData.Body.Beneficiary as BeneficiaryWithinBank
 import com.a2a.data.model.beneficiary.deletebeneficiary.DeleteBeneficiaryPostData.Body.Beneficiary as DeleteBeneficary
@@ -20,12 +21,14 @@ class BeneficiaryRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun <T> getBeneficiary(
-        beneficiaryType: String
+        beneficiaryType: String,
+        isCliQ: Boolean = false
     ): Resource<T>? {
         val getManageBeneficiaries = GetManageBeneficiariesPostData()
         getManageBeneficiaries.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             body.beneficiary.type = beneficiaryType
+            body.beneficiary.isCliQ = isCliQ
         }
         val postData =
             BaseRequestModel(

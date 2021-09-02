@@ -202,6 +202,7 @@ class CilQSettingsRepository @Inject constructor(
                     UpdateAccount = false
                     addAlias = false
                     updateAlias = false
+                    Account = currentAccount
                 }
                 Constants.RequestType.AddAlias.type -> {
                     addAlias = true
@@ -216,6 +217,7 @@ class CilQSettingsRepository @Inject constructor(
             Alias.type = currentAlias.eValue
             cust.recordId = AppCash.cliQRecordId.toString()
             custProfile = currentCustProfile
+            branchCode = currentCustProfile.branch
         }
 
         val postData = BaseRequestModel(

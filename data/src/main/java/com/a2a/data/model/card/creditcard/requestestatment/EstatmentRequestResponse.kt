@@ -1,11 +1,11 @@
-package com.a2a.data.model.card.creditcard.transactionhistory
+package com.a2a.data.model.card.creditcard.requestestatment
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-data class TransactionHistoryResponse(
+data class EstatmentRequestResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -38,13 +38,13 @@ data class TransactionHistoryResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: String = "",
+            var connectorID:String = "",
             @SerializedName("Device")
-            var device: String = "",
+            var device:String = "",
             @SerializedName("DeviceID")
-            var deviceID: String = "",
+            var deviceID:String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: String = "",
+            var deviceToken:String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -56,7 +56,7 @@ data class TransactionHistoryResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID:String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
@@ -135,7 +135,7 @@ data class TransactionHistoryResponse(
                 @SerializedName("TransInAccCurr")
                 var transInAccCurr: String = "",
                 @SerializedName("Withdrawals")
-                var withdrawals: Double = 0.0
+                var withdrawals: Int = 0
             ) : Parcelable
         }
 
@@ -154,7 +154,7 @@ data class TransactionHistoryResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: String = "",
+            var sessionID:String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")

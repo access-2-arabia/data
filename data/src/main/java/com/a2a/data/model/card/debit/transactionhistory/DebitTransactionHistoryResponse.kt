@@ -1,11 +1,12 @@
-package com.a2a.data.model.accountlist
+package com.a2a.data.model.card.debit.transactionhistory
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+
 @Parcelize
-data class AccountListResponse(
+data class DebitTransactionHistoryResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -13,7 +14,6 @@ data class AccountListResponse(
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
 ) : Parcelable {
-
     @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
@@ -24,8 +24,7 @@ data class AccountListResponse(
         var header: Header = Header()
     ) : Parcelable {
         @Parcelize
-        class Body(
-        ) : Parcelable
+        class Body : Parcelable
 
         @Parcelize
         data class Footer(
@@ -79,83 +78,73 @@ data class AccountListResponse(
     ) : Parcelable {
         @Parcelize
         data class Body(
-            @SerializedName("Accounts")
-            var accounts: ArrayList<Account> = ArrayList(),
-            @SerializedName("ServiceConfiguration")
-            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
+            @SerializedName("A2AChannel")
+            var a2AChannel: String = "",
+            @SerializedName("A2APWD")
+            var a2APWD: String = "",
+            @SerializedName("A2AUserID")
+            var a2AUserID: String = "",
+            @SerializedName("CardNumber")
+            var cardNumber: String = "",
+            @SerializedName("DateFrom")
+            var dateFrom: String = "",
+            @SerializedName("DateTo")
+            var dateTo: String = "",
+            @SerializedName("ErrorCode")
+            var errorCode: Int = 0,
+            @SerializedName("ErrorEDesc")
+            var errorEDesc: String = "",
+            @SerializedName("GetAuthr")
+            var getAuthr: String = "",
+            @SerializedName("LogID")
+            var logID: Int = 0,
+            @SerializedName("MaskPan")
+            var maskPan: String = "",
+            @SerializedName("RegionCode")
+            var regionCode: String = "",
+            @SerializedName("TransCount")
+            var transCount: String = "",
+            @SerializedName("ResultSet")
+            var transactions: List<ResultSet> = listOf()
         ) : Parcelable {
             @Parcelize
-            data class Account(
-                @SerializedName("AAccountType")
-                var aAccountType: String = "",
-                @SerializedName("ACurrency")
-                var aCurrency: String = "",
-                @SerializedName("AccFullADec")
-                var accFullADec: String = "",
-                @SerializedName("AccFullADescCurr")
-                var accFullADescCurr: String = "",
-                @SerializedName("AccFullEDec")
-                var accFullEDec: String = "",
-                @SerializedName("AccFullEDescCurr")
-                var accFullEDescCurr: String = "",
-                @SerializedName("AccGroupID")
-                var accGroupID: String = "",
-                @SerializedName("AccountNumber")
-                var accountNumber: String = "",
-                @SerializedName("AccountType")
-                var accountType: String = "",
-                @SerializedName("AvailableBalance")
-                var availableBalance: String = "",
-                @SerializedName("AvailableBalanceCurr")
-                var availableBalanceCurr: String = "",
-                @SerializedName("AvailableBalanceFC")
-                var availableBalanceFC: String = "",
-                @SerializedName("Branch")
-                var branch: String = "",
-                @SerializedName("BranchCode")
-                var branchCode: String = "",
-                @SerializedName("CurrencyCode")
-                var currencyCode: String = "",
-                @SerializedName("CurrencyISOCode")
-                var currencyISOCode: String = "",
-                @SerializedName("CurrentBalance")
-                var currentBalance: String = "",
-                @SerializedName("CurrentBalanceCurr")
-                var currentBalanceCurr: String = "",
-                @SerializedName("CurrentBalanceFC")
-                var currentBalanceFC: String = "",
-                @SerializedName("EAccountType")
-                var eAccountType: String = "",
-                @SerializedName("ECurrency")
-                var eCurrency: String = "",
-                @SerializedName("Enabled")
-                var enabled: String = "",
-                @SerializedName("IBAN")
-                var iBAN: String = "",
-                @SerializedName("InterestRate")
-                var interestRate: Double = 0.0,
-                @SerializedName("MaturityDate")
-                var maturityDate: String = "",
-                @SerializedName("NickName")
-                var nickName: String = "",
-                @SerializedName("StartDate")
-                var startDate: String = "",
-                @SerializedName("Type")
-                var type: String = "",
-                @SerializedName("Description")
-
-                var description: String = "",
-                var isChecked: Boolean = false
-            ) : Parcelable {
-                override fun toString(): String {
-                    return nickName
-                }
-            }
-
-            @Parcelize
-            data class ServiceConfiguration(
-                @SerializedName("PWDFlag")
-                var pWDFlag: Int = 0
+            data class ResultSet(
+                @SerializedName("EmbossedName")
+                var EmbossedName: String = "",
+                @SerializedName("CardProgram")
+                var CardProgram: String = "",
+                @SerializedName("StatusDate")
+                var StatusDate: String = "",
+                @SerializedName("ExpiryDate")
+                var ExpiryDate: String = "",
+                @SerializedName("BranchName")
+                var BranchName: String = "",
+                @SerializedName("MobileNo")
+                var MobileNo: String = "",
+                @SerializedName("ErrorCode")
+                var ErrorCode: String = "",
+                @SerializedName("CardNo")
+                var CardNo: String = "",
+                @SerializedName("CardNumber")
+                var CardNumber: String = "",
+                @SerializedName("CardBalance")
+                var CardBalance: String = "",
+                @SerializedName("AmountDue")
+                var AmountDue: String = "",
+                @SerializedName("FeeAmount")
+                var FeeAmount: String = "",
+                @SerializedName("Disputed")
+                var Disputed: String = "",
+                @SerializedName("TotalFees")
+                var TotalFees: String = "",
+                @SerializedName("TrxAmount")
+                var TrxAmount: String = "",
+                @SerializedName("cardType")
+                var cardType: String = "",
+                @SerializedName("CardNumberMasked")
+                var CardNumberMasked: String = "",
+                @SerializedName("TransDate")
+                var transDate: String = ""
             ) : Parcelable
         }
 

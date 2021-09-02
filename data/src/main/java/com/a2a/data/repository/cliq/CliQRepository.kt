@@ -136,7 +136,7 @@ class CliQRepository @Inject constructor(
                 "FEMA"
 
             birthDate = currentCustProfile.birthDate
-            placeOfBirth = currentCustProfile.placeOfBirth ?: ""
+            placeOfBirth = "JO"
             mobile = currentCustProfile.mobileNumber
             email = currentCustProfile.eMail
             addressCity = currentCustProfile.addressCity ?: ""
@@ -144,14 +144,16 @@ class CliQRepository @Inject constructor(
             addressSPR = currentCustProfile.address2
             address = currentCustProfile.address2
             docValidDate = currentCustProfile.docValidDate ?: ""
-            detCustomerType = currentCustProfile.custType.toString()
-            detPrivateNationality = currentCustProfile.detPrivateNationality ?:""
+            detCustomerType = currentCustProfile.docNo
+            detPrivateNationality = "JO"
+            uValue = currentCustProfile.nationalityID
         }
 
         body.apply {
 
             this.custReg = custReg
             custProfile = currentCustProfile
+            branchCode = currentCustProfile.branch
 
             account.apply {
                 acciban = iban
@@ -164,7 +166,7 @@ class CliQRepository @Inject constructor(
                 custID = currentCustProfile.custID
             }
 
-            alias.alias.apply {
+            alias.apply {
                 type = aliasType
                 this.value = value.toUpperCase()
                 startDate = formatCliqDate(Date())

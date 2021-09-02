@@ -44,7 +44,9 @@ data class CardPaymentPostData(
             @SerializedName("Amount")
             var amount: String = "",
             @SerializedName("CardNumber")
-            var cardNumber: String = ""
+            var cardNumber: String = "",
+            @SerializedName("AccountNumberFrom")
+            var accountNumberFrom: String = ""
         ) : Parcelable
 
     }

@@ -120,6 +120,12 @@ data class LookUpResponse(
             var trxDir: List<BaseLookUpsModel> = listOf(),
             @SerializedName("TrxStatus")
             var trxStatus: List<BaseLookUpsModel> = listOf(),
+            @SerializedName("EInternetService")
+            var eInternetService: List<EInternetService> = listOf(),
+            @SerializedName("EInternetPeriouds")
+            var eInternetPeriouds: List<EInternetPeriouds> = listOf(),
+            @SerializedName("BankProducts")
+            var bankProducts: List<Product> = listOf(),
         ) {
             data class ATM(
                 @SerializedName("AName")
@@ -150,7 +156,7 @@ data class LookUpResponse(
                 var eValue: String = "",
                 @SerializedName("ID")
                 var iD: Int = 0
-            ):Parcelable{
+            ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
                 }
@@ -419,6 +425,32 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
+            )
+
+            data class EInternetService(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = ""
+            )
+
+            data class EInternetPeriouds(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = ""
             )
         }
 

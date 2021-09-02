@@ -46,9 +46,11 @@ data class Account(
     var nickName: String = "",
     @SerializedName("Type")
     var type: String = "",
+    @SerializedName("AccFullEDescCurr")
+    var accFullEDescCurr: String = "",
     var isSelect :Boolean?=false
 ) : Parcelable {
     override fun toString(): String {
-        return nickName
+        return accFullEDescCurr
     }
 }
