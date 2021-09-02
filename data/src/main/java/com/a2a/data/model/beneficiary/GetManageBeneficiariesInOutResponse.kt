@@ -143,7 +143,7 @@ data class GetManageBeneficiariesInOutResponse(
                 var trusted: Boolean = false
             ) : Parcelable{
                 override fun toString(): String {
-                    return eDesc
+                    return clientName
                 }
             }
 
