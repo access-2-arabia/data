@@ -315,7 +315,7 @@ class WuRepository @Inject constructor(
         sendMoneyValidationPostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             if (MemoryCacheImpl.getCustProfile()!!.mobileNumber.startsWith("00962")) {
-                MemoryCacheImpl.getCustProfile()!!.mobileNumber.replaceRange(0, 1, "")
+                MemoryCacheImpl.getCustProfile()!!.mobileNumber.replaceRange(0, 2, "")
             }
 
             body.address = sendMoneyValidationValue.body.address
@@ -354,6 +354,9 @@ class WuRepository @Inject constructor(
         val sendMoneyValidationPostData = SendMoneyValidationPostData()
         sendMoneyValidationPostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            if (MemoryCacheImpl.getCustProfile()!!.mobileNumber.startsWith("00962")) {
+                MemoryCacheImpl.getCustProfile()!!.mobileNumber.replaceRange(0, 2, "")
+            }
             body.address = sendMoneyValidationValue.body.address
             body.bankAccount = sendMoneyValidationValue.body.bankAccount
             body.destination = sendMoneyValidationValue.body.destination
