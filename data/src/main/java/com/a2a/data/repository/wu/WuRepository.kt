@@ -26,6 +26,7 @@ import com.a2a.data.model.wu.wuLookup.purposetransaction.PurposeTransactionPostD
 import com.a2a.data.model.wu.wuLookup.usstate.UsStatePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
 import javax.inject.Inject
 
 class WuRepository @Inject constructor(
@@ -313,10 +314,16 @@ class WuRepository @Inject constructor(
     ): Resource<T>? {
         val sendMoneyValidationPostData = SendMoneyValidationPostData()
         sendMoneyValidationPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+
+            val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+
             if (MemoryCacheImpl.getCustProfile()!!.mobileNumber.startsWith("00962")) {
-                body.custProfile.mobileNumber =
-                    MemoryCacheImpl.getCustProfile()!!.mobileNumber.replaceRange(0, 2, "")
+                currentCustProfile.mobileNumber =
+                    currentCustProfile.mobileNumber.replaceRange(0, 2, "")
+            }
+
+            body.apply {
+                custProfile = currentCustProfile
             }
 
             body.address = sendMoneyValidationValue.body.address
@@ -354,10 +361,13 @@ class WuRepository @Inject constructor(
     ): Resource<T>? {
         val sendMoneyValidationPostData = SendMoneyValidationPostData()
         sendMoneyValidationPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             if (MemoryCacheImpl.getCustProfile()!!.mobileNumber.startsWith("00962")) {
-                body.custProfile.mobileNumber =
-                    MemoryCacheImpl.getCustProfile()!!.mobileNumber.replaceRange(0, 2, "")
+                currentCustProfile.mobileNumber =
+                    currentCustProfile.mobileNumber.replaceRange(0, 2, "")
+            }
+            body.apply {
+                custProfile = currentCustProfile
             }
             body.address = sendMoneyValidationValue.body.address
             body.bankAccount = sendMoneyValidationValue.body.bankAccount
