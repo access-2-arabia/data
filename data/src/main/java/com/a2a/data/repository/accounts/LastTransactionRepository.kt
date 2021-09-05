@@ -20,6 +20,7 @@ class LastTransactionRepository @Inject constructor(
         accountNumber: String,
         toDate: String = "23/06/2021",
         fromDate: String = "23/12/2020",
+        numberOfTransactions: String = "10"
     ): Resource<T>? {
         val lastTransactionRepository = LastTransactionPostData()
         lastTransactionRepository.apply {
@@ -28,7 +29,7 @@ class LastTransactionRepository @Inject constructor(
             body.custID = MemoryCacheImpl.getCustProfile()!!.custID
             body.dateFrom = fromDate
             body.dateTo = toDate
-            body.indexTo = "10"
+            body.indexTo = numberOfTransactions
             body.transType = "A"
         }
 
