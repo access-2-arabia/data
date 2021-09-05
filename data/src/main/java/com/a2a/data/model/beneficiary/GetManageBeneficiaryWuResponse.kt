@@ -87,7 +87,7 @@ data class GetManageBeneficiaryWuResponse(
                 var email: String = "",
                 @SerializedName("FName")
                 var fName: String = "",
-                @SerializedName("id")
+                @SerializedName("ID")
                 var id: Int = 0,
                 @SerializedName("LName")
                 var lName: String = "",
