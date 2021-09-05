@@ -265,7 +265,9 @@ data class SendMoneyValidationResponse(
             @SerializedName("version")
             var version: String = "",
             @SerializedName("TRXRefNo")
-            var TRXRefNo: String = ""
+            var TRXRefNo: String = "",
+            @SerializedName("mtcn")
+            var mtcn: String = ""
         ) : Parcelable {
             @Parcelize
             data class IDDoc(
