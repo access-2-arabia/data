@@ -295,6 +295,7 @@ data class LookUpResponse(
                 var img: String = ""
             )
 
+            @Parcelize
             data class RTGSAccType(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -306,7 +307,11 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
-            )
+            ) : Parcelable{
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
 
             @Parcelize
             data class AliasTypes(

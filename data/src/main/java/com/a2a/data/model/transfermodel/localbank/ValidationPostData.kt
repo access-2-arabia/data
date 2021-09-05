@@ -1,6 +1,7 @@
 package com.a2a.data.model.transfermodel.localbank
 
 
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class ValidationPostData(
@@ -37,5 +38,7 @@ data class ValidationPostData(
     @SerializedName("StepNumber")
     var stepNumber: String = "",
     @SerializedName("TransRsn")
-    var transRsn: String = ""
+    var transRsn: String = "",
+    @SerializedName("CustProfile")
+    var custProfile: CustProfile = CustProfile(),
 )
