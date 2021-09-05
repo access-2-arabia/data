@@ -3,7 +3,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-
 data class GetManageBeneficiaryWuResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -107,12 +106,10 @@ data class GetManageBeneficiaryWuResponse(
                 var pWDFlag: Int = 0
             ):Parcelable
         }
-
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
         )
-
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -137,7 +134,6 @@ data class GetManageBeneficiaryWuResponse(
             )
         }
     }
-
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
