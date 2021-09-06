@@ -126,6 +126,7 @@ class MyBillsRepository @Inject constructor(
         accountNumber: String,
         currencyCode: String,
         totalFees: Double,
+        branchCode: String
     ): Resource<T> {
 
         val body = BulkPaymentPostData()
@@ -182,6 +183,7 @@ class MyBillsRepository @Inject constructor(
             accounts.paidAmount = paidAmount.toString()
             accounts.feesAmount = totalFees.toString()
             accounts.currencyCodeFrom = currencyCode
+            accounts.branchCode = branchCode
         }
 
         val postData = BaseRequestModel(
