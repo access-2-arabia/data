@@ -92,6 +92,8 @@ data class GetManageBeneficiaryWuResponse(
                 var lName: String = "",
                 @SerializedName("MName")
                 var mName: String = "",
+                @SerializedName("TName")
+                var tName: String = "",
                 @SerializedName("Nationality")
                 var nationality: String = "",
                 @SerializedName("PhoneNumber")

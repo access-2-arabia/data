@@ -31,7 +31,7 @@ data class AddUpdateBeneficiaryWUPostData(
             var nationality: String = "",
             @SerializedName("PhoneNumber")
             var phoneNumber: String = "",
-            @SerializedName("SName")
+            @SerializedName("MName")
             var sName: String = "",
             @SerializedName("TName")
             var tName: String = "",
