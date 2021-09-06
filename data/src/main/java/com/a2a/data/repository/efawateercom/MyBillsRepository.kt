@@ -175,6 +175,8 @@ class MyBillsRepository @Inject constructor(
             if (currentCustProfile != null)
                 custProfile = currentCustProfile
             bills = listToInquire
+
+            accounts.accountNumberFrom = accountNumber
             accounts.accountFrom = accountNumber
             accounts.paidAmount = paidAmount.toString()
             accounts.feesAmount = totalFees.toString()
