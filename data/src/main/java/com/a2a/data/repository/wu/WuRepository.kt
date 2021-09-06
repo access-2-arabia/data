@@ -325,7 +325,6 @@ class WuRepository @Inject constructor(
             body.apply {
                 custProfile = currentCustProfile
             }
-
             body.address = sendMoneyValidationValue.body.address
             body.bankAccount = sendMoneyValidationValue.body.bankAccount
             body.destination = sendMoneyValidationValue.body.destination
