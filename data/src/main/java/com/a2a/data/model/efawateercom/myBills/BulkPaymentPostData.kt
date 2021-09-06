@@ -26,6 +26,8 @@ data class BulkPaymentPostData(
     )
 
     data class Bill(
+        @SerializedName("InqRefNo")
+        var inqRefNo : String = "",
         @SerializedName("AccountFrom")
         var accountFrom: String = "",
         @SerializedName("Address")

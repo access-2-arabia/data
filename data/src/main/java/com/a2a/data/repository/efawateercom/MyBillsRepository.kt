@@ -125,7 +125,8 @@ class MyBillsRepository @Inject constructor(
         selectedBills: Array<BulkInquireResponse.A2AResponse.Body.Bill>,
         accountNumber: String,
         currencyCode: String,
-        totalFees: Double
+        totalFees: Double,
+        inquireReferenceNumber:String
     ): Resource<T> {
 
         val body = BulkPaymentPostData()
