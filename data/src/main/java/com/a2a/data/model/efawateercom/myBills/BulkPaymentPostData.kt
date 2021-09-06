@@ -23,7 +23,7 @@ data class BulkPaymentPostData(
         var paidAmount: String = "",
         @SerializedName("CurrencyCodeFrom")
         var currencyCodeFrom: String = "",
-        @SerializedName("Branch")
+        @SerializedName("BranchCode")
         var branchCode: String = ""
     )
 
