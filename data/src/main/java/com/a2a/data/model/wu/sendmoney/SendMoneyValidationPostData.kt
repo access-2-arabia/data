@@ -70,7 +70,9 @@ data class SendMoneyValidationPostData(
             @SerializedName("BankName")
             var bankName: String = "",
             @SerializedName("BranchCode")
-            var branchCode: String = ""
+            var branchCode: String = "",
+            @SerializedName("CurrencyCode")
+            var currencyCode: String = ""
         ) : Parcelable
 
         @Parcelize
