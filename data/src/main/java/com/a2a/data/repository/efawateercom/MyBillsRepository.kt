@@ -139,6 +139,7 @@ class MyBillsRepository @Inject constructor(
             val bill = BulkPaymentPostData.Bill()
 
             bill.apply {
+                inqRefNo = inquireReferenceNumber
                 accountFrom = accountNumber
                 billNo = selectedBills[i].billingNo
                 billingNo = selectedBills[i].billingNo
