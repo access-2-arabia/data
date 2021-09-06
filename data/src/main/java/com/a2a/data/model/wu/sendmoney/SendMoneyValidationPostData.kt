@@ -39,11 +39,13 @@ data class SendMoneyValidationPostData(
         @SerializedName("PersonalMsg")
         var personalMsg: String = "",
         @SerializedName("Receiver")
-        var `receiver`: Receiver = Receiver(),
+        var receiver: Receiver = Receiver(),
         @SerializedName("transaction_reason")
         var transactionReason: String = "",
         @SerializedName("transaction_type")
-        var transactionType: String = ""
+        var transactionType: String = "",
+        @SerializedName("StepNumber")
+        var stepNumber: String = ""
     ) : Parcelable {
         @Parcelize
         data class Address(
@@ -55,9 +57,9 @@ data class SendMoneyValidationPostData(
             var countryCodeName: String = "",
             @SerializedName("country_iso_code")
             var countryIsoCode: String = ""
-        ):Parcelable
+        ) : Parcelable
 
-          @Parcelize
+        @Parcelize
         data class BankAccount(
             @SerializedName("AccountNumber")
             var accountNumber: String = "",
@@ -67,7 +69,7 @@ data class SendMoneyValidationPostData(
             var bankName: String = "",
             @SerializedName("BranchCode")
             var branchCode: String = ""
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Destination(
@@ -77,7 +79,7 @@ data class SendMoneyValidationPostData(
             var dstcurrencyIsoCode: String = "",
             @SerializedName("expected_payout_amount")
             var expectedPayoutAmount: String = ""
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Origination(
@@ -85,7 +87,7 @@ data class SendMoneyValidationPostData(
             var grossAmount: String = "",
             @SerializedName("principal_amount")
             var principalAmount: String = ""
-        ):Parcelable
+        ) : Parcelable
 
         @Parcelize
         data class Receiver(
@@ -135,6 +137,6 @@ data class SendMoneyValidationPostData(
             @SerializedName("transaction_digest")
             var transaction_digest: String = ""
 
-            ):Parcelable
+        ) : Parcelable
     }
 }
