@@ -40,7 +40,7 @@ data class AddUpdateBeneficiaryWUPostData(
             @SerializedName("BankCode")
             var bankCode: String = "",
             @SerializedName("ID")
-            var ID: String = ""
+            var id: Int = 0,
             )
     }
 }
