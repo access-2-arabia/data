@@ -33,17 +33,12 @@ data class AddUpdateBeneficiaryWUPostData(
             var phoneNumber: String = "",
             @SerializedName("SName")
             var sName: String = "",
+            @SerializedName("TName")
+            var tName: String = "",
             @SerializedName("Type")
             var type: String = "",
-            @SerializedName("Trusted")
-            var trusted: Boolean = true,
             @SerializedName("BankCode")
             var bankCode: String = "",
-            @SerializedName("Swift")
-            var swift: String = "",
-
             )
-
-
     }
 }
