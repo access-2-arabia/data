@@ -137,9 +137,7 @@ data class SendMoneyValidationPostData(
             @SerializedName("temp_transaction_id")
             var temp_transaction_id: String = "",
             @SerializedName("transaction_digest")
-            var transaction_digest: String = "",
-            @SerializedName("PhoneNationalNumber")
-            var phoneNationalNumber: String = ""
+            var transaction_digest: String = ""
         ) : Parcelable
     }
 }
