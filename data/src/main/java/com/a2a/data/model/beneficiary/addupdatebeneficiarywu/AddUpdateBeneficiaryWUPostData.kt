@@ -32,13 +32,15 @@ data class AddUpdateBeneficiaryWUPostData(
             @SerializedName("PhoneNumber")
             var phoneNumber: String = "",
             @SerializedName("MName")
-            var sName: String = "",
+            var mName: String = "",
             @SerializedName("TName")
             var tName: String = "",
             @SerializedName("Type")
             var type: String = "",
             @SerializedName("BankCode")
             var bankCode: String = "",
+            @SerializedName("ID")
+            var ID: String = ""
             )
     }
 }
