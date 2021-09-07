@@ -13,6 +13,8 @@ data class BulkPaymentPostData(
     var custProfile: CustProfile = CustProfile()
 ) {
     data class Accounts(
+        @SerializedName("AccountNumberFrom")
+        var accountNumberFrom: String = "",
         @SerializedName("AccountFrom")
         var accountFrom: String = "",
         @SerializedName("FeesAmount")
@@ -20,10 +22,14 @@ data class BulkPaymentPostData(
         @SerializedName("PaidAmount")
         var paidAmount: String = "",
         @SerializedName("CurrencyCodeFrom")
-        var currencyCodeFrom: String = ""
+        var currencyCodeFrom: String = "",
+        @SerializedName("BranchCode")
+        var branchCode: String = ""
     )
 
     data class Bill(
+        @SerializedName("InqRefNo")
+        var inqRefNo : String = "",
         @SerializedName("AccountFrom")
         var accountFrom: String = "",
         @SerializedName("Address")
