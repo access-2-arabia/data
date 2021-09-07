@@ -84,7 +84,7 @@ class OneTimeRepository @Inject constructor(
             custInfoFlag = "EN"
             idType = "NAT"
             incPayments = "Y"
-            dateFlag = " "
+            dateFlag = "N"
             accStatus = "1"
         }
         val postData = BaseRequestModel(
