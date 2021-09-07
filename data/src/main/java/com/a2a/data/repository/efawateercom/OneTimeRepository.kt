@@ -199,7 +199,7 @@ class OneTimeRepository @Inject constructor(
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
-                srvID = "eFwaterPay"
+                srvID = "eFwatrBulk"
             )
         )
 
@@ -266,7 +266,7 @@ class OneTimeRepository @Inject constructor(
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
-                srvID = "eFwaterPay"
+                srvID = "eFwatrBulk"
             )
         )
 
