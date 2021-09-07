@@ -72,7 +72,7 @@ class DebitCardsRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> getEnableDisableCreditCardInternet(
+    suspend fun <T> getEnableDisableDebitCardInternet(
         activeDeactiveCard: EnableDisableInternetPostData
     ): Resource<T>? {
         val enableDisableInternetPostData = EnableDisableInternetPostData()
@@ -85,7 +85,7 @@ class DebitCardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     enableDisableInternetPostData.body,
-                    srvID = "IntOrderUr",
+                    srvID = "CardSEDI",
                     serviceIDValue = 0
                 )
             )
