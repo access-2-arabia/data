@@ -186,7 +186,7 @@ class CreditCardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     changeMobileNumberCreditCardPostData.body,
-                    srvID = "CreditCard",
+                    srvID = "CardChMob",
                     serviceIDValue = 0
                 )
             )
