@@ -43,7 +43,7 @@ class OneTimeRepository @Inject constructor(
         body.apply {
             requestType = "BillersList"
             code = sentCode
-            category = "TELC"
+            category = sentCode
         }
         val postData = BaseRequestModel(
             A2ARequest(
