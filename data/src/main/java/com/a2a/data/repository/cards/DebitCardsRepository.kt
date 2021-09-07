@@ -12,6 +12,7 @@ import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPos
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
+import com.a2a.data.model.card.debit.changemobilenumber.ChangeMobileNumberPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidValidationPostData
 import com.a2a.data.model.card.debit.retrivecardpin.RetrieveCardPinPostData
@@ -140,19 +141,18 @@ class DebitCardsRepository @Inject constructor(
     }
 
     suspend fun <T> getChangeMobileNumber(
-        changeMobileNumberCreditCard: ChangeMobileNumberCreditCardPostData
+        changeMobileNumberCreditCard: ChangeMobileNumberPostData
     ): Resource<T>? {
-        val changeMobileNumberCreditCardPostData = ChangeMobileNumberCreditCardPostData()
-        changeMobileNumberCreditCardPostData.apply {
-            body.stepNumber = changeMobileNumberCreditCard.body.stepNumber
+        val changeMobileNumberCardPostData = ChangeMobileNumberPostData()
+        changeMobileNumberCardPostData.apply {
             body.cardNumber = changeMobileNumberCreditCard.body.cardNumber
-            body.regionCode = changeMobileNumberCreditCard.body.regionCode
-            body.newMobNo = changeMobileNumberCreditCard.body.newMobNo
+            body.phoneNumber = changeMobileNumberCreditCard.body.phoneNumber
+            body.countryPhoneCode = changeMobileNumberCreditCard.body.countryPhoneCode
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    changeMobileNumberCreditCardPostData.body,
+                    changeMobileNumberCardPostData.body,
                     srvID = "CardSChMo",
                     serviceIDValue = 0
                 )
