@@ -101,8 +101,6 @@ data class AccountDetailsResponse(
             var availableBalanceFC: Double = 0.0,
             @SerializedName("AvlBal")
             var avlBal: Double = 0.0,
-            @SerializedName("BankRef")
-            var bankRef: String = "",
             @SerializedName("BillStatus")
             var billStatus: Int = 0,
             @SerializedName("BranchCode")

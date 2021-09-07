@@ -93,8 +93,6 @@ data class LoginResponseData(
             var allAmt: Double = 0.0,
             @SerializedName("AmtTo")
             var amtTo: Double = 0.0,
-            @SerializedName("BankRef")
-            var bankRef: String = "",
             @SerializedName("BillGrp")
             var billGrp: String = "",
             @SerializedName("BillStatus")

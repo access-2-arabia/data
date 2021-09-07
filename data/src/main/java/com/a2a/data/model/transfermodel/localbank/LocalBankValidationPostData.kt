@@ -25,8 +25,6 @@ data class Body(
     var amount: String = "",
     @SerializedName("BFDType")
     var bFDType: String = "",
-    @SerializedName("BankRef")
-    var bankRef: String = "",
     @SerializedName("BenAccIBAN")
     var benAccIBAN: String = "",
     @SerializedName("BenBank")

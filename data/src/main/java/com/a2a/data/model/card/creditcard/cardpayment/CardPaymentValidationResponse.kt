@@ -95,8 +95,6 @@ data class CardPaymentValidationResponse(
             var amtTo: Double = 0.0,
             @SerializedName("AmtToConvert")
             var amtToConvert: Double = 0.0,
-            @SerializedName("BankRef")
-            var bankRef: String = "",
             @SerializedName("BillStatus")
             var billStatus: Int = 0,
             @SerializedName("BranchCode")

@@ -12,8 +12,6 @@ data class Body(
     var aDesc: String = "",
     @SerializedName("Accounts")
     var accounts: Accounts = Accounts(),
-    @SerializedName("BankRef")
-    var bankRef: String = "",
     @SerializedName("BranchCode")
     var branchCode: String = "",
     @SerializedName("Count")

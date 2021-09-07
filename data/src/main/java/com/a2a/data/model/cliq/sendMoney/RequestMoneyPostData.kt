@@ -96,8 +96,6 @@ data class RequestMoneyPostData(
             var amtNorm: Double = 0.0,
             @SerializedName("AmtTo")
             var amtTo: Double = 0.0,
-            @SerializedName("BankRef")
-            var bankRef: String = "",
             @SerializedName("BenAccIBAN")
             var benAccIBAN: String = "",
             @SerializedName("BillStatus")

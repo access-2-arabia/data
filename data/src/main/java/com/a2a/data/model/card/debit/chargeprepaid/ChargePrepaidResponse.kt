@@ -103,8 +103,6 @@ data class ChargePrepaidResponse(
             var amtNorm: Double = 0.0,
             @SerializedName("AmtTo")
             var amtTo: Double = 0.0,
-            @SerializedName("BankRef")
-            var bankRef: String = "",
             @SerializedName("BillStatus")
             var billStatus: Int = 0,
             @SerializedName("BranchCode")
