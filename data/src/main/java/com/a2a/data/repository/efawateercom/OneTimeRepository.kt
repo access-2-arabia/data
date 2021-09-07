@@ -85,6 +85,7 @@ class OneTimeRepository @Inject constructor(
             idType = "NAT"
             incPayments = "Y"
             dateFlag = "2020-11-29T10:05:17.58"
+            accStatus = "1"
         }
         val postData = BaseRequestModel(
             A2ARequest(

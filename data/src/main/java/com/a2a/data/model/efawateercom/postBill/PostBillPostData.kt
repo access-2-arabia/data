@@ -4,6 +4,8 @@ package com.a2a.data.model.efawateercom.postBill
 import com.google.gson.annotations.SerializedName
 
 data class PostBillPostData(
+    @SerializedName("AccStatus")
+    var accStatus: String = "",
     @SerializedName("Address")
     var address: String = "",
     @SerializedName("BillNo")
@@ -22,8 +24,6 @@ data class PostBillPostData(
     var dateFlag: String = "",
     @SerializedName("eMail")
     var eMail: String = "",
-    @SerializedName("EndDate")
-    var endDate: String = "",
     @SerializedName("ID")
     var iD: String = "",
     @SerializedName("IdType")
@@ -43,7 +43,5 @@ data class PostBillPostData(
     @SerializedName("RequestType")
     var requestType: String = "",
     @SerializedName("ServiceType")
-    var serviceType: String = "",
-    @SerializedName("StartDate")
-    var startDate: String = ""
+    var serviceType: String = ""
 )
