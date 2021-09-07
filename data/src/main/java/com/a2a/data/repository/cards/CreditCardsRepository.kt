@@ -162,7 +162,7 @@ class CreditCardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     activeDeactivePostData.body,
-                    srvID = "CreditCard",
+                    srvID = "DeActivate",
                     serviceIDValue = 0
                 )
             )
