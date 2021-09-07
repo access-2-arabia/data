@@ -1,6 +1,7 @@
 package com.a2a.data.model.transfermodel.betwenmyaccount
 
 
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class ValidationBetweenMyAccountPostData(
@@ -21,6 +22,8 @@ data class ValidationBetweenMyAccountPostData(
         @SerializedName("CurrencyTo")
         var currencyTo: String = "",
         @SerializedName("StepNumber")
-        var stepNumber: String = ""
+        var stepNumber: String = "",
+        @SerializedName("CustProfile")
+        var custProfile: CustProfile = CustProfile(),
     )
 }
