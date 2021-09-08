@@ -75,6 +75,6 @@ data class PayPrepaidPostData(
         @SerializedName("PrePaid")
         var prePaid: String = "",
         @SerializedName("InqRefNo")
-        var inqRefNo: String = "",
+        var inqRefNo: String = ""
     )
 }
