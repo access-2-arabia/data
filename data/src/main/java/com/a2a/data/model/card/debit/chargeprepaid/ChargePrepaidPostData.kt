@@ -35,7 +35,6 @@ data class ChargePrepaidPostData(
             @SerializedName("Fees")
             var fees: String = ""
         ) : Parcelable
-
         @Parcelize
         data class Cards(
             @SerializedName("CardNumber")

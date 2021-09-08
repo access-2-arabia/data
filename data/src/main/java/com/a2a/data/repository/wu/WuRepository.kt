@@ -426,7 +426,7 @@ class WuRepository @Inject constructor(
     ): Resource<T>? {
         val validation = ValidationWithinCabPostData()
         validation.apply {
-            body.stepNumber = "2"
+            body.stepNumber = "5"
             body.accountNumberFrom = crossCurrencyPostData.fromAccountNumber
             body.accountNumberTo = crossCurrencyPostData.toBeneficiaryAccount
             body.currencyFrom = crossCurrencyPostData.fromCurrency
@@ -438,7 +438,7 @@ class WuRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     validation.body,
-                    srvID = "IntFund",
+                    srvID = "WUSend",
                     serviceIDValue = 0
                 )
             )
