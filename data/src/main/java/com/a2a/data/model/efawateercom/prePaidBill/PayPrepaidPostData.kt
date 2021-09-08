@@ -24,7 +24,9 @@ data class PayPrepaidPostData(
         @SerializedName("PaidAmt")
         var paidAmt: String = "",
         @SerializedName("BranchCode")
-        var branchCode: String = ""
+        var branchCode: String = "",
+        @SerializedName("CurrencyCode")
+        var currencyCode: String = ""
     )
 
     data class Bill(
