@@ -162,17 +162,16 @@ class OneTimeRepository @Inject constructor(
             bill.requestType = "PrepaidPayment"
 
             if (currentCustProfile != null) {
-                bill.cID = custProfile.cID
-                bill.custID = custProfile.custID
-                bill.iD = custProfile.docNo
-                bill.name = custProfile.eName
-                bill.phone = custProfile.mobileNumber
-                bill.mobileNo = custProfile.mobileNumber
-                bill.address = custProfile.address1
-                bill.eMail = custProfile.eMail
+                bill.cID = currentCustProfile.cID
+                bill.custID = currentCustProfile.custID
+                bill.iD = currentCustProfile.docNo
+                bill.name = currentCustProfile.eName
+                bill.phone = currentCustProfile.mobileNumber
+                bill.mobileNo = currentCustProfile.mobileNumber
+                bill.address = currentCustProfile.address1
+                bill.eMail = currentCustProfile.eMail
 
                 custProfile = currentCustProfile
-
             }
 
             bill.denomination = denomination
@@ -228,17 +227,15 @@ class OneTimeRepository @Inject constructor(
             bill.requestType = "BillPayment"
 
             if (currentCustProfile != null) {
-                bill.cID = custProfile.cID
-                bill.custID = custProfile.custID
-                bill.iD = custProfile.docNo
-                bill.name = custProfile.eName
-                bill.phone = custProfile.mobileNumber
-                bill.mobileNo = custProfile.mobileNumber
-                bill.address = custProfile.address1
-                bill.eMail = custProfile.eMail
-
+                bill.cID = currentCustProfile.cID
+                bill.custID = currentCustProfile.custID
+                bill.iD = currentCustProfile.docNo
+                bill.name = currentCustProfile.eName
+                bill.phone = currentCustProfile.mobileNumber
+                bill.mobileNo = currentCustProfile.mobileNumber
+                bill.address = currentCustProfile.address1
+                bill.eMail = currentCustProfile.eMail
                 custProfile = currentCustProfile
-
             }
 
             bill.repID = 0
@@ -254,13 +251,11 @@ class OneTimeRepository @Inject constructor(
             bill.feesAmount = fees
             bill.billerEDesc = billerEDesc
 
-
             accounts.accountFrom = accountSelected
             accounts.accountNumberFrom = accountSelected
             accounts.paidAmount = paidAmount.toString()
             accounts.paidAmt = paidAmount.toString()
             accounts.feesAmount = fees.toString()
-
         }
 
         val postData = BaseRequestModel(
@@ -273,7 +268,6 @@ class OneTimeRepository @Inject constructor(
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
-
     }
 
     suspend fun <T> addNewBill(
