@@ -152,7 +152,8 @@ class OneTimeRepository @Inject constructor(
         denomination: String,
         validationCode: String,
         billerEDesc: String,
-        referenceNumber : String
+        referenceNumber: String,
+        branchCode: String
     ): Resource<T> {
 
         val body = PayPrepaidPostData()
@@ -195,6 +196,7 @@ class OneTimeRepository @Inject constructor(
             accounts.paidAmount = paidAmount.toString()
             accounts.paidAmt = paidAmount.toString()
             accounts.feesAmount = fees.toString()
+            accounts.branchCode = branchCode
         }
 
         val postData = BaseRequestModel(
@@ -219,7 +221,8 @@ class OneTimeRepository @Inject constructor(
         fees: Double,
         accountSelected: String,
         billerEDesc: String,
-        referenceNumber : String
+        referenceNumber: String,
+        branchCode: String
     ): Resource<T> {
 
         val body = PayPostPaidPostData()
@@ -260,6 +263,7 @@ class OneTimeRepository @Inject constructor(
             accounts.paidAmount = paidAmount.toString()
             accounts.paidAmt = paidAmount.toString()
             accounts.feesAmount = fees.toString()
+            accounts.branchCode = branchCode
         }
 
         val postData = BaseRequestModel(
