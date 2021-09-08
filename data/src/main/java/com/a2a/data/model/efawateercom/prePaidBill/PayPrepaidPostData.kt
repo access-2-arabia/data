@@ -71,6 +71,8 @@ data class PayPrepaidPostData(
         @SerializedName("BillerEDesc")
         var billerEDesc: String = "",
         @SerializedName("PrePaid")
-        var prePaid: String = ""
+        var prePaid: String = "",
+        @SerializedName("InqRefNo")
+        var inqRefNo: String = "",
     )
 }

@@ -68,7 +68,9 @@ data class PayPostPaidPostData(
         @SerializedName("ServiceType")
         var serviceType: String = "",
         @SerializedName("BillerEDesc")
-        var billerEDesc: String = ""
+        var billerEDesc: String = "",
+        @SerializedName("InqRefNo")
+        var inqRefNo: String = "",
 
     )
 }
