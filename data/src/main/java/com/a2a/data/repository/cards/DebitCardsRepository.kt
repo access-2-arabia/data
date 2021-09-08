@@ -2,11 +2,7 @@ package com.a2a.data.repository.cards
 
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.card.creditcard.CreditCardPostData
 import com.a2a.data.model.card.creditcard.activedeactivecreditcard.ActiveDeactivePostData
-import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentPostData
-import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentValidationPostData
-import com.a2a.data.model.card.creditcard.changemobilenumber.ChangeMobileNumberCreditCardPostData
 import com.a2a.data.model.card.creditcard.enabledisableInternet.EnableDisableInternetPostData
 import com.a2a.data.model.card.creditcard.lasttransaction.CardLastTransactionPostData
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
@@ -15,6 +11,7 @@ import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.card.debit.changemobilenumber.ChangeMobileNumberPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidPostData
 import com.a2a.data.model.card.debit.chargeprepaid.ChargePrepaidValidationPostData
+import com.a2a.data.model.card.debit.pendingauthorization.PendingAuthorizationPostData
 import com.a2a.data.model.card.debit.retrivecardpin.RetrieveCardPinPostData
 import com.a2a.data.model.card.debit.transactionhistory.DebitTransactionHistoryPostData
 import com.a2a.data.model.card.debit.vertualprepaid.VirtualPrepaidPostData
@@ -309,4 +306,29 @@ class DebitCardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+
+    suspend fun <T> getPendingAuthorization(
+        pendingAuthorization: PendingAuthorizationPostData
+    ): Resource<T>? {
+        val pendingAuthorizationPostData = PendingAuthorizationPostData()
+        pendingAuthorizationPostData.apply {
+            body.cardNumber = pendingAuthorization.body.cardNumber
+            body.maskPan = pendingAuthorization.body.maskPan
+            body.regionCode = pendingAuthorization.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    pendingAuthorizationPostData.body,
+                    srvID = "CardSPnAut",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
 }

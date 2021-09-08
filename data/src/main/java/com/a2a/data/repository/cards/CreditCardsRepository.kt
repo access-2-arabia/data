@@ -13,11 +13,11 @@ import com.a2a.data.model.card.creditcard.requestestatment.EstatmentRequestPostD
 import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
+import com.a2a.data.model.card.creditcard.pendingauthorization.PendingAuthorizationPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
-import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
 class CreditCardsRepository @Inject constructor(
@@ -305,4 +305,29 @@ class CreditCardsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+    suspend fun <T> getPendingAuthorization(
+        pendingAuthorization: PendingAuthorizationPostData
+    ): Resource<T>? {
+        val pendingAuthorizationPostData = PendingAuthorizationPostData()
+        pendingAuthorizationPostData.apply {
+            body.cardNumber = pendingAuthorization.body.cardNumber
+            body.maskPan = pendingAuthorization.body.maskPan
+            body.regionCode = pendingAuthorization.body.regionCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    pendingAuthorizationPostData.body,
+                    srvID = "PendAuthzn",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
 }

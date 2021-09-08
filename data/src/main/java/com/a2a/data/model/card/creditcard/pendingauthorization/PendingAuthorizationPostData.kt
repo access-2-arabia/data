@@ -1,4 +1,4 @@
-package com.a2a.data.model.card.debit.pendingauthorization
+package com.a2a.data.model.card.creditcard.pendingauthorization
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
