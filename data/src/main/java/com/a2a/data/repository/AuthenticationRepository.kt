@@ -46,7 +46,7 @@ class AuthenticationRepository @Inject constructor(
 
         postData.apply {
             custMnemonic = customerId
-            mobNo = mobileNumber
+            this.mobileNumber = mobileNumber
             docNo = docNumber
 
         }
@@ -66,7 +66,8 @@ class AuthenticationRepository @Inject constructor(
     ): Resource<T> {
 
         val postData = MemoryCacheImpl.getCustProfile()
-        postData?.password = newPassword
+        //TODO added password on network layer
+//        postData?.password = newPassword
         val request = BaseRequest(
             A2ARequest(
                 postData,
