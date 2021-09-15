@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 
+
+
 @Parcelize
 data class PendingAuthorizationResponse(
     @SerializedName("A2ARequest")
@@ -83,49 +85,51 @@ data class PendingAuthorizationResponse(
             var a2APWD: String = "",
             @SerializedName("A2AUserID")
             var a2AUserID: String = "",
+            @SerializedName("AmountDue")
+            var amountDue: Double = 0.0,
+            @SerializedName("CardBalance")
+            var cardBalance: Double = 0.0,
             @SerializedName("CardNumber")
             var cardNumber: String = "",
-            @SerializedName("Cards")
-            var cards: List<Card> = listOf(),
+            @SerializedName("Disputed")
+            var disputed: Boolean = false,
             @SerializedName("ErrorCode")
             var errorCode: Int = 0,
-            @SerializedName("ErrorEDesc")
-            var errorEDesc: String = "",
-            @SerializedName("LogID")
-            var logID: Int = 0,
-            @SerializedName("MaskPan")
-            var maskPan: String = "",
-            @SerializedName("PostDate")
-            var postDate: String = "",
+            @SerializedName("FeeAmount")
+            var feeAmount: Double = 0.0,
+            @SerializedName("NoOfRecords")
+            var noOfRecords: Double = 0.0,
             @SerializedName("RegionCode")
             var regionCode: String = "",
-            @SerializedName("TransDate")
-            var transDate: String = ""
+            @SerializedName("ResultSet")
+            var resultSet: List<ResultSet> = listOf(),
+            @SerializedName("TotalFees")
+            var totalFees: Double = 0.0,
+            @SerializedName("TrxAmount")
+            var trxAmount: Double = 0.0
         ) : Parcelable {
             @Parcelize
-            data class Card(
+            data class ResultSet(
+                @SerializedName("ActivMerType")
+                var activMerType: String = "",
                 @SerializedName("Amt")
-                var amt: String = "",
-                @SerializedName("BankAccNo")
-                var bankAccNo: String = "",
+                var amt: Double = 0.0,
+                @SerializedName("AuthIdentResp")
+                var authIdentResp: String = "",
+                @SerializedName("AuthRefNo")
+                var authRefNo: String = "",
                 @SerializedName("BillingAmt")
-                var billingAmt: String = "",
-                @SerializedName("CardNumber")
-                var cardNumber: String = "",
+                var billingAmt: Double = 0.0,
+                @SerializedName("BillingCurr")
+                var billingCurr: String = "",
+                @SerializedName("CardAcceptorNameLoc")
+                var cardAcceptorNameLoc: String = "",
+                @SerializedName("CardHolderAcc")
+                var cardHolderAcc: String = "",
                 @SerializedName("Curr")
                 var curr: String = "",
-                @SerializedName("ErrorCode")
-                var errorCode: Int = 0,
-                @SerializedName("LogID")
-                var logID: Int = 0,
-                @SerializedName("MXPAccNo")
-                var mXPAccNo: String = "",
-                @SerializedName("MerNameAndLoc")
-                var merNameAndLoc: String = "",
-                @SerializedName("PostDate")
-                var postDate: String = "",
-                @SerializedName("TransDate")
-                var transDate: String = ""
+                @SerializedName("TransType")
+                var transType: String = ""
             ) : Parcelable
         }
 
