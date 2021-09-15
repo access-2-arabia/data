@@ -53,6 +53,6 @@ data class Account(
     var isSelect: Boolean? = false
 ) : Parcelable {
     override fun toString(): String {
-        return accFullEDescCurr
+        return accFullNickName
     }
 }
