@@ -126,7 +126,26 @@ data class LookUpResponse(
             var eInternetPeriouds: List<EInternetPeriouds> = listOf(),
             @SerializedName("BankProducts")
             var bankProducts: List<Product> = listOf(),
+            @SerializedName("TermsCondition")
+            var termsCondition: List<TermsCondition> = listOf(),
         ) {
+            data class TermsCondition(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AText")
+                var aText: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("Channel")
+                var channel: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EText")
+                var eText: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            )
+
             data class ATM(
                 @SerializedName("AName")
                 var aName: String = "",
@@ -307,7 +326,7 @@ data class LookUpResponse(
                 var eDesc: String = "",
                 @SerializedName("EValue")
                 var eValue: String = ""
-            ) : Parcelable{
+            ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
                 }
