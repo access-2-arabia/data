@@ -135,6 +135,8 @@ data class FundsAccountResponse(
                 var type: String = "",
                 @SerializedName("AccFullEDescCurr")
                 var accFullEDescCurr: String = "",
+                @SerializedName("AccFullNickname")
+                var accFullNickName: String = "",
 
             ){
                 override fun toString(): String {
