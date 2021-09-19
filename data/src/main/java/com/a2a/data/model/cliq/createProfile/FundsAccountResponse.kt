@@ -136,8 +136,7 @@ data class FundsAccountResponse(
                 @SerializedName("AccFullEDescCurr")
                 var accFullEDescCurr: String = "",
                 @SerializedName("AccFullNickname")
-                var accFullNickName: String = "",
-
+                var accFullNickName: String = ""
             ){
                 override fun toString(): String {
                     return accFullEDescCurr
