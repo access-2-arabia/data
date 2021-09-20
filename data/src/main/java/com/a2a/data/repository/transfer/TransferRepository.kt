@@ -228,7 +228,6 @@ class TransferRepository @Inject constructor(
             body.chargesFor = localBankModel.chargesForType
             body.startDate = Date().formatToViewDateStampSlash()
             body.benBank = localBankModel.bankName
-            body.cCurrency = localBankModel.currFrom
         }
         val postData =
             BaseRequestModel(

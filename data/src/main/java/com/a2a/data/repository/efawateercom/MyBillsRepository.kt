@@ -200,15 +200,11 @@ class MyBillsRepository @Inject constructor(
     suspend fun <T> bulkInquire(
         bill: MyBillResponse.A2AResponse.Body.Bill
     ): Resource<T> {
-
         val body = BulkInquirePostData()
         val currentCustProfile = MemoryCacheImpl.getCustProfile()
         val listToInquire = ArrayList<BulkInquirePostData.Bill>()
-
         val billInquire = BulkInquirePostData.Bill()
-
         billInquire.apply {
-
             billNo = bill.billingNo
             billingNo = bill.billingNo
             billerCode = bill.billerCode
@@ -223,11 +219,8 @@ class MyBillsRepository @Inject constructor(
             }
             incPayments = "Y"
             custInfoFlag = "EN"
-
         }
-
         listToInquire.add(billInquire)
-
         body.apply {
             stepNumber = "4"
             if (currentCustProfile != null) {
@@ -249,5 +242,35 @@ class MyBillsRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
 
+    }
+
+
+    suspend fun <T> CalculateFees(
+       
+    ): Resource<T> {
+
+        val body = DeleteBillPostData()
+        val custProfile = MemoryCacheImpl.getCustProfile()
+
+        body.apply {
+            body.requestType = "RemoveBill"
+            body.rID = 0
+            body.billerCode = billerCode
+            body.billingNo = billingNo
+            body.serviceType = serviceType
+            body.cID = custProfile!!.cID
+            body.custID = custProfile.custID
+        }
+
+        val postData = BaseRequestModel(
+            A2ARequest(
+                body,
+                srvID = "eFwatercom"
+            )
+        )
+
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
     }
 }
