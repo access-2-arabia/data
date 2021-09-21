@@ -263,7 +263,6 @@ class MyBillsRepository @Inject constructor(
             fees = calculateFeeseFawatercom.body.fees
             accountNumberFrom = calculateFeeseFawatercom.body.accountNumberFrom
             branchCode = calculateFeeseFawatercom.body.branchCode
-            bankRef = calculateFeeseFawatercom.body.bankRef
         }
         val postData = BaseRequestModel(
             A2ARequest(

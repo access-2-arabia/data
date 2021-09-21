@@ -15,8 +15,6 @@ data class CalculateFeeseFawatercomPostData(
         var accountNumberFrom: String = "",
         @SerializedName("Amount")
         var amount: String = "",
-        @SerializedName("BankRef")
-        var bankRef: String = "",
         @SerializedName("BranchCode")
         var branchCode: String = "",
         @SerializedName("CID")
