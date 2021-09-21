@@ -4,6 +4,7 @@ import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.efawateercom.calculatefees.CalculateFeeseFawatercomPostData
 import com.a2a.data.model.efawateercom.myBills.*
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
@@ -246,29 +247,30 @@ class MyBillsRepository @Inject constructor(
 
 
     suspend fun <T> CalculateFees(
-       
+        calculateFeeseFawatercom: CalculateFeeseFawatercomPostData
     ): Resource<T> {
-
-        val body = DeleteBillPostData()
-        val custProfile = MemoryCacheImpl.getCustProfile()
-
-        body.apply {
-            body.requestType = "RemoveBill"
-            body.rID = 0
-            body.billerCode = billerCode
-            body.billingNo = billingNo
-            body.serviceType = serviceType
-            body.cID = custProfile!!.cID
-            body.custID = custProfile.custID
+        val calculateFeeseFawatercomPostData = CalculateFeeseFawatercomPostData()
+        calculateFeeseFawatercomPostData.body.apply {
+            stepNumber = calculateFeeseFawatercom.body.stepNumber
+            custID = calculateFeeseFawatercom.body.custID
+            cID = calculateFeeseFawatercom.body.cID
+            custMnemonic = calculateFeeseFawatercom.body.custMnemonic
+            custType = calculateFeeseFawatercom.body.custType
+            currencyFees = calculateFeeseFawatercom.body.currencyFees
+            currencyCodeFrom = calculateFeeseFawatercom.body.currencyCodeFrom
+            currencyCodeTo = calculateFeeseFawatercom.body.currencyCodeTo
+            amount = calculateFeeseFawatercom.body.amount
+            fees = calculateFeeseFawatercom.body.fees
+            accountNumberFrom = calculateFeeseFawatercom.body.accountNumberFrom
+            branchCode = calculateFeeseFawatercom.body.branchCode
+            bankRef = calculateFeeseFawatercom.body.bankRef
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
-                body,
+                calculateFeeseFawatercomPostData.body,
                 srvID = "eFwatercom"
             )
         )
-
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
