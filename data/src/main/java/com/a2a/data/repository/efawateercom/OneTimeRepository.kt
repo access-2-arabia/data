@@ -6,6 +6,7 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.efawateercom.AddBillPostData
 import com.a2a.data.model.efawateercom.BillersPostData
 import com.a2a.data.model.efawateercom.CategoriesPostData
+import com.a2a.data.model.efawateercom.calculatefees.CalculateFeeseFawatercomPostData
 import com.a2a.data.model.efawateercom.postBill.PayPostPaidPostData
 import com.a2a.data.model.efawateercom.postBill.PostBillPostData
 import com.a2a.data.model.efawateercom.prePaidBill.PayPrepaidPostData
@@ -326,6 +327,36 @@ class OneTimeRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
 
+    }
+
+
+    suspend fun <T> CalculateFees(
+        calculateFeeseFawatercom: CalculateFeeseFawatercomPostData
+    ): Resource<T> {
+        val calculateFeeseFawatercomPostData = CalculateFeeseFawatercomPostData()
+        calculateFeeseFawatercomPostData.body.apply {
+            stepNumber = calculateFeeseFawatercom.body.stepNumber
+            custID = calculateFeeseFawatercom.body.custID
+            cID = calculateFeeseFawatercom.body.cID
+            custMnemonic = calculateFeeseFawatercom.body.custMnemonic
+            custType = calculateFeeseFawatercom.body.custType
+            currencyFees = calculateFeeseFawatercom.body.currencyFees
+            currencyCodeFrom = calculateFeeseFawatercom.body.currencyCodeFrom
+            currencyCodeTo = calculateFeeseFawatercom.body.currencyCodeTo
+            amount = calculateFeeseFawatercom.body.amount
+            fees = calculateFeeseFawatercom.body.fees
+            accountNumberFrom = calculateFeeseFawatercom.body.accountNumberFrom
+            branchCode = calculateFeeseFawatercom.body.branchCode
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                calculateFeeseFawatercomPostData.body,
+                srvID = "eFwatercom"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
     }
 
 }
