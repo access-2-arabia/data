@@ -43,6 +43,7 @@ data class CardPaymentPostData(
         data class Cards(
             @SerializedName("Amount")
             var amount: String = "",
+
             @SerializedName("CardNumber")
             var cardNumber: String = "",
             @SerializedName("AccountNumberFrom")
