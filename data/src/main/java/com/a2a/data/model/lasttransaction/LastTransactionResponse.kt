@@ -94,7 +94,7 @@ data class LastTransactionResponse(
                 @SerializedName("AvBal")
                 var avBal: Double = 0.0,
                 @SerializedName("AvailableBalance")
-                var availableBalance: String = "",
+                var availableBalance: Double = 0.0,
                 @SerializedName("AvailableBalanceFC")
                 var availableBalanceFC: Double = 0.0,
                 @SerializedName("BlockBal")
@@ -102,7 +102,7 @@ data class LastTransactionResponse(
                 @SerializedName("CreditAmount")
                 var creditAmount: Double = 0.0,
                 @SerializedName("CurrentBalance")
-                var currentBalance: String = "",
+                var currentBalance: Double = 0.0,
                 @SerializedName("DatePost")
                 var datePost: String = "",
                 @SerializedName("DateValue")
