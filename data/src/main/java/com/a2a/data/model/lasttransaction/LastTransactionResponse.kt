@@ -94,7 +94,7 @@ data class LastTransactionResponse(
                 @SerializedName("AvBal")
                 var avBal: Double = 0.0,
                 @SerializedName("AvailableBalance")
-                var availableBalance: Double = 0.0,
+                var availableBalance: String = "",
                 @SerializedName("AvailableBalanceFC")
                 var availableBalanceFC: Double = 0.0,
                 @SerializedName("BlockBal")
@@ -102,7 +102,7 @@ data class LastTransactionResponse(
                 @SerializedName("CreditAmount")
                 var creditAmount: Double = 0.0,
                 @SerializedName("CurrentBalance")
-                var currentBalance: Double = 0.0,
+                var currentBalance: String = "",
                 @SerializedName("DatePost")
                 var datePost: String = "",
                 @SerializedName("DateValue")
@@ -158,6 +158,7 @@ data class LastTransactionResponse(
                     return debitAmount.toString()
                 }
             }
+
             data class ServiceConfiguration(
                 @SerializedName("PWDFlag")
                 var pWDFlag: Int = 0,
