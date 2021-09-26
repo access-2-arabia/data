@@ -109,7 +109,7 @@ class TransferRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     validationWithinCabPostData.body,
-                    srvID = "IntFund",
+                    srvID = "ExtFund",
                     serviceIDValue = 0
                 )
             )
@@ -144,7 +144,7 @@ class TransferRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     withinCabPostData.body,
-                    srvID = "IntFund",
+                    srvID = "ExtFund",
                     serviceIDValue = 0
                 )
             )
