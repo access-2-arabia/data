@@ -1,8 +1,11 @@
 package com.a2a.data.model.appointment
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class AppointmentResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
@@ -10,7 +13,8 @@ data class AppointmentResponse(
     var a2AResponse: A2AResponse = A2AResponse(),
     @SerializedName("ErrorMsg")
     var errorMsg: ErrorMsg = ErrorMsg()
-) {
+) : Parcelable {
+    @Parcelize
     data class A2ARequest(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -18,14 +22,17 @@ data class AppointmentResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         class Body
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("BankCode")
             var bankCode: String = "",
@@ -57,9 +64,10 @@ data class AppointmentResponse(
             var timeStamp: String = "",
             @SerializedName("UserID")
             var userID: String = ""
-        )
+        ) : Parcelable
     }
 
+    @Parcelize
     data class A2AResponse(
         @SerializedName("Body")
         var body: Body = Body(),
@@ -67,7 +75,8 @@ data class AppointmentResponse(
         var footer: Footer = Footer(),
         @SerializedName("Header")
         var header: Header = Header()
-    ) {
+    ) : Parcelable {
+        @Parcelize
         data class Body(
             @SerializedName("BranchID")
             var branchID: Int = 0,
@@ -91,7 +100,8 @@ data class AppointmentResponse(
             var mobileNumber: String = "",
             @SerializedName("RepID")
             var repID: Int = 0
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Detail(
                 @SerializedName("ActivationCode")
                 var activationCode: String = "",
@@ -123,14 +133,16 @@ data class AppointmentResponse(
                 var ticketImage: String = "",
                 @SerializedName("TicketNumber")
                 var ticketNumber: String = ""
-            )
+            ) : Parcelable
         }
 
+        @Parcelize
         data class Footer(
             @SerializedName("Signature")
             var signature: String = ""
-        )
+        ) : Parcelable
 
+        @Parcelize
         data class Header(
             @SerializedName("GuidID")
             var guidID: String = "",
@@ -144,7 +156,8 @@ data class AppointmentResponse(
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
             var timeStamp: String = ""
-        ) {
+        ) : Parcelable {
+            @Parcelize
             data class Result(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
@@ -152,10 +165,11 @@ data class AppointmentResponse(
                 var eDesc: String = "",
                 @SerializedName("ErrorCode")
                 var errorCode: Int = 0
-            )
+            ) : Parcelable
         }
     }
 
+    @Parcelize
     data class ErrorMsg(
         @SerializedName("ADesc")
         var aDesc: String = "",
@@ -163,5 +177,5 @@ data class AppointmentResponse(
         var eDesc: String = "",
         @SerializedName("ErrorCode")
         var errorCode: Int = 0
-    )
+    ) : Parcelable
 }
