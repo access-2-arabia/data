@@ -23,7 +23,6 @@ data class AppointmentResponse(
         @SerializedName("Header")
         var header: Header = Header()
     ) : Parcelable {
-        @Parcelize
         class Body
 
         @Parcelize
