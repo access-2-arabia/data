@@ -41,7 +41,9 @@ data class AddBeneficiaryPostData(
         @SerializedName("Type")
         var type: String = "",
         @SerializedName("NickName")
-        var nickName: String = ""
+        var nickName: String = "",
+        @SerializedName("ID")
+        var id : String = ""
     )
 }
 
