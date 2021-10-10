@@ -39,13 +39,20 @@ class CilQBeneficiaryRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> addNewBeneficiary(newBeneficiary: AddBeneficiaryPostData.Beneficiary): Resource<T> {
+    suspend fun <T> addNewBeneficiary(
+        newBeneficiary: AddBeneficiaryPostData.Beneficiary,
+        isUpdate: Boolean
+    ): Resource<T> {
 
         val addBeneficiaryPostData = AddBeneficiaryPostData()
 
         addBeneficiaryPostData.apply {
             custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
-            stepNumber = "2"
+            stepNumber = if(isUpdate){
+                "3"
+            } else {
+                "2"
+            }
             beneficiary = newBeneficiary
         }
         val postData = BaseRequestModel(
