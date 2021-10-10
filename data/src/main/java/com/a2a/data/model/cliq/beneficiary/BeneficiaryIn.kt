@@ -47,7 +47,7 @@ data class BeneficiaryIn(
     @SerializedName("Swift")
     var swift: String = "",
     @SerializedName("TblCust")
-    var tblCust: Any = Any(),
+    var tblCust: String = "",
     @SerializedName("Trusted")
     var trusted: Boolean = false
 ) : Parcelable {
