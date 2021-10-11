@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.otp.OTPTokenPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import com.google.gson.Gson
@@ -38,10 +39,8 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
     suspend fun <T> requestOTP(
         mobileNumber: String
     ): Resource<T> {
-
-        val postData = MemoryCacheImpl.getCustProfile()!!
-        postData.mobileNumber = mobileNumber
-
+        val postData = OTPTokenPostData()
+        postData.body.custProfile = MemoryCacheImpl.getCustProfile()!!
 
         val request =
             BaseRequestModel(
@@ -55,8 +54,6 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
             remoteDataSource.baseRequest(request)
         }
     }
-
-
 
 
 }
