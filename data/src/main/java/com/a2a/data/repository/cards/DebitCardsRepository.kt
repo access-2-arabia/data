@@ -59,7 +59,7 @@ class DebitCardsRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     cardLastTransactionPostData.body,
-                    srvID = "CardTrHis",
+                    srvID = "CardSTrHis",
                     serviceIDValue = 0
                 )
             )
