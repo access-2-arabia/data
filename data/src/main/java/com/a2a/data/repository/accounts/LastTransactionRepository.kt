@@ -18,8 +18,8 @@ class LastTransactionRepository @Inject constructor(
 
     suspend fun <T> getLastTransactionList(
         accountNumber: String,
-        toDate: String = "23/06/2021",
-        fromDate: String = "23/12/2020",
+        fromDate: String,
+        toDate: String,
         numberOfTransactions: String = "10"
     ): Resource<T>? {
         val lastTransactionRepository = LastTransactionPostData()
