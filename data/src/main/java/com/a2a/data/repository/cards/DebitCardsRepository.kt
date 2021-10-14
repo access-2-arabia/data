@@ -121,9 +121,9 @@ class DebitCardsRepository @Inject constructor(
         activeDeactivePostData.apply {
             body.cardNumber = activeDeactiveCard.body.cardNumber
             body.action = activeDeactiveCard.body.action
-            body.stopReason=activeDeactiveCard.body.stopReason
-            body.stepNumber=activeDeactiveCard.body.stepNumber
-            body.regionCode=activeDeactiveCard.body.regionCode
+            body.stopReason = activeDeactiveCard.body.stopReason
+            body.stepNumber = activeDeactiveCard.body.stepNumber
+            body.regionCode = activeDeactiveCard.body.regionCode
         }
         val postData =
             BaseRequestModel(
@@ -172,8 +172,8 @@ class DebitCardsRepository @Inject constructor(
             body.currencyCodeFrom = cardPayment.body.currencyCodeFrom
             body.currencyCodeTo = cardPayment.body.currencyCodeTo
             body.amount = cardPayment.body.amount
-            body.accountNumberTo =cardPayment. body.accountNumberTo
-            body.accountNumberFrom =cardPayment. body.accountNumberFrom
+            body.accountNumberTo = cardPayment.body.accountNumberTo
+            body.accountNumberFrom = cardPayment.body.accountNumberFrom
         }
         val postData =
             BaseRequestModel(
@@ -194,15 +194,15 @@ class DebitCardsRepository @Inject constructor(
     ): Resource<T>? {
         val cardPaymentPostData = ChargePrepaidPostData()
         cardPaymentPostData.apply {
-            body.stepNumber=chargePrepaid.body.stepNumber
-            body.branchCode=chargePrepaid.body.branchCode
-            body.accounts.accountFrom=chargePrepaid.body.accounts.accountFrom
-            body.accounts.amount=chargePrepaid.body.accounts.amount
-            body.accounts.currencyCodeFrom=chargePrepaid.body.accounts.currencyCodeFrom
-            body.accounts.fees=chargePrepaid.body.accounts.fees
-            body.custProfile=MemoryCacheImpl.getCustProfile()!!
-            body.cards.program=chargePrepaid.body.cards.program
-            body.cards.cardNumber=chargePrepaid.body.cards.cardNumber
+            body.stepNumber = chargePrepaid.body.stepNumber
+            body.branchCode = chargePrepaid.body.branchCode
+            body.accounts.accountFrom = chargePrepaid.body.accounts.accountFrom
+            body.accounts.amount = chargePrepaid.body.accounts.amount
+            body.accounts.currencyCodeFrom = chargePrepaid.body.accounts.currencyCodeFrom
+            body.accounts.fees = chargePrepaid.body.accounts.fees
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.cards.program = chargePrepaid.body.cards.program
+            body.cards.cardNumber = chargePrepaid.body.cards.cardNumber
         }
         val postData =
             BaseRequestModel(
@@ -263,16 +263,16 @@ class DebitCardsRepository @Inject constructor(
     }
 
     suspend fun <T> getCardPin(
-          retrieveCardPin : RetrieveCardPinPostData
+        retrieveCardPin: RetrieveCardPinPostData
     ): Resource<T>? {
-        val retrieveCardPin = RetrieveCardPinPostData()
-        retrieveCardPin.apply {
+        val retrieveCardPinPostData = RetrieveCardPinPostData()
+        retrieveCardPinPostData.apply {
             body.cardNumber = retrieveCardPin.body.cardNumber
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    retrieveCardPin.body,
+                    retrieveCardPinPostData.body,
                     srvID = "CardSPIN",
                     serviceIDValue = 0
                 )
