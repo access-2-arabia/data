@@ -16,6 +16,8 @@ data class LoanOriginationPostData(
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("StepNumber")
-        var stepNumber: Int = 0
+        var stepNumber: Int = 0,
+        @SerializedName("subCategory")
+        var subCategory: String = "Signature"
     ) : Parcelable
 }
