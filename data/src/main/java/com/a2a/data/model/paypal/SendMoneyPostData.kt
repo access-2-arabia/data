@@ -1,7 +1,7 @@
 package com.a2a.data.model.paypal
+
 import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
-
 
 
 data class SendMoneyPostData(
@@ -22,7 +22,7 @@ data class SendMoneyPostData(
             @SerializedName("AccountNumberFrom")
             var accountNumberFrom: String = "",
             @SerializedName("Amount")
-            var amount: Int = 0,
+            var amount: Double = 0.0,
             @SerializedName("BranchCode")
             var branchCode: String = "",
             @SerializedName("CurrencyCodeFrom")

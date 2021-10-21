@@ -20,7 +20,7 @@ data class ValidationPostData(
             @SerializedName("AccountNumberFrom")
             var accountNumberFrom: String = "",
             @SerializedName("Amount")
-            var amount: Int = 0,
+            var amount: Double = 0.0,
             @SerializedName("BranchCode")
             var branchCode: String = "",
             @SerializedName("CurrencyCodeFrom")
