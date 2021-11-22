@@ -17,7 +17,7 @@ class PayPalRepository @Inject constructor(
 
     suspend fun <T> getValidation(
         validationReq: ValidationPostData,
-        ): Resource<T>? {
+    ): Resource<T>? {
         val validation = ValidationPostData()
         validation.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
@@ -43,7 +43,7 @@ class PayPalRepository @Inject constructor(
     ): Resource<T>? {
         val validation = SendMoneyPostData()
         validation.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = sendMoneyReq.body.custProfile
             body.accounts = sendMoneyReq.body.accounts
             body.stepNumber = sendMoneyReq.body.stepNumber
         }

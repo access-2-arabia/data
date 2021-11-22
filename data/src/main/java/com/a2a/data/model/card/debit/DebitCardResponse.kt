@@ -146,7 +146,9 @@ data class DebitCardResponse(
                 @SerializedName("TrxAmount")
                 var trxAmount: Double = 0.0,
                 @SerializedName("CardExpiryDate")
-                var cardExpiryDate: String=""
+                var cardExpiryDate: String="",
+                @SerializedName("CardImage")
+                var cardImage: String = ""
             ) : Parcelable
 
             @Parcelize
