@@ -49,5 +49,5 @@ data class Bill(
     @SerializedName("ValidationCode")
     var validationCode: String = "",
     @SerializedName("InqRefNo")
-    var inqRefNo: String = ""
+    var inqRefNo: String = "",
 ): Parcelable
