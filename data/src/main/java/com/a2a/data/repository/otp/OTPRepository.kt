@@ -38,11 +38,17 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
     }
 
     suspend fun <T> requestOTP(
-        mobileNumber: String
+        srvId: String,
+        amount: String,
+        currencyTo: String
     ): Resource<T> {
 
         val bodyReq = OTPTokenPostData()
         bodyReq.body.custProfile = MemoryCacheImpl.getCustProfile()!!
+        bodyReq.body.amount = amount
+        bodyReq.body.currencyCode = currencyTo
+        bodyReq.body.srvID = srvId
+
         val request =
             BaseRequestModel(
                 A2ARequest(

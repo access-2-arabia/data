@@ -14,6 +14,12 @@ data class OTPTokenPostData(
     @Parcelize
     data class Body(
         @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile()
+        var custProfile: CustProfile = CustProfile(),
+        @SerializedName("Amount")
+        var amount: String? = null,
+        @SerializedName("SrvID")
+        var srvID: String? = null,
+        @SerializedName("CurrencyCode")
+        var currencyCode: String? = null,
     ) : Parcelable
 }
