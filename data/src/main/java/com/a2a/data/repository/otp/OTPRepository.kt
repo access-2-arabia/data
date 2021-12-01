@@ -31,8 +31,6 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
         if (isManual) {
             jsonObject.getAsJsonObject("A2ARequest").getAsJsonObject("Body")
                 .addProperty("StepNumber", "2")
-
-
         }
         return safeApiCall(jsonObject) { remoteDataSource.baseRequest(jsonObject) }
     }
