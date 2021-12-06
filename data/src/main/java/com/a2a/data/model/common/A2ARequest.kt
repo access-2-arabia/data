@@ -13,4 +13,4 @@ data class A2ARequest<T> constructor(
     var serviceIDValue: Int = 0,
     @SerializedName("Header")
     var hedar: Header = Header(srvID = srvID, serviceID = serviceIDValue),
-) :Serializable
+) : Serializable
