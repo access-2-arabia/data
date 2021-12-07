@@ -275,7 +275,7 @@ class WuRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> (
+    suspend fun <T> getWuDeliveryServices(
         queryfilter2Value: String,
         queryfilter3Value: String,
         queryfilter4Value: String
