@@ -275,7 +275,8 @@ class WuRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> getWuDeliveryServices(
+    suspend fun <T> (
+        queryfilter2Value: String,
         queryfilter3Value: String,
         queryfilter4Value: String
     ): Resource<T>? {
@@ -286,7 +287,7 @@ class WuRepository @Inject constructor(
             body.deviceId = "Online"
             body.deviceType = "Online"
             body.queryfilter1 = "en"
-            body.queryfilter2 = "JO JOD"
+            body.queryfilter2 = queryfilter2Value
             if (!queryfilter3Value.isNullOrEmpty()) {
                 body.queryfilter3 = queryfilter3Value
             }
