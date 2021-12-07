@@ -11,6 +11,8 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
 import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
 import com.a2a.data.model.transfermodel.withincab.WithinCabTransferModel
+import com.a2a.data.model.wu.directtobank.CascadePostData
+import com.a2a.data.model.wu.directtobank.WuTemplatePostData
 import com.a2a.data.model.wu.feeinquire.CrossCurrencyPostData
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
@@ -468,6 +470,59 @@ class WuRepository @Inject constructor(
             )
         return safeApiCall(postData)
         {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getWUTemplate(
+        wuTemplatePostData: WuTemplatePostData
+    ): Resource<T>? {
+        val wuTemplate = WuTemplatePostData()
+        wuTemplate.apply {
+            body.lookUpName = "DeliveryOptionTemplate"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceType = "MOBILE"
+            body.deviceId = "Online"
+            body.queryfilter1 = wuTemplatePostData.body.queryfilter1
+            body.queryfilter2 = wuTemplatePostData.body.queryfilter2
+            body.queryfilter3 = wuTemplatePostData.body.queryfilter3
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    wuTemplate.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getWUCascadeList(
+        cascadePostData: CascadePostData
+    ): Resource<T>? {
+        val wuCascade = CascadePostData()
+        wuCascade.apply {
+            body.lookUpName = "CascadeList"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceType = "MOBILE"
+            body.deviceId = "Online"
+            body.queryfilter1 = cascadePostData.body.queryfilter1
+            body.queryfilter2 = cascadePostData.body.queryfilter2
+            body.queryfilter3 = cascadePostData.body.queryfilter3
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    wuCascade.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
     }
