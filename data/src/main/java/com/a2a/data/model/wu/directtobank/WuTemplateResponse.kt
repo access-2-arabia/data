@@ -196,7 +196,9 @@ data class WuTemplateResponse(
                         @SerializedName("PRODUCT")
                         var pRODUCT: String = "",
                         @SerializedName("T_INDEX")
-                        var tINDEX: String = ""
+                        var tINDEX: String = "",
+                        @SerializedName("DESCRIPTION")
+                        var getdeliveryoptiontemplateDescription: String = ""
                     ) : Parcelable
                 }
             }
