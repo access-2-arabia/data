@@ -3,7 +3,6 @@ package com.a2a.data.model.common
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
 data class A2ARequest<T> constructor(
     @SerializedName("Body")
     var body: T? = null,
