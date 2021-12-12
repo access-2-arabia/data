@@ -16,7 +16,7 @@ data class Header(
 //    CAB
 //    LINC
     @SerializedName("BankCode")
-    var BankCode: String = BuildConfig.BankCode?:"",
+    var BankCode: String =  AppCash.bankCode?:"",
 
     @SerializedName("RegionCode")
     var regionCode: String = "02",
