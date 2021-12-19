@@ -29,6 +29,6 @@ data class CascadePostData(
         @SerializedName("queryfilter3")
         var queryfilter3: String = "",
         @SerializedName("queryfilter4")
-        var queryfilter4: String = ""
+        var queryfilter4: String? = null
     ) : Parcelable
 }
