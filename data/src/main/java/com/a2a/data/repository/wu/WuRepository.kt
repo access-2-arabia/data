@@ -535,7 +535,8 @@ class WuRepository @Inject constructor(
 
     suspend fun <T> getWUCascadeList(
         queryFilter2: String,
-        queryFilter3: String
+        queryFilter3: String,
+        queryFilter4: String?=null
     ): Resource<T>? {
         val wuCascade = CascadePostData()
         wuCascade.apply {
@@ -546,6 +547,7 @@ class WuRepository @Inject constructor(
             body.queryfilter1 = "en"
             body.queryfilter2 = queryFilter2
             body.queryfilter3 = queryFilter3
+            body.queryfilter4 = queryFilter4
         }
         val postData =
             BaseRequestModel(
