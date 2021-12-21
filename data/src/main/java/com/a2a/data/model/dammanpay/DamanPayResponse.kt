@@ -16,7 +16,7 @@ data class DamanPayResponse(
             var stepNumber: Int = 0,
             @SerializedName("CustProfile")
             var custProfile: CustProfile = CustProfile(),
-            @SerializedName("    REQ_TYPE")
+            @SerializedName("REQ_TYPE")
             var reqType: Int = 0
         ) : Parcelable
     }
