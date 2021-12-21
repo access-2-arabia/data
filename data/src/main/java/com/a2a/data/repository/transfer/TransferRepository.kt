@@ -101,7 +101,7 @@ class TransferRepository @Inject constructor(
             body.currencyFrom = withinCabTransferModel.fromCurrency
             body.currencyTo = withinCabTransferModel.toBeneficiaryCurrency
             body.amount = withinCabTransferModel.amount
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.branchCode = withinCabTransferModel.accountBranch.toString()
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
 
@@ -135,7 +135,7 @@ class TransferRepository @Inject constructor(
             body.accounts.amount = withinCabTransferModel.amount
             body.count = "-1"
             body.period = 0
-            body.branchCode = MemoryCacheImpl.getCustProfile()?.branch.toString()
+            body.branchCode = withinCabTransferModel.accountBranch.toString()
             body.eDesc = TransferType.WithinCabEDesc
             body.aDesc = TransferType.WithinCabADesc
         }
@@ -164,7 +164,7 @@ class TransferRepository @Inject constructor(
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
             body.amount = localBankModel.amountValue
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.branchCode = localBankModel.accountBranch.toString()
             body.benBank = ""
             body.benAccIBAN = localBankModel.benefAccountIban
             body.benName = localBankModel.nameModel.benefName
@@ -205,7 +205,7 @@ class TransferRepository @Inject constructor(
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
             body.amount = localBankModel.amountValue
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.branchCode = localBankModel.accountBranch.toString()
             body.benBank = ""
             body.benAccIBAN = localBankModel.benefAccountIban
             body.benName = localBankModel.nameModel.benefName
