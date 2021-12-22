@@ -21,6 +21,7 @@ class DammanPayRepository @Inject constructor(
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.reqType = paymentTypePostData.body.reqType
             body.stepNumber = paymentTypePostData.body.stepNumber
+            body.subCategory=paymentTypePostData.body.subCategory
         }
         val postData =
             BaseRequestModel(
@@ -44,6 +45,7 @@ class DammanPayRepository @Inject constructor(
             body.payNo = inquirePostData.body.payNo
             body.serviceType = inquirePostData.body.serviceType
             body.stepNumber = inquirePostData.body.stepNumber
+            body.subCategory=inquirePostData.body.subCategory
         }
         val postData =
             BaseRequestModel(
@@ -73,6 +75,7 @@ class DammanPayRepository @Inject constructor(
             body.payno = damanPayPostData.body.payno
             body.serviceType = damanPayPostData.body.serviceType
             body.dueAmount = damanPayPostData.body.dueAmount
+            body.subCategory=damanPayPostData.body.subCategory
         }
         val postData =
             BaseRequestModel(

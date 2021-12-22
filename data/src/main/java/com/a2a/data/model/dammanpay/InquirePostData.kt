@@ -20,6 +20,8 @@ data class InquirePostData(
         @SerializedName("PAY_NO")
         var payNo: String = "",
         @SerializedName("serviceType")
-        var serviceType: Int = 0
+        var serviceType: Int = 0,
+        @SerializedName("subCategory")
+        var subCategory: String = ""
     ) : Parcelable
 }

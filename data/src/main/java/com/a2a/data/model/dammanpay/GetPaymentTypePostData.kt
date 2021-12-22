@@ -17,6 +17,8 @@ data class GetPaymentTypePostData(
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("REQ_TYPE")
-        var reqType: Int = 0
+        var reqType: Int = 0,
+        @SerializedName("subCategory")
+        var subCategory: String = ""
     ) : Parcelable
 }

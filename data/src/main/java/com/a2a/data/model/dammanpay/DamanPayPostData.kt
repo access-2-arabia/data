@@ -34,6 +34,8 @@ data class DamanPayPostData(
         @SerializedName("serviceType")
         var serviceType: String = "",
         @SerializedName("DueAmount")
-        var dueAmount: String = ""
+        var dueAmount: String = "",
+        @SerializedName("subCategory")
+        var subCategory: String = ""
     ) : Parcelable
 }
