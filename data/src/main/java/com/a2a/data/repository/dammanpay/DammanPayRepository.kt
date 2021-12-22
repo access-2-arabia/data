@@ -15,13 +15,14 @@ class DammanPayRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun <T> getPaymentType(
+          paymentTypePostDataValue : GetPaymentTypePostData
     ): Resource<T>? {
         val paymentTypePostData = GetPaymentTypePostData()
         paymentTypePostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.reqType = paymentTypePostData.body.reqType
-            body.stepNumber = paymentTypePostData.body.stepNumber
-            body.subCategory=paymentTypePostData.body.subCategory
+            body.reqType = paymentTypePostDataValue.body.reqType
+            body.stepNumber = paymentTypePostDataValue.body.stepNumber
+            body.subCategory = paymentTypePostDataValue.body.subCategory
         }
         val postData =
             BaseRequestModel(
@@ -38,14 +39,15 @@ class DammanPayRepository @Inject constructor(
     }
 
     suspend fun <T> getInquire(
+        inquirePostDataValue: InquirePostData
     ): Resource<T>? {
         val inquirePostData = InquirePostData()
         inquirePostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.payNo = inquirePostData.body.payNo
-            body.serviceType = inquirePostData.body.serviceType
-            body.stepNumber = inquirePostData.body.stepNumber
-            body.subCategory=inquirePostData.body.subCategory
+            body.payNo = inquirePostDataValue.body.payNo
+            body.serviceType = inquirePostDataValue.body.serviceType
+            body.stepNumber = inquirePostDataValue.body.stepNumber
+            body.subCategory = inquirePostDataValue.body.subCategory
         }
         val postData =
             BaseRequestModel(
@@ -62,20 +64,21 @@ class DammanPayRepository @Inject constructor(
     }
 
     suspend fun <T> getDammanPay(
+        damanPayPostDataValue: DamanPayPostData
     ): Resource<T>? {
         val damanPayPostData = DamanPayPostData()
         damanPayPostData.apply {
-            body.stepNumber = damanPayPostData.body.stepNumber
+            body.stepNumber = damanPayPostDataValue.body.stepNumber
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.accFrom = damanPayPostData.body.accFrom
-            body.accTo = damanPayPostData.body.accTo
-            body.currFrom = damanPayPostData.body.currFrom
-            body.currTo = damanPayPostData.body.currTo
-            body.fees = damanPayPostData.body.fees
-            body.payno = damanPayPostData.body.payno
-            body.serviceType = damanPayPostData.body.serviceType
-            body.dueAmount = damanPayPostData.body.dueAmount
-            body.subCategory=damanPayPostData.body.subCategory
+            body.accFrom = damanPayPostDataValue.body.accFrom
+            body.accTo = damanPayPostDataValue.body.accTo
+            body.currFrom = damanPayPostDataValue.body.currFrom
+            body.currTo = damanPayPostDataValue.body.currTo
+            body.fees = damanPayPostDataValue.body.fees
+            body.payno = damanPayPostDataValue.body.payno
+            body.serviceType = damanPayPostDataValue.body.serviceType
+            body.dueAmount = damanPayPostDataValue.body.dueAmount
+            body.subCategory = damanPayPostDataValue.body.subCategory
         }
         val postData =
             BaseRequestModel(
