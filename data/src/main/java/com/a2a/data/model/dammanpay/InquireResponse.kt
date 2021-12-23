@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 
-
 @Parcelize
 data class InquireResponse(
     @SerializedName("A2ARequest")
@@ -96,7 +95,7 @@ data class InquireResponse(
             @SerializedName("MAX_AMOUNT")
             var mAXAMOUNT: Double = 0.0,
             @SerializedName("PAY_EXACT")
-            var pAYEXACT: Int = 0,
+            var pAYEXACT: Double = 0.0,
             @SerializedName("STATUS")
             var sTATUS: Int = 0,
             @SerializedName("TOKEN")

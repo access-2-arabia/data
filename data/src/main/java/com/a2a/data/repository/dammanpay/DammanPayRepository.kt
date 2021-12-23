@@ -15,7 +15,7 @@ class DammanPayRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun <T> getPaymentType(
-          paymentTypePostDataValue : GetPaymentTypePostData
+        paymentTypePostDataValue: GetPaymentTypePostData
     ): Resource<T>? {
         val paymentTypePostData = GetPaymentTypePostData()
         paymentTypePostData.apply {
@@ -79,6 +79,7 @@ class DammanPayRepository @Inject constructor(
             body.serviceType = damanPayPostDataValue.body.serviceType
             body.dueAmount = damanPayPostDataValue.body.dueAmount
             body.subCategory = damanPayPostDataValue.body.subCategory
+            body.amt = damanPayPostDataValue.body.amt
         }
         val postData =
             BaseRequestModel(
