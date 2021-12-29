@@ -46,7 +46,7 @@ data class SendMoneyValidationPostData(
         @SerializedName("Amount")
         var amount: String = "",
         @SerializedName("D2B")
-        var jsonObject: JsonObject?=JsonObject()
+        var directToBankJson: JsonObject?=null
     ) : Serializable {
         data class Address(
             @SerializedName("addr_line1")
