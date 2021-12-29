@@ -1,18 +1,15 @@
 package com.a2a.data.model.wu.sendmoney
 
-import android.os.Parcelable
 import com.a2a.network.model.CustProfile
+import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
-import kotlinx.coroutines.internal.PrepareOp
+import java.io.Serializable
 
 
-@Parcelize
 data class SendMoneyValidationPostData(
     @SerializedName("Body")
     var body: Body = Body()
-) : Parcelable {
-    @Parcelize
+) : Serializable {
     data class Body(
         @SerializedName("Address")
         var address: Address = Address(),
@@ -47,9 +44,10 @@ data class SendMoneyValidationPostData(
         @SerializedName("StepNumber")
         var stepNumber: String = "",
         @SerializedName("Amount")
-        var amount: String = ""
-    ) : Parcelable {
-        @Parcelize
+        var amount: String = "",
+        @SerializedName("D2B")
+        var jsonObject: JsonObject?=null
+    ) : Serializable {
         data class Address(
             @SerializedName("addr_line1")
             var addrLine1: String = "",
@@ -59,9 +57,8 @@ data class SendMoneyValidationPostData(
             var countryCodeName: String = "",
             @SerializedName("country_iso_code")
             var countryIsoCode: String = ""
-        ) : Parcelable
+        ) : Serializable
 
-        @Parcelize
         data class BankAccount(
             @SerializedName("AccountNumber")
             var accountNumber: String = "",
@@ -73,9 +70,8 @@ data class SendMoneyValidationPostData(
             var branchCode: String = "",
             @SerializedName("CurrencyCode")
             var currencyCode: String = ""
-        ) : Parcelable
+        ) : Serializable
 
-        @Parcelize
         data class Destination(
             @SerializedName("Dstcountry_iso_code")
             var dstcountryIsoCode: String = "",
@@ -83,17 +79,15 @@ data class SendMoneyValidationPostData(
             var dstcurrencyIsoCode: String = "",
             @SerializedName("expected_payout_amount")
             var expectedPayoutAmount: String = ""
-        ) : Parcelable
+        ) : Serializable
 
-        @Parcelize
         data class Origination(
             @SerializedName("gross_amount")
             var grossAmount: String = "",
             @SerializedName("principal_amount")
             var principalAmount: String = ""
-        ) : Parcelable
+        ) : Serializable
 
-        @Parcelize
         data class Receiver(
             @SerializedName("answer")
             var answer: String = "",
@@ -140,6 +134,6 @@ data class SendMoneyValidationPostData(
             var temp_transaction_id: String = "",
             @SerializedName("transaction_digest")
             var transaction_digest: String = ""
-        ) : Parcelable
+        ) : Serializable
     }
 }
