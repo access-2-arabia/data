@@ -1,6 +1,7 @@
 package com.a2a.data.repository.wu
 
 import MemoryCacheImpl
+import android.view.textclassifier.TextLanguage
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.AccountListResponse
 import com.a2a.data.model.accountlist.AccountListResponse.A2AResponse.Body.Account
@@ -375,6 +376,7 @@ class WuRepository @Inject constructor(
             body.deviceType = sendMoneyValidationValue.body.deviceType
             body.deviceId = sendMoneyValidationValue.body.deviceId
             body.stepNumber = sendMoneyValidationValue.body.stepNumber
+            body.directToBankJson = sendMoneyValidationValue.body.directToBankJson
             val postData =
                 BaseRequestModel(
                     A2ARequest(
@@ -419,6 +421,7 @@ class WuRepository @Inject constructor(
             body.deviceId = sendMoneyValidationValue.body.deviceId
             body.stepNumber = sendMoneyValidationValue.body.stepNumber
             body.amount = sendMoneyValidationValue.body.amount
+            body.directToBankJson = sendMoneyValidationValue.body.directToBankJson
             val postData =
                 BaseRequestModel(
                     A2ARequest(
@@ -536,7 +539,8 @@ class WuRepository @Inject constructor(
     suspend fun <T> getWUCascadeList(
         queryFilter2: String,
         queryFilter3: String,
-        queryFilter4: String?=null
+        queryFilter4: String?=null,
+        language: String?="en"
     ): Resource<T>? {
         val wuCascade = CascadePostData()
         wuCascade.apply {
@@ -544,7 +548,7 @@ class WuRepository @Inject constructor(
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.deviceType = "MOBILE"
             body.deviceId = "Online"
-            body.queryfilter1 = "en"
+            body.queryfilter1 = language?:"en"
             body.queryfilter2 = queryFilter2
             body.queryfilter3 = queryFilter3
             body.queryfilter4 = queryFilter4
