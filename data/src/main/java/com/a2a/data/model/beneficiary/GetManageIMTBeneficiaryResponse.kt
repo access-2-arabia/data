@@ -41,13 +41,13 @@ data class GetManageIMTBeneficiaryResponse(
             @SerializedName("Channel")
             var channel: String = "",
             @SerializedName("ConnectorID")
-            var connectorID: Any? = null,
+            var connectorID: String = "",
             @SerializedName("Device")
-            var device: Any? = null,
+            var device: String = "",
             @SerializedName("DeviceID")
-            var deviceID: Any? = null,
+            var deviceID: String = "",
             @SerializedName("DeviceToken")
-            var deviceToken: Any? = null,
+            var deviceToken: String = "",
             @SerializedName("GuidID")
             var guidID: String = "",
             @SerializedName("MethodName")
@@ -59,7 +59,7 @@ data class GetManageIMTBeneficiaryResponse(
             @SerializedName("ServiceID")
             var serviceID: Int = 0,
             @SerializedName("SessionID")
-            var sessionID: Any? = null,
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: String = "",
             @SerializedName("TimeStamp")
@@ -90,7 +90,7 @@ data class GetManageIMTBeneficiaryResponse(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
                 @SerializedName("Address")
-                var address: Any? = null,
+                var address: String = "",
                 @SerializedName("AdminFlag")
                 var adminFlag: Boolean = false,
                 @SerializedName("Attr")
@@ -112,9 +112,9 @@ data class GetManageIMTBeneficiaryResponse(
                 @SerializedName("BenefBankSwift")
                 var benefBankSwift: String = "",
                 @SerializedName("Branch")
-                var branch: Any? = null,
+                var branch: String = "",
                 @SerializedName("City")
-                var city: Any? = null,
+                var city: String = "",
                 @SerializedName("ClientAccNo")
                 var clientAccNo: String = "",
                 @SerializedName("ClientName")
@@ -165,7 +165,7 @@ data class GetManageIMTBeneficiaryResponse(
             @SerializedName("Result")
             var result: Result = Result(),
             @SerializedName("SessionID")
-            var sessionID: Any? = null,
+            var sessionID: String = "",
             @SerializedName("SrvID")
             var srvID: Int = 0,
             @SerializedName("TimeStamp")
