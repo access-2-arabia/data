@@ -236,7 +236,13 @@ data class LookUpResponse(
                 @SerializedName("ID")
                 var iD: Int = 0,
                 @SerializedName("Telecom")
-                var telecom: String = ""
+                var telecom: String = "",
+                @SerializedName("IBAN")
+                var iban: Boolean = false,
+                @SerializedName("IBANLength")
+                var ibanLength: Int = 0,
+                @SerializedName("SwiftCode")
+                var swiftCode: Boolean = false
             ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
