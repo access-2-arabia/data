@@ -1,12 +1,13 @@
 package com.a2a.data.model.beneficiary.addupdatebenificiaryInternationaltransfer
 import android.os.Parcelable
+import com.a2a.network.model.CustProfile
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-data class AddUpdateBeneficiaryInternationalTransfer(
+data class AddUpdateBeneficiaryInternationalTransferPostData(
     @SerializedName("Body")
     var body: Body = Body()
 ) : Parcelable {
@@ -56,15 +57,5 @@ data class AddUpdateBeneficiaryInternationalTransfer(
                 var intermediary: String = ""
             ) : Parcelable
         }
-
-        @Parcelize
-        data class CustProfile(
-            @SerializedName("CID")
-            var cID: String = "",
-            @SerializedName("CustID")
-            var custID: String = "",
-            @SerializedName("RepID")
-            var repID: String = ""
-        ) : Parcelable
     }
 }

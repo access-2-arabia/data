@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class GetAddUpdateBeneficiaryInternationalTransfer(
+data class GetAddUpdateBeneficiaryInternationalTransferResponse(
 
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
