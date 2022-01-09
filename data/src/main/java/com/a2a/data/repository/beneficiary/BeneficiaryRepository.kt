@@ -93,13 +93,13 @@ class BeneficiaryRepository @Inject constructor(
     }
 
     suspend fun <T> updateAddBeneficiaryIMTBank(
-        addUpdateBeneficiaryInternationalTransfer: AddUpdateBeneficiaryInternationalTransferPostData.Body.Beneficiary,
+        addUpdateBeneficiaryInternationalTransfer: AddUpdateBeneficiaryInternationalTransferPostData.Body,
         stepNumber: Int
     ): Resource<T>? {
         val addBeneficiariesIMT = AddUpdateBeneficiaryInternationalTransferPostData()
         addBeneficiariesIMT.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
-            body.beneficiary = addUpdateBeneficiaryInternationalTransfer
+            body.beneficiary = addUpdateBeneficiaryInternationalTransfer.beneficiary
             body.stepNumber = stepNumber
         }
         val postData =
