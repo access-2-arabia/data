@@ -55,6 +55,14 @@ data class IMTValidationPostData(
         @SerializedName("BenName3")
         var benName3: String = "",
         @SerializedName("BenName4")
-        var benName4: String = ""
+        var benName4: String = "",
+        @SerializedName("SwiftRouting")
+        var swiftRouting: String = "",
+        @SerializedName("PaymentDetail")
+        var paymentDetail: String = "",
+        @SerializedName("PaymentDetail2")
+        var paymentDetail2: String = "",
+        @SerializedName("ChargesFor")
+        var chargesFor: String = "",
     ) : Parcelable
 }
