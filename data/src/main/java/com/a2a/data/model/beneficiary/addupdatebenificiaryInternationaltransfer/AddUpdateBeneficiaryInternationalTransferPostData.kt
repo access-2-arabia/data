@@ -62,9 +62,9 @@ data class AddUpdateBeneficiaryInternationalTransferPostData(
             @SerializedName("BenName3")
             var benName3: String = "",
             @SerializedName("BenName4")
-            var benName4: String = ""
-
-
+            var benName4: String = "",
+            @SerializedName("ID")
+            var id: String = ""
         ) : Parcelable {
             @Parcelize
             data class Swift(
