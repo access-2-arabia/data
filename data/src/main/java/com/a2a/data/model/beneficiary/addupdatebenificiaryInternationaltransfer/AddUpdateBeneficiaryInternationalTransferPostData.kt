@@ -1,4 +1,5 @@
 package com.a2a.data.model.beneficiary.addupdatebenificiaryInternationaltransfer
+
 import android.os.Parcelable
 import com.a2a.network.model.CustProfile
 
@@ -53,7 +54,17 @@ data class AddUpdateBeneficiaryInternationalTransferPostData(
             @SerializedName("RoutingBankName")
             var routingBankName: String = "",
             @SerializedName("RefNo")
-            var refNo: String = ""
+            var refNo: String = "",
+            @SerializedName("BenName")
+            var benName: String = "",
+            @SerializedName("BenName2")
+            var benName2: String = "",
+            @SerializedName("BenName3")
+            var benName3: String = "",
+            @SerializedName("BenName4")
+            var benName4: String = ""
+
+
         ) : Parcelable {
             @Parcelize
             data class Swift(
