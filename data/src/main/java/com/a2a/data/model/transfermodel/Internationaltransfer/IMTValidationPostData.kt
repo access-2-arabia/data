@@ -34,8 +34,6 @@ data class IMTValidationPostData(
         var bankRef: String = "",
         @SerializedName("BenAccIBAN")
         var benAccIBAN: String = "",
-        @SerializedName("BenName")
-        var benName: String = "",
         @SerializedName("BranchCode")
         var branchCode: String = "",
         @SerializedName("CurrencyCodeFrom")
@@ -49,6 +47,14 @@ data class IMTValidationPostData(
         @SerializedName("StepNumber")
         var stepNumber: String = "",
         @SerializedName("TransRsn")
-        var transRsn: String = ""
+        var transRsn: String = "",
+        @SerializedName("BenName")
+        var benName: String = "",
+        @SerializedName("BenName2")
+        var benName2: String = "",
+        @SerializedName("BenName3")
+        var benName3: String = "",
+        @SerializedName("BenName4")
+        var benName4: String = ""
     ) : Parcelable
 }
