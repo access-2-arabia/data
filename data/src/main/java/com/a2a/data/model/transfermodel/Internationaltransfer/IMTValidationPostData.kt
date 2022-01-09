@@ -1,6 +1,7 @@
 package com.a2a.data.model.transfermodel.Internationaltransfer
 
 import android.os.Parcelable
+import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -64,5 +65,7 @@ data class IMTValidationPostData(
         var paymentDetail2: String = "",
         @SerializedName("ChargesFor")
         var chargesFor: String = "",
+        @SerializedName("CustProfile")
+        var custProfile: CustProfile = CustProfile()
     ) : Parcelable
 }

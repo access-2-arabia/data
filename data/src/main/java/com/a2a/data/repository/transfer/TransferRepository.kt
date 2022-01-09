@@ -5,6 +5,7 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStampSlash
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.transfermodel.Internationaltransfer.IMTValidationPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountModel
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
@@ -271,6 +272,53 @@ class TransferRepository @Inject constructor(
                 A2ARequest(
                     localBankPostData,
                     srvID = localBankModel.srvID,
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> validateIMT(
+        imtValidation: IMTValidationPostData
+    ): Resource<T>? {
+        val iMTPostData = IMTValidationPostData()
+        iMTPostData.body.apply {
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+            stepNumber = "2"
+            accountNumberFrom = imtValidation.body.accountNumberFrom
+            benAccIBAN = imtValidation.body.benAccIBAN
+            benName = imtValidation.body.benName
+            benName2 = imtValidation.body.benName2
+            benName3 = imtValidation.body.benName3
+            benName4 = imtValidation.body.benName4
+            amount = imtValidation.body.amount
+            amount = imtValidation.body.amount
+            currencyCodeTo = imtValidation.body.currencyCodeTo
+            currencyCodeFrom = imtValidation.body.currencyCodeFrom
+            transRsn = imtValidation.body.transRsn
+            bFDType = imtValidation.body.bFDType
+            aFName = imtValidation.body.aFName
+            aSName = imtValidation.body.aSName
+            aTName = imtValidation.body.aTName
+            aLName = imtValidation.body.aLName
+            bENCOUNTRY = imtValidation.body.bENCOUNTRY
+            aCCOUNTWITHBANK = imtValidation.body.aCCOUNTWITHBANK
+            swiftRouting = imtValidation.body.swiftRouting
+            iNTERMEDBANK = imtValidation.body.iNTERMEDBANK
+            executedBranch = imtValidation.body.executedBranch
+            paymentDetail = imtValidation.body.paymentDetail
+            paymentDetail2 = imtValidation.body.paymentDetail2
+            chargesFor = imtValidation.body.chargesFor
+            branchCode = imtValidation.body.branchCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    iMTPostData,
+                    srvID = "InterTran",
                     serviceIDValue = 0
                 )
             )
