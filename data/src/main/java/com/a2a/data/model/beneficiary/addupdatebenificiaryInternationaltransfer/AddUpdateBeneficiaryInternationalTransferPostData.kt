@@ -47,7 +47,13 @@ data class AddUpdateBeneficiaryInternationalTransferPostData(
             @SerializedName("TName")
             var tName: String = "",
             @SerializedName("Type")
-            var type: String = ""
+            var type: String = "",
+            @SerializedName("RountingNumber")
+            var rountingNumber: String = "",
+            @SerializedName("RoutingBankName")
+            var routingBankName: String = "",
+            @SerializedName("RefNo")
+            var refNo: String = ""
         ) : Parcelable {
             @Parcelize
             data class Swift(
