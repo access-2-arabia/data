@@ -6,6 +6,7 @@ import com.a2a.data.extentions.formatToViewDateStampSlash
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.transfermodel.Internationaltransfer.IMTValidationPostData
+import com.a2a.data.model.transfermodel.Internationaltransfer.InternationalMoneyTransferPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountModel
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
@@ -326,4 +327,59 @@ class TransferRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+
+    suspend fun <T> internationalMoneyTransfer(
+        internationalMoneyTransfer: InternationalMoneyTransferPostData
+    ): Resource<T>? {
+        val iMTPostData = InternationalMoneyTransferPostData()
+        iMTPostData.body.apply {
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+            stepNumber = 3
+            accountNumberFrom = internationalMoneyTransfer.body.accountNumberFrom
+            benAccIBAN = internationalMoneyTransfer.body.benAccIBAN
+            benName = internationalMoneyTransfer.body.benName
+            benName2 = internationalMoneyTransfer.body.benName2
+            benName3 = internationalMoneyTransfer.body.benName3
+            benName4 = internationalMoneyTransfer.body.benName4
+            amount = internationalMoneyTransfer.body.amount
+            currencyCodeTo = internationalMoneyTransfer.body.currencyCodeTo
+            currencyCodeFrom = internationalMoneyTransfer.body.currencyCodeFrom
+            transRsn = internationalMoneyTransfer.body.transRsn
+            bFDType = internationalMoneyTransfer.body.bFDType
+            aFName = internationalMoneyTransfer.body.aFName
+            aSName = internationalMoneyTransfer.body.aSName
+            aTName = internationalMoneyTransfer.body.aTName
+            aLName = internationalMoneyTransfer.body.aLName
+            bENCOUNTRY = internationalMoneyTransfer.body.bENCOUNTRY
+            aCCOUNTWITHBANK = internationalMoneyTransfer.body.aCCOUNTWITHBANK
+            swiftRouting = internationalMoneyTransfer.body.swiftRouting
+            iNTERMEDBANK = internationalMoneyTransfer.body.iNTERMEDBANK
+            paymentDetail = internationalMoneyTransfer.body.paymentDetail
+            paymentDetail2 = internationalMoneyTransfer.body.paymentDetail2
+            chargesFor = internationalMoneyTransfer.body.chargesFor
+            branchCode = internationalMoneyTransfer.body.branchCode
+            localAmtCredit = internationalMoneyTransfer.body.localAmtCredit
+            bFDType = internationalMoneyTransfer.body.bFDType
+            startDate = internationalMoneyTransfer.body.startDate
+            count = internationalMoneyTransfer.body.count
+            period = internationalMoneyTransfer.body.period
+            eDesc = "Transfer to Other Banks Outside Jordan"
+            aDesc = "التحويل إلى بنوك أخرى خارج الأردن"
+            branchCode = internationalMoneyTransfer.body.branchCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    iMTPostData,
+                    srvID = "InterTran",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
 }
