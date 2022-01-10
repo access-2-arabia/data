@@ -31,8 +31,6 @@ data class IMTValidationPostData(
         var bENCOUNTRY: String = "",
         @SerializedName("BFDType")
         var bFDType: String = "",
-        @SerializedName("BankRef")
-        var bankRef: String = "",
         @SerializedName("BenAccIBAN")
         var benAccIBAN: String = "",
         @SerializedName("BranchCode")
