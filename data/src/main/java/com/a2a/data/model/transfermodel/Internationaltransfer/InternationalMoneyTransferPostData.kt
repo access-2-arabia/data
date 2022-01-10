@@ -34,8 +34,6 @@ data class InternationalMoneyTransferPostData(
         var bENCOUNTRY: String = "",
         @SerializedName("BFDType")
         var bFDType: String = "",
-        @SerializedName("BankRef")
-        var bankRef: String = "",
         @SerializedName("BenAccIBAN")
         var benAccIBAN: String = "",
         @SerializedName("BenName")
@@ -68,8 +66,6 @@ data class InternationalMoneyTransferPostData(
         var paymentDetail2: String = "",
         @SerializedName("Period")
         var period: String = "",
-        @SerializedName("RefNo")
-        var refNo: Any? = null,
         @SerializedName("StartDate")
         var startDate: String = "",
         @SerializedName("StepNumber")
