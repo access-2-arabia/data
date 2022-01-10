@@ -318,7 +318,7 @@ class TransferRepository @Inject constructor(
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    iMTPostData,
+                    iMTPostData.body,
                     srvID = "InterTran",
                     serviceIDValue = 0
                 )
@@ -371,7 +371,7 @@ class TransferRepository @Inject constructor(
         val postData =
             BaseRequestModel(
                 A2ARequest(
-                    iMTPostData,
+                    iMTPostData.body,
                     srvID = "InterTran",
                     serviceIDValue = 0
                 )
