@@ -7,5 +7,6 @@ class AppCash {
         var token: String? = ""
         var sslPining: String? = ""
         var cliQRecordId: String? = ""
+        var bankCode: String? = ""
     }
 }

@@ -44,6 +44,10 @@ data class BillerSrvType(
     var mEnMsg: String = "",
     @SerializedName("Postpaid")
     var postpaid: Boolean = false,
-    var category: String = ""
+    var category: String = "",
+    @SerializedName("Regex")
+    var regex: String = "",
+    @SerializedName("BillType")
+    var billType: String = ""
 
 ) : Parcelable

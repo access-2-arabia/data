@@ -4,6 +4,8 @@ import android.os.CountDownTimer
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.otp.OTPTokenPostData
+import com.a2a.data.model.wu.wuLookup.country.CountryPostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import com.google.gson.Gson
@@ -29,24 +31,26 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
         if (isManual) {
             jsonObject.getAsJsonObject("A2ARequest").getAsJsonObject("Body")
                 .addProperty("StepNumber", "2")
-
-
         }
         return safeApiCall(jsonObject) { remoteDataSource.baseRequest(jsonObject) }
     }
 
     suspend fun <T> requestOTP(
-        mobileNumber: String
+        amount : String,
+        currencyCode: String,
+        srvId: String
     ): Resource<T> {
 
-        val postData = MemoryCacheImpl.getCustProfile()!!
-        postData.mobileNumber = mobileNumber
-
+        val bodyReq = OTPTokenPostData()
+        bodyReq.body.custProfile = MemoryCacheImpl.getCustProfile()!!
+        bodyReq.body.amount = amount
+        bodyReq.body.currencyCode = currencyCode
+        bodyReq.body.srvID = srvId
 
         val request =
             BaseRequestModel(
                 A2ARequest(
-                    postData,
+                    bodyReq.body,
                     srvID = "OTPToken",
                     serviceIDValue = 0
                 )
@@ -55,8 +59,6 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
             remoteDataSource.baseRequest(request)
         }
     }
-
-
 
 
 }

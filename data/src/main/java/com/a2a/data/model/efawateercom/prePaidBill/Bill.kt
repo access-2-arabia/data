@@ -49,5 +49,27 @@ data class Bill(
     @SerializedName("ValidationCode")
     var validationCode: String = "",
     @SerializedName("InqRefNo")
-    var inqRefNo: String = ""
+    var inqRefNo: String = "",
+    @SerializedName("SenderEName")
+    var SenderEName: String = "",
+    @SerializedName("SenderAName")
+    var SenderAName: String = "",
+    @SerializedName("SenderNation")
+    var SenderNation: String = "",
+    @SerializedName("SenderIDType")
+    var SenderIDType: String = "",
+    @SerializedName("SenderID")
+    var SenderID: String = "",
+    @SerializedName("BenEName")
+    var BenEName: String = "",
+    @SerializedName("BenAName")
+    var BenAName: String = "",
+    @SerializedName("BenNation")
+    var BenNation: String = "",
+    @SerializedName("TransferReason")
+    var TransferReason: String = "",
+    @SerializedName("ReceivingCountry")
+    var ReceivingCountry: String = "",
+    @SerializedName("CustName")
+    var CustName: String = ""
 ): Parcelable

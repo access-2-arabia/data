@@ -18,7 +18,8 @@ data class LocalBankModel(
     var bankName:String="",
     var srvID:String="",
     var bFDType:String="",
-    var nameModel: NameModel = NameModel()
+    var nameModel: NameModel = NameModel(),
+    var accountBranch :String?=null
 ):Parcelable
 
 

@@ -6,7 +6,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Product(
+data class
+Product(
     @SerializedName("ADesc")
     var aDesc: String = "",
     @SerializedName("AName")

@@ -3,7 +3,6 @@ package com.a2a.data.model.common
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
 data class A2ARequest<T> constructor(
     @SerializedName("Body")
     var body: T? = null,
@@ -13,4 +12,4 @@ data class A2ARequest<T> constructor(
     var serviceIDValue: Int = 0,
     @SerializedName("Header")
     var hedar: Header = Header(srvID = srvID, serviceID = serviceIDValue),
-) :Serializable
+) : Serializable

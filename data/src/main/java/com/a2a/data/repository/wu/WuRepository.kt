@@ -1,6 +1,7 @@
 package com.a2a.data.repository.wu
 
 import MemoryCacheImpl
+import android.view.textclassifier.TextLanguage
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.accountlist.AccountListResponse
 import com.a2a.data.model.accountlist.AccountListResponse.A2AResponse.Body.Account
@@ -11,6 +12,8 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.common.Header
 import com.a2a.data.model.transfermodel.withincab.ValidationWithinCabPostData
 import com.a2a.data.model.transfermodel.withincab.WithinCabTransferModel
+import com.a2a.data.model.wu.directtobank.CascadePostData
+import com.a2a.data.model.wu.directtobank.WuTemplatePostData
 import com.a2a.data.model.wu.feeinquire.CrossCurrencyPostData
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.model.wu.feeinquire.FeeInquireResponse
@@ -275,6 +278,40 @@ class WuRepository @Inject constructor(
         }
     }
 
+    suspend fun <T> getWuDeliveryServicesTemplates(
+        queryfilter2Value: String,
+        queryfilter3Value: String,
+        queryfilter4Value: String
+    ): Resource<T>? {
+        val deliveryServicesPostData = DeliveryServicesPostData()
+        deliveryServicesPostData.apply {
+            body.lookUpName = "DeliveryServices"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceId = "Online"
+            body.deviceType = "Online"
+            body.queryfilter1 = "en"
+            body.queryfilter2 = queryfilter2Value
+            if (!queryfilter3Value.isNullOrEmpty()) {
+                body.queryfilter3 = queryfilter3Value
+            }
+            if (!queryfilter4Value.isNullOrEmpty()) {
+                body.queryfilter4 = queryfilter4Value
+            }
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    deliveryServicesPostData.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
     suspend fun <T> getWuDeliveryServices(
         queryfilter3Value: String,
         queryfilter4Value: String
@@ -308,7 +345,6 @@ class WuRepository @Inject constructor(
         }
     }
 
-
     suspend fun <T> sendMoneyValidation(
         sendMoneyValidationValue: SendMoneyValidationPostData
     ): Resource<T>? {
@@ -340,6 +376,7 @@ class WuRepository @Inject constructor(
             body.deviceType = sendMoneyValidationValue.body.deviceType
             body.deviceId = sendMoneyValidationValue.body.deviceId
             body.stepNumber = sendMoneyValidationValue.body.stepNumber
+            body.directToBankJson = sendMoneyValidationValue.body.directToBankJson
             val postData =
                 BaseRequestModel(
                     A2ARequest(
@@ -384,6 +421,7 @@ class WuRepository @Inject constructor(
             body.deviceId = sendMoneyValidationValue.body.deviceId
             body.stepNumber = sendMoneyValidationValue.body.stepNumber
             body.amount = sendMoneyValidationValue.body.amount
+            body.directToBankJson = sendMoneyValidationValue.body.directToBankJson
             val postData =
                 BaseRequestModel(
                     A2ARequest(
@@ -467,6 +505,63 @@ class WuRepository @Inject constructor(
             )
         return safeApiCall(postData)
         {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getWUTemplate(
+        wuTemplatePostData: WuTemplatePostData
+    ): Resource<T>? {
+        val wuTemplate = WuTemplatePostData()
+        wuTemplate.apply {
+            body.lookUpName = "DeliveryOptionTemplate"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceType = "MOBILE"
+            body.deviceId = "Online"
+            body.queryfilter1 = wuTemplatePostData.body.queryfilter1
+            body.queryfilter2 = wuTemplatePostData.body.queryfilter2
+            body.queryfilter3 = wuTemplatePostData.body.queryfilter3
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    wuTemplate.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getWUCascadeList(
+        queryFilter2: String,
+        queryFilter3: String,
+        queryFilter4: String?=null,
+        language: String?="en"
+    ): Resource<T>? {
+        val wuCascade = CascadePostData()
+        wuCascade.apply {
+            body.lookUpName = "CascadeList"
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.deviceType = "MOBILE"
+            body.deviceId = "Online"
+            body.queryfilter1 = language?:"en"
+            body.queryfilter2 = queryFilter2
+            body.queryfilter3 = queryFilter3
+            body.queryfilter4 = queryFilter4
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    wuCascade.body,
+                    srvID = "GetWULookup",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
     }

@@ -1,7 +1,8 @@
 package com.a2a.data.model.rate
 
 
-import com.a2a.data.model.Header
+
+import com.a2a.data.model.common.Header
 import com.google.gson.annotations.SerializedName
 
 data class RateExchangePostData(

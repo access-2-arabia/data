@@ -138,7 +138,9 @@ data class CreditCardResponse(
                 @SerializedName("Status")
                 var status: String = "",
                 @SerializedName("UsedBal")
-                var usedBal: Double = 0.0
+                var usedBal: Double = 0.0,
+                @SerializedName("CardImage")
+                var cardImage: String = ""
             ) : Parcelable {
                 @Parcelize
                 data class Holders(

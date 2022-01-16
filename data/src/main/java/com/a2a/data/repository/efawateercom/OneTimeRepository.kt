@@ -43,7 +43,7 @@ class OneTimeRepository @Inject constructor(
 
         body.apply {
             requestType = "BillersList"
-            code = sentCode
+            code = " "
             category = sentCode
         }
         val postData = BaseRequestModel(
@@ -226,7 +226,7 @@ class OneTimeRepository @Inject constructor(
         billerEDesc: String,
         referenceNumber: String,
         branchCode: String,
-        currencyCode : String
+        currencyCode: String
     ): Resource<T> {
 
         val body = PayPostPaidPostData()

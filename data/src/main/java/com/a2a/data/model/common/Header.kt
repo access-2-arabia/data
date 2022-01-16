@@ -1,16 +1,22 @@
 package com.a2a.data.model.common
 
 import android.os.Parcelable
+import com.a2a.data.constants.Constants.Companion.BankCode
 import com.a2a.data.datasource.AppCash
 import com.a2a.data.extentions.formatToViewTimeStamp
+import com.a2a.network.BuildConfig
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
 data class Header(
+
+//    CABSignature
+//    CAB
+//    LINC
     @SerializedName("BankCode")
-    var BankCode: String = "CAB",
+    var BankCode: String =  AppCash.bankCode?:"",
 
     @SerializedName("RegionCode")
     var regionCode: String = "02",
@@ -31,13 +37,13 @@ data class Header(
     var timeStamp: String = Date().formatToViewTimeStamp(),
 
     @SerializedName("DeviceID")
-    var deviceID: String =  AppCash.deviceID?:"",
+    var deviceID: String = AppCash.deviceID ?: "",
 
     @SerializedName("GuidID")
     var GuidID: String = "74402e7c-2d79-4a38-b2f8-396fb34c5c40",
 
     @SerializedName("DeviceToken")
-    var deviceToken: String = AppCash.deviceID?:"",
+    var deviceToken: String = AppCash.deviceID ?: "",
 
     @SerializedName("ConnectorID")
     var ConnectorID: String = "CB",

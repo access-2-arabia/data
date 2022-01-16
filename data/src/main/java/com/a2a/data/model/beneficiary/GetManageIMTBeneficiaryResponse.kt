@@ -1,10 +1,14 @@
-package com.a2a.data.model.card.debit
-import com.google.gson.annotations.SerializedName
+package com.a2a.data.model.beneficiary
 import android.os.Parcelable
+
+
+
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+
 @Parcelize
-data class DebitCardResponse(
+data class GetManageIMTBeneficiaryResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -76,93 +80,73 @@ data class DebitCardResponse(
     ) : Parcelable {
         @Parcelize
         data class Body(
-            @SerializedName("A2AChannel")
-            var a2AChannel: String = "",
-            @SerializedName("A2APWD")
-            var a2APWD: String = "",
-            @SerializedName("A2AUserID")
-            var a2AUserID: String = "",
-            @SerializedName("AmountDue")
-            var amountDue: Double = 0.0,
-            @SerializedName("CardBalance")
-            var cardBalance: Double = 0.0,
-            @SerializedName("CustomerId")
-            var customerId: String = "",
-            @SerializedName("Disputed")
-            var disputed: Boolean = false,
-            @SerializedName("ErrorCode")
-            var errorCode: Int = 0,
-            @SerializedName("FeeAmount")
-            var feeAmount: Double = 0.0,
-            @SerializedName("NoOfRecords")
-            var noOfRecords: Double = 0.0,
-            @SerializedName("RegionCode")
-            var regionCode: String = "",
-            @SerializedName("ResultSet")
-            var resultSet: List<ResultSet> = listOf(),
-            @SerializedName("TotalFees")
-            var totalFees: Double = 0.0,
-            @SerializedName("TrxAmount")
-            var trxAmount: Double = 0.0,
-            @SerializedName("VirtualCardLimit")
-            var virtualCardLimit: VirtualCardLimit = VirtualCardLimit()
+            @SerializedName("BeneficiaryInternational")
+            var beneficiaryInternational: List<BeneficiaryInternational> = listOf(),
+            @SerializedName("ServiceConfiguration")
+            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) : Parcelable {
             @Parcelize
-            data class ResultSet(
-                @SerializedName("AmountDue")
-                var amountDue: Double = 0.0,
-                @SerializedName("BranchName")
-                var branchName: String = "",
-                @SerializedName("CardBalance")
-                var cardBalance: Double = 0.0,
-                @SerializedName("CardNo")
-                var cardNo: String = "",
-                @SerializedName("CardNumber")
-                var cardNumber: String = "",
-                @SerializedName("CardNumberMasked")
-                var cardNumberMasked: String = "",
-                @SerializedName("CardProgram")
-                var cardProgram: String = "",
-                @SerializedName("CardType")
-                var cardType: String = "",
-                @SerializedName("Disputed")
-                var disputed: Boolean = false,
-                @SerializedName("EmbossedName")
-                var embossedName: String = "",
-                @SerializedName("ErrorCode")
-                var errorCode: Int = 0,
-                @SerializedName("ExpiryDate")
-                var expiryDate: String = "",
-                @SerializedName("FeeAmount")
-                var feeAmount: Double = 0.0,
-                @SerializedName("MobileNo")
-                var mobileNo: String = "",
-                @SerializedName("Status")
-                var status: String = "",
-                @SerializedName("StatusDate")
-                var statusDate: String = "",
-                @SerializedName("TotalFees")
-                var totalFees: Double = 0.0,
-                @SerializedName("TrxAmount")
-                var trxAmount: Double = 0.0,
-                @SerializedName("CardExpiryDate")
-                var cardExpiryDate: String="",
-                @SerializedName("CardImage")
-                var cardImage: String = ""
+            data class BeneficiaryInternational(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("Address")
+                var address: String = "",
+                @SerializedName("AdminFlag")
+                var adminFlag: Boolean = false,
+                @SerializedName("Attr")
+                var attr: String = "",
+                @SerializedName("BankCode")
+                var bankCode: String = "",
+                @SerializedName("BankName")
+                var bankName: String = "",
+                @SerializedName("BenName")
+                var benName: String = "",
+                @SerializedName("BenName2")
+                var benName2: String = "",
+                @SerializedName("BenName3")
+                var benName3: String = "",
+                @SerializedName("BenName4")
+                var benName4: String = "",
+                @SerializedName("BenType")
+                var benType: String = "",
+                @SerializedName("BenefBankSwift")
+                var benefBankSwift: String = "",
+                @SerializedName("Branch")
+                var branch: String = "",
+                @SerializedName("City")
+                var city: String = "",
+                @SerializedName("ClientAccNo")
+                var clientAccNo: String = "",
+                @SerializedName("ClientName")
+                var clientName: String = "",
+                @SerializedName("Country")
+                var country: String = "",
+                @SerializedName("CustID")
+                var custID: Int = 0,
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("Enabled")
+                var enabled: Boolean = false,
+                @SerializedName("FName")
+                var fName: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("InterBankSwift")
+                var interBankSwift: String = "",
+                @SerializedName("LName")
+                var lName: String = "",
+                @SerializedName("RegionCode")
+                var regionCode: String = "",
+                @SerializedName("SName")
+                var sName: String = "",
+                @SerializedName("TName")
+                var tName: String = ""
             ) : Parcelable
 
             @Parcelize
-            data class VirtualCardLimit(
-                @SerializedName("ADesc")
-                var aDesc: String = "",
-                @SerializedName("AValue")
-                var aValue: String = "",
-                @SerializedName("EDesc")
-                var eDesc: String = "",
-                @SerializedName("EValue")
-                var eValue: String = "",
-                @SerializedName("ParamID")
-                var paramID: String = ""
+            data class ServiceConfiguration(
+                @SerializedName("PWDFlag")
+                var pWDFlag: Int = 0
             ) : Parcelable
         }
 

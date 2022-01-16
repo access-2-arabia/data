@@ -5,6 +5,8 @@ import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.extentions.formatToViewDateStampSlash
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
+import com.a2a.data.model.transfermodel.Internationaltransfer.IMTValidationPostData
+import com.a2a.data.model.transfermodel.Internationaltransfer.InternationalMoneyTransferPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountModel
 import com.a2a.data.model.transfermodel.betwenmyaccount.BetweenMyAccountPostData
 import com.a2a.data.model.transfermodel.betwenmyaccount.ValidationBetweenMyAccountPostData
@@ -101,7 +103,7 @@ class TransferRepository @Inject constructor(
             body.currencyFrom = withinCabTransferModel.fromCurrency
             body.currencyTo = withinCabTransferModel.toBeneficiaryCurrency
             body.amount = withinCabTransferModel.amount
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.branchCode = withinCabTransferModel.accountBranch.toString()
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
         }
 
@@ -135,7 +137,7 @@ class TransferRepository @Inject constructor(
             body.accounts.amount = withinCabTransferModel.amount
             body.count = "-1"
             body.period = 0
-            body.branchCode = MemoryCacheImpl.getCustProfile()?.branch.toString()
+            body.branchCode = withinCabTransferModel.accountBranch.toString()
             body.eDesc = TransferType.WithinCabEDesc
             body.aDesc = TransferType.WithinCabADesc
         }
@@ -164,7 +166,7 @@ class TransferRepository @Inject constructor(
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
             body.amount = localBankModel.amountValue
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.branchCode = localBankModel.accountBranch.toString()
             body.benBank = ""
             body.benAccIBAN = localBankModel.benefAccountIban
             body.benName = localBankModel.nameModel.benefName
@@ -205,7 +207,7 @@ class TransferRepository @Inject constructor(
             body.accountNumberTo = localBankModel.accountNumberToValue
             body.currencyCodeFrom = localBankModel.currFrom
             body.amount = localBankModel.amountValue
-            body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
+            body.branchCode = localBankModel.accountBranch.toString()
             body.benBank = ""
             body.benAccIBAN = localBankModel.benefAccountIban
             body.benName = localBankModel.nameModel.benefName
@@ -278,4 +280,106 @@ class TransferRepository @Inject constructor(
             remoteDataSource.baseRequest(postData)
         }
     }
+
+
+    suspend fun <T> validateIMT(
+        imtValidation: IMTValidationPostData
+    ): Resource<T>? {
+        val iMTPostData = IMTValidationPostData()
+        iMTPostData.body.apply {
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+            stepNumber = "2"
+            accountNumberFrom = imtValidation.body.accountNumberFrom
+            benAccIBAN = imtValidation.body.benAccIBAN
+            benName = imtValidation.body.benName
+            benName2 = imtValidation.body.benName2
+            benName3 = imtValidation.body.benName3
+            benName4 = imtValidation.body.benName4
+            amount = imtValidation.body.amount
+            amount = imtValidation.body.amount
+            currencyCodeTo = imtValidation.body.currencyCodeTo
+            currencyCodeFrom = imtValidation.body.currencyCodeFrom
+            transRsn = imtValidation.body.transRsn
+            bFDType = imtValidation.body.bFDType
+            aFName = imtValidation.body.aFName
+            aSName = imtValidation.body.aSName
+            aTName = imtValidation.body.aTName
+            aLName = imtValidation.body.aLName
+            bENCOUNTRY = imtValidation.body.bENCOUNTRY
+            aCCOUNTWITHBANK = imtValidation.body.aCCOUNTWITHBANK
+            swiftRouting = imtValidation.body.swiftRouting
+            iNTERMEDBANK = imtValidation.body.iNTERMEDBANK
+            executedBranch = imtValidation.body.executedBranch
+            paymentDetail = imtValidation.body.paymentDetail
+            paymentDetail2 = imtValidation.body.paymentDetail2
+            chargesFor = imtValidation.body.chargesFor
+            branchCode = imtValidation.body.branchCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    iMTPostData.body,
+                    srvID = "InterTran",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> internationalMoneyTransfer(
+        internationalMoneyTransfer: InternationalMoneyTransferPostData
+    ): Resource<T>? {
+        val iMTPostData = InternationalMoneyTransferPostData()
+        iMTPostData.body.apply {
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
+            stepNumber = 3
+            accountNumberFrom = internationalMoneyTransfer.body.accountNumberFrom
+            benAccIBAN = internationalMoneyTransfer.body.benAccIBAN
+            benName = internationalMoneyTransfer.body.benName
+            benName2 = internationalMoneyTransfer.body.benName2
+            benName3 = internationalMoneyTransfer.body.benName3
+            benName4 = internationalMoneyTransfer.body.benName4
+            amount = internationalMoneyTransfer.body.amount
+            currencyCodeTo = internationalMoneyTransfer.body.currencyCodeTo
+            currencyCodeFrom = internationalMoneyTransfer.body.currencyCodeFrom
+            transRsn = internationalMoneyTransfer.body.transRsn
+            bFDType = internationalMoneyTransfer.body.bFDType
+            aFName = internationalMoneyTransfer.body.aFName
+            aSName = internationalMoneyTransfer.body.aSName
+            aTName = internationalMoneyTransfer.body.aTName
+            aLName = internationalMoneyTransfer.body.aLName
+            bENCOUNTRY = internationalMoneyTransfer.body.bENCOUNTRY
+            aCCOUNTWITHBANK = internationalMoneyTransfer.body.aCCOUNTWITHBANK
+            swiftRouting = internationalMoneyTransfer.body.swiftRouting
+            iNTERMEDBANK = internationalMoneyTransfer.body.iNTERMEDBANK
+            paymentDetail = internationalMoneyTransfer.body.paymentDetail
+            paymentDetail2 = internationalMoneyTransfer.body.paymentDetail2
+            chargesFor = internationalMoneyTransfer.body.chargesFor
+            branchCode = internationalMoneyTransfer.body.branchCode
+            localAmtCredit = internationalMoneyTransfer.body.localAmtCredit
+            bFDType = internationalMoneyTransfer.body.bFDType
+            startDate = internationalMoneyTransfer.body.startDate
+            count = internationalMoneyTransfer.body.count
+            period = internationalMoneyTransfer.body.period
+            eDesc = "Transfer to Other Banks Outside Jordan"
+            aDesc = "التحويل إلى بنوك أخرى خارج الأردن"
+            branchCode = internationalMoneyTransfer.body.branchCode
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    iMTPostData.body,
+                    srvID = "InterTran",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
 }

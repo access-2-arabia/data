@@ -1,10 +1,10 @@
-package com.a2a.data.model.card.debit
-import com.google.gson.annotations.SerializedName
+package com.a2a.data.model.paypal
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class DebitCardResponse(
+data class ValidationResponse(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
@@ -76,93 +76,27 @@ data class DebitCardResponse(
     ) : Parcelable {
         @Parcelize
         data class Body(
-            @SerializedName("A2AChannel")
-            var a2AChannel: String = "",
-            @SerializedName("A2APWD")
-            var a2APWD: String = "",
-            @SerializedName("A2AUserID")
-            var a2AUserID: String = "",
-            @SerializedName("AmountDue")
-            var amountDue: Double = 0.0,
-            @SerializedName("CardBalance")
-            var cardBalance: Double = 0.0,
-            @SerializedName("CustomerId")
-            var customerId: String = "",
-            @SerializedName("Disputed")
-            var disputed: Boolean = false,
-            @SerializedName("ErrorCode")
-            var errorCode: Int = 0,
-            @SerializedName("FeeAmount")
-            var feeAmount: Double = 0.0,
-            @SerializedName("NoOfRecords")
-            var noOfRecords: Double = 0.0,
-            @SerializedName("RegionCode")
-            var regionCode: String = "",
-            @SerializedName("ResultSet")
-            var resultSet: List<ResultSet> = listOf(),
-            @SerializedName("TotalFees")
-            var totalFees: Double = 0.0,
-            @SerializedName("TrxAmount")
-            var trxAmount: Double = 0.0,
-            @SerializedName("VirtualCardLimit")
-            var virtualCardLimit: VirtualCardLimit = VirtualCardLimit()
+            @SerializedName("Amt")
+            var amt: Double = 0.0,
+            @SerializedName("AmtTo")
+            var amtTo: Double = 0.0,
+            @SerializedName("Charge")
+            var charge: Double = 0.0,
+            @SerializedName("Commission")
+            var commission: String = "",
+            @SerializedName("ExchangeRate")
+            var exchangeRate: Double = 0.0,
+            @SerializedName("LocalAmtCredit")
+            var localAmtCredit: Double = 0.0,
+            @SerializedName("LocalAmtDebit")
+            var localAmtDebit: Double = 0.0,
+            @SerializedName("ServiceConfiguration")
+            var serviceConfiguration: ServiceConfiguration = ServiceConfiguration()
         ) : Parcelable {
             @Parcelize
-            data class ResultSet(
-                @SerializedName("AmountDue")
-                var amountDue: Double = 0.0,
-                @SerializedName("BranchName")
-                var branchName: String = "",
-                @SerializedName("CardBalance")
-                var cardBalance: Double = 0.0,
-                @SerializedName("CardNo")
-                var cardNo: String = "",
-                @SerializedName("CardNumber")
-                var cardNumber: String = "",
-                @SerializedName("CardNumberMasked")
-                var cardNumberMasked: String = "",
-                @SerializedName("CardProgram")
-                var cardProgram: String = "",
-                @SerializedName("CardType")
-                var cardType: String = "",
-                @SerializedName("Disputed")
-                var disputed: Boolean = false,
-                @SerializedName("EmbossedName")
-                var embossedName: String = "",
-                @SerializedName("ErrorCode")
-                var errorCode: Int = 0,
-                @SerializedName("ExpiryDate")
-                var expiryDate: String = "",
-                @SerializedName("FeeAmount")
-                var feeAmount: Double = 0.0,
-                @SerializedName("MobileNo")
-                var mobileNo: String = "",
-                @SerializedName("Status")
-                var status: String = "",
-                @SerializedName("StatusDate")
-                var statusDate: String = "",
-                @SerializedName("TotalFees")
-                var totalFees: Double = 0.0,
-                @SerializedName("TrxAmount")
-                var trxAmount: Double = 0.0,
-                @SerializedName("CardExpiryDate")
-                var cardExpiryDate: String="",
-                @SerializedName("CardImage")
-                var cardImage: String = ""
-            ) : Parcelable
-
-            @Parcelize
-            data class VirtualCardLimit(
-                @SerializedName("ADesc")
-                var aDesc: String = "",
-                @SerializedName("AValue")
-                var aValue: String = "",
-                @SerializedName("EDesc")
-                var eDesc: String = "",
-                @SerializedName("EValue")
-                var eValue: String = "",
-                @SerializedName("ParamID")
-                var paramID: String = ""
+            data class ServiceConfiguration(
+                @SerializedName("PWDFlag")
+                var pWDFlag: Int = 0
             ) : Parcelable
         }
 

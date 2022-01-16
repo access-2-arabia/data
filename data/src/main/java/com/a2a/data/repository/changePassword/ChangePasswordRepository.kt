@@ -18,22 +18,21 @@ class ChangePasswordRepository @Inject constructor(
         oldPassword: String
     ): Resource<T> {
 
-        val body = ChangePasswordPostData()
+        val postData = ChangePasswordPostData()
 
-        body.apply {
-            custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
-            this.password = password
-            this.passwordOld = oldPassword
-        }
+        postData.body.custProfile.custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
+        postData.body.custProfile.password = password
+        postData.body.custProfile.passwordOld = oldPassword
 
-        val postData = BaseRequestModel(
+
+        val postDataRequest = BaseRequestModel(
             A2ARequest(
-                body,
+                postData.body,
                 srvID = "ChgPwd"
             )
         )
-        return safeApiCall(postData) {
-            remoteDataSource.baseRequest(postData)
+        return safeApiCall(postDataRequest) {
+            remoteDataSource.baseRequest(postDataRequest)
         }
     }
 }
