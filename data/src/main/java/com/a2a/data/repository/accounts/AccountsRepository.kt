@@ -21,13 +21,13 @@ class AccountsRepository @Inject constructor(
         val accountPostData = AccountListPostData()
         accountPostData.apply {
             custProfile = MemoryCacheImpl.getCustProfile()!!
-            branchCode = Constants.BankCode
+//            branchCode = Constants.BankCode
         }
         val postData =
             BaseRequestModel(
                 A2ARequest(
                     accountPostData,
-                    srvID = "Pref",
+                    srvID = "AccBal",
                     serviceIDValue = 0
                 )
             )
