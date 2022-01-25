@@ -2,7 +2,7 @@ package com.a2a.data.model.paypal.validation
 import com.google.gson.annotations.SerializedName
 
 
-data class GetVerifiedStatusResponse(
+data class TextGrayRegular(
     @SerializedName("A2ARequest")
     var a2ARequest: A2ARequest = A2ARequest(),
     @SerializedName("A2AResponse")
