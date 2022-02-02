@@ -236,12 +236,12 @@ class PayPalRepository @Inject constructor(
     }
 
     suspend fun <T> getPaypalBalance(
-        getBeneficiaryPostData: GetBeneficiaryPostData
+        paypalBalancePostData: GetPaypalBalancePostData
     ): Resource<T>? {
         val getPaypalBalanceRequest = GetPaypalBalancePostData()
         getPaypalBalanceRequest.apply {
             body.stepNumber = 8
-            body.custProfile = getBeneficiaryPostData.custProfile
+            body.custProfile = paypalBalancePostData.body.custProfile
         }
         val postData =
             BaseRequestModel(
