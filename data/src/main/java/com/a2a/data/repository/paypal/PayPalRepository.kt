@@ -1,6 +1,8 @@
 package com.a2a.data.repository.paypal
 
 import com.a2a.data.datasource.RemoteDataSource
+import com.a2a.data.model.accountlist.AccountListResponse
+import com.a2a.data.model.cliq.beneficiary.GetBeneficiaryPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.paypal.SendMoneyPostData
@@ -12,8 +14,11 @@ import com.a2a.data.model.paypal.transaction.PaypalTransactionPostData
 import com.a2a.data.model.paypal.transaction.PaypalTransactionValidationPostData
 import com.a2a.data.model.paypal.updateemail.UpdateEmailPostData
 import com.a2a.data.model.paypal.validation.GetVerifiedStatusPostData
+import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
+import com.a2a.network.model.CustProfile
+import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
 class PayPalRepository @Inject constructor(
@@ -230,11 +235,13 @@ class PayPalRepository @Inject constructor(
         }
     }
 
-    suspend fun <T> getPaypalBalance(): Resource<T>? {
+    suspend fun <T> getPaypalBalance(
+        getBeneficiaryPostData: GetBeneficiaryPostData
+    ): Resource<T>? {
         val getPaypalBalanceRequest = GetPaypalBalancePostData()
         getPaypalBalanceRequest.apply {
             body.stepNumber = 8
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = getBeneficiaryPostData.custProfile
         }
         val postData =
             BaseRequestModel(
