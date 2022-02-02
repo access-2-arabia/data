@@ -1,22 +1,19 @@
 package com.a2a.data.repository.paypal
 
 import com.a2a.data.datasource.RemoteDataSource
-import com.a2a.data.model.accountlist.AccountListResponse
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.paypal.SendMoneyPostData
 import com.a2a.data.model.paypal.ValidationPostData
 import com.a2a.data.model.paypal.createaccount.CreateAccountPostData
 import com.a2a.data.model.paypal.faq.FAQPostData
+import com.a2a.data.model.paypal.getbalance.GetPaypalBalancePostData
 import com.a2a.data.model.paypal.transaction.PaypalTransactionPostData
 import com.a2a.data.model.paypal.transaction.PaypalTransactionValidationPostData
 import com.a2a.data.model.paypal.updateemail.UpdateEmailPostData
 import com.a2a.data.model.paypal.validation.GetVerifiedStatusPostData
-import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
-import com.a2a.network.model.CustProfile
-import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
 class PayPalRepository @Inject constructor(
@@ -183,13 +180,13 @@ class PayPalRepository @Inject constructor(
         paypalTransactionValidationRequest.apply {
             body.stepNumber = 19
             body.custProfile = paypalTransactionValidationPostData.body.custProfile
-            body.accTo=paypalTransactionValidationPostData.body.accTo
-            body.currTo=paypalTransactionValidationPostData.body.currTo
-            body.accFrom=paypalTransactionValidationPostData.body.accFrom
-            body.fees=paypalTransactionValidationPostData.body.fees
-            body.sameAcc=paypalTransactionValidationPostData.body.sameAcc
-            body.amt=paypalTransactionValidationPostData.body.amt
-            body.currFrom=paypalTransactionValidationPostData.body.currFrom
+            body.accTo = paypalTransactionValidationPostData.body.accTo
+            body.currTo = paypalTransactionValidationPostData.body.currTo
+            body.accFrom = paypalTransactionValidationPostData.body.accFrom
+            body.fees = paypalTransactionValidationPostData.body.fees
+            body.sameAcc = paypalTransactionValidationPostData.body.sameAcc
+            body.amt = paypalTransactionValidationPostData.body.amt
+            body.currFrom = paypalTransactionValidationPostData.body.currFrom
         }
         val postData =
             BaseRequestModel(
@@ -223,6 +220,26 @@ class PayPalRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     paypalTransactionRequest.body,
+                    srvID = "PayPal",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getPaypalBalance(): Resource<T>? {
+        val getPaypalBalanceRequest = GetPaypalBalancePostData()
+        getPaypalBalanceRequest.apply {
+            body.stepNumber = 8
+            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    getPaypalBalanceRequest.body,
                     srvID = "PayPal",
                     serviceIDValue = 0
                 )
