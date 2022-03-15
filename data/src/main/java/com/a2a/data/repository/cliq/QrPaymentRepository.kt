@@ -1,9 +1,10 @@
 package com.a2a.data.repository.cliq
 
+import MemoryCacheImpl
 import com.a2a.data.datasource.AppCash
 import com.a2a.data.datasource.RemoteDataSource
 import com.a2a.data.model.cliq.alias.Account
-import com.a2a.data.model.cliq.qrPayment.QRModel
+import com.a2a.data.model.cliq.qrPayment.QRCodeModel
 import com.a2a.data.model.cliq.sendMoney.CliQSendMoneyPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
@@ -19,43 +20,40 @@ class QrPaymentRepository @Inject constructor(
     suspend fun <T> sendMoneyQR(
         lastStepNumber: Int,
         accountNumber: Account,
-        qrModel: QRModel
+        qrModel: QRCodeModel
     ): Resource<T> {
-
         val body = CliQSendMoneyPostData()
-
         val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
 
         body.apply {
-            qRLocation = qrModel.location ?: ""
-            qRBillNumber = qrModel.billnumber ?: ""
-            qRCodeRefID = qrModel.refLable ?: ""
-            qRMerchantCity = qrModel.merchentCity ?: ""
-            qRLoyaltyNumber = qrModel.loyality ?: ""
-            qRMerchantID = qrModel.merchentID ?: ""
-            qRStoreLabel = qrModel.storeLabel ?: ""
-            QRAddLangTemp = qrModel.storeLabel ?: ""
-            qRCustomerLabel = qrModel.customerLabel ?: ""
-            qRValue = qrModel.value ?: ""
-            qRDateandTime = qrModel.dateTime ?: ""
-            qRMobileNumber = qrModel.mobileNo ?: ""
+            qRLocation = qrModel.location.toString()
+            qRBillNumber = qrModel.additionalData?.billNumber ?: ""
+            qRCodeRefID = qrModel.additionalData?.referenceLabel ?: ""
+            qRMerchantCity = qrModel.merchantCity
+            qRLoyaltyNumber = qrModel.additionalData?.loyaltyNumber ?: ""
+            qRMerchantID = qrModel.merchantAccountInformation.merchantID ?: ""
+            qRStoreLabel = qrModel.additionalData?.storeLabel ?: ""
+            QRAddLangTemp = qrModel.additionalLanguage ?: ""
+            qRCustomerLabel = qrModel.additionalData?.customerLabel ?: ""
+            qRValue = qrModel.qrValue ?: ""
+            qRDateandTime = qrModel.dateAndTime.toString()
+            qRMobileNumber = qrModel.additionalData?.mobileNumber.toString()
             qRCountryCode = qrModel.countryCode ?: ""
-            qRTerminalLabel = qrModel.termenailLabel ?: ""
+            qRTerminalLabel = qrModel.additionalData?.terminalLabel ?: ""
             qRValueofConvenience = ""
-            qRVOFCFixed = qrModel.fixed ?: ""
-            qRVOFC = qrModel.qRVOFC ?: ""
-            qRVerificationCode = ""
+            qRVOFCFixed = qrModel.qrVOFCFixed ?: ""
+            qRVOFC = qrModel.qrVOFC ?: ""
+            qRVerificationCode = qrModel.verificationCode.pinOrOtp
             QRTaxId = ""
-
-            cdtrName = qrModel.name ?: ""
+            cdtrName = qrModel.merchantName ?: ""
             cdtrAlias = ""
             cdtrValue = ""
-            cdtrBic = qrModel.bICCODE ?: ""
+            cdtrBic = qrModel.merchantAccountInformation.BICCode ?: ""
             cdtrAcct = ""
-            cdtrPstlAdr = qrModel.merchentCity ?: ""
+            cdtrPstlAdr = qrModel.merchantCity ?: ""
             ctgyPurp = "21120"
-            amt = qrModel.amount ?: ""
-            amount = qrModel.amount ?: ""
+            amt = qrModel.transactionAmount ?: ""
+            amount = qrModel.transactionAmount ?: ""
             cdtrRecordID = ""
             dbtrRecordID = AppCash.cliQRecordId ?: ""
             dbtrAcct = accountNumber.accountNumber
@@ -69,11 +67,9 @@ class QrPaymentRepository @Inject constructor(
             dbtrIsIndvl = "true"
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
             currCodeTo = "JOD"
-            cdtrMCC = qrModel.mCC ?: ""
-
+            cdtrMCC = qrModel.CdtrMCC ?: ""
             custProfile = currentCustProfile
         }
-
         val postData = BaseRequestModel(
             A2ARequest(
                 body,
