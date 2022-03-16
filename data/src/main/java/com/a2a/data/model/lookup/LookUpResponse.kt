@@ -94,6 +94,8 @@ data class LookUpResponse(
             var rTGSAccTypes: List<RTGSAccType> = listOf(),
             @SerializedName("TransferPurpose")
             var transferPurpose: List<TransferPurpose> = listOf(),
+            @SerializedName("QRTransferPurpose")
+            var transferPurposeQR: List<TransferPurposeQR> = listOf(),
             @SerializedName("AliasType")
             var aliasTypes: List<AliasTypes> = listOf(),
             @SerializedName("RTGSBankList")
@@ -359,6 +361,24 @@ data class LookUpResponse(
 
             @Parcelize
             data class TransferPurpose(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("DescEnAr")
+                var descEnAr: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = ""
+            ) : Parcelable {
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
+
+            @Parcelize
+            data class TransferPurposeQR(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
                 @SerializedName("AValue")
