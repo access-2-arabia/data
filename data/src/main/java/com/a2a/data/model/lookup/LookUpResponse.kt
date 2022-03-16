@@ -388,7 +388,9 @@ data class LookUpResponse(
                 @SerializedName("EDesc")
                 var eDesc: String = "",
                 @SerializedName("EValue")
-                var eValue: String = ""
+                var eValue: String = "",
+                @SerializedName("ID")
+                var iD: String = ""
             ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
