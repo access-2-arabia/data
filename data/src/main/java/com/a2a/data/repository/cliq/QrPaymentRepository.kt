@@ -11,6 +11,7 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
+import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
 class QrPaymentRepository @Inject constructor(
@@ -80,6 +81,8 @@ class QrPaymentRepository @Inject constructor(
                 } else {
                     ""
                 }
+            qrPstCd = qrModel.postalAddress
+            BicCode = qrModel.merchantAccountInformation.BICCode
         }
         val postData = BaseRequestModel(
             A2ARequest(
@@ -87,8 +90,6 @@ class QrPaymentRepository @Inject constructor(
                 srvID = "ICLIQPay"
             )
         )
-
-
         return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
