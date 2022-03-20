@@ -47,10 +47,10 @@ class QrPaymentRepository @Inject constructor(
             qRVerificationCode = qrModel.verificationCode.pinOrOtp
             QRTaxId = ""
             cdtrName = qrModel.merchantName ?: ""
-            cdtrAlias = ""
+            cdtrAlias = accountNumber.iBAN
             cdtrValue = ""
             cdtrBic = qrModel.merchantAccountInformation.BICCode ?: ""
-            cdtrAcct = ""
+            cdtrAcct =accountNumber.iBAN
             cdtrPstlAdr = qrModel.merchantCity ?: ""
             ctgyPurp = "21120"
             amt = qrModel.transactionAmount ?: ""
