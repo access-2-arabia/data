@@ -122,4 +122,8 @@ data class CliQSendMoneyPostData(
     var serviceConfiguration: CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration = CliQRequestMoneyResponse.A2ARequest.Body.ServiceConfiguration(),
     @SerializedName("BenAccIBAN")
     var benAccIBAN: String = "",
-    )
+    @SerializedName("QROptionalTip")
+    var qrOptionalTip: String? = null,
+    @SerializedName("QRPercentageValue")
+    var qrPercentageValue: String? = null
+)

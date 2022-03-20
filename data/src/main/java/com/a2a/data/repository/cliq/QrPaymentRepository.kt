@@ -69,6 +69,17 @@ class QrPaymentRepository @Inject constructor(
             currCodeTo = "JOD"
             cdtrMCC = qrModel.CdtrMCC ?: ""
             custProfile = currentCustProfile
+            qrOptionalTip = if (qrModel.isOptionalTip == true) {
+                qrModel.tip
+            } else {
+                ""
+            }
+            qrPercentageValue =
+                if (qrModel.isPercentageTip == true) {
+                    qrModel.tip
+                } else {
+                    ""
+                }
         }
         val postData = BaseRequestModel(
             A2ARequest(
