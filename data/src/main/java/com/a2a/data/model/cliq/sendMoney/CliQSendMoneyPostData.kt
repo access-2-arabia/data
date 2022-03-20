@@ -125,5 +125,7 @@ data class CliQSendMoneyPostData(
     @SerializedName("QROptionalTip")
     var qrOptionalTip: String? = null,
     @SerializedName("QRPercentageValue")
-    var qrPercentageValue: String? = null
+    var qrPercentageValue: String? = null,
+    @SerializedName("QRPstCd")
+    var qrPstCd: String? = null
 )
