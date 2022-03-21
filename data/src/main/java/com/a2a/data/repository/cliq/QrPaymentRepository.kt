@@ -37,7 +37,7 @@ class QrPaymentRepository @Inject constructor(
             QRAddLangTemp = qrModel.additionalLanguage ?: ""
             qRCustomerLabel = qrModel.additionalData?.customerLabel ?: ""
             qRValue = qrModel.qrValue ?: ""
-            qRDateandTime = qrModel.dateAndTime.toString()
+            qRDateandTime = qrModel.dateAndTime.date.toString()
             qRMobileNumber = qrModel.additionalData?.mobileNumber.toString()
             qRCountryCode = qrModel.countryCode ?: ""
             qRTerminalLabel = qrModel.additionalData?.terminalLabel ?: ""
@@ -50,9 +50,9 @@ class QrPaymentRepository @Inject constructor(
             cdtrAlias = accountNumber.iBAN
             cdtrValue = ""
             cdtrBic = qrModel.merchantAccountInformation.BICCode ?: ""
-            cdtrAcct =accountNumber.iBAN
+            cdtrAcct = accountNumber.iBAN
             cdtrPstlAdr = qrModel.merchantCity ?: ""
-            ctgyPurp = "21120"
+            ctgyPurp = qrModel.additionalData?.purposeOfTransaction.toString()
             amt = qrModel.transactionAmount ?: ""
             amount = qrModel.transactionAmount ?: ""
             cdtrRecordID = ""
