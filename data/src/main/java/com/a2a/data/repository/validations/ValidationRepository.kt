@@ -19,7 +19,7 @@ class ValidationRepository @Inject constructor(
     ): Resource<T>? {
         val ibanValidationPostData = IbanValidationPostData()
         ibanValidationPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = IbanValidation.body.custProfile
             body.iban = IbanValidation.body.iban
             body.stepNumber = IbanValidation.body.stepNumber
         }
@@ -42,7 +42,7 @@ class ValidationRepository @Inject constructor(
     ): Resource<T>? {
         val swiftCodePostDataPostData = SwiftCodePostData()
         swiftCodePostDataPostData.apply {
-            body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.custProfile = swiftCode.body.custProfile
             body.bic = swiftCode.body.bic
             body.stepNumber = swiftCode.body.stepNumber
         }
