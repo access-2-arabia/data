@@ -4,7 +4,7 @@ import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+
 data class IbanValidationPostData(
     @SerializedName("Body")
     var body: Body = Body()
