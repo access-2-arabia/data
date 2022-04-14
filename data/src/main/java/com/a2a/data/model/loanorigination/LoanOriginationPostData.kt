@@ -18,6 +18,6 @@ data class LoanOriginationPostData(
         @SerializedName("StepNumber")
         var stepNumber: Int = 0,
         @SerializedName("subCategory")
-        var subCategory: String = "Signature"
+        var subCategory: String = ""
     ) : Parcelable
 }

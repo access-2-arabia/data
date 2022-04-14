@@ -14,12 +14,14 @@ class LoanOriginationRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun <T> getLoanOrigination(
-        stepNumber: String
+        stepNumber: String,
+        subCategory: String
     ): Resource<T>? {
         val loanOriginationPostData = LoanOriginationPostData()
         loanOriginationPostData.apply {
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.stepNumber = stepNumber.toInt()
+            body.subCategory = subCategory
         }
         val postData =
             BaseRequestModel(
