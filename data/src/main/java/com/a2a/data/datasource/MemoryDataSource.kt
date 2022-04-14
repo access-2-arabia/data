@@ -9,11 +9,12 @@ class MemoryDataSource {
     private var request: Any = Any()
     private var response: BaseResponse = BaseResponse()
     private var lookUps: LookUpResponse? = null
-
+    private var streetAddressEn: String = ""
 
     fun getCustProfile() = custProfile
     fun getDeviceId() = deviceId
     fun getIpAddress() = ipAddress
+    fun getStreetAddressEN() = streetAddressEn
     fun getListOfLookUps() = lookUps
     fun getOtpRequest() = request
     fun getOtpResponse() = response
@@ -42,6 +43,11 @@ class MemoryDataSource {
         this.lookUps = lookUps
 
 
+    }
+
+
+    fun cacheInMemoryStreetAddressEn(streetAddressEn: String) {
+        this.streetAddressEn = streetAddressEn
     }
 
 

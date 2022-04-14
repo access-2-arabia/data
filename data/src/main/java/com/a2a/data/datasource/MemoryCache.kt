@@ -24,4 +24,7 @@ interface MemoryCache {
 
     fun setIpAddress(ipAddress: String)
     fun getIpAddress(): String
+
+    fun setStreetAddressEN(streetAddressEN: String)
+    fun getStreetAddressEN(): String
 }

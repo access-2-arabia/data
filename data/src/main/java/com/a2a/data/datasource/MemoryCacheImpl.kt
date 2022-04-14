@@ -37,11 +37,11 @@ object MemoryCacheImpl : MemoryCache {
     }
 
     override fun getLookUps(): LookUpResponse {
-        return memoryDataSource.getListOfLookUps()?:LookUpResponse()
+        return memoryDataSource.getListOfLookUps() ?: LookUpResponse()
     }
 
     override fun setDeviceId(deviceId: String) {
-         memoryDataSource.cacheInMemory(deviceId)
+        memoryDataSource.cacheInMemory(deviceId)
     }
 
     override fun getDeviceId(): String {
@@ -54,5 +54,13 @@ object MemoryCacheImpl : MemoryCache {
 
     override fun getIpAddress(): String {
         return memoryDataSource.getIpAddress()
+    }
+
+    override fun setStreetAddressEN(streetAddressEn: String) {
+        memoryDataSource.cacheInMemoryStreetAddressEn(streetAddressEn)
+    }
+
+    override fun getStreetAddressEN(): String {
+        return memoryDataSource.getStreetAddressEN()
     }
 }
