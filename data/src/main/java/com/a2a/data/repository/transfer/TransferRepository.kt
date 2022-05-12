@@ -105,6 +105,7 @@ class TransferRepository @Inject constructor(
             body.amount = withinCabTransferModel.amount
             body.branchCode = withinCabTransferModel.accountBranch.toString()
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
+            body.bankRef = MemoryCacheImpl.getLoginResponse()?.a2AResponse?.body?.bankRef.toString()
         }
 
         val postData =

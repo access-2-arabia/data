@@ -71,6 +71,8 @@ data class LoginResponseData(
         var header: Header = Header()
     ) {
         data class Body(
+            @SerializedName("BankRef")
+            var bankRef: String = "",
             @SerializedName("AAddress1")
             var aAddress1: String = "",
             @SerializedName("ACity")
