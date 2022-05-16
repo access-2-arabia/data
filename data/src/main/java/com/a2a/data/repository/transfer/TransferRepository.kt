@@ -43,6 +43,7 @@ class TransferRepository @Inject constructor(
             validationBetweenMyAccount.body.amount = betweenMyAccountModel.amount
             validationBetweenMyAccount.body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
             validationBetweenMyAccount.body.stepNumber = "2"
+            validationBetweenMyAccount.body.bankRef = MemoryCacheImpl.getLoginResponse()!!.a2AResponse.body.bankRef
         }
         val postData =
             BaseRequestModel(

@@ -25,5 +25,7 @@ data class ValidationBetweenMyAccountPostData(
         var stepNumber: String = "",
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile(),
+        @SerializedName("BankRef")
+        var bankRef: String = ""
     )
 }
