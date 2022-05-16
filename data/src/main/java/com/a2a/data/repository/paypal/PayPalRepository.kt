@@ -221,8 +221,8 @@ class PayPalRepository @Inject constructor(
             body.cancelUrl = paypalTransactionPostData.body.cancelUrl
             body.sameAcc = paypalTransactionPostData.body.sameAcc
             body.returnUrl = paypalTransactionPostData.body.returnUrl
-            body.receiverList.receiver.amount=paypalTransactionRequest.body.receiverList.receiver.amount
-            body.receiverList.receiver.email=paypalTransactionRequest.body.receiverList.receiver.email
+            body.receiverList.receiver.amount=paypalTransactionPostData.body.receiverList.receiver.amount
+            body.receiverList.receiver.email=paypalTransactionPostData.body.receiverList.receiver.email
         }
         val postData =
             BaseRequestModel(
