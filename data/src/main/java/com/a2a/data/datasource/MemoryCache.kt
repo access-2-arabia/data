@@ -2,10 +2,14 @@ package com.a2a.data.datasource
 
 
 import com.a2a.data.model.BaseResponse
+import com.a2a.data.model.login.LoginResponseData
 import com.a2a.data.model.lookup.LookUpResponse
 import com.a2a.network.model.CustProfile
 
 interface MemoryCache {
+
+    fun setLoginResponse(loginResponseData: LoginResponseData?)
+    fun getLoginResponse(): LoginResponseData?
 
     fun setCustProfile(custProfile: CustProfile?)
     fun getCustProfile(): CustProfile?
