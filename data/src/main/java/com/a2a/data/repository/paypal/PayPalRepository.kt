@@ -192,6 +192,7 @@ class PayPalRepository @Inject constructor(
             body.sameAcc = paypalTransactionValidationPostData.body.sameAcc
             body.amt = paypalTransactionValidationPostData.body.amt
             body.currFrom = paypalTransactionValidationPostData.body.currFrom
+
         }
         val postData =
             BaseRequestModel(
@@ -214,12 +215,14 @@ class PayPalRepository @Inject constructor(
         paypalTransactionRequest.apply {
             body.stepNumber = 10
             body.custProfile = paypalTransactionPostData.body.custProfile
-            body.currTo = paypalTransactionPostData.body.currTo
             body.accTo = paypalTransactionPostData.body.accTo
             body.accFrom = paypalTransactionPostData.body.accFrom
+            body.currFrom = paypalTransactionPostData.body.currFrom
             body.cancelUrl = paypalTransactionPostData.body.cancelUrl
             body.sameAcc = paypalTransactionPostData.body.sameAcc
             body.returnUrl = paypalTransactionPostData.body.returnUrl
+            body.receiverList.receiver.amount=paypalTransactionRequest.body.receiverList.receiver.amount
+            body.receiverList.receiver.email=paypalTransactionRequest.body.receiverList.receiver.email
         }
         val postData =
             BaseRequestModel(
