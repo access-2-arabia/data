@@ -8,6 +8,7 @@ import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.model.paypal.SendMoneyPostData
 import com.a2a.data.model.paypal.ValidationPostData
 import com.a2a.data.model.paypal.createaccount.CreateAccountPostData
+import com.a2a.data.model.paypal.delink.DeLinkPostData
 import com.a2a.data.model.paypal.faq.FAQPostData
 import com.a2a.data.model.paypal.getbalance.GetPaypalBalancePostData
 import com.a2a.data.model.paypal.transaction.PaypalTransactionPostData
@@ -221,8 +222,10 @@ class PayPalRepository @Inject constructor(
             body.cancelUrl = paypalTransactionPostData.body.cancelUrl
             body.sameAcc = paypalTransactionPostData.body.sameAcc
             body.returnUrl = paypalTransactionPostData.body.returnUrl
-            body.receiverList.receiver.amount=paypalTransactionPostData.body.receiverList.receiver.amount
-            body.receiverList.receiver.email=paypalTransactionPostData.body.receiverList.receiver.email
+            body.receiverList.receiver.amount =
+                paypalTransactionPostData.body.receiverList.receiver.amount
+            body.receiverList.receiver.email =
+                paypalTransactionPostData.body.receiverList.receiver.email
         }
         val postData =
             BaseRequestModel(
@@ -250,6 +253,29 @@ class PayPalRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     getPaypalBalanceRequest.body,
+                    srvID = "PayPal",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+
+    suspend fun <T> getPaypalDeLink(
+        paypalDeLinkPostData: DeLinkPostData
+    ): Resource<T>? {
+        val getDeLinkPostDataRequest = DeLinkPostData()
+        getDeLinkPostDataRequest.apply {
+            body.stepNumber = paypalDeLinkPostData.body.stepNumber
+            body.custProfile = paypalDeLinkPostData.body.custProfile
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    getDeLinkPostDataRequest.body,
                     srvID = "PayPal",
                     serviceIDValue = 0
                 )
