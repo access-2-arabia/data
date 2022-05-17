@@ -23,7 +23,7 @@ class MemoryDataSource {
     fun getOtpResponse() = response
 
     fun cacheInMemory(loginResponseData: LoginResponseData?) {
-        this.loginResponse = loginResponse
+        this.loginResponse = loginResponseData
     }
 
     fun cacheInMemory(custProfile: CustProfile?) {

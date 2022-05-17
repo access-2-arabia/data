@@ -14,6 +14,7 @@ object MemoryCacheImpl : MemoryCache {
         return memoryDataSource.getLoginResponse()
     }
 
+
     override fun setCustProfile(custProfile: CustProfile?) {
         memoryDataSource.cacheInMemory(custProfile)
     }
