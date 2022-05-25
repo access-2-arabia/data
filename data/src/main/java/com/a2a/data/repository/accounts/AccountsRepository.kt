@@ -17,10 +17,11 @@ class AccountsRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> getAccountsList(): Resource<T>? {
+    suspend fun <T> getAccountsList(srvIDValue: String? = null): Resource<T>? {
         val accountPostData = AccountListPostData()
         accountPostData.apply {
             custProfile = MemoryCacheImpl.getCustProfile()!!
+            srvID = srvIDValue
 //            branchCode = Constants.BankCode
         }
         val postData =

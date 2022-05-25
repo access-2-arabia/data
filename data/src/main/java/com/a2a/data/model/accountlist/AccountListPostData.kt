@@ -10,7 +10,9 @@ data class AccountListPostData(
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
     @SerializedName("StepNumber")
-    var stepNumber: Int = 1
+    var stepNumber: Int = 1,
+    @SerializedName("SrvID")
+    var srvID: String? = null
 )
 
 
