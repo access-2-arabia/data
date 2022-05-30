@@ -390,7 +390,7 @@ data class LookUpResponse(
                 @SerializedName("EValue")
                 var eValue: String = "",
                 @SerializedName("ID")
-                var iD: String = ""
+                var iD: Int = 0
             ) : Parcelable {
                 override fun toString(): String {
                     return eDesc
