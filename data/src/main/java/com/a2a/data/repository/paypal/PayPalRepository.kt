@@ -219,6 +219,7 @@ class PayPalRepository @Inject constructor(
             body.accTo = paypalTransactionPostData.body.accTo
             body.accFrom = paypalTransactionPostData.body.accFrom
             body.currFrom = paypalTransactionPostData.body.currFrom
+            body.currTo = paypalTransactionPostData.body.currTo
             body.cancelUrl = paypalTransactionPostData.body.cancelUrl
             body.sameAcc = paypalTransactionPostData.body.sameAcc
             body.returnUrl = paypalTransactionPostData.body.returnUrl
