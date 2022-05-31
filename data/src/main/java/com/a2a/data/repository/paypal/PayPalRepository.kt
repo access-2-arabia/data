@@ -18,7 +18,7 @@ import com.a2a.data.model.paypal.validation.GetVerifiedStatusPostData
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
 import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
-import com.a2a.network.model.CustProfile
+
 import com.google.gson.annotations.SerializedName
 import javax.inject.Inject
 
