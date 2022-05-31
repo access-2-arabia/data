@@ -30,7 +30,7 @@ data class PaypalTransactionPostData(
         @SerializedName("returnUrl")
         var returnUrl: String = "",
         @SerializedName("SameAcc")
-        var sameAcc: String = "",
+        var sameAcc: String? = null,
         @SerializedName("StepNumber")
         var stepNumber: Int = 0
     ) : Parcelable {
