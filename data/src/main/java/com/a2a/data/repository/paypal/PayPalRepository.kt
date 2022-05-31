@@ -214,7 +214,7 @@ class PayPalRepository @Inject constructor(
     ): Resource<T>? {
         val paypalTransactionRequest = PaypalTransactionPostData()
         paypalTransactionRequest.apply {
-            body.stepNumber = 10
+            body.stepNumber =  paypalTransactionPostData.body.stepNumber
             body.custProfile = paypalTransactionPostData.body.custProfile
             body.accTo = paypalTransactionPostData.body.accTo
             body.accFrom = paypalTransactionPostData.body.accFrom
