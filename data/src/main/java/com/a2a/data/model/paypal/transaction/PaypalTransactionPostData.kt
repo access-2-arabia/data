@@ -68,14 +68,14 @@ data class PaypalTransactionPostData(
         @Parcelize
         data class ReceiverList(
             @SerializedName("receiver")
-            var `receiver`: Receiver = Receiver()
+            var receiver: Receiver = Receiver()
         ) : Parcelable {
             @Parcelize
             data class Receiver(
                 @SerializedName("amount")
                 var amount: String = "",
                 @SerializedName("email")
-                var email: String = ""
+                var email: String? = null
             ) : Parcelable
         }
     }
