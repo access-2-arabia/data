@@ -114,7 +114,6 @@ data class CreateAccountResponse(
             @SerializedName("Signature")
             var signature: String = ""
         ) : Parcelable
-
         @Parcelize
         data class Header(
             @SerializedName("GuidID")

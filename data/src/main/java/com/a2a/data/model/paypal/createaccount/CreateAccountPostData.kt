@@ -72,7 +72,9 @@ data class CreateAccountPostData(
             @SerializedName("EMail")
             var eMail: String = "",
             @SerializedName("MobNo")
-            var mobNo: String = ""
+            var mobNo: String = "",
+            @SerializedName("Branch")
+            var branch: String = ""
         ) : Parcelable
     }
 
