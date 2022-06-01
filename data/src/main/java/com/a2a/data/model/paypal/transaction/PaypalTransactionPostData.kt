@@ -1,4 +1,5 @@
 package com.a2a.data.model.paypal.transaction
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -32,7 +33,9 @@ data class PaypalTransactionPostData(
         @SerializedName("SameAcc")
         var sameAcc: String? = null,
         @SerializedName("StepNumber")
-        var stepNumber: Int = 0
+        var stepNumber: Int = 0,
+        @SerializedName("Fees")
+        var fees: String = "0"
     ) : Parcelable {
         @Parcelize
         data class CustProfile(
