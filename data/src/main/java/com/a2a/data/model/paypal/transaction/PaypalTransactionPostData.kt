@@ -6,7 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize
-
 data class PaypalTransactionPostData(
     @SerializedName("Body")
     var body: Body = Body(),

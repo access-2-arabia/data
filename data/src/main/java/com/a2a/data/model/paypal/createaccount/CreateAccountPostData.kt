@@ -3,7 +3,7 @@ package com.a2a.data.model.paypal.createaccount
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable
-import com.a2a.network.model.CustProfile
+
 import kotlinx.android.parcel.Parcelize
 
 
@@ -49,6 +49,60 @@ data class CreateAccountPostData(
             var returnUrl: String = ""
         ) : Parcelable
 
-
+        @Parcelize
+        data class CustProfile(
+            @SerializedName("BirthDate")
+            var birthDate: String = "",
+            @SerializedName("City")
+            var city: String = "",
+            @SerializedName("Country")
+            var country: String = "",
+            @SerializedName("CustID")
+            var custID: String = "",
+            @SerializedName("EAddress1")
+            var eAddress1: String = "",
+            @SerializedName("EAddress2")
+            var eAddress2: String = "",
+            @SerializedName("EFName")
+            var eFName: String = "",
+            @SerializedName("ELName")
+            var eLName: String = "",
+            @SerializedName("EMName")
+            var eMName: String = "",
+            @SerializedName("EMail")
+            var eMail: String = "",
+            @SerializedName("MobNo")
+            var mobNo: String = ""
+        ) : Parcelable
     }
+
+    @Parcelize
+    data class Footer(
+        @SerializedName("Signature")
+        var signature: String = ""
+    ) : Parcelable
+
+    @Parcelize
+    data class Header(
+        @SerializedName("BankCode")
+        var bankCode: String = "",
+        @SerializedName("Channel")
+        var channel: String = "",
+        @SerializedName("DeviceID")
+        var deviceID: String = "",
+        @SerializedName("GuidID")
+        var guidID: String = "",
+        @SerializedName("MethodName")
+        var methodName: String = "",
+        @SerializedName("Password")
+        var password: String = "",
+        @SerializedName("RegionCode")
+        var regionCode: String = "",
+        @SerializedName("SrvID")
+        var srvID: String = "",
+        @SerializedName("TimeStamp")
+        var timeStamp: String = "",
+        @SerializedName("UserID")
+        var userID: String = ""
+    ) : Parcelable
 }
