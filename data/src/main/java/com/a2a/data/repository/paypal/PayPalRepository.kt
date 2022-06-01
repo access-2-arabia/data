@@ -128,20 +128,20 @@ class PayPalRepository @Inject constructor(
     ): Resource<T>? {
         val createAccountRequest = CreateAccountPostData()
         createAccountRequest.apply {
-            body.stepNumber = 2
-            body.custProfile = createAccountRequest.body.custProfile
+            body.stepNumber = createAccountPostData.body.stepNumber
+            body.custProfile = createAccountPostData.body.custProfile
             body.createAccountWebOptions.returnUrl =
-                createAccountRequest.body.createAccountWebOptions.returnUrl
+                createAccountPostData.body.createAccountWebOptions.returnUrl
             body.addPaymentCard.cardNumber =
-                createAccountRequest.body.addPaymentCard.cardNumber
+                createAccountPostData.body.addPaymentCard.cardNumber
             body.addPaymentCard.cardType =
-                createAccountRequest.body.addPaymentCard.cardType
+                createAccountPostData.body.addPaymentCard.cardType
             body.addPaymentCard.cardVerificationNumber =
-                createAccountRequest.body.addPaymentCard.cardVerificationNumber
+                createAccountPostData.body.addPaymentCard.cardVerificationNumber
             body.addPaymentCard.expirationDate.month =
-                createAccountRequest.body.addPaymentCard.expirationDate.month
+                createAccountPostData.body.addPaymentCard.expirationDate.month
             body.addPaymentCard.expirationDate.year =
-                createAccountRequest.body.addPaymentCard.expirationDate.year
+                createAccountPostData.body.addPaymentCard.expirationDate.year
         }
         val postData =
             BaseRequestModel(
