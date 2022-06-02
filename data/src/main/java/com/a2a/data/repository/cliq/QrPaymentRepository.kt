@@ -64,7 +64,7 @@ class QrPaymentRepository @Inject constructor(
             dbtrName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
             fees = 0
             dbtrPstlAdr = MemoryCacheImpl.getCustProfile()?.address1 ?: ""
-            currFrom = accountNumber.currencyCode
+            currFrom = accountNumber.currencyISOCode
             dbtrIsIndvl = "true"
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
             currCodeTo = "400"
