@@ -243,10 +243,11 @@ class DebitCardsRepository @Inject constructor(
     }
 
     suspend fun <T> getVirtualCard(
+        virtualCardrequest: VirtualPrepaidPostData
     ): Resource<T>? {
         val virtualCard = VirtualPrepaidPostData()
         virtualCard.apply {
-            body.custID = MemoryCacheImpl.getCustProfile()!!.custID
+            body.custProfile = virtualCardrequest.body.custProfile
         }
         val postData =
             BaseRequestModel(
