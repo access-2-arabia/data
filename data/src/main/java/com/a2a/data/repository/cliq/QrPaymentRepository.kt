@@ -67,7 +67,7 @@ class QrPaymentRepository @Inject constructor(
             currFrom = "JOD"
             dbtrIsIndvl = "true"
             custID = MemoryCacheImpl.getCustProfile()?.custID ?: ""
-            currCodeTo = "JOD"
+            currCodeTo = "400"
             cdtrMCC = qrModel.merchantCategoryCode
             custProfile = currentCustProfile
             qrOptionalTip = if (qrModel.isOptionalTip == true) {
