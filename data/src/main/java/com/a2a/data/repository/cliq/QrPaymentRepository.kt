@@ -59,7 +59,7 @@ class QrPaymentRepository @Inject constructor(
             dbtrRecordID = AppCash.cliQRecordId ?: ""
             dbtrAcct = accountNumber.accountNumber
             qRFlag = "true"
-            curr = accountNumber.currencyCode
+            curr = accountNumber.currencyISOCode
             stepNumber = lastStepNumber
             dbtrName = MemoryCacheImpl.getCustProfile()?.eName ?: ""
             fees = 0
