@@ -17,7 +17,7 @@ data class PaypalTransactionValidationPostData(
         @SerializedName("AccTo")
         var accTo: String = "",
         @SerializedName("Amt")
-        var amt: Int = 0,
+        var amt: Double = 0.0,
         @SerializedName("CurrFrom")
         var currFrom: String = "",
         @SerializedName("CurrTo")
@@ -27,7 +27,7 @@ data class PaypalTransactionValidationPostData(
         @SerializedName("Fees")
         var fees: String = "",
         @SerializedName("SameAcc")
-        var sameAcc:  String? = null ,
+        var sameAcc: String? = null,
         @SerializedName("StepNumber")
         var stepNumber: Int = 0
     ) : Parcelable
