@@ -40,7 +40,6 @@ class OTPRepository @Inject constructor(private val remoteDataSource: RemoteData
         currencyCode: String,
         srvId: String
     ): Resource<T> {
-
         val bodyReq = OTPTokenPostData()
         bodyReq.body.custProfile = MemoryCacheImpl.getCustProfile()!!
         bodyReq.body.amount = amount

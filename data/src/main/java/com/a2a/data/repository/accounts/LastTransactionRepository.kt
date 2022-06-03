@@ -20,7 +20,8 @@ class LastTransactionRepository @Inject constructor(
         accountNumber: String,
         fromDate: String,
         toDate: String,
-        numberOfTransactions: String = "10"
+        numberOfTransactions: String = "10",
+        stepNumber: String? = null
     ): Resource<T>? {
         val lastTransactionRepository = LastTransactionPostData()
         lastTransactionRepository.apply {
@@ -31,6 +32,7 @@ class LastTransactionRepository @Inject constructor(
             body.dateTo = toDate
             body.indexTo = numberOfTransactions
             body.transType = "A"
+            body.stepNumber = stepNumber
         }
 
         val postData =

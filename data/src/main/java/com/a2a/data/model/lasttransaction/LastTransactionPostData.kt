@@ -11,6 +11,8 @@ data class LastTransactionPostData(
         var account: Account = Account(),
         @SerializedName("BranchCode")
         var branchCode: String = "",
+        @SerializedName("StepNumber")
+        var stepNumber: String? = null,
         @SerializedName("CustID")
         var custID: String = "",
         @SerializedName("DateFrom")
