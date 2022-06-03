@@ -54,18 +54,18 @@ class CilQTransferRepository @Inject constructor(
         cliQSendMoneyPostData.dbtrRecordID = AppCash.cliQRecordId ?: ""
         cliQSendMoneyPostData.dbtrAcct = accountNumber.accountNumber
         cliQSendMoneyPostData.qRFlag = "false"
-        cliQSendMoneyPostData.curr = accountNumber.currencyCode
+        cliQSendMoneyPostData.curr = accountNumber.currencyISOCode
         cliQSendMoneyPostData.stepNumber = stepNumber
         cliQSendMoneyPostData.dbtrName =
             MemoryCacheImpl.getCustProfile()?.eName ?: ""
         cliQSendMoneyPostData.fees = 0
         cliQSendMoneyPostData.dbtrPstlAdr =
             MemoryCacheImpl.getCustProfile()?.address1 ?: ""
-        cliQSendMoneyPostData.currFrom = accountNumber.currencyCode
+        cliQSendMoneyPostData.currFrom = accountNumber.currencyISOCode
         cliQSendMoneyPostData.dbtrIsIndvl = "true"
         cliQSendMoneyPostData.custID =
             MemoryCacheImpl.getCustProfile()?.custID ?: ""
-        cliQSendMoneyPostData.currCodeTo = "JOD"
+        cliQSendMoneyPostData.currCodeTo = "400"
         cliQSendMoneyPostData.QRAddLangTemp = ""
         cliQSendMoneyPostData.QRTaxId = ""
         cliQSendMoneyPostData.benAccIBAN = accountNumber.iBAN
