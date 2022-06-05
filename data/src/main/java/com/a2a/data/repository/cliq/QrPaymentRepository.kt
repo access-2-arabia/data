@@ -22,7 +22,10 @@ class QrPaymentRepository @Inject constructor(
     suspend fun <T> sendMoneyQR(
         lastStepNumber: Int,
         accountNumber: Account,
-        qrModel: QRCodeModel
+        qrModel: QRCodeModel,
+        fixedTip: String,
+        percentTip: String,
+        optionalTip: String
     ): Resource<T> {
         val body = CliQSendMoneyPostData()
         val currentCustProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
@@ -54,8 +57,8 @@ class QrPaymentRepository @Inject constructor(
             cdtrAcct = accountNumber.iBAN
             cdtrPstlAdr = qrModel.merchantCity ?: ""
             ctgyPurp = qrModel.additionalData?.purposeOfTransaction.toString()
-            amt = qrModel.transactionAmount ?: ""
-            amount = qrModel.transactionAmount ?: ""
+            amt = qrModel.transactionAmount
+            amount = qrModel.transactionAmount
             cdtrRecordID = ""
             dbtrRecordID = AppCash.cliQRecordId ?: ""
             dbtrAcct = accountNumber.accountNumber
@@ -72,13 +75,13 @@ class QrPaymentRepository @Inject constructor(
             cdtrMCC = qrModel.merchantCategoryCode
             custProfile = currentCustProfile
             qrOptionalTip = if (qrModel.isOptionalTip == true) {
-                qrModel.tip
+                optionalTip
             } else {
                 ""
             }
             qrPercentageValue =
                 if (qrModel.isPercentageTip == true) {
-                    qrModel.tip
+                    percentTip
                 } else {
                     ""
                 }
