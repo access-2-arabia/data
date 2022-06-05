@@ -54,8 +54,8 @@ class QrPaymentRepository @Inject constructor(
             cdtrAcct = accountNumber.iBAN
             cdtrPstlAdr = qrModel.merchantCity ?: ""
             ctgyPurp = qrModel.additionalData?.purposeOfTransaction.toString()
-            amt = "%,.2f".format(Locale.ENGLISH, qrModel.transactionAmount) ?: ""
-            amount = "%,.2f".format(Locale.ENGLISH, qrModel.transactionAmount) ?: ""
+            amt = qrModel.transactionAmount ?: ""
+            amount = qrModel.transactionAmount ?: ""
             cdtrRecordID = ""
             dbtrRecordID = AppCash.cliQRecordId ?: ""
             dbtrAcct = accountNumber.accountNumber
