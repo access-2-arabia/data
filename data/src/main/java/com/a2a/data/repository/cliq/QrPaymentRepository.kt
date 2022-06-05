@@ -12,6 +12,7 @@ import com.a2a.data.repository.BaseRepository
 import com.a2a.network.Resource
 import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
+import java.util.*
 import javax.inject.Inject
 
 class QrPaymentRepository @Inject constructor(
@@ -53,8 +54,8 @@ class QrPaymentRepository @Inject constructor(
             cdtrAcct = accountNumber.iBAN
             cdtrPstlAdr = qrModel.merchantCity ?: ""
             ctgyPurp = qrModel.additionalData?.purposeOfTransaction.toString()
-            amt = qrModel.transactionAmount ?: ""
-            amount = qrModel.transactionAmount ?: ""
+            amt = "%,.2f".format(Locale.ENGLISH, qrModel.transactionAmount) ?: ""
+            amount = "%,.2f".format(Locale.ENGLISH, qrModel.transactionAmount) ?: ""
             cdtrRecordID = ""
             dbtrRecordID = AppCash.cliQRecordId ?: ""
             dbtrAcct = accountNumber.accountNumber
