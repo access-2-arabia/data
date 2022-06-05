@@ -87,6 +87,18 @@ class QrPaymentRepository @Inject constructor(
                 }
             qrPstCd = qrModel.postalAddress
             BicCode = qrModel.merchantAccountInformation.BICCode
+
+            qRVOFC = qrModel.tip
+            if (qrModel.tip == "02") {
+                qRVOFCFixed = fixedTip
+            }
+
+            if (qrModel.tip == "03") {
+                qRVOFCPercentage = percentTip
+            }
+            if (qrModel.tip == "01") {
+                qrOptionalTip = optionalTip
+            }
         }
         val postData = BaseRequestModel(
             A2ARequest(
