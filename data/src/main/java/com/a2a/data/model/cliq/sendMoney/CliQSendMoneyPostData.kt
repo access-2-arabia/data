@@ -115,7 +115,7 @@ data class CliQSendMoneyPostData(
     @SerializedName("StepNumber")
     var stepNumber: Int = 0,
     @SerializedName("Authenticate")
-    var authenticate: CliQRequestMoneyResponse.A2ARequest.Body.Authenticate = CliQRequestMoneyResponse.A2ARequest.Body.Authenticate(),
+    var authenticate: CliQRequestMoneyResponse.A2ARequest.Body.Authenticate? = null,
     @SerializedName("OTP")
     var oTP: CliQRequestMoneyResponse.A2ARequest.Body.OTP = CliQRequestMoneyResponse.A2ARequest.Body.OTP(),
     @SerializedName("ServiceConfiguration")
