@@ -9,9 +9,10 @@ data class PayPrepaidPostData(
     @SerializedName("Bill")
     var bill: Bill = Bill(),
     @SerializedName("CustProfile")
-    var custProfile: CustProfile = CustProfile()
-)
-{
+    var custProfile: CustProfile = CustProfile(),
+    @SerializedName("SrvID")
+    var srvID: String = "eFwaterPay"
+) {
     data class Accounts(
         @SerializedName("AccountFrom")
         var accountFrom: String = "",
