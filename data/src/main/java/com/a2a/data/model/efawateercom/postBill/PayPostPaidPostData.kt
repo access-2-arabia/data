@@ -11,7 +11,7 @@ data class PayPostPaidPostData(
     @SerializedName("CustProfile")
     var custProfile: CustProfile = CustProfile(),
     @SerializedName("SrvID")
-    var srvID: String = "eFwaterPay"
+    var srvID: String = "eFwatercom"
 ) {
     data class Accounts(
         @SerializedName("AccountFrom")
