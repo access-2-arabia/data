@@ -25,5 +25,6 @@ data class ValidationWithinCabPostData(
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile()
 
+
     )
 }
