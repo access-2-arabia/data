@@ -80,6 +80,8 @@ data class LookUpResponse(
             var branch: List<Branch> = listOf(),
             @SerializedName("Country")
             var country: List<Country> = listOf(),
+            @SerializedName("CountryIMT")
+            var countryIMT: List<CountryIMT> = listOf(),
             @SerializedName("Currency")
             var currency: List<Currency> = listOf(),
             @SerializedName("DeactiveReason")
@@ -225,6 +227,34 @@ data class LookUpResponse(
 
             @Parcelize
             data class Country(
+                @SerializedName("ADesc")
+                var aDesc: String = "",
+                @SerializedName("AValue")
+                var aValue: String = "",
+                @SerializedName("Code")
+                var code: String = "",
+                @SerializedName("EDesc")
+                var eDesc: String = "",
+                @SerializedName("EValue")
+                var eValue: String = "",
+                @SerializedName("ID")
+                var iD: Int = 0,
+                @SerializedName("Telecom")
+                var telecom: String = "",
+                @SerializedName("IBAN")
+                var iban: Boolean = false,
+                @SerializedName("IBANLength")
+                var ibanLength: Int = 0,
+                @SerializedName("SwiftCode")
+                var swiftCode: Boolean = false
+            ) : Parcelable {
+                override fun toString(): String {
+                    return eDesc
+                }
+            }
+
+            @Parcelize
+            data class CountryIMT(
                 @SerializedName("ADesc")
                 var aDesc: String = "",
                 @SerializedName("AValue")
