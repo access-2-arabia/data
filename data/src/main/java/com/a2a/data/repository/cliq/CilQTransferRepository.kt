@@ -111,7 +111,7 @@ class CilQTransferRepository @Inject constructor(
             senderPstlAdr = MemoryCacheImpl.getCustProfile()?.address1 ?: ""
             dbtrAcct = ibanNumber
             this.stepNumber = stepNumber
-            custProfile = MemoryCacheImpl.getCustProfile()?: CustProfile()
+            custProfile = MemoryCacheImpl.getCustProfile() ?: CustProfile()
             benAccIBAN = selectedAccount.iBAN
         }
 
@@ -119,6 +119,70 @@ class CilQTransferRepository @Inject constructor(
             A2ARequest(
                 requestMoneyPostData,
                 srvID = "ReqToPay"
+            )
+        )
+        return safeApiCall(postData) {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> sendMoneyResolvedByAddBeneficiary(
+        name: String,
+        surName: String,
+        aliasType: String,
+        aliasValue: String,
+        bic: String,
+        ibanNumber: String,
+        address: String,
+        paymentPurpose: String,
+        amount: String,
+        stepNumber: Int
+    ): Resource<T> {
+
+
+        val cliQSendMoneyPostData = CliQSendMoneyPostData()
+        if (name.isNullOrEmpty() && surName.isNullOrEmpty())
+            cliQSendMoneyPostData.cdtrName = ""
+        else
+            cliQSendMoneyPostData.cdtrName = "$name  $surName"
+        cliQSendMoneyPostData.custIDTO = ""
+        cliQSendMoneyPostData.cdtrIsIndvl = ""
+        cliQSendMoneyPostData.cdtrMCC = ""
+        cliQSendMoneyPostData.dbtrAlias = ""
+        cliQSendMoneyPostData.cdtrAlias = aliasType
+        cliQSendMoneyPostData.cdtrValue = aliasValue.toUpperCase()
+        cliQSendMoneyPostData.cdtrBic = bic
+        cliQSendMoneyPostData.cdtrAcct = ibanNumber
+        cliQSendMoneyPostData.cdtrPstlAdr = address
+        cliQSendMoneyPostData.ctgyPurp = paymentPurpose
+        cliQSendMoneyPostData.amt = amount
+        cliQSendMoneyPostData.amount = amount
+        cliQSendMoneyPostData.cdtrRecordID = ""
+        cliQSendMoneyPostData.dbtrMCC = ""
+        cliQSendMoneyPostData.dbtrRecordID = AppCash.cliQRecordId ?: ""
+//        cliQSendMoneyPostData.dbtrAcct = accountNumber.accountNumber
+        cliQSendMoneyPostData.qRFlag = "false"
+//        cliQSendMoneyPostData.curr = accountNumber.currencyISOCode
+        cliQSendMoneyPostData.stepNumber = stepNumber
+        cliQSendMoneyPostData.dbtrName =
+            MemoryCacheImpl.getCustProfile()?.eName ?: ""
+        cliQSendMoneyPostData.fees = 0
+        cliQSendMoneyPostData.dbtrPstlAdr =
+            MemoryCacheImpl.getCustProfile()?.address1 ?: ""
+//        cliQSendMoneyPostData.currFrom = accountNumber.currencyISOCode
+        cliQSendMoneyPostData.dbtrIsIndvl = "true"
+        cliQSendMoneyPostData.custID =
+            MemoryCacheImpl.getCustProfile()?.custID ?: ""
+        cliQSendMoneyPostData.currCodeTo = "400"
+        cliQSendMoneyPostData.QRAddLangTemp = ""
+        cliQSendMoneyPostData.QRTaxId = ""
+//        cliQSendMoneyPostData.benAccIBAN = accountNumber.iBAN
+
+        cliQSendMoneyPostData.custProfile = MemoryCacheImpl.getCustProfile()!!
+        val postData = BaseRequestModel(
+            A2ARequest(
+                cliQSendMoneyPostData,
+                srvID = "ICLIQPay"
             )
         )
         return safeApiCall(postData) {
