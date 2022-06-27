@@ -160,23 +160,23 @@ class CilQTransferRepository @Inject constructor(
         cliQSendMoneyPostData.cdtrRecordID = ""
         cliQSendMoneyPostData.dbtrMCC = ""
         cliQSendMoneyPostData.dbtrRecordID = AppCash.cliQRecordId ?: ""
-//        cliQSendMoneyPostData.dbtrAcct = accountNumber.accountNumber
+        cliQSendMoneyPostData.dbtrAcct = ""
         cliQSendMoneyPostData.qRFlag = "false"
-//        cliQSendMoneyPostData.curr = accountNumber.currencyISOCode
+        cliQSendMoneyPostData.curr = ""
         cliQSendMoneyPostData.stepNumber = stepNumber
         cliQSendMoneyPostData.dbtrName =
             MemoryCacheImpl.getCustProfile()?.eName ?: ""
         cliQSendMoneyPostData.fees = 0
         cliQSendMoneyPostData.dbtrPstlAdr =
             MemoryCacheImpl.getCustProfile()?.address1 ?: ""
-//        cliQSendMoneyPostData.currFrom = accountNumber.currencyISOCode
+        cliQSendMoneyPostData.currFrom = ""
         cliQSendMoneyPostData.dbtrIsIndvl = "true"
         cliQSendMoneyPostData.custID =
             MemoryCacheImpl.getCustProfile()?.custID ?: ""
         cliQSendMoneyPostData.currCodeTo = "400"
         cliQSendMoneyPostData.QRAddLangTemp = ""
         cliQSendMoneyPostData.QRTaxId = ""
-//        cliQSendMoneyPostData.benAccIBAN = accountNumber.iBAN
+        cliQSendMoneyPostData.benAccIBAN = ""
 
         cliQSendMoneyPostData.custProfile = MemoryCacheImpl.getCustProfile()!!
         val postData = BaseRequestModel(
