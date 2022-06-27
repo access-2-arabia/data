@@ -470,6 +470,7 @@ class WuRepository @Inject constructor(
             body.currencyFrom = crossCurrencyPostData.fromCurrency
             body.currencyTo = crossCurrencyPostData.toBeneficiaryCurrency
             body.amount = crossCurrencyPostData.amount
+            body.custProfile = crossCurrencyPostData.custProfile
             body.branchCode = MemoryCacheImpl.getCustProfile()!!.branch
         }
         val postData =
@@ -539,8 +540,8 @@ class WuRepository @Inject constructor(
     suspend fun <T> getWUCascadeList(
         queryFilter2: String,
         queryFilter3: String,
-        queryFilter4: String?=null,
-        language: String?="en"
+        queryFilter4: String? = null,
+        language: String? = "en"
     ): Resource<T>? {
         val wuCascade = CascadePostData()
         wuCascade.apply {
@@ -548,7 +549,7 @@ class WuRepository @Inject constructor(
             body.custProfile = MemoryCacheImpl.getCustProfile()!!
             body.deviceType = "MOBILE"
             body.deviceId = "Online"
-            body.queryfilter1 = language?:"en"
+            body.queryfilter1 = language ?: "en"
             body.queryfilter2 = queryFilter2
             body.queryfilter3 = queryFilter3
             body.queryfilter4 = queryFilter4
