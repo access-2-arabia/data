@@ -15,7 +15,7 @@ class MarketPlaceRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseRepository() {
 
-    suspend fun <T> sendMoney(
+    suspend fun <T> getMarketPlace(
         marketPlace: MarketPlacePostData
     ): Resource<T>? {
         var marketPlacePostData = MarketPlacePostData()
