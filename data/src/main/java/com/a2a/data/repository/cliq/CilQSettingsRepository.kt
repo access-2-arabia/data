@@ -68,7 +68,7 @@ class CilQSettingsRepository @Inject constructor(
 
         body.apply {
             requestType = "DeleteCust"
-            uType = "NID"
+            uType = currentCustProfile.nationalityID
             recordId = AppCash.cliQRecordId.toString()
             uValue = currentCustProfile.docNo
             custID = currentCustProfile.custID
