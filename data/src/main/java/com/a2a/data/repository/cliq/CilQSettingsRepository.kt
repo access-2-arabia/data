@@ -68,9 +68,9 @@ class CilQSettingsRepository @Inject constructor(
 
         body.apply {
             requestType = "DeleteCust"
-            uType = currentCustProfile.nationalityID
+            uType = "NID"
             recordId = AppCash.cliQRecordId.toString()
-            uValue = currentCustProfile.docNo
+            uValue = currentCustProfile.nationalityID
             custID = currentCustProfile.custID
             custProfile = currentCustProfile
         }
@@ -99,7 +99,7 @@ class CilQSettingsRepository @Inject constructor(
             uType = "NID"
             alias.recordId = currentAlias.recordId
             recordId = AppCash.cliQRecordId.toString()
-            uValue = currentCustProfile.docNo
+            uValue = currentCustProfile.nationalityID
             custID = currentCustProfile.custID
             custProfile = currentCustProfile
         }
@@ -124,7 +124,7 @@ class CilQSettingsRepository @Inject constructor(
             requestType = "CustSuspend"
             uType = "NID"
             recordId = AppCash.cliQRecordId.toString()
-            uValue = currentCustProfile.docNo
+            uValue = currentCustProfile.nationalityID
             custID = currentCustProfile.custID
             custProfile = currentCustProfile
         }
@@ -153,7 +153,7 @@ class CilQSettingsRepository @Inject constructor(
             uType = "NID"
             alias.recordId = currentAlias.recordId
             recordId = AppCash.cliQRecordId.toString()
-            uValue = currentCustProfile.docNo
+            uValue = currentCustProfile.nationalityID
             custID = currentCustProfile.custID
             custProfile = currentCustProfile
         }
