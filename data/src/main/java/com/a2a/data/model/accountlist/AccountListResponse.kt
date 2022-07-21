@@ -145,10 +145,12 @@ data class AccountListResponse(
                 @SerializedName("Description")
                 var description: String = "",
                 @SerializedName("AccFullNickname")
-                var accFullNickName: String ="",
+                var accFullNickName: String = "",
+                var isChecked: Boolean = false,
+                @SerializedName("RecordId")
+                var recordId: String = "",
 
-                var isChecked: Boolean = false
-            ) : Parcelable {
+                ) : Parcelable {
                 override fun toString(): String {
                     return nickName
                 }
