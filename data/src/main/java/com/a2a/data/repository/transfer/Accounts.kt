@@ -13,5 +13,5 @@ data class Accounts(
     @SerializedName("CurrencyFrom")
     var currencyFrom: String = "",
     @SerializedName("CurrencyTo")
-    var currencyTo: String = ""
+    var currencyTo: String? = null
 )
