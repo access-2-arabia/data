@@ -11,4 +11,5 @@ data class TermsAndConditionsPostData(
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("StepNumber")
         var stepNumber: Int = 0
+
 )
