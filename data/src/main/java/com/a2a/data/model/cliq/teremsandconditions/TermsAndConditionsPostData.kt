@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 data class TermsAndConditionsPostData(
 
         @SerializedName("approve")
-        var approve: Boolean? = null,
+        var approve: Boolean? = false,
         @SerializedName("CustProfile")
         var custProfile: CustProfile = CustProfile(),
         @SerializedName("StepNumber")
