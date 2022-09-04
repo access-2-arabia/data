@@ -2,6 +2,7 @@ package com.a2a.data.repository.cards
 
 import MemoryCacheImpl
 import com.a2a.data.datasource.RemoteDataSource
+import com.a2a.data.model.accountlist.EStatementPostData
 import com.a2a.data.model.card.creditcard.CreditCardPostData
 import com.a2a.data.model.card.creditcard.activedeactivecreditcard.ActiveDeactivePostData
 import com.a2a.data.model.card.creditcard.cardpayment.CardPaymentPostData
@@ -14,6 +15,7 @@ import com.a2a.data.model.card.creditcard.stopcard.StopCardPostData
 import com.a2a.data.model.card.creditcard.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.card.debit.DebitCardPostData
 import com.a2a.data.model.card.creditcard.pendingauthorization.PendingAuthorizationPostData
+import com.a2a.data.model.card.creditcard.periodstatment.PeriodStatementPostData
 import com.a2a.data.model.common.A2ARequest
 import com.a2a.data.model.common.BaseRequestModel
 import com.a2a.data.repository.BaseRepository
@@ -325,6 +327,24 @@ class CreditCardsRepository @Inject constructor(
             )
         return safeApiCall(postData)
         {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> requestPeriodEStatementCards(periodStatement: PeriodStatementPostData): Resource<T>? {
+        val periodStatementPostData = PeriodStatementPostData()
+        periodStatementPostData.apply {
+            body.cards.cardNo = periodStatement.body.cards.cardNo
+            body.cards.date = periodStatement.body.cards.date
+        }
+        val postData = BaseRequestModel(
+            A2ARequest(
+                periodStatementPostData,
+                srvID = "DeptStatmt",
+                serviceIDValue = 0
+            )
+        )
+        return safeApiCall(postData) {
             remoteDataSource.baseRequest(postData)
         }
     }
