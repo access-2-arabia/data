@@ -13,6 +13,7 @@ import com.a2a.data.model.paypal.faq.FAQPostData
 import com.a2a.data.model.paypal.getbalance.GetPaypalBalancePostData
 import com.a2a.data.model.paypal.transaction.PaypalTransactionPostData
 import com.a2a.data.model.paypal.transaction.PaypalTransactionValidationPostData
+import com.a2a.data.model.paypal.transactionhistory.TransactionHistoryPostData
 import com.a2a.data.model.paypal.updateemail.UpdateEmailPostData
 import com.a2a.data.model.paypal.validation.GetVerifiedStatusPostData
 import com.a2a.data.model.wu.feeinquire.FeeInquirePostData
@@ -214,7 +215,7 @@ class PayPalRepository @Inject constructor(
     ): Resource<T>? {
         val paypalTransactionRequest = PaypalTransactionPostData()
         paypalTransactionRequest.apply {
-            body.stepNumber =  paypalTransactionPostData.body.stepNumber
+            body.stepNumber = paypalTransactionPostData.body.stepNumber
             body.custProfile = paypalTransactionPostData.body.custProfile
             body.accTo = paypalTransactionPostData.body.accTo
             body.accFrom = paypalTransactionPostData.body.accFrom
@@ -277,6 +278,28 @@ class PayPalRepository @Inject constructor(
             BaseRequestModel(
                 A2ARequest(
                     getDeLinkPostDataRequest.body,
+                    srvID = "PayPal",
+                    serviceIDValue = 0
+                )
+            )
+        return safeApiCall(postData)
+        {
+            remoteDataSource.baseRequest(postData)
+        }
+    }
+
+    suspend fun <T> getPaypalTransactionHistory(
+        transactionHistoryPostData: TransactionHistoryPostData
+    ): Resource<T>? {
+        val getTransactionHistoryRequest = TransactionHistoryPostData()
+        getTransactionHistoryRequest.apply {
+            body.stepNumber = transactionHistoryPostData.body.stepNumber
+            body.custProfile = transactionHistoryPostData.body.custProfile
+        }
+        val postData =
+            BaseRequestModel(
+                A2ARequest(
+                    getTransactionHistoryRequest.body,
                     srvID = "PayPal",
                     serviceIDValue = 0
                 )
