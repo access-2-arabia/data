@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class TermsAndConditionsPostData(
 
-        @SerializedName("approve")
-        var approve: Boolean? = false,
-        @SerializedName("CustProfile")
-        var custProfile: CustProfile = CustProfile(),
-        @SerializedName("StepNumber")
-        var stepNumber: Int = 0
+    @SerializedName("approve")
+    var approve: Boolean? = null,
+    @SerializedName("CustProfile")
+    var custProfile: CustProfile = CustProfile(),
+    @SerializedName("StepNumber")
+    var stepNumber: Int = 0
 
 )
