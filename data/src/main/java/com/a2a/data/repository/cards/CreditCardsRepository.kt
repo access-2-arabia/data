@@ -332,6 +332,7 @@ class CreditCardsRepository @Inject constructor(
     }
 
     suspend fun <T> requestPeriodEStatementCards(periodStatement: PeriodStatementPostData): Resource<T>? {
+
         val periodStatementPostData = PeriodStatementPostData()
         periodStatementPostData.apply {
             body.cards.cardNo = periodStatement.body.cards.cardNo
