@@ -336,6 +336,7 @@ class CreditCardsRepository @Inject constructor(
         periodStatementPostData.apply {
             body.cards.cardNo = periodStatement.body.cards.cardNo
             body.cards.date = periodStatement.body.cards.date
+            body.custProfile = periodStatement.body.custProfile
         }
         val postData = BaseRequestModel(
             A2ARequest(
