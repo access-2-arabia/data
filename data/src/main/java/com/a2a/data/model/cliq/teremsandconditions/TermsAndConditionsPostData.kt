@@ -4,7 +4,6 @@ import com.a2a.network.model.CustProfile
 import com.google.gson.annotations.SerializedName
 
 data class TermsAndConditionsPostData(
-
     @SerializedName("approve")
     var approve: Boolean? = null,
     @SerializedName("CustProfile")
