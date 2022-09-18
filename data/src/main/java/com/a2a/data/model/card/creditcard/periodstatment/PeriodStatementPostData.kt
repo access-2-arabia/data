@@ -1,5 +1,7 @@
 package com.a2a.data.model.card.creditcard.periodstatment
+
 import android.os.Parcelable
+import com.a2a.network.model.CustProfile
 
 
 import com.google.gson.annotations.SerializedName
@@ -14,7 +16,9 @@ data class PeriodStatementPostData(
     @Parcelize
     data class Body(
         @SerializedName("Cards")
-        var cards: Cards = Cards()
+        var cards: Cards = Cards(),
+        @SerializedName("CustProfile")
+        var custProfile: CustProfile = CustProfile(),
     ) : Parcelable {
         @Parcelize
         data class Cards(
